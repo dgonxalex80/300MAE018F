@@ -14,7 +14,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE, comment = NA)
 ```
 
-# <span style="color:#2C5697">**Estadística para la toma de decisiones - G**</span>
+# <span style="color:#2C5697">**Estadística para la toma de decisiones - F**</span>
 
 
 ```{r, echo=FALSE, out.width="70%", fig.align = "center"}
