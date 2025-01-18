@@ -1,0 +1,40 @@
+---
+title: <span style="color:#235784"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">Estadística para la toma de decisiones </span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+
+![](img/banner005.png) 
+<br/><br/>
+
+<!-- # **Introducción** -->
+
+<!-- # **R y RStudio** -->
+
+
+<!-- <br/><br/><br/> -->
+
+<!-- # **Objetivo** -->

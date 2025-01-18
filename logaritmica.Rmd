@@ -1,0 +1,27 @@
+---
+title: <span style="color:#235784"> **Función logaritica**</span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">**Módulo 0**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+
+
+```
+
+
+<br/><br/>
+
+
+<div class="highlight-box">
+## **Definición**
+
+</div>

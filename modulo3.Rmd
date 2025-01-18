@@ -1,0 +1,65 @@
+---
+title: <span style="color:#235784"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">Estadística para la toma de decisiones </span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+
+![](img/banner003.png) 
+<!-- <br/><br/> -->
+
+<!-- # **Introducción** -->
+
+<!-- La inferencia estadística es una de las herramientas mas fuertes de la estadística que  permite la generalización de los resultados  obtenidos  en una muestra a  toda  la población. En este módulo encontraras los procedimientos que te permitirán realizar una correcta inferencia de tus datos. -->
+
+
+<!-- <br/><br/><br/> -->
+
+<!-- # **Objetivo** -->
+
+<!-- Al finalizar el módulo el estudiante estará en capacidad de RECONOCER, INFERIR y CONSTRASTAR a partir de la estimación a través de INTERVALOS DE CONFIANZA  y PRUEBAS DE HIPOTESIS, permitiendo incorporar estas herramientas estadísticas a la toma de decisiones. -->
+
+
+
+<br/><br/><br/>
+
+## **Contenido**
+
+* Introducción al muestreo, Muestreo probabilístico: aleatorio simple, estratificado, por conglomerado, sistemático.  Muestreo no probabilístico. 
+
+
+* Estimación Puntual, Teorema del límite central. Distribución de muestreo de los estadísticos , 
+
+
+
+
+
+* Distribución de muestreo Chi cuadrada, T de Student  y F.
+
+* Hipótesis estadística: Elementos y tipo de errores posibles en una prueba de hipótesis estadística. 
+
+* Procedimientos de Prueba de Hipótesis para la media y para la proporción en una población y dos poblaciones.
+
+

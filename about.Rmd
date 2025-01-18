@@ -1,0 +1,127 @@
+---
+title: "**Sobre el grupo**"
+subtitle: " "
+author: "dgonzalez"
+date: ""
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Instalar y cargar las librerías necesarias
+library(ggplot2)
+
+# Crear data.frame en R
+data <- data.frame(
+  Nombre = c(
+    "ARIZA VICTORIA,FARID", "BEJARANO SANCLEMENTE", "BONILLA LINARES,JUANITA",
+    "Bellanger,Hugo Eric Corentin", "CAMPO ALZATE,HUGO", "CARDENAS ROJAS,LAURA",
+    "CIPPONERI CALVO,JEAN", "CUERO AGUDELO,ISABELLA", "ESCOBAR JARAMILLO",
+    "GIRALDO GARCIA,CRISTIAN", "LASPRILLA RODRIGUEZ,ANA", "MARMOLEJO SANDOVAL",
+    "OBANDO GAVIRIA", "OSORIO GOMEZ,VALERIA", "PEREZ ENRIQUEZ,EMANUEL",
+    "POLANCO FIGUEROA", "POLO PEÑAS,DANIEL", "PRECIADO PORTELA", 
+    "PUCUNA TENESACA,JARED", "REYES ESPINOSA,EFRAIN", "RUIZ CANO,SANTIAGO",
+    "SALAZAR GOMEZ,KAREN", "SANCHEZ RODRIGUEZ", "SARRIA LOPEZ,KARINA",
+    "VARGAS ANGARITA,JUAN", "VASQUEZ ERAZO"
+  ),
+  Emplid = c(
+    8973765, 8976903, 8986457, 9028170, 8988191, 8990763, 8957979, 8950597,
+    8977334, 8944135, 8973319, 8974838, 8984368, 8987332, 8983159, 8953900,
+    8978180, 8972189, 8983789, 8991161, 8989654, 8989395, 8981480, 8988615,
+    8980025, 8966418
+  ),
+  Carrera = c(
+    "Administración de Empresas", "Mercadeo", "Turismo",
+    "ALE Pregrado Internacional", "Negocios Internacionales", "Negocios Internacionales",
+    "Negocios Internacionales", "Negocios Internacionales", "Negocios Internacionales",
+    "Negocios Internacionales", "Negocios Internacionales", "Negocios Internacionales",
+    "Administración de Empresas", "Negocios Internacionales", "Negocios Internacionales",
+    "Administración de Empresas", "Administración de Empresas", "Mercadeo",
+    "Negocios Internacionales", "Negocios Internacionales", "Administración de Empresas",
+    "Negocios Internacionales", "Negocios Internacionales", "Negocios Internacionales",
+    "Negocios Internacionales", "Mercadeo"
+  ),
+  Matriculada = c(
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1
+  ),
+  Cancelada = c(
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0
+  ),
+  Perdida = c(
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+  ),
+  Promedio = c(
+    3.69, 3.45, 4.07, 0, 3.6, 4.13, 4.38, 3.81, 4.39, 3.9, 3.77, 3.86, 4.11, 4.1,
+    3.54, 3.84, 3.96, 3.96, 3.69, 3.75, 4.05, 3.83, 3.84, 3.9, 3.57, 3.9
+  )
+)
+
+
+# Instalar los paquetes necesarios si no están ya instalados
+if (!require(ggplot2)) install.packages("ggplot2")
+if (!require(dplyr)) install.packages("dplyr")
+if (!require(paletteer)) install.packages("paletteer")
+library(paletteer)
+library(ggplot2)
+library(dplyr)
+
+# Crear una paleta de colores pastel
+# pastel_colors <- c("#FDBFB3", "#FFDDC1", "#FFC8A2", "#FFD8BE", "#FFCB9A", "#FFC3A0", "#FF9AA2", "#FFDAC1")
+# pastel_colors <-c("#d2fbff", "#b7dbe6", "#9cbcce", "#819eb6", "#68819e", "#4e6587", "#354b71", "#19325b")
+
+pastel_colors <- paletteer_c("ggthemes::Orange-Blue-White Diverging",5)
+
+
+# Diagrama circular para la variable Carrera
+
+# Suponiendo que `data` ya está definido y tiene una columna `Carrera`
+library(formattable)
+
+# Crear la tabla de frecuencias
+tabla <- table(data$Carrera) %>%
+  as.data.frame()
+
+names(tabla) <- c("Carrera", "Frecuencia")
+
+# Aplicar formato con barras de color a la columna de frecuencias
+formattable(tabla, list(
+  Frecuencia = color_bar("lightblue")
+))
+```
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+# Diagrama de cajas para la variable Promedio
+ggplot(data, aes(x = Carrera, y = Promedio, fill = Carrera)) +
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  scale_fill_manual(values = pastel_colors) +
+  labs(title = "Diagrama de Cajas para la Variable Promedio por Carrera")
+
+
+
+
+
+```
+

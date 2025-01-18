@@ -1,0 +1,124 @@
+---
+title: <span style="color:#235784"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">**Módulo 0**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+--- 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+
+```
+
+
+![](img/banner000.png) 
+
+<br/><br/>
+
+
+# **PRODUCTORIA**
+
+<br/><br/>
+
+El productorio o productoria, también conocido como multiplicatorio, multiplicatoria o simplemente producto es una notación matemática que representa una multiplicación de una cantidad arbitraria finita o infinita.
+ 
+Wikipedia
+
+
+Este operador será utilizado para desarrollar el método de estimación de Máxima Verosimilitud, soporte de la inferencia estadística abordado en la Unidad 4.1 del Módulo 4.
+
+<br/><br/><br/> 
+
+<div class="box2">
+## **Definición**
+
+Se define como:
+
+$$\displaystyle\prod_{i=1}^n a_{i}   = a_1 \times a_2 \times a_3 \times  \cdots \times a_n$$
+</div>
+
+<br/>
+
+El operador consiste en multiplicar un numero de veces establecido los términos $a_i$
+Una de las aplicaciones más conocida de la productoria son los números factoriales
+
+$$n! = \displaystyle\prod_{i=1}^n i = 1 \times 2 \times 3 \cdots \times n$$    
+
+Este operador también se utiliza para multiplicar funciones, matrices como por ejemplo:
+
+$$\displaystyle\prod_{i=1}^n f(x_i) = f(x_1) \times f(x_2) \times f(x_3) \cdots \times f(x_n)$$    
+Para el caso de $f(x) = \exp\{x\}$ tenemos:
+
+
+$$\displaystyle\prod_{i=1}^n \exp\{x_i\} = \exp\{x_1\} \times \exp\{x_2\} \times \exp\{x_3\} \cdots \times \exp\{x_n\}$$    
+
+Al tener la misma base con diferente exponente, el resultado se obtiene al colocar la misma base y sumar los exponentes,
+
+$$\exp\Bigg\{\displaystyle\sum_{i=1}^{n} x_{i}\Bigg\}$$ 
+
+<br/><br/>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1</div>
+
+Encontrar la multiplicación de los 10 primeros números
+
+$$\displaystyle\prod_{x=1}^n x = 1 \times 2 \times 3 \times 4 \times 5 \times 6 \times 7 \times 8 \times 9 \times 10 $$
+
+```{r}
+prod(1:10)
+```
+
+</div>
+
+
+<br/><br/>
+
+## **Problemas propuestos**
+
+1.  $\displaystyle\prod_{k=1}^{20} 2^{k}$
+
+<br/> <br/> 
+
+2. $\displaystyle\prod_{k=1}^{20} k 2^{k}$
+
+<br/> <br/> 
+
+3. $\displaystyle\prod_{i=1}^n f(x_{i})$ 
+
+<br/>
+
+para las siguientes funciones:
+
+  + $f(x) = \dfrac{1}{60}$ 
+  
+  <br/>
+  
+  + $f(x_{i}) = \dfrac{1}{x_{i}}$
+  
+  <br/>
+  
+  + $f(x_{i}) = \dfrac{1}{\sqrt{2\pi}} \exp\bigg\{\frac{1}{2}x^{2}\bigg\}$
+
+

@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a></a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#235784"> </span></h1>
+<h3 class="subtitle"><span style="color:#235784"> </span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><img src="img/banner000.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<div id="técnicas-de-conteo" class="section level1">
+<h1><strong>TÉCNICAS DE CONTEO</strong></h1>
+<p><br/><br/></p>
+<p>Las técnicas de conteo constituyen una serie de estrategias que
+permiten a través de reglas establecer el numero de elementos de un
+conjunto finito.</p>
+<p>Inicialmente empezaremos por definir dos reglas:</p>
+<p><br/><br/></p>
+<div id="principio-de-la-adicción" class="section level2">
+<h2><strong>Principio de la adicción</strong></h2>
+<p>Supongamos que un procedimiento, designado con <span
+class="math inline">\(P_1\)</span>, se puede hacer de <span
+class="math inline">\(n_1\)</span> manera diferentes. Supongamos que un
+segundo procedimiento <span class="math inline">\(P_2\)</span> se puede
+realizar de <span class="math inline">\(n_2\)</span> maneras diferentes.
+Ademas suponga que los dos procedimientos no se pueden realizar juntos.
+Entonces el numero de formas diferentes como se puede realizar el
+procedimiento <span class="math inline">\(P_1\)</span> o el
+procedimiento <span class="math inline">\(P_2\)</span> es de <span
+class="math inline">\(n_1 + n_2\)</span> maneras diferentes.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 1
+</div>
+<p>Un estudiante tiene dos posibilidades de ir de su casa a la
+universidad: En transporte público o en transporte particular. Para el
+caso del transporte público existen 5 alternativas. Para el caso de
+transporte particular tienen 6 alternativas. En este caso <span
+class="math inline">\(n_{1}=5\)</span> y <span
+class="math inline">\(n_{2}=6\)</span>. El número de maneras como se
+puede transportar de la casa a la universidad será <span
+class="math inline">\(n=n_{1}+n_{2}=11\)</span> formas diferentes de ir
+a la U.</p>
+</div>
+<p><br/></p>
+<p><img src="img/psuma.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+</div>
+<div id="principio-de-la-multiplicación" class="section level2">
+<h2><strong>Principio de la multiplicación</strong></h2>
+<p>Supongamos que un procedimiento <span
+class="math inline">\(P1\)</span> , se puede realizar de <span
+class="math inline">\(n_1\)</span> maneras diferentes y que otro
+procedimiento <span class="math inline">\(P2\)</span> se puede realizar
+de <span class="math inline">\(n_2\)</span> maneras diferentes, Ahora
+supongamos que la manera de realizar los procedimientos es uno después
+del otro. Entonces el numero de formas diferentes como se pueden
+realizar los procedimientos <span class="math inline">\(P1\)</span> y
+<span class="math inline">\(P2\)</span> de manera consecutiva es <span
+class="math inline">\(n1*n2\)</span> formas diferentes.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 2
+</div>
+<p>En el proceso de fabricación de una silla se diferencian las
+siguientes etapas: El diseño de la silla (<span
+class="math inline">\(P_{1}\)</span>) y el proceso de pintado (<span
+class="math inline">\(P_{2}\)</span>). El proceso <span
+class="math inline">\(P_{1}\)</span> se puede realizar de 3 formas
+diferentes. Para el proceso <span class="math inline">\(P_{2}\)</span>
+se puede optar por 4 formas diferentes. ¿De cuantas formas diferentes se
+puede construir una silla?</p>
+</div>
+<p><br/><br/></p>
+<p>El número de posibles formas como puede fabricar una silla será:
+<span class="math inline">\(n_{1} \times n_{2} = 3 \times 4 =
+14\)</span></p>
+<p><img src="img/pmultiplicacion.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+</div>
+<div id="otras-técnicas-de-conteo" class="section level2">
+<h2><strong>Otras técnicas de conteo</strong></h2>
+<p>Para explicar un poco los otros casos de conteo utilizaremos el
+siguiente experimento aleatorio:</p>
+<p>Se tiene una urna que contiene <span class="math inline">\(n\)</span>
+elementos todos numerables ( se pueden contar) y de ellos se quiere
+seleccionar <span class="math inline">\(k\)</span> elementos como se
+muestra en la siguiente figura.</p>
+<p><br/><br/></p>
+<p><img src="img/urna.png" width="30%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<p>Este procedimiento se puede realizar de varias formas:</p>
+<p>A. Importando el orden</p>
+<ul>
+<li><p><span class="math inline">\(\mathcal{P}&#39;(n,k)\)</span> Con
+repetición o también llanada con sustitución</p></li>
+<li><p><span class="math inline">\(\mathcal{P}(n,k)\)</span> Sin
+repetición o sin sustitución</p></li>
+</ul>
+<p>B. Sin importar el orden</p>
+<ul>
+<li><p><span class="math inline">\(\mathcal{C}&#39;(n,k)\)</span> Con
+repetición o también llanada con sustitución</p></li>
+<li><p><span class="math inline">\(\mathcal{C}(n,k)\)</span> Sin
+repetición o sin sustitución</p></li>
+</ul>
+<p><br/><br/></p>
+<p>Es decir que se definen los siguientes procedimientos:</p>
+<p><strong>A1</strong> : <span
+class="math inline">\(\mathcal{P}&#39;(n,k)\)</span>: Conjunto formado
+por todas las manera posible como se puede seleccionar una muestra de
+tamaño k de una urna que contiene n elementos importando el orden, con
+sustitución. En este procedimiento se hace diferencia de la posición que
+tienen los elementos al ser seleccionados y también que después de la
+extracción de un elemento, este se regresa a la urna antes de la
+siguiente selección. Esto implica que hay siempre en la urna n elementos
+antes de la cada selección.</p>
+<p><br/><br/></p>
+<p><strong>A2</strong> : <span
+class="math inline">\(\mathcal{P}(n,k)\)</span>: Conjunto de todas la
+formas posibles como se puede seleccionar una muestra de tamaño k de una
+urna que contiene n elementos importando el orden, sin sustitución. En
+este caso los elementos que son seleccionados van quedando por fuera de
+la urna y no participan en la siguiente selección.</p>
+<p><br/><br/></p>
+<p><strong>B1</strong> : <span
+class="math inline">\(\mathcal{C}&#39;(n,k)\)</span>: Conjunto de todas
+las maneras posible como se puede seleccionar una muestra de tamaño k de
+una urna que contiene n elementos sin importar el orden pero con
+sustitución. En esta caso no tiene importancia el orden en que se
+seleccionan los elementos de la urna, pero los elementos seleccionados
+regresan a la urna y podrían se seleccionados nuevamente.</p>
+<p><br/><br/></p>
+<p><strong>B2</strong> : <span
+class="math inline">\(\mathcal{C}(n,k)\)</span>: Conjunto de todas las
+formas posibles como se puede selecciona una muestra de tamaño k de una
+urna que contiene n elementos, sin importar el orden, pero en este caso
+los elementos seleccionados previamente son excluidos de la siguiente
+selección.</p>
+<p><br/><br/></p>
+<p>Contemplados estos casos vamos a definir la forma en que se pueden
+contar los conjuntos anteriores</p>
+<p><br/><br/></p>
+<div id="importa-el-orden-con-sustitución" class="section level3">
+<h3><strong>Importa el orden con sustitución</strong></h3>
+<p><span class="math display">\[\mathcal{P}(n,k) = n \times n \times
+n  ........ n = n^k\]</span></p>
+<p>El numero de maneras diferentes como se puede extraer una muestra de
+tamaño k de una urna que contiene n elementos importando el orden y con
+sustitucion es: <span class="math inline">\(n^{k}\)</span></p>
+<p><br/><br/></p>
+</div>
+<div id="importa-el-orden-sin-sustitución" class="section level3">
+<h3><strong>Importa el orden sin sustitución</strong></h3>
+<p><span class="math display">\[\mathcal{P}(n,k) = n \times ()n-1)
+\times (n-2)  ........ (n-k) = \dfrac{n!}{(n-k)!}\]</span></p>
+<p>El numero de maneras diferentes como se puede extraer una muestra de
+tamaño k de una urna que contiene n elementos importando el orden y sin
+sustitución es: <span class="math inline">\(\dfrac{n!}{(n-k)!}\)</span>,
+el cual se lee n permutado con k.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 3
+</div>
+<p>Un Ingeniero debe realizar visitas a 6 aéreas de trabajo diferentes
+durante el día. A fin de impedir a los funcionarios que sepan cuando
+realizara su visita, varía el orden de sus visitas. De cuantas maneras
+puede hacerlo?</p>
+</div>
+<p><br/><br/></p>
+<p><span class="math display">\[ _{6}\mathcal{P}_{6} =
+\dfrac{6!}{(6-6)!}=6! =720\]</span></p>
+<p><br/><br/></p>
+</div>
+<div id="no-importa-el-orden-sin-sustitución" class="section level3">
+<h3><strong>No importa el orden sin sustitución</strong></h3>
+<p><span class="math display">\[\mathcal{C}(n,k) = \dfrac{n!}{(n-k)!
+k!}= \binom{n}{k}\]</span></p>
+<p>El número de maneras diferentes como se puede extraer una muestra de
+tamaño k de una urna que contiene n elementos importando el orden y sin
+sustitución es: <span class="math inline">\(\binom{n}{k}\)</span>, el
+cual se lee n combinado con k</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 4
+</div>
+<p>El juego del Baloto está conformado por una urna que contiene 45
+bolas numeradas del 1 al 46. ¿De cuantas formas diferentes puede salir
+el resultado un sorteo?</p>
+</div>
+<p><br/><br/></p>
+<p>De las 46 bolas se pueden eligen 6 sin importar el orden y sin que
+ninguna de las bolas se repita. Este experimento cumple con las
+condiciones de una combinación.</p>
+<p>El número de formas diferentes como se puede salir el resultado del
+Baloto será:</p>
+<p><span class="math display">\[_{45}\mathcal{C}_{6} =
+\binom{45}{6}=8&#39;145,060\]</span></p>
+<p><br/><br/></p>
+</div>
+<div id="no-importa-el-orden-con-sustitución" class="section level3">
+<h3><strong>No importa el orden con sustitución</strong></h3>
+<p><span class="math display">\[n(\mathcal{C}(n,k)) =
+\binom{n+k-1}{k}\]</span></p>
+<p>El numero de maneras diferentes como se puede extraer una muestra de
+tamaño k de una urna que contiene n elementos importando el orden y sin
+sustitución</p>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="problemas-propuestos" class="section level2">
+<h2><strong>Problemas propuestos</strong></h2>
+<ol style="list-style-type: decimal">
+<li>Cuántos números de 4 dígitos se pueden formar con los números
+0,1,2,3,4,5,6,7?</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Cuántos de los anteriores números son impares?</li>
+<li>Cuántos son mayores o iguales a 1420?</li>
+</ol>
+<p><br/><br/></p>
+<ol start="2" style="list-style-type: decimal">
+<li>¿Cuántas placas para automóvil pueden ser diseñadas si deben
+contener tres letras (mayúsculas) seguidas de tres dígitos?</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Si es posible repetir letras y números.</li>
+<li>No es posible repetir letras y números.</li>
+<li>Cuántas de las placas diseñadas en el punto (b) empiezan por la
+letra K y termina en cero,</li>
+<li>Cuantas de las placas diseñadas en el inciso (a) empiezan por la
+letra K seguida de la L.</li>
+</ol>
+<p><br/><br/></p>
+<ol start="3" style="list-style-type: decimal">
+<li>¿Cuántos números para telefónicos móviles son posible diseñar, si
+una de las líneas debe constar de siete dígitos?,</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Considere que todos los números empiezan con 300.</li>
+<li>El número empieza por 312 y no es posible repetir dígitos.</li>
+<li>¿Cuántos de los números telefónicos del inciso (b) terminan en
+siete?.</li>
+<li>¿Cuántos de los números telefónicos del inciso (b) forman un número
+impar?.</li>
+</ol>
+<p><br/><br/></p>
+<ol start="4" style="list-style-type: decimal">
+<li>¿Cuántas maneras diferentes hay de asignar las posiciones de salida
+de 8 autos que participan en una carrera de fórmula uno? (Considere que
+las posiciones de salida de los autos. participantes en la carrera son
+dadas totalmente al azar), ¿Cuántas maneras diferentes hay de asignar
+los primeros tres premios de esta carrera de fórmula uno?</li>
+</ol>
+<p><br/><br/></p>
+<ol start="5" style="list-style-type: decimal">
+<li>En la configuración de un sistema de computo, para que la empresa lo
+use en su departamento de control de calidad, un ingeniero tiene cuatro
+opciones de computadora: IVM, VAX, QELL, o PH. Seis las marcas de
+monitores: M1 M2 M3 M4 M5 M6 y tres los tipos de impresoras gráficas: P1
+P2 P3.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Si todo el equipo es compatible, ¿en cuántas formas puede diseñarse
+el sistema?</li>
+<li>Si el ingeniero necesita usar un paquete de software estadístico que
+está disponible sólo par equipos IVM o QELL, ¿De cuantas maneras puede
+configurar el sistema?</li>
+</ol>
+<p><br/><br/></p>
+<ol start="6" style="list-style-type: decimal">
+<li>Se realizarán pruebas con cinco recubrimientos usados en la
+protección de cables de fibra óptica contra el frio extremo. Las pruebas
+se efectuaran en orden aleatorio.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿En cuántos órdenes pueden llevarse a cabo las pruebas?</li>
+<li>Si dos de los recubrimientos son de un fabricante, ¿De cuantas
+maneras se puede presentar que las pruebas de esos recubrimientos se
+realicen una después de la otra?</li>
+</ol>
+<p><br/><br/></p>
+<ol start="7" style="list-style-type: decimal">
+<li>Una multinacional tiene 10 ingenieros industriales, ocho
+economistas, cuatro administradores y tres contadores. Se elegirá un
+equipo para un nuevo proyecto de largo plazo. El equipo consistirá entre
+ingenieros industriales, dos economistas, dos administradores y un
+contador.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿En cuántas formas puede seleccionarse el equipo?</li>
+<li>Si el gerente insiste en que se incluya en el proyecto a un
+ingeniero industrial con el que ha trabajado anteriormente, ¿de cuántas
+maneras puede seleccionarse al equipo?</li>
+</ol>
+<p><br/><br/></p>
+<ol start="8" style="list-style-type: decimal">
+<li>El Departamento de Ingeniería Industrial de una Universidad tiene 10
+profesores Ph.D. De estos, cuatro son mujeres y seis hombres. Todos
+cuentan con las capacidades necesarias para ser elegidos como
+coordinadores de las 3 áreas con que cuenta el Departamento. En una
+selección aleatoria de 3 de estos profesores.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuál es la probabilidad que en el grupo no haya mujeres?</li>
+<li>¿Es lógico pensar que ninguna mujer sea elijada bajo tales
+circunstancias?</li>
+</ol>
+<p><br/><br/></p>
+<ol start="9" style="list-style-type: decimal">
+<li>En un plano hay 10 puntos denominados A, B, C, D, E, F, G, H, J, K.
+en una misma línea no hay más de dos puntos.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuántos triángulos pueden ser trazados a partir de los puntos?</li>
+<li>¿Cuántos de los triángulos contienen el punto A?</li>
+<li>¿Cuántos de los triángulos tienen el lado AB?.</li>
+</ol>
+<p><br/><br/></p>
+<ol start="10" style="list-style-type: decimal">
+<li>Supongamos que el CSI de la universidad le pide construya una
+contraseña que consista en cinco letras seguidas de un dígito.</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>¿Cuántas contraseñas son posibles?</li>
+<li>¿ Cuantas contraseñas incluyen tres A y dos B, además de terminar en
+digito par?</li>
+<li>Si olvida completamente la contraseña y recuerda que tiene las
+características descritas en el párrafo b, ¿cuál es la probabilidad de
+que adivine correctamente en el primer intento?</li>
+</ol>
+<p>Problemas tomados y basados en Meyer(1986)</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Código R
+</div>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">permutación</td>
+<td
+align="left"><code>nPk=function(a,b){choose(n,k)*factorial(k)}</code></td>
+</tr>
+<tr class="even">
+<td align="left">combinación</td>
+<td align="left"><code>nCk=function(a,b){choose(n,k)}</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a></a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#235784"> </span></h1>
+<h3 class="subtitle"><span style="color:#235784"><strong>Unidad
+1.1</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><br/><br/></p>
+<p><img src="img/recursos1.png" /></p>
+<p>Con el fin de tener una idea inicial del propósito de este módulo, se
+presenta información relacionada con los estudiantes que toman el curso
+utilizando para ello gráficos e indicadores estadísticos, los cuales
+podremos interpretar al finalizar el módulo.</p>
+<p><br/><br/></p>
+<div id="metodología-estadística" class="section level1">
+<h1><span style="color:#235784"> <strong>Metodología
+Estadística</strong></span></h1>
+<p><br/><br/></p>
+<p>Una forma de abordar el curso de Probabilidad y Estadística e
+mediante la metodolgía estadística, que al igual que el método
+cientifico está conformada por una serie de etapas que van desde la
+definición del problema hasta la escritura del informe final con las
+conclusiones y recomendaciones.</p>
+<p><br/></p>
+<p><img src="img/metodologia1.png" width="70%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><br/><br/></p>
+<p>La descripción de cada una de ellas se presenta a continuación:</p>
+<p><br/><br/><br/></p>
+<div id="planteamiento-del-problema" class="section level2">
+<h2><strong>1. Planteamiento del problema</strong></h2>
+<p>El planteamiento del problema puede tener varios orígenes, entre los
+cuales podemos mencionar:</p>
+<ul>
+<li>Inquietud personal por resolver un problema</li>
+<li>Lluvia de ideas de un grupo de personas</li>
+<li>Solicitud realizada por entidad regional, empresa o persona</li>
+</ul>
+<p>Se recomienda en este caso iniciar con una revisión bibliográfica que
+permitan a los interesados buscar grupos de personas que enfrentan
+problemas similares, que tipo de soluciones ha propuesto o están
+implementando. Es posible que el problema al que nos enfrentamos ya
+tenga una buena solución y por tanto no tendría sentido destinar una
+serie de recursos para estudiar lo que ya otros tienen solucionado.</p>
+<p>En caso de tratarse de un problema con cierta frecuencia pero con
+características muy particulares, es necesario además de la revisión
+bibliográfica determinar:</p>
+<ul>
+<li>Antecedente</li>
+<li>Preguntas de investigación</li>
+<li>Hipótesis de investigación / Preguntas de investigación</li>
+<li>Justificación del estudio</li>
+<li>Delimitación del problema</li>
+</ul>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 1
+</div>
+<ul>
+<li>Aumento de embarazo de adolescentes en Colombia</li>
+<li>Incremento de fugas de energía eléctrica en la ciudad</li>
+<li>Incremento de la tasa de empleo informal</li>
+<li>Incremento de incapacidades causadas por accidentes
+automovilísticos</li>
+<li>Aumento del tiempo de atención al cliente</li>
+<li>Aumento de quejas por prestación de servicios</li>
+<li>Aumentó corrupción en Colombia, según Transparencia
+Internacional</li>
+<li>Disminución de la demanda de educación superior</li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="definición-de-los-objetivos" class="section level2">
+<h2><strong>2. Definición de los objetivos</strong></h2>
+<p>Al iniciar una investigación uno de los primeros pasos debe ser el
+definir de la forma más clara el propósito u objetivo principal del
+estudio. Estos deben de estar orientados a la solución del
+problema<br />
+Los objetivos pueden ser:</p>
+<ul>
+<li>Generales: definen a grandes rasgos el propósito del trabajo de
+investigación.</li>
+<li>Específicos: definen en detalle los fines de la investigación.
+Cuanto más detallado sean los objetivos específicos más fácil será
+planear las etapas para lograrlos.</li>
+</ul>
+<p>Algunos verbos utilizados para la especificación de los objetivos
+son: definir, describir, implementar, nombrar, expresar, interpretar,
+explicar, estimar, retomar, formular, combinar, resolver, producir,
+preparar, demostrar, determinar …</p>
+<p>Algunos verbos que se recomienda no utilizar: saber, aprender,
+conocer, entender, apreciar..</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 2
+</div>
+<ul>
+<li>Establecer los principales causas de las fugas de energía eléctrica
+en la ciudad</li>
+<li>Determinar las principales causas de las incapacidades del personal
+por causas extralaborales</li>
+<li>Determinar los principales factores que inciden sobre el aumento del
+tiempo de atención</li>
+<li>Establecer cuáles son los principales factores que inciden en la
+escogencia de la carrera universitaria</li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="definición-de-las-variables-de-interés" class="section level2">
+<h2><strong>3. Definición de las variables de interés</strong></h2>
+<p>Después del planteamiento del problema y determinación de los
+objetivos de la investigación se realiza un examen sobre la información
+que se requiere para el cumpliendo de los objetivos ya sea a través del
+cumplimiento de indicadores o del examen de los niveles de algunas
+características importante de la población.</p>
+<p>La información requerida se mide a través de variables aleatorias,
+que corresponde a valores diferentes que poseen cada objeto de la
+población de interés. A esta característica se le llama variable
+aleatoria, concepto que se utilizará durante todo el curso</p>
+<p>Variables &gt;&gt;&gt;&gt; Objetivos &gt;&gt;&gt;&gt;&gt;&gt;&gt;
+Problema</p>
+<p>Existen diferentes formas de clasificación de las variables
+aleatorias, inicialmente nos enfocaremos en la clasificación teniendo en
+cuenta su naturaleza:</p>
+<ul>
+<li>Cualitativas (<span class="math inline">\(@\)</span>)</li>
+<li>Cuantitativas (<span class="math inline">\(\#\)</span>)</li>
+</ul>
+<p><br/><br/></p>
+<div id="variables-cualitativas" class="section level3">
+<h3><strong>Variables Cualitativas</strong></h3>
+<p>Corresponden a valores no númericos que pueden corresponder a
+factores o a niveles de una variable aleatoria</p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 3
+</div>
+<ul>
+<li>Día de la semana, (Lun, Mar, Mié, Jue, Vie, Sáb, Dom)</li>
+<li>Estado civil, (soltero, casado, unión libre, separado, viudo)</li>
+<li>Sexo,(Mujer, Hombre)</li>
+<li>Satisfacción del cliente por el servicio prestado (Alta, media,
+baja)</li>
+<li>Tipo de queja</li>
+<li>Barrio donde se produce el daño</li>
+<li>Asignatura cursada</li>
+<li>Carrera o programa académico</li>
+</ul>
+</div>
+<p><br/><br/></p>
+<div id="variables-cuantitativas" class="section level4">
+<h4><strong>Variables Cuantitativas</strong></h4>
+<p>Son valores numéricos que pueden estar relacionados con la medición,
+el conteo de eventos o tambien con niveles numéricos que se asignen a
+variables que se miden a traves de test, pero que corresponden a
+variables cualitativas. A este último proceso descrito se le llama
+operacionalización de una variable cualitativa</p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 4
+</div>
+<ul>
+<li>Consumo de energía en la residencia</li>
+<li>Tiempo de respuesta a la solicitud</li>
+<li>Número de servicios realizados en el día</li>
+<li>Costo del servicio prestado</li>
+<li>Número de trabajadores que se requieren para solucionar
+problema</li>
+<li>Consumo de energía de un hogar en kW-h</li>
+<li>Valor de la factura de consumo de energía para hogares</li>
+<li>Valor de la cartera morosa de la empresa en un mes determinado</li>
+<li>Peso en Kg de una persona</li>
+<li>Edad de un estudiante</li>
+</ul>
+</div>
+<p>Las variables se miden en diferentes escalas, dependiendo del tipo de
+valor que pueden tomar. Es necesario tener claro además del tipo de
+variables, el tipo de escala, por cuanto esto puede determinar el tipo
+de procesamiento estadística que se debe utilizar.</p>
+<p><br/><br/></p>
+</div>
+<div id="escalas-de-medición" class="section level4">
+<h4><strong>Escalas de medición</strong></h4>
+<table>
+<thead>
+<tr class="header">
+<th align="left">tipo de variable</th>
+<th align="left">escala</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">cualitativa</td>
+<td align="left">nominal</td>
+</tr>
+<tr class="even">
+<td align="left">cualitativa</td>
+<td align="left">ordinal</td>
+</tr>
+<tr class="odd">
+<td align="left">cuantitativa</td>
+<td align="left">de intervalo</td>
+</tr>
+<tr class="even">
+<td align="left">cuantitativa</td>
+<td align="left">de razón</td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<div id="escala-nominal" class="section level5">
+<h5><strong>Escala nominal</strong></h5>
+<p>Corresponde a valores no numéricos sin presencia de orden entre
+ellos.</p>
+<p>Operaciones posibles al comparar dos valores:</p>
+<ul>
+<li>podemos afirmas que son iguales</li>
+<li>podemos afirmar que los valores son diferentes</li>
+</ul>
+<br/><br/>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 5
+</div>
+<ul>
+<li>Genero</li>
+<li>Estado civil</li>
+<li>Nacionalidad</li>
+<li>Carrera o programa académico</li>
+</ul>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="escala-ordinal" class="section level5">
+<h5><strong>Escala ordinal</strong></h5>
+<p>Corresponde a valores no numéricos con presencia de orden entre
+ellos. Es posible realizar las comparaciones de dos valores:</p>
+<ul>
+<li>podemos afirmar que los valores son iguales,</li>
+<li>podemos afirmar que los valores son diferentes,</li>
+<li>podemos afirmar que un valor es menor que el otro valor,</li>
+<li>podemos afirmar que un valor es mayor que el otro.</li>
+</ul>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 6
+</div>
+<ul>
+<li>Considera que el servicio que acaba de recibir es:
+<ul>
+<li><span class="math inline">\(\square\)</span> Excelente,</li>
+<li><span class="math inline">\(\square\)</span> Muy bueno,</li>
+<li><span class="math inline">\(\square\)</span> Bueno,</li>
+<li><span class="math inline">\(\square\)</span> Regular,</li>
+<li><span class="math inline">\(\square\)</span> Muy regular,</li>
+<li><span class="math inline">\(\square\)</span> Pésimo</li>
+</ul></li>
+</ul>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="escala-de-intervalo" class="section level5">
+<h5><strong>Escala de intervalo</strong></h5>
+<p>Corresponde a valores numéricos, dentro de los cuales solo tiene
+sentido la diferencia entre dos de sus valores. Podemos afirmar al
+comparar dos resultados :</p>
+<ul>
+<li>podemos afirmar que los valores son iguales ,</li>
+<li>podemos afirmar que los valores son diferentes,<br />
+</li>
+<li>podemos afirmar que un valor es mejor a otro,</li>
+<li>podemos afirmar que un valor es mayor que otro,</li>
+<li>la diferencia (resta) entre dos valores tiene sentido</li>
+<li>el valor de cero no implica ausencia de la variable</li>
+</ul>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 7
+</div>
+<ul>
+<li>Temperatura. La variable se puede medir en diferentes tipos de
+escalas :
+<ul>
+<li>Celsius <span class="math inline">\(^{\circ} C\)</span>, (La escala
+Celsius fue creada Andrés Celsius (1742) . Esta escala tiene como
+referencia los puntos de congelación y ebullición del agua, límites que
+divide en 100 partes iguales</li>
+<li>Kelvin <span class="math inline">\(K\)</span>, Creada por William
+Thompson Kelvin (1848), en la que propone una transformación de la
+escala Celsius hasta un valor hipotético en el que hay ausencia de
+calor.</li>
+<li>Fahrenheit <span class="math inline">\(^{\circ}F\)</span> Escala
+propuesta Gabriel Daniel Fahrenheit (1724), proponiendo una modificación
+a la escala Celsius</li>
+</ul></li>
+</ul>
+<p>En conclusión la variable temperatura se puede medir en varias
+escalas</p>
+</div>
+<p>En ocasiones variables de tipo cualitativo no observables de manera
+directa como :</p>
+<ul>
+<li>Clima laboral</li>
+<li>Estrés</li>
+<li>Inteligencia</li>
+<li>Nivel de desempeño</li>
+<li>Calidad</li>
+</ul>
+<p>Con frecuencia a las variables anteriores se les llama variables
+latentes debido a que su medición no es directa, sino que se realiza a
+través de preguntas que se recogen en un instrumento en muchos casos
+agrupados por factores. Cada respuesta en las preguntas tiene un valor o
+puntaje que es sumado y determina los niveles de la variable. Los
+valores dados a las respuestas pueden cambiar de instrumento a
+instrumento, pues existen escalas con 3 valores, otras con 5, 7 que que
+pueden representar una escala ordinal.</p>
+<p>A esta transformación numérica (suma de los puntajes obtenidos al
+totalizar los puntajes obtenidos) se conoce como
+<strong>operacionalización</strong> a escala de intervalo de una
+variable cualitativa.</p>
+<p><br/><br/></p>
+</div>
+<div id="escala-de-razón" class="section level5">
+<h5><strong>Escala de razón</strong></h5>
+<p>Corresponde a valores numéricos, para los cuales además de las
+diferencias también tiene sentido la razón de dos de sus valores. Al
+comparar dos resultados de una variable cuantitativa de razón:</p>
+<ul>
+<li>podemos afirmar que los valores son iguales</li>
+<li>podemos afirmar que los valores son diferentes</li>
+<li>podemos afirmar que un valor es mayor que otro</li>
+<li>podemos afirmar que un valor es menor que otro</li>
+<li>la diferencia (resta) entro dos valores tiene sentido</li>
+<li>la razón o división de dos de sus valores tiene sentido</li>
+<li>el valor de cero indica ausencia de la variable</li>
+</ul>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 8
+</div>
+<ul>
+<li>Consumo de energía por hogar en kW-h</li>
+<li>Salario que recibe un empleado en pesos colombianos</li>
+<li>Utilidad de una empresa obtenida al final del año<br />
+</li>
+<li>Nivel de endeudamiento de una empresa al final del año en
+porcentaje</li>
+<li>Precio del metro cuadrado de tierra en a comuna 22 de Cali</li>
+</ul>
+</div>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Nota
+</div>
+<p>Es importante poder distinguir entre variables estadísticas y
+variables no estadística en una base de datos. Para hacerlo nos
+preguntamos si para la variable en análisis tiene sentido un análisis
+estadístico (gráficos, tabla o indicadores). Por ejemplo: No tiene
+sentido realizar un análisis con variables como : id, nombre, correo
+electrónico, dirección, teléfono, longitud y latitud, representante
+legal, entro otras</p>
+</div>
+<p><br/><br/><br/></p>
+</div>
+</div>
+</div>
+</div>
+<div id="diseño-del-estudio" class="section level2">
+<h2><strong>4. Diseño del estudio</strong></h2>
+<p>Después de tener claro los tres puntos anteriores, es necesario
+diseñar y prever todas las actividades necesarias para la recolección de
+la información requerida para el cumplimiento de los objetivos
+propuestos. Esta parte comprende definir:</p>
+<ul>
+<li>Tipo de estudio</li>
+<li>Tipo de muestreo (en caso de requerirlo)</li>
+<li>Tamaño de la muestra</li>
+</ul>
+<p><br/><br/></p>
+<div id="tipo-de-estudio" class="section level4">
+<h4><strong>Tipo de estudio</strong></h4>
+<p>El tipo de estudio a realizar puede ser:</p>
+<ul>
+<li>Experimental
+<ul>
+<li>Experimento puro
+<ul>
+<li>Cuasi-experimento</li>
+</ul></li>
+</ul></li>
+<li>No experimental
+<ul>
+<li>Transeccional
+<ul>
+<li>Exploratorio</li>
+<li>Descriptivo de uno o más grupos</li>
+</ul></li>
+<li>Longitudinal
+<ul>
+<li>De tendencia</li>
+<li>De evolución de grupo</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="algunos-conceptos-básicos" class="section level4">
+<h4><strong>Algunos conceptos básicos</strong></h4>
+<p><strong>Población</strong>: Conjunto de elementos acerca de los
+cuales deseamos realizar alguna inferencia. <br/></p>
+<p><strong>Censo</strong>: Estudio que incluye todos los elementos de
+una población. <br/><br/> <strong>Muestra</strong>: Subconjunto de
+elementos una población, elegidos de un marco muestral. <br/><br/>
+<strong>Unidad de muestreo</strong> Persona u objeto de la cual se toma
+la información. <br/><br/> <strong>Marco muestral</strong>: Listado
+completo de unidades que conforman una población. Puede obtenerse a
+través de una lista, mapa, directorio telefónico, base de datos - Cámara
+de Comercio-, entro otros. <br/><br/> <strong>Muestreo</strong>:
+Selección de una parte de la población. <br/><br/></p>
+<p>Después de determinar el tipo de estudio a realizar es necesario
+establecer si hacemos censo o muestreo.</p>
+<p>Algunas razones para realizar un muestreo en lugar de un censo
+son:</p>
+<ul>
+<li>La naturaleza destructiva de ciertas pruebas en algunos casos</li>
+<li>La imposibilidad física de revisar toda la población</li>
+<li>El costo - presupuesto limitado</li>
+<li>Mejor manejo de la información</li>
+<li>Tiempo necesario para la recolección de la información</li>
+</ul>
+<p>En caso de tomar la decisión de realizar un muestreo es necesario
+determinar:</p>
+<ul>
+<li>El tipo de muestreo</li>
+<li>El tamaño de muestra</li>
+<li>La unidad de muestreo</li>
+<li>El Marco muestral</li>
+<li>Seleccionar la muestra</li>
+</ul>
+<p><br/><br/></p>
+<p><strong>Tamaño de la muestra</strong></p>
+<p>Una de las decisiones importantes en el muestreo, corresponde a
+determinar el tamaño de la muestra. <span class="math display">\[n =
+\dfrac{z_{\alpha/2}^{2} \hspace{.2cm} \sigma^{2}}{e^{2}} \]</span>
+Dónde:</p>
+<ul>
+<li><span class="math inline">\(z_{\alpha/2}^{2}\)</span> :Confiabilidad
+(percentil de la distribución normal estandar</li>
+<li><span class="math inline">\(\sigma^{2}\)</span>: Varianza de la
+variable de interés</li>
+<li><span class="math inline">\(e^{2}\)</span> : Error de muestreo <span
+class="math inline">\(|\widehat{\theta}-\theta|&lt;e\)</span></li>
+</ul>
+<p>Si <span class="math inline">\(n/N &gt; 0.05\)</span>, debemos
+realizar corrección por población finita. <span class="math display">\[n
+= \dfrac{n_{0} \times N}{n_{0}+ N + 1} \]</span></p>
+<p><br/><br/></p>
+<p><strong>Tipos de muestreo</strong></p>
+<p>Existen dos tipos de muestreo:</p>
+<ul>
+<li>Muestreo probabilística
+<ul>
+<li>Muestreo aleatorio simple</li>
+<li>Muestreo aleatorio estratificado</li>
+<li>Muestreo aleatorio por conglomerados
+<ul>
+<li>Muestreo sistemático</li>
+<li>Muestreo compuestos</li>
+</ul></li>
+</ul></li>
+<li>Muestreo no probabilística
+<ul>
+<li>Muestreo por conveniencia
+<ul>
+<li>Muestreo por juicio</li>
+<li>Muestreo por cuotas</li>
+<li>Muestreo bola de nieve</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="muestreos-probabilísticos" class="section level4">
+<h4><strong>Muestreos probabilísticos</strong></h4>
+<p><br/><br/></p>
+<p><strong>Muestreo Aleatorio Simple</strong></p>
+<p>En este tipo de muestreo se seleccionan los elementos de la población
+de tal manera que cada elemento tenga igual probabilidad de ser
+elegido</p>
+<p>Para realizarlo se requiere de poseer un marco muestral actualizado y
+un sistema que permita la escogencia de las unidades de manera
+aleatoria</p>
+<p><br/></p>
+<div class="box4 with-label">
+<div class="label">
+Código R
+</div>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="87%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Excel :</td>
+<td align="left"><code>=ALEATORIO.ENTRE(1;2000)</code> permite elegir un
+número aleatorio entre 1-2000 )</td>
+</tr>
+<tr class="even">
+<td align="left">R :</td>
+<td align="left"><code>sample(1:2000, 50, rep=FALSE)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Muestreo Aleatorio Estratificado</strong></p>
+<p>Una muestra estratificada se toma separando los elementos de la
+población en estratos y en cada uno de ellos por separado se toma una
+muestra aleatoria simple.</p>
+<p>El supuesto que valida este procedimiento se centra en la varianza al
+interior de los estratos es menor que la varianza que presentan los
+individuos al total de la población. Esto permite controlar la varianza
+de la variable principal, es decir cambiar una población heterogénea por
+varias homogéneas</p>
+<p><br/><br/></p>
+<p><strong>Muestreo Aleatorio Sistemático</strong></p>
+<p>En este tipo de muestreo se selecciona la muestra mediante la
+elección de un punto de inicio de manera aleatoria (<span
+class="math inline">\(r\)</span>) dentro de los <span
+class="math inline">\(k\)</span> primeros números de la población y la
+muestra queda determinada por la secuencia: <span
+class="math inline">\(r\)</span>, <span
+class="math inline">\(r+k\)</span>, <span
+class="math inline">\(r+2k\)</span>, <span
+class="math inline">\(r+3k\)</span>, …….. hasta completar el tamaño de
+la muestra requerida.</p>
+<p>Para obtener una muestra aleatoria, establecemos de número aleatorio
+entre <span class="math inline">\(1\)</span> y <span
+class="math inline">\(k\)</span> y de esta forma quedan determinados los
+elementos de la muestra.</p>
+<p><br/><br/></p>
+<p><strong>Muestreo Aleatorio por Conglomerados</strong></p>
+<p>Cuando la población objeto de estudio se encuentra dividida en
+subpoblaciones mutuamente excluyentes - llamados conglomerados - y bajo
+el supuesto de que cada uno de ellos representa la población, el
+muestreo por conglomerados proporciona una buena alternativa para
+realizar un muestreo.</p>
+<p>En este caso se debe tener una relación de todos los conglomerados
+que conforman la población y a partir de este listado se realiza un
+muestreo aleatorio simple de ellos. Al interior del o los conglomerados
+seleccionados de esta manera se realiza censo o en otras ocasiones
+muestreo aleatorio simple.</p>
+<p><br/><br/></p>
+</div>
+<div id="muestreos-no-probabilísticos" class="section level4">
+<h4><strong>Muestreos no probabilísticos</strong></h4>
+<p><br/><br/></p>
+<p><strong>Muestreo por conveniencia</strong></p>
+<p>En este tipo de muestreo la selección de los elementos de la muestra
+están a criterio del entrevistador, por lo general son seleccionados por
+estar en el lugar adecuado.</p>
+<ul>
+<li>Estudiantes</li>
+<li>Grupos ecológicos</li>
+<li>Clientes centros comerciales</li>
+<li>Clientes de un producto determinado</li>
+<li>Enfermos de VIH</li>
+</ul>
+<p><br/><br/></p>
+<p><strong>Muestreo por juicio</strong></p>
+<p>Forma de muestreo por conveniencia cuyos elementos se seleccionan de
+manera intencional con base en el juicio del investigador</p>
+<ul>
+<li>Testigos expertos que participan en una prueba</li>
+<li>Estudio de mercado para nuevo producto</li>
+</ul>
+<p><br/><br/></p>
+<p><strong>Muestreo por cuotas</strong></p>
+<p>Muestreo por juicio restringido a dos etapas: <br/> Etapa 1:
+Desarrollo de categorías o cuotas de los elementos de la población (%)
+<br/> Etapa 2: Los elementos se seleccionan de acuerdo a la conveniencia
+o el juicio del investigador hasta completar el número establecido para
+cada subgrupo. <br/></p>
+<p>Las características de control pueden ser: sexo, edad, religión,
+partido político, entre otras, las cuales participan de manera
+proporcional a lo establecido en la etapa 1. Después de esto el
+investigador tiene plena libertad para la selección de las unidades en
+cuanto cumplan con las condiciones de control</p>
+<p><br/><br/></p>
+<p><strong>Muestreo bola de nieve</strong></p>
+<p>En este método se selecciona inicialmente un grupo de entrevistados.
+El resto de entrevistados se eligen de acuerdo a información
+suministrada por los mismos entrevistados -referidos-. Este método
+permite obtener información rápida y muy fácilmente</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="recolección-de-la-información" class="section level2">
+<h2><strong>5. Recolección de la información</strong></h2>
+<p>Esta etapa comprende el trabajo de campo, la cual implica las
+siguientes actividades:</p>
+<ul>
+<li>Construcción o actualización del marco muestral</li>
+<li>Selección de encuestadores o personas que toman la información</li>
+<li>Adiestramiento de estas personas<br />
+</li>
+<li>Prueba piloto (ensayo de los instrumentos de medición)</li>
+<li>Construcción y mejoramiento de la plantilla o instrumento de
+recolección de los datos</li>
+<li>Construcción de la base de datos. (Plantilla para captura de
+datos)</li>
+<li>Manual de la plantilla o instrumento de recolección de datos</li>
+<li>Selección de las unidades que conforman la muestra</li>
+<li>Selección de las unidades de holgura</li>
+<li>Coordinación del recibo de la información</li>
+</ul>
+<p><br/><br/><br/></p>
+</div>
+<div id="procesamiento-de-la-información" class="section level2">
+<h2><strong>6. Procesamiento de la información</strong></h2>
+<p>Esta etapa comprende la construcción de la <strong>base de
+datos</strong> para que sea procesada posteriormente en un paquete
+estadístico. Entre los más usados están:</p>
+<ul>
+<li>SPSS</li>
+<li>Stata</li>
+<li>Minitab</li>
+<li>SAS</li>
+<li>Statgraphics</li>
+<li>Eviews</li>
+<li><strong>R / Rstudio</strong></li>
+<li>Python</li>
+</ul>
+<p><br/><br/><br/></p>
+</div>
+<div id="análisis-descriptivo" class="section level2">
+<h2><strong>7. Análisis descriptivo</strong></h2>
+<p>El análisis descriptivo es la primera aproximación a la generación de
+valor agregado de los datos y consiste en la generación de :</p>
+<ul>
+<li>cuadros de distribución,<br />
+</li>
+<li>gráficos,<br />
+</li>
+<li>medidas de centro,</li>
+<li>medidas de dispersión (variación) y</li>
+<li>medidas de forma.</li>
+</ul>
+<p>Este primer análisis lo abordaremos en el <strong>módulo 1</strong>
+de este curso.</p>
+<p><br/><br/></p>
+</div>
+<div id="inferencia-estadística" class="section level2">
+<h2><strong>8. Inferencia estadística</strong></h2>
+<p>Esta etapa de la metodología estadística permite generalizar los
+resultados obtenidos en una muestra a toda la población. Podríamos decir
+que una de las etapas más importantes.</p>
+<p>La inferencia se puede realizar básicamente de dos maneras:</p>
+<ul>
+<li>Estimación: Se utiliza cuando se requiere conocer el valor de un
+parámetro de la población
+<ul>
+<li>Estimación puntual</li>
+<li>Estimación por intervalos de confianza</li>
+</ul></li>
+<li>Pruebas de hipótesis. Se utiliza cuando se requiere comprobar si una
+afirmación sobre un parámetro es cierta o falsa.
+<ul>
+<li>Pruebas de hipótesis paramétricas<br />
+</li>
+<li>Pruebas de hipótesis no paramétricas</li>
+</ul></li>
+</ul>
+<p>algunos métodos estadísticos son :</p>
+<ul>
+<li><p><strong>Modelo de regresión lineal</strong>: Estimar mediante una
+función lineal de las variables independientes, el valor de la variable
+dependiente. Estimar los efectos producidos por cambios en una variable
+independiente sobe la variable dependiente (elasticidad)</p></li>
+<li><p><strong>Análisis discriminante</strong>: Estimar mediante una
+función lineal de las variables independientes la probabilidad de que
+cada individuo pertenezca a cada uno de los grupos establecidos por los
+valores de la variable dependiente</p></li>
+<li><p><strong>Modelo de regresión logistica, probit</strong>: Estimar
+mediante una función lineal la probabilidad de que cada individuo
+pertenezca a uno de los dos grupos establecidos por la variable
+dependiente (0,1) . <span
+class="math inline">\(Y=F(X\beta)\)</span></p></li>
+<li><p><strong>Análisis por conglomerados</strong>: Agrupar los
+elementos de la nuestra en grupos homogéneos respecto a las puntuaciones
+de <span class="math inline">\(k\)</span> variables</p></li>
+<li><p><strong>Análisis factorial</strong>: Interpretar las relaciones
+dentro del conjunto de variables. En el evento de que se determinen
+subgrupos de variables claramente diferenciadas, el conjunto original
+puede ser simplificado a un nuevo conjunto no directamente observables
+llamados factores</p></li>
+<li><p><strong>Análisis de correspondencia</strong>: Interpretar las
+similitudes entre las categorías de una variable respecto a las de otra,
+así como las relaciones entre las categorías de las otras
+variables</p></li>
+</ul>
+<p><br/> Abordaresmos la estimación y las pruebas de hipótesis en el
+<strong>módulo 3</strong> y el modelo de regresión lineal en el
+<strong>módulo 4</strong> de este curso <br/><br/><br/></p>
+</div>
+<div id="conclusiones-y-recomendaciones" class="section level2">
+<h2><strong>9. Conclusiones y recomendaciones</strong></h2>
+<p>Por último es la etapa de la redacción del informe final y la
+construcción de las conclusiones y las recomendaciones.</p>
+<p>Se puede afirmar que cuando se cumple un objetivo se produce una
+conclusión. Cuando no se cumple se produce una recomendación. Ambas
+tanto conclusiones como recomendaciones son de mucha importancia para la
+realización de futuras investigaciones.</p>
+<p>Para abordar las primeras etapas se plantea la <strong>actividad
+101</strong>, donde se plantea la necesidad de definir un problema,
+definir unos objetivos y determinar las variables que serán empleadas
+para poder cumplir con los objetivos planteados.</p>
+<p><br/></p>
+<p>Continuaremos con una parte importante de esta metodología que está
+relacionada con la obtención de la información y la construcción de la
+base de datos.</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+---
+title: <span style="color:#235784"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">Estadística para la toma de decisiones </span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+
+![](img/banner002.png) 
+
+
+<!-- # **Introducción** -->
+
+
+<!-- El concepto de probabilidad constituye uno de los  pilares de la estadística que permiten la construcción de  conceptos posteriores como el de  variable aleatoria e inferencia estadística. Se parte de  los  conceptos básicos para lo cual se requiere revisar los temas de teoría de  conjuntos y técnicas de conteo del módulo 0. -->
+
+<!-- El concepto de variable  aleatoria  y sus principales características como el  valor esperado, la varianza, funciones de  distribución de  probabilidad y distribución  acumulada, distribuciones conjuntas, covarianza y correlación, permiten la identificación de diferentes modelos para su  uso a través de la simulación de situaciones reales. -->
+<!-- <br/><br/><br/> -->
+
+<!-- # **Objetivo** -->
+
+<!-- Al finalizar el módulo el estudiante estará en capacidad de DESARROLLAR el pensamiento probabilístico mediante el cálculo e interpretación de probabilidades mediante la  comprensión de los CONCEPTOS BASICOS, los diferentes ENFOQUES y TIPOS de probabilidad  que le ayuden en la valoración del riesgo para la toma de decisiones. -->
+
+<!-- Al finalizar el módulo el estudiante estará en capacidad de APLICAR los conceptos y las principales características  de las VARIABLE ALEATORIA UNIVARIADAS y CONJUNTAS para RESOLVER problemas mediante la simulación a través de software estadístico -->
+
+<!-- <br/><br/><br/> -->
+
+## **Contenido**
+
+* Axiomas de probabilidad
+
+* Probabilidad de eventos, combinación y permutación. Probabilidad condicional, de la unión y de la intersección de eventos. Independencia de eventos. 
+
+* Estrategias de análisis: tabla de probabilidad, diagrama de árbol, diagrama de Venn
+
+---
+
+* Función de probabilidad para una variable aleatoria. 
+
+
+* Esperanza matemática y varianza de una variable aleatoria 
+
+* Función bivariada. Independencia entre variables aleatorias. 
+
+* Valor esperado, varianza y desviación estándar de la combinación lineal de variables aleatorias independientes.
+
+---
+* Modelos discretos: Bernoulli, Binomial y Poisson
+
+* Distribución Normal
+
+<br/><br/><br/>

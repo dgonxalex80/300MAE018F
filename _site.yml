@@ -1,0 +1,80 @@
+name: " "
+output_dir: "docs"
+navbar:
+  title: " "
+  left:
+    - text: ""
+      icon: fa-home
+      href: index.html
+    - text: "Módulo 0"
+      menu:
+        - text: "Módulo 0"
+          href: modulo0.html
+        - text: "Sumatoria"
+          href: sumatoria.html
+        - text: "Productoria"
+          href: productoria.html
+        - text: "Conjuntos"
+          href: conjuntos.html
+        - text: "Técnicas de conteo"
+          href: conteo.html         
+        - text: "Funcición exponencial"
+          href: recurso000.html
+        - text: "Función logaritmica"
+          href: recurso000.html
+        - text: "Derivación"
+          href: recurso000.html
+        - text: "Integración"
+          href: recurso000.html
+    - text: "Módulo 1"
+      menu:
+        - text: "Módulo 1"
+          href: modulo1.html
+        - text: "---------"  
+        - text: "Guía 1.1"
+          href: guia11.html        
+        - text: "Metodología Estadística"
+          href: recurso11.html
+        - text: "Bases de datos"
+          href: basesdatos.html
+        - text: "Introducción a R"
+          href: introduccionR.html
+        - text: "Código 1.1"  
+          href: codigo11.html
+        - text: "--------"
+        - text: "Monitoria 1"
+          href: monitoria1.html
+ 
+    - text: "Módulo 2"
+      menu:
+        - text: "Módulo 2"
+          href: modulo2.html
+        - text: "--------"              
+        -
+          
+    - text: "Módulo 3"
+      menu:
+        - text: "Módulo 3"
+          href: modulo3.html
+        - text: "---------" 
+
+    - text: "Módulo 4"
+      menu:
+        - text: "Módulo 4"
+          href: modulo4.html
+        - text: "---------"   
+ 
+    - text: "Proyecto"
+      menu:
+        - text: "Guía proyecto"
+          href: recurso000.html
+    - text: "Información"
+      menu:
+        - text: "300MAE018G"
+          href: about.html  
+          
+output:  
+ html_document:
+    theme: spacelab
+    css: style.css         
+          

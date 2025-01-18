@@ -1,0 +1,458 @@
+/* Estilo general */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #333333;
+}
+
+/* Encabezado */
+header {
+  background-color: #2c5697; /* color azul del encabezado */
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+header img {
+  max-height: 50px;
+  vertical-align: middle;
+}
+
+header h1 {
+  display: inline;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+/* Navegación */
+nav {
+  background-color: #2c5697; /* color azul para la barra de navegación */
+  padding: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 16px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Contenido principal */
+main {
+  padding: 20px;
+  background-color: white;
+  margin: 20px auto;
+  max-width: 1200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #2c5697; /* color azul para los títulos */
+}
+
+h3 {
+  color: #3b75b2; /* color azul para los subtítulos */
+}
+
+/* Panel lateral */
+aside {
+  background-color: #2c5697;
+  color: white;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+aside h3 {
+  color: white;
+}
+
+/* Botones */
+button {
+  background-color: #3b75b2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2c5697;
+}
+
+/* Tabla */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #2c5697;
+  color: white;
+}
+
+/* Enlaces */
+a {
+  color: #2c5697;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Cambiar el color de fondo de la barra de navegación */
+.navbar {
+  background-color:#2c5697; /* prefigures este valor por el color que prefieras */
+}
+
+/* Cambiar el color del texto en la barra de navegación */
+.navbar .navbar-brand, .navbar .navbar-nav > li > a {
+  color: #ffffff; /* Cambia este valor por el color que prefieras */
+}
+
+
+
+/* Cambiar el color de fondo del menú de navegación */
+.navbar {
+  background-color: #2c5697 !important; /* Color azul */
+}
+
+/* Cambiar el color de los enlaces del menú de navegación */
+.navbar .navbar-nav > li > a {
+  color: #ffffff !important; /* Color de los enlaces */
+}
+
+/* Cambiar el color de fondo de los enlaces del menú al pasar el mouse */
+.navbar .navbar-nav > li > a:hover, 
+.navbar .navbar-nav > li > a:focus {
+  background-color: #3b75b2 !important; /* Color de fondo al pasar el mouse */
+  color: #ffffff !important; /* Color del texto al pasar el mouse */
+}
+
+/* Cambiar el color de fondo del enlace del menú activo (seleccionado) */
+.navbar .navbar-nav > li.active > a {
+  background-color: #3b75b2 !important; /* Cambia este color según tus preferencias */
+  color: #ffffff !important; /* Color del texto del enlace activo */
+}
+
+/* Cambiar el tipo de letra del sitio web */
+body {
+  font-family: 'Arial', sans-serif; /* Tipo de letra */
+}
+
+/* Cambiar el tipo de letra y color de los encabezados */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Arial', sans-serif; /* Tipo de letra */
+  color: #2c5697; /* Color de los encabezados */
+}
+
+/* Definir una clase para la caja de contenido ---------------------------------*/
+.box1 {
+    border: 2px solid #8DA9C4; /* Color azul del borde */
+    padding: 15px; /* Espaciado interior */
+    margin: 15px 0; /* Espaciado exterior */
+    border-radius: 5px; /* Esquinas redondeadas opcional */
+    position: relative; /* Necesario para la posición absoluta de la etiqueta */
+}
+
+/* Opcional: estilizar el texto dentro de la caja */
+.box1 h2, .box1 p {
+    color: #000000; /* Color del texto */
+}
+
+/* Definir una clase para la caja de contenido */
+        .box1 {
+            border: 2px solid #8DA9C4; /* Color azul del borde */
+            padding: 15px; /* Espaciado interior */
+            margin: 15px 0; /* Espaciado exterior */
+            border-radius: 5px; /* Esquinas redondeadas opcional */
+            position: relative; /* Necesario para la posición absoluta de la etiqueta */
+        }
+
+        /* Opcional: estilizar el texto dentro de la caja */
+        .box1 h2, .box1 p {
+            color: #000000; /* Color del texto */
+        }
+
+        /* Estilo para la etiqueta */
+        .box1 .label {
+            position: absolute; /* Posiciona la etiqueta dentro de la caja */
+            top: -10px; /* Ajusta la posición vertical de la etiqueta */
+            left: 10px; /* Ajusta la posición horizontal de la etiqueta */
+            background-color: #8DA9C4; /* Color de fondo de la etiqueta */
+            color: #000000; /* Color del texto de la etiqueta */
+            padding: 5px 10px; /* Espaciado interior de la etiqueta */
+            border-radius: 5px; /* Esquinas redondeadas de la etiqueta */
+            font-weight: bold; /* Texto en negrita */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra opcional para la etiqueta */
+            font-size: 1.2em; /* Tamaño de la fuente aumentado */
+        }
+
+        /* Ajustar el espaciado cuando hay una etiqueta */
+        .box1.with-label {
+            padding-top: 25px; /* Espaciado adicional para la etiqueta */
+        }
+
+/* Definir una clase para la caja de contenido */
+.box3 {
+    border: 2px solid #FFAD42; /* Color azul del borde */
+    padding: 15px; /* Espaciado interior */
+    margin: 15px 0; /* Espaciado exterior */
+    border-radius: 5px; /* Esquinas redondeadas opcional */
+    position: relative; /* Necesario para la posición absoluta de la etiqueta */
+}
+
+/* Opcional: estilizar el texto dentro de la caja */
+.box3 h2, .box3 p {
+    color: #2C5697; /* Color del texto */
+}
+
+/* Definir una clase para la caja de contenido */
+        .box3 {
+            border: 2px solid #FFAD42; /* Color azul del borde */
+            padding: 15px; /* Espaciado interior */
+            margin: 15px 0; /* Espaciado exterior */
+            border-radius: 5px; /* Esquinas redondeadas opcional */
+            position: relative; /* Necesario para la posición absoluta de la etiqueta */
+        }
+
+  /* Opcional: estilizar el texto dentro de la caja */
+        .box3 h2, .box3 p {
+            color: #000000; /* Color del texto */
+        }
+
+        /* Estilo para la etiqueta */
+        .box3 .label {
+            position: absolute; /* Posiciona la etiqueta dentro de la caja */
+            top: -10px; /* Ajusta la posición vertical de la etiqueta */
+            left: 10px; /* Ajusta la posición horizontal de la etiqueta */
+            background-color: #FFAD42; /* Color de fondo de la etiqueta */
+            color:#2C5697; /* Color del texto de la etiqueta */
+            padding: 5px 10px; /* Espaciado interior de la etiqueta */
+            border-radius: 5px; /* Esquinas redondeadas de la etiqueta */
+            font-weight: bold; /* Texto en negrita */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra opcional para la etiqueta */
+            font-size: 1.2em; /* Tamaño de la fuente aumentado */
+        }
+
+        /* Ajustar el espaciado cuando hay una etiqueta */
+        .box3.with-label {
+            padding-top: 25px; /* Espaciado adicional para la etiqueta */
+        }
+
+
+
+
+
+/* Definir una clase para la caja de contenido */
+.box4 {
+    border: 2px solid #999999; /* Color azul del borde */
+    padding: 15px; /* Espaciado interior */
+    margin: 15px 0; /* Espaciado exterior */
+    border-radius: 5px; /* Esquinas redondeadas opcional */
+    position: relative; /* Necesario para la posición absoluta de la etiqueta */
+}
+
+/* Opcional: estilizar el texto dentro de la caja */
+.box4 h2, .box4 p {
+    color: #000000; /* Color del texto */
+}
+
+/* Definir una clase para la caja de contenido */
+        .box4 {
+            border: 2px solid #999999; /* Color azul del borde */
+            padding: 15px; /* Espaciado interior */
+            margin: 15px 0; /* Espaciado exterior */
+            border-radius: 5px; /* Esquinas redondeadas opcional */
+            position: relative; /* Necesario para la posición absoluta de la etiqueta */
+        }
+
+  /* Opcional: estilizar el texto dentro de la caja */
+        .box4 h2, .box4 p {
+            color: #2C5697; /* Color del texto */
+        }
+
+        /* Estilo para la etiqueta */
+        .box4 .label {
+            position: absolute; /* Posiciona la etiqueta dentro de la caja */
+            top: -10px; /* Ajusta la posición vertical de la etiqueta */
+            left: 10px; /* Ajusta la posición horizontal de la etiqueta */
+            background-color: #999999; /* Color de fondo de la etiqueta */
+            color: #ffffff; /* Color del texto de la etiqueta */
+            padding: 5px 10px; /* Espaciado interior de la etiqueta */
+            border-radius: 5px; /* Esquinas redondeadas de la etiqueta */
+            font-weight: bold; /* Texto en negrita */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra opcional para la etiqueta */
+            font-size: 1.2em; /* Tamaño de la fuente aumentado */
+        }
+
+        /* Ajustar el espaciado cuando hay una etiqueta */
+        .box4.with-label {
+            padding-top: 25px; /* Espaciado adicional para la etiqueta */
+        }
+
+
+
+
+
+
+/* Definir una clase para la caja de contenido */
+.box2 {
+    border: 2px solid #1F5591; /* Color azul del borde */
+    padding: 15px; /* Espaciado interior */
+    margin: 15px 0; /* Espaciado exterior */
+    border-radius: 5px; /* Esquinas redondeadas opcional */
+    position: relative; /* Necesario para la posición absoluta de la etiqueta */
+}
+
+/* Opcional: estilizar el texto dentro de la caja */
+.box2 h2, .box2 p {
+    color: #000000; /* Color del texto */
+}
+
+/* Definir una clase para la caja de contenido */
+        .box2 {
+            border: 2px solid #1F5591; /* Color azul del borde */
+            padding: 15px; /* Espaciado interior */
+            margin: 15px 0; /* Espaciado exterior */
+            border-radius: 5px; /* Esquinas redondeadas opcional */
+            position: relative; /* Necesario para la posición absoluta de la etiqueta */
+        }
+
+  /* Opcional: estilizar el texto dentro de la caja */
+        .box2 h2, .box2 p {
+            color: #000000; /* Color del texto */
+        }
+
+        /* Estilo para la etiqueta */
+        .box2 .label {
+            position: absolute; /* Posiciona la etiqueta dentro de la caja */
+            top: -10px; /* Ajusta la posición vertical de la etiqueta */
+            left: 10px; /* Ajusta la posición horizontal de la etiqueta */
+            background-color:#1F5591; /* Color de fondo de la etiqueta */
+            color: #ffffff; /* Color del texto de la etiqueta */
+            padding: 5px 10px; /* Espaciado interior de la etiqueta */
+            border-radius: 5px; /* Esquinas redondeadas de la etiqueta */
+            font-weight: bold; /* Texto en negrita */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra opcional para la etiqueta */
+            font-size: 1.2em; /* Tamaño de la fuente aumentado */
+        }
+
+        /* Ajustar el espaciado cuando hay una etiqueta */
+        .box2.with-label {
+            padding-top: 25px; /* Espaciado adicional para la etiqueta */
+        }
+
+
+
+
+/* ----------------------------------------------------------------------*/
+
+ /* Estilo principal de la caja */
+.box20 {
+            position: relative; /* Para poder posicionar la etiqueta */
+            background-color: #E5F3FA; /* Color de fondo de la caja */
+            padding: 20px;
+            border-radius: 8px; /* Esquinas redondeadas */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+            width: 300px;
+            margin: 20px;
+        }
+
+/* Estilo para el contenido dentro de la caja */
+.box20 h2, .box20 p {
+            color: #1F5591; /* Color del texto */
+            margin: 0;
+        }
+
+/* Estilo para el número grande (como el "03") */
+.box20 .number {
+            font-size: 2.5em; /* Tamaño grande para el número */
+            font-weight: bold;
+            color: #2979B8; /* Color del número */
+            margin-bottom: 10px;
+        }
+
+/* Estilo para la etiqueta */
+.box20 .label {
+            position: absolute; /* Posiciona la etiqueta dentro de la caja */
+            top: -10px; /* Ajusta la posición vertical de la etiqueta */
+            left: 10px; /* Ajusta la posición horizontal de la etiqueta */
+            background-color: #1F5591; /* Color de fondo de la etiqueta */
+            color: #ffffff; /* Color del texto de la etiqueta */
+            padding: 5px 10px; /* Espaciado interior de la etiqueta */
+            border-radius: 5px; /* Esquinas redondeadas de la etiqueta */
+            font-weight: bold; /* Texto en negrita */
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Sombra opcional para la etiqueta */
+            font-size: 1.2em; /* Tamaño de la fuente aumentado */
+        }
+
+/* Ajustar el espaciado cuando hay una etiqueta */
+.box20.with-label {
+            padding-top: 25px; /* Espaciado adicional para la etiqueta */
+}
+
+
+
+/*---------------------------------------------------------------------------*/
+/* Contenedor para las cajas */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* Estilo de las cajas */
+.box22 {
+    flex: 1 1 20%;
+    background-color: #E5F3FA;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    min-width: 200px;
+    max-width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Colores de la paleta */
+.box22:nth-child(1) { background-color: #90CAF9; } /* Azul */
+.box22:nth-child(2) { background-color: #90CAF9; } /* Azul */
+.box22:nth-child(3) { background-color: #FFCC80; } /* Naranja */
+.box22:nth-child(4) { background-color: #FFCC80; } /* Naranja */
+
+/* Estilo del texto en las cajas */
+.box22 h2, .box22 p {
+    color: #1F5591;
+    margin: 0;
+}
+
+.box22 .number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #2979B8;
+    margin-bottom: 10px;
+}
+
+/* Responsivo: Pantallas más pequeñas */
+@media (max-width: 800px) {
+    .box22 {
+        flex: 1

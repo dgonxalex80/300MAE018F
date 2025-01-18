@@ -1,0 +1,403 @@
+---
+title: <span style="color:#235784"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">Estadística para la toma de decisiones </span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/banner001.png")
+```
+
+<br/><br/><br/>
+
+# **BASES DE DATPS**
+
+<br/>
+
+*Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso.* Wikipedia
+
+
+<br/><br/>
+
+Una base de datos en estadística es un conjunto de información relacionada con una población organizada en filas y columnas. Las columnas corresponden a las variables y las filas están relacionadas con los individuos u objetos de estudio.  
+
+<br/>
+
+Es importante indicar que variables como: número de la encuesta, número de identificación, teléfono, dirección, entre otros, no constituyen variables estadística, aun que pueden ser utilizadas para la identificación de la persona u objeto  de donde proviene la información. 
+
+<br/>
+
+Existen repositorio de bases de datos para uso general como: 
+
+<br/>
+
+* [dataset en RStudio](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html)
+
+* [Portal Bases de datos abiertos Colombia](https://www.datos.gov.co/)
+
+* [Datos Banco mundial](https://datos.bancomundial.org/)
+
+* [Portal de Datos Abiertos de Esri España](https://opendata.esri.es/)
+
+<br/><br/>
+
+### **Base datos iris (dataset R)**
+
+<br/>
+
+```{r ,warning=FALSE, message=FALSE}
+data(iris)
+head(iris)
+```
+
+<br/><br/>
+
+Datos de iris (de Fisher o Anderson) 
++ longitud y ancho del sépalo 
++ largo y ancho de pétalos
++ especies: setosa,  versicolor y virginica.
+
+<br/><br/>
+
+Base de datos estadísticos se estructura mediante arreglo de filas y columnas (matriz) donde por lo general las columnas representan las variables y las filas los registros de los objetos de estudio
+
+*Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso.*
+
+<br/>
+
+<div class="box2">
+
+Wikipedia
+
+Una base de datos en estadística es un conjunto de información relacionada con una población organizada en filas y columnas. Las columnas corresponden a las variables y las filas están relacionadas con los individuos u objetos de estudio.
+
+</div>
+
+<br/><br/>
+
+Existen repositorio de bases de datos para uso general
+
+<br/>
+
+
+### **Repositorios**
+
+<div class="box2">
+
+* [dataset en RStudio](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html)   (bases de datos dentro de los paquetes de R)
+
+* [Portal Bases de datos abiertos Colombia](https://www.datos.gov.co/)
+
+* [Observatorio de violencia - Instituto de Medicina Legal](https://www.medicinalegal.gov.co/observatorio)
+
+* [Datos Banco mundial](https://datos.bancomundial.org/)
+
+* [Portal de Datos Abiertos de Esri España](https://opendata.esri.es/)
+
+* [kaggle](https://www.kaggle.com)
+
+* [FiveThirtyEight](https://data.fivethirtyeight.com/)
+
+* [Datos abiertos Cali](https://datos.cali.gov.co/)
+
+* [The home of the U.S. Government’s open data](https://www.data.gov/)
+
+* [World Bank Open Data](https://data.worldbank.org/)
+
+* [Open data initiative of the Government of Spain](https://datos.gob.es/en)
+
+* [SIPSA](https://www.dane.gov.co/index.php/en/citizen-service/information-services/sipsa)
+
+*
+
+
+</div>
+
+<br/><br/>
+
+
+```{r }
+data(iris)
+library(DT)
+DT::datatable(head(iris, 150),fillContainer = FALSE, options = list(pageLength = 8))
+```
+
+<br/><br/>
+
+# **Etapas del proceso de datos**
+
+<br/>
+
+Las siguientes etapas comprenden el ciclo de los datos desde la importación hasta la comunicación. Estas etapas suceden al interior de la Metodología Estadística antes mencionada y constituyen una parte muy importante del proceso, pues de la calidad de los datos, depende la calidad de los resultados.
+
+
+<br/><br/>
+
+```{r, echo=FALSE, out.width="60%", fig.align = "center"}
+knitr::include_graphics("img/proceso_datos.png")
+```
+
+<br/><br/>
+
+Imagen tomada de : https://bitsandbricks.github.io/ciencia_de_datos_gente_sociable/
+
+<br/><br/>
+
+Utilizaremos para este proceso el lenguaje estadístico **R** , bajo **RStudio**
+
+<br/><br/>
+
+## **Importar datos**
+
+<br/><br/>
+
+###  **Origen de los datos**
+
+<br/>
+
+Los datos pueden proceder de diferentes fuentes (tanto primarias como secundarias), dentro de las cuales pueden ser:
+
+<br/>
+
+* Encuesta personal (datos primarios)
+
+* Online ( utilizando sistemas como REDCap, Office 365 - forms)
+
+* Entrevista cara a cara
+
+* Entrevista telefónica
+
+* Investigación propia ( observaciones en laboratorios)      
+
+* Sistema automático de recolección de datos ( webscraping)
+
+* Fuente externa (datos secundarios : bases de datos abiertos)
+
+* DANE (o entidades gubernamentales)
+
+* Cámara de Comercio
+
+* Agremiaciones (observatorios de gremios)
+
+* Bancos de datos abiertos
+
+<br/><br/>
+
+##  **Herramientas computacionales**
+
+Algunas de las herramientas utiliziadas en el manejo de información  son :
+<br/>
+
++ Excel
++ SQL
++ Oracle
++ SAS
++ Julia 
+
++ R,  RStudio
++ Python
+
+En nuestro caso haremos uso del lenguaje estadístico **R*
+
+
+<br/><br/>
+
+## **Limpieza de datos**
+
+<br/>
+
+Es importante después de haber importado la base de datos, hacer una revisión de cada una de las variables con el fin de poder detectar:
+
++ Datos faltantes (NA)
+
++ Datos anómalos o raros
+
++ Etiquetas mal colocadas ( minúsculas, MAYÚSCULAS, Titulo...)
+
+Existen metodologías para corregir estos problemas sin afectar la información contenida en la data, para lo cual debemos realizar una verificación inicial mediante la construcción de tablas y resumen de datos.
+
+
+<br/><br/>
+
+# **Ficha técnica**
+
+<br/>
+
+Las bases de datos debe estar acompañadas de una ficha técnica donde si indican sus principales características :
+
++ [Ficha tecnica](https://drive.google.com/file/d/1O1eaS8y6olf5o_42ehgDgVZ4q1dganbd/view) 
+
++ [Casos positivos de COVID-19 en Colombia](https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr)
+
+<br/><br/><br/>
+
+# **Importar bases de datos**
+
+<br/>
+
+Los datos se pueden importar de diferentes formas :
+
+<br/>
+
++ Desde el menú de RStudio
+
++ Desde la consola de R o RStudio
+
++ De manera automática 
+
+<br/>
+
+[**Ayudas:**](https://bookdown.org/gboccardo/manual-ED-UCH/gestion-de-bases-de-datos.html)
+
+<br/><br/>
+
+### **Importar datos desde la dataset de R**
+
+<br/>
+
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+data("mtcars")
+head(mtcars, n=3)
+```
+
+<br/><br/>
+
+### **Importar los datos en formato xlsx**
+
+<br/>
+
++ RStudio usando ventanas : **File/ Import Dataset / From Excel...**
+
++ RStudio usando comandos : 
+
+<br/><br/>
+
+### **Importar datos en formato csv**
+
+<br/>
+
+El formato **csv** es uno de los mas utilizados para el almacenamiento de datos estructurados (agrupados en filas y columnas)  . El termino csv significa *"valores separados por comas"* 
+
++ RStudio usando ventanas : **File/ Import Dataset / From Text (base)...**
+
++ RStudio usando comandos : 
+
+<br/>
+
+<div class="box4 with-label">
+<div class="label">Código R</div>
+
+<pre>
+library(readr)
+casas <- read_delim("data/casas.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)
+</pre>
+</div>
+
+```{r, eval=FALSE}
+library(readr)
+casas <- read_delim("data/casas.csv", delim = ";", escape_double = FALSE, trim_ws = TRUE)
+```
+
+Otro ejemplo para importar una base de datos en formato csv :
+
++ Selecciono una base de datos de mi interés (portal **FiveThirtyEight**: https://data.fivethirtyeight.com/ - base de datos Predicción de clubes de  fútbol)
+
++ Descargo la base de datos y la guardo en la carpeta de trabajo
+
++ Importo la base a RStudio 
+
+<br/>
+
+<div class="box4 with-label">
+<div class="label">Código R</div>
+
+<pre>
+library(DT)
+clasificacion=read.csv("data/spi_global_rankings_intl.csv")
+datatable(head(clasificacion, 218),fillContainer = FALSE, options = list(pageLength = 3))
+</pre>
+
+</div>
+
+```{r, echo=TRUE, warning=FALSE, message=FALSE, results='hide'}
+library(DT)
+clasificacion=read.csv("data/spi_global_rankings_intl.csv")
+datatable(head(clasificacion, 218),fillContainer = FALSE, options = list(pageLength = 3))
+```
+
+<br/><br/>
+
+### **Importar datos de manera automática**
+
+<br/>
+
+La API de datos abiertos de Socrata le permite acceder mediante programación a una gran cantidad de recursos de datos abiertos de gobiernos, organizaciones sin fines de lucro y ONG de todo el mundo. Haga clic en el enlace de abajo y pruebe un ejemplo en vivo ahora mismo.
+
+https://dev.socrata.com/
+
+Cargar la base de datos de COVID-19 Colombia
+
+
+<br/>
+
+<div class="box4 with-label">
+<div class="label">Código R</div>
+
+<pre>
+# install.packages("RSocrata")
+ library(RSocrata)
+ token ="ew2rEMuESuzWPqMkyPfOSGJgE"
+ Colombia= read.socrata("https://www.datos.gov.co/resource/gt2j-8ykr.json", app_token = token)
+ saveRDS(Colombia,"data/Colombia.RDS")
+</pre>
+
+</div>
+
+
+```{r, eval=FALSE}
+# install.packages("RSocrata")
+ library(RSocrata)
+ token ="ew2rEMuESuzWPqMkyPfOSGJgE"
+ Colombia= read.socrata("https://www.datos.gov.co/resource/gt2j-8ykr.json", app_token = token)
+ saveRDS(Colombia,"data/Colombia.RDS")
+```
+
+
+
+<br/>
+
+<div class="box3 with-label">
+<div class="label">Nota</div>
+
+Se requiere solicitar token en la pagina de los datos
+
+</div>
+
+
+	
+	

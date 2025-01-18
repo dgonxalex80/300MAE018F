@@ -1,0 +1,131 @@
+---
+title: <span style="color:#235784"> **Función exponencial**</span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">**Módulo 0**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+
+
+```
+
+
+<br/><br/>
+
+La función exponencial es una función matemática fundamental en la que el valor de la función crece (o decrece) rápidamente a medida que el valor de la variable independiente aumenta. La forma general de la función exponencial es :
+
+<div class="highlight-box">
+## **Definición**
+
+
+$$
+f(x) = a . b ^{x}
+$$
+Donde : <br/>
+* $a$ : Es un parámetro que representa el valor inicial de la función cuando $x=0$. Es la ordenada al origen o el valor de la función cuando 
+$x=0$.
+
+* $b$ : Es la base de la función exponencial. Determina la tasa de crecimiento de la función. 
+  * Si $b>1$, la función crece exponencialmente. 
+  * Si $0<b<1$, la función decrece exponencialmente.
+
+* $x$ : Es la variable independiente. Representa el valor que se evalua para obtener el valor de $f(x)$.
+
+<br/><br/>
+
+### **Propiedades**
+
+* $b^x . b^y = b^{x+y}$
+* $\dfrac{b^x}{b^y} = b^{x-y}$
+* $(b^x)^y = b^{xy}$
+* $b^{x+y} \neq b^x + b^y$
+* $b^0 = 1$
+* $b^1 = b$
+
+</div>
+
+
+<br/><br/><br/>
+
+Un caso particular ocurre cuando $b = e$
+
+<br/><br/>
+
+### **Caso f(x) = exp{x}**
+
+```{r}
+library(ggplot2)
+
+# Datos
+x <- seq(-2, 2, by = 0.1)
+y <- exp(x)
+data <- data.frame(x = x, y = y)
+
+# Gráfico
+ggplot(data, aes(x = x, y = y)) +
+  geom_line(color = "darkblue") +
+  labs(title = "Gráfico de la función exponencial f(x) = exp{x}",
+       x = "x",
+       y = "y") +
+  theme_minimal()
+
+```
+
+<br/><br/><br/>
+
+### **Caso f(x) = exp{-x}**
+```{r}
+library(ggplot2)
+
+# Datos
+x <- seq(-2, 2, by = 0.1)
+y <- exp(-x)
+data <- data.frame(x = x, y = y)
+
+# Gráfico
+ggplot(data, aes(x = x, y = y)) +
+  geom_line(color = "darkblue") +
+  labs(title = "Gráfico de la función exponencial  f(x) = exp{-x}",
+       x = "x",
+       y = "y") +
+  theme_minimal()
+
+```
+
+
+Una de las funciones de densidad de probabilidad más conocida en estadística es el modelo exponencial
+
+
+$$f(x) = \dfrac{1}{\lambda} \hspace{.2cm} exp{(-1/\lambda)}$$
+
+Para un valor de $\lambda = 2$ tenemos la siguiente función:
+
+$$f(x) = \dfrac{1}{2} \hspace{.2cm} exp{(-x/2)}, \hspace{1cm} x>0$$
+
+```{r}
+library(ggplot2)
+
+# Datos
+x <- seq(0, 6, by = 0.1)
+y <- 1/2*exp(-x/2)
+data <- data.frame(x = x, y = y)
+
+# Gráfico
+ggplot(data, aes(x = x, y = y)) +
+  geom_line(color = "darkblue") +
+  labs(title = "Gráfico de la función exponencial  f(x) = exp{-x}",
+       x = "x",
+       y = "y") +
+  theme_minimal()
+
+```
+
+

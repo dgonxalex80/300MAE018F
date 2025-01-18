@@ -1,0 +1,21 @@
+---
+title: "Untitled"
+author: "Daniel Enrique Gonzalez"
+date: "2024-06-19"
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div class="highlight-box">
+
+</div>

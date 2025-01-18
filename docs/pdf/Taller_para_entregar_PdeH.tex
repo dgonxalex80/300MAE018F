@@ -1,0 +1,480 @@
+\documentclass[base=hide,9pt]{elegantbook}
+% Para Linux
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+\title{Guía de  aprendizaje\\
+	Unidad  4.2 Intervalos de confianza}
+\subtitle{Probabilidad y Estadística}
+
+\author{Daniel Enrique González Gómez}
+\institute{Pontificia Universidad Javeriana Cali}
+\date{Octubre, 2020}
+\version{1.00}
+\bioinfo{Area}{Estadística}
+
+% Frase....
+% \extrainfo{}
+
+%\logo{logo-blue.png}
+\cover{Modulo4.png}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{color}
+\usepackage{tcolorbox}
+%%\usepackage[margin=0.5in]{geometry}
+%\usepackage{amsthm,amssymb,amsfonts}
+%%\usepackage{tikz,lipsum,lmodern}
+%\usepackage[most]{tcolorbox}
+%\usepackage{xcolor}
+
+\definecolor{col1}{rgb}{0.42,0.35,0.80}% magenta 
+\definecolor{col2}{rgb}{0.0,0.65,0.31}%   verde
+\definecolor{col3}{rgb}{1.0,0.49,0.09}%   naranja
+\definecolor{col4}{rgb}{0.0,0.2,0.6}%  azul oscuro 
+\definecolor{col5}{rgb}{0.99,0.05,0.21}%  rojo
+
+%---------------------------------------------------------------------------------------------
+\newtcolorbox{Box1}[2][]{	   % caja  azul
+	colback=white!95!col1,
+	colframe=white!20!col1,	fonttitle=\bfseries,
+	colbacktitle=white!10!col1,enhanced,
+	attach boxed title to top left={xshift=1cm,	yshift=-2mm},
+	title=#2,#1}
+%------------------------------------------------------ --------------------------------------
+\newtcolorbox{Box2}[2][]{  % caja verde  ok
+	colback=white!95!col2,
+	colframe=white!20!col2,	fonttitle=\bfseries,
+	colbacktitle=white!10!col2,enhanced,
+	attach boxed title to top left={xshift=1cm,	yshift=-2mm},
+	title=#2,#1}
+%-------------------------------------------------------------------------------------------
+
+\newtcolorbox{Box3}[2][]{ % caja naranja
+	colback=white!95!col3,
+	colframe=white!20!col3,	fonttitle=\bfseries,
+	colbacktitle=white!10!col3,enhanced,
+	attach boxed title to top left={xshift=1cm,	yshift=-2mm},
+	title=#2,#1}
+
+%----------------------------------------------------------------------------------------
+
+\newtcolorbox{Box4}[2][]{  % caja purpura  ok
+	colback=white!95!col4,
+	colframe=white!20!col4,	fonttitle=\bfseries,
+	colbacktitle=white!10!col4,enhanced,
+	attach boxed title to top left={xshift=1cm,	yshift=-2mm},
+	title=#2,#1}
+
+%----------------------------------------------------------------------------------------
+\newtcolorbox{Box5}[2][]{    %
+	colback=white!95!col5,
+	colframe=white!20!col5,	fonttitle=\bfseries,
+	colbacktitle=white!10!col5,enhanced,
+	attach boxed title to top left={xshift=1cm,	yshift=-2mm},
+	title=#2,#1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtcolorbox{mybox}[2][]{boxsep=1em,left=-0em,
+	
+	colback=blue!5!white, 
+	colframe=blue!75!black, 
+	fonttitle=\bfseries\sffamily,
+	colbacktitle=blue!85!red!60,enhanced,
+	
+	attach boxed title to top left={yshift=-3mm,xshift=3mm},
+	title=#2,#1}
+
+
+\newtcolorbox{mybox2}[2][]{%
+	colback=bg,
+	colframe=blue!75!black,	fonttitle=\bfseries,
+	coltitle=blue!75!black,
+	colbacktitle=white!5!col5,enhanced,
+	attach boxed title to top left={yshift=-1.2mm, xshift=2mm},
+	title=#2,#1}
+%-----------------------------------------------------------------------------------------
+\font\domino=domino
+\def\die#1{{\domino#1}}
+
+
+\setlength{\parindent}{0cm} % no sangrado en los parrafos
+\usepackage{hyperref} % insertar links
+\usepackage{latexsym,epsfig,multicol, anysize} %%%%
+
+%
+%
+%\documentclass[11pt]{article}
+%\usepackage{amsmath,amsfonts,amssymb,theorem} %%%%
+%\usepackage{latexsym,epsfig,multicol, anysize} %%%%
+%\usepackage[utf8x]{inputenc}
+%%\usepackage[ansinew]{inputenc} 
+%\usepackage[spanish]{babel} %%%% acentos en español 
+%\usepackage{graphicx}
+%\usepackage{cancel}
+%\pagestyle{empty}
+%%\usepackage{fancyhdr}
+%%\pagestyle{fancy}
+%%\usepackage[dvips,dvipsnames,usenames]{color} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+%\usepackage[usenames,dvipsnames]{pstricks}
+%\usepackage{epsfig}
+%\usepackage{pst-grad} % For gradients
+%\usepackage{pst-plot} % For axes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\oddsidemargin -1.0cm %margen izquierdo
+\headsep -1.4cm %margen superior
+\textwidth=18.5cm %ancho de parrafo
+\textheight=25cm %alto de escrito
+\parindent=0mm % Elimina la sangr ́a
+%\begin{document}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%\textcolor{col4}{\bf Solución: }\\
+	%\textcolor{col1}{\bf Ejemplo 9:}\\
+	%\textcolor{col5}{\bf Nota:}\\
+	
+\textcolor{col4}{\bf \large EJERCICIOS PROPUESTOS} 
+\vspace{1cm}
+\begin{enumerate}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1
+	\item Suponga que se estudia la compra de una nueva maquina para una empresa. Se comprara la maquina si la proporción de la producción que necesita ser reprocesados por tener   defectos es inferior al 5\%. Se examina una muestra de 40 artículos construidos  por la maquina y 3 necesitan ser reprocesados . ¿ Que decisión se toma? ( Se compra o no la maquina?)
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  2
+	\item Su ponga que una empresa desarrolla un curso de entrenamiento para sus empleados, formando dos grupos y aplicándoles dos métodos distintos de entrenamiento. El primer grupo lo componen 36 empleados que obtuvieron un puntaje promedio de 6 ( en escala de 0 a 10 puntos) y una desviación estándar de 4 puntos y el segundo grupo de 40 empleados cuyo puntaje promedio fue de 8.2 y una desviación de 4.3. Se puede afirmar que el método aplicado al segundo grupo es superior al aplicado al primero? 
+	Que supuestos debe de tener en cuenta?
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  3
+	\item Los ingenieros de una ensambladora de automóviles requieren decidir sobre cuál de dos de las marcas de neumáticos deben comprar. La marca FB o la marca KT. Con el fin de tomar una decisión basada en evidencias estadísticas, deciden realizar un experimento en el que usan 12 neumáticos de cada marca. Los neumáticos se utilizan hasta su terminación. Los resultados obtenidos son los siguientes: \\
+	
+	Marca FB: 41.8 41.6 31.5 48.7 40.8 31.2 36.5 36.2 32.8 36.3 38.6 30.5 ;\\ 
+	Marca KT: 40.5 38.4 44.0 34.9 44.0 44.7 44.0 47.1 39.8 43.9 44.2 40.2 .
+	\vspace{.3cm}
+	
+	Cuál marca de neumáticos recomendaría comprar. Justifique su respuesta. Suponga que la distancia recorrida por un neumático se distribuye aproximadamente normal y un $\alpha=0.05$.
+	\vspace{.5cm}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  4
+	\item Un ingeniero desea establecer si existen diferencias entre dos métodos diferentes de realizar el ensamble de una casa prefabricada. Para comprobarlo recoge información de ambos métodos que se presentan a continuación: \\
+	
+	Procedimiento estándar: 32, 37, 35, 28, 41, 44, 35, 31, 34. \\
+	Nuevo procedimiento: 35, 31, 29, 25, 34, 40, 27, 32, 31. \\
+	
+	Presentan los datos suficiente evidencia estadística para afirmar que el nuevo método es más eficiente que el estándar? (utilice un $\alpha=0.05$).
+	\vspace{.5cm}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%  5
+	\item Un director de un gimnasio quiere determinar si un instructor de ejercicio debe ser contratado o no para su campaña estrella “Reducción de peso”, Para tomar la decisión le dice que pruebe con 16 de las personas que habitualmente concurren tomadas al azar. Los datos que se tomaron antes ($x_{1}$) y después ($x_{2}$) de haber realizado un mes de ejercicios son los siguientes:\\
+	
+	\begin{tabular}{l|cccccccccccccccc}
+		
+		id      & 1    &  2   &  3   & 4     & 5    & 6  & 7    & 8  & 9  & 10   & 11   & 12   & 13    & 14   & 15  & 16  \\
+		\hline 
+		$x_{1}$ & 104  & 89   & 84   & 106   & 90   & 96 & 79   & 90 & 85 & 76   & 91   & 82   & 100   & 89   & 121 & 72  \\
+		\hline 
+		$x_{2}$ & 98   & 85   & 85   & 103   & 88   & 95 & 79   & 90 & 82 & 76   & 89   & 81   &  99   & 86   & 111 & 70  \\
+		
+	\end{tabular}
+	
+	\vspace{.5cm}
+	Emplee y realice las pruebas de hipótesis a un nivel de significancia del 0.01 para determinar si el programa que ofrece el nuevo instructor es eficaz. Suponga que la variable peso se distribuye aproximadamente normal.
+	
+	\newpage 
+	.
+	\vspace{1cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  6
+	\item Se realizan pruebas de un nuevo lector láser manual para uso en inventarios y el lector utilizado actualmente, con el fin de decidir si se adquiere el primero. Se obtienen los datos siguientes sobre el número de códigos de barra de 7 pulgadas que pueden leerse por segundo. Sea $X_{1}$: número de códigos leído por segundo con el dispositivo nuevo y $X_{2}$ el correspondiente al dispositivo antiguo.\\
+	
+	\begin{tabular}{l}
+		$n_{1}=61$ ;\hspace{1cm} $\bar{x}_{1}=40$ ;\hspace{1cm} $s^{2}_{1}=24.9$ \\
+		$n_{2}=61$ ; \hspace{1cm}$\bar{x}_{2}=29$ ;\hspace{1cm} $s^{2}_{2}=22.7$ \\
+	\end{tabular}
+	\vspace{.5cm}
+	
+	De acuerdo con la información suministrada, es posible preferir alguno de ellos?. En caso de poderlo realizar con cual se quedaría? Justifique su respuesta. En cada caso determine las pruebas de hipótesis, el estadístico de prueba apropiado, el $valor-p$ obtenido y las conclusiones resultantes.
+	
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  7 
+	\item  Un empresario registro el número de artículos producidos durante 10 días, para un grupo de 15 obreros que trabajaban con base en un salario fijo (Grupo 1). El industrial introdujo un plan de incentivos para otros 15 obreros y registro su producción durante otros 10 días (Grupo 2). El número de artículos producidos por cada uno de los grupos fue :   \\
+	
+	
+	\begin{tabular}{l|cccccccccc}
+		G1& 75&  76&  74&  80&  72&  78&  76&  73&  72&  75\\  \hline       
+		G2& 86&  78&  86&  84&  81&  79&  78&  84&  88&  80\\  
+	\end{tabular}
+	
+	\vspace{.2cm}
+	Suponiendo que los salarios pagados a cada grupo son equivalentes. Se puede concluir que el plan de incentivos es efectivo?
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%  8
+	\item En una muestra de 200 clientes, el 20\% indica una preferencia por tamaño especial de pizza.  Con posterioridad a una campaña publicitaria realizada en radio y televisión promoviendo dicho producto, se selecciono una muestra de igual tamaño.  En esta ultima muestra el 22\% de los clientes indico preferencia por el producto. De acuerdo con estos resultados y un nivel de significancia del 5\% , podría decirse que la campaña publicitaria no fue efectiva? 
+	\vspace{.5cm}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%  9
+	\item Los siguientes son los datos de las horas hombre que se pierden en promedio por accidentes en 10 plantas industriales antes (A) y después (D) de la implantación de un programa de seguridad industrial:\\
+	
+	\begin{tabular}{l|cccccccccc}
+		id & 1 &  2 & 3  & 4  &  5  & 6  & 7  & 8  & 9  & 10\\ \hline 
+		A  & 45 & 73 & 46 & 124 & 30 & 57 & 83 & 34 & 26 & 17 \\  \hline 
+		D  & 36 & 60 & 44 & 119 & 35 & 51 & 77 & 29 & 24 & 11 \\   
+	\end{tabular}
+	
+	\vspace{.5cm}
+	Utilice un nivel de significancia de 0.05 para probar si el programa de seguridad implantado es eficaz. Suponga que esta variable se distribuye aproximadamente normal.
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%5  10
+	.
+	\vspace{1cm}
+	\item La compañía de dulces Mars publica en su sitio web información relacionada con los porcentajes de los distintos colores de sus dulces M\&M para la variedad de chocolate con leche.\\
+	
+	\begin{tabular}{l|cccccc}
+		Color contenido en la bolsa & café & amarillo & rojo & azul & naranja & verde \\
+		\hline 
+		Porcentaje (\%)             & 13 & 14 & 13 & 24 & 20 & 16 \\
+	\end{tabular}
+	\\
+	
+	Se realiza una verificación mediante el conteo delos dulces contenidos e n una bolsa de 14 onzas de dulces M\&M, obteniendo los siguientes resultados: 70 duces cafés, 72 amarillos, 61 rojos, 118 azules, 108 naranjas y 85 verdes. \\
+	
+	Se podria afirmar que los datos anteriores respaldan la información suministrada por la compañía en su sitio web? Sustente su respuesta.
+	
+	\newpage
+	.
+	\vspace{1.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% 11
+	\item En una línea de producción los artículos se inspeccionan en forma periódica con el fin de detectar defectos. La siguiente secuencia de artículos defectuosos (D) y no defectuosos (N) corresponde a la producción de uno de los turnos. 
+	\begin{verbatim}
+		D D N N N N D N N D D N N N N N D D D D N N D N N N N D N D N N N N N N D N N N D D N N
+		N N N N D N D N N N N D D D D D N D D N N N N N N N D D D D D D D D D N N N N N N D D N
+	\end{verbatim}
+	Se puede afirmar que los datos no presentan patrón alguno y que la generación de artículos defectuosos se debe al azar? . Utilice un  $\alpha= 0.05$.
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 12
+	\item En una planta ensambladora de camiones la supervisión diaria de las soldaduras generó la siguiente información :\\
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			& \multicolumn{3}{c}{Número de soldaduras}\\
+			& Alta    & Moderada &  Baja    \\
+			Turno & calidad & calidad  &  calidad \\
+			\hline
+			dia   & 470     & 191      & 42 \\
+			tarde & 445     & 171      & 28 \\
+			noche & 257     & 129      & 17 \\
+		\end{tabular}
+	\end{center}
+	¿Se puede concluir que la calidad varia con los turnos?, en otras palabras se puede concluir que la calidad de las soldaduras es independiente de los turnos? . Utilice un nivel de significancia $\alpha=0.05$.
+	
+	\vspace{.5cm}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%% 13
+	\item Los siguientes datos corresponde a las notas obtenidas por un grupo de estudiantes de la asignatura Matemáticas Fundamentales. Si la distribución de los datos es normal, podría afirmar que la prueba realizada es una prueba normalizada. En caso contrario serviría para estudiar problemas relacionados con su aprendizaje. Para un $\alpha= 0;05$, se podría afirmar que los datos proceden de una distribución normal? . Si se requiere realizar una prueba de hipótesis sobre la media de la nota $H_{o}:\mu \leq 3.3$ vs $H_{a}: \mu > 3.3$, ¿Que prueba se realizaría? 
+	\begin{verbatim}
+		3.4, 2.8, 4.2, 2.1, 2.8, 2.4, 3.5, 4.2, 3.1, 4.1, 2.4, 3.4, 4.1, 4.0, 2.4, 4.1, 3.4, 4.4,
+		3.8, 3.7, 2.2, 3.6, 2.3, 3.7, 2.8, 4.1, 2.3, 4.6, 4.6, 5.2, 2.4, 2.4, 2.7, 3.8, 4.6, 4.4,
+		4.2, 4.4, 2.4, 3.3, 3.8, 2.9, 3.1, 2.7, 3.6, 3.8, 4.4, 3.9, 2.8, 3.7
+	\end{verbatim}
+	
+	
+	\vspace{.5cm}
+\end{enumerate}	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%	
+\newpage	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+\textcolor{col4}{\bf \large  FORMULARIO PRUEBAS DE HIPÓTESIS PARAMÉTRICAS}
+\end{center}
+\vspace{.5cm}
+\begin{multicols}{2}
+%\vspace{.2cm}
+%\includegraphics[scale=0.25]{logoPUJCL3.png}\\
+\noindent
+%{\scriptsize FACULTAD DE INGENIERIA \\
+%DEPARTAMENTO DE CIENCIAS NAT. Y MATEMÁTICAS\\
+%ESTADÍSTICA}\\ \\
+%\begin{flushright}
+%{\small Profesor Daniel Enrique González Gómez}
+%\end{flushright}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%vspace{0,1cm}
+%\rule{9cm}{2pt}
+
+%\rule{9cm}{2pt}
+%\begin{itemize}%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% z
+%\item {\bf Una población}\\
+\begin{eqnarray}
+Z_{o}&=&\dfrac{\bar{X}-\mu_{o}}{\sigma/\sqrt{n}}\sim N(0,1) 
+\end{eqnarray}
+\begin{eqnarray}
+Z_{o}&=&\dfrac{\bar{X}-\mu_{o}}{s/\sqrt{n}} \sim N(0,1)
+\end{eqnarray}
+\begin{eqnarray}
+T_{o}&=&\dfrac{\bar{X}-\mu_{o}}{s/\sqrt{n}} \sim t_{v=n-1} 
+\end{eqnarray}
+\begin{eqnarray}
+X^{2}_{o}&=&\dfrac{(n-1)S^{2}}{\sigma_{o}^{2}} \sim \chi^{2}_{v=n-1} 
+\end{eqnarray}
+\begin{eqnarray}
+Z_{o}&=& \dfrac{X-n \hspace{.1cm} p_{o}}{\sqrt{n \hspace{.1cm }p_{o}}} \sim N(0,1)
+\end{eqnarray}
+\begin{eqnarray*}
+Z_{o}&=&\dfrac{\widehat{p}-p_{0}}{\sqrt{p_{o}(1-p_{o})/n}} \sim N(0,1)
+\end{eqnarray*}
+\begin{eqnarray}
+Z_{o}&=&\dfrac{(\bar{x}_{1}-\bar{x}_{2})- \Delta_{o}}{\sqrt{\dfrac{\sigma_{1}^{2}}{n_{1}}+\dfrac{\sigma_{2}^{2}}{n_{2}}}} \sim N(0,1)
+\end{eqnarray}
+\begin{eqnarray}
+T_{o}&=& \dfrac{(\bar{x}_{1}-\bar{x}_{2})-\Delta_{o}}{s_{p}\sqrt{\dfrac{1}{n_{1}} + \dfrac{1}{n_{2}}}} \sim t_{v=n_{1}+n_{2}-2}
+\end{eqnarray}
+\begin{center}
+donde: $s^{2}_{p}=\dfrac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s^{2}_{2}}{n_{1}+n_{2}-2}$
+\end{center}
+\begin{eqnarray}
+T_{o}&=& \dfrac{(\bar{x}_{1}-\bar{x}_{2}-\Delta_{o}}{\sqrt{\dfrac{s^{2}_{1}}{n_{1}}+\dfrac{s^{2}_{2}}{n_{2}}}} \sim t_{v^{*}}
+\end{eqnarray}
+%\begin{eqnarray*}
+\begin{center}
+donde: $v^{*}= \dfrac{(s^{2}_{1}/n_{1} + s^{2}_{2}/n_{2})^{2}}{\dfrac{(s^{2}_{1}/n_{1})^{2}}{n_{1}-1}+\dfrac{(s^{2}_{2}/n_{2})^{2}}{n_{2}-1}}$
+\end{center}
+%\end{eqnarray*}
+\begin{eqnarray}
+T_{o}&=& \dfrac{\bar{d}-\Delta_{o}}{s_{d}^{2}} \sim t_{v=n-1}
+\end{eqnarray}
+%\begin{eqnarray*}
+\begin{center}
+donde: $\bar{d}=\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}d_{i} \hspace{.2cm}\text{ y } \hspace{.2cm} d_{i} = x_{1}-x_{2}$
+\end{center}
+%\end{eqnarray*}
+ 
+\begin{eqnarray}
+Z_{o}&=& \dfrac{(\widehat{p_{1}}-\widehat{p_{2}})-\Delta_{o}}{\sqrt{\widehat{p}\widehat{q}(1/n_{1}+1/n_{2})}}
+\end{eqnarray}
+\begin{center}
+donde: $\widehat{p}=\dfrac{x_{1}+x_{2}}{n_{1}+n_{2}}$ \hspace{.2cm} $\widehat{q}=1-\widehat{p}$, \hspace{.2cm}
+$\widehat{p_{1}}=\dfrac{x_{1}}{n_{1}} \hspace{.1cm} \text{ y } \hspace{.1cm}\widehat{p_{2}}=\dfrac{x_{2}}{n_{2}}$
+\end{center}
+\begin{eqnarray}
+F&=& \dfrac{s_{1}^{2}}{s_{2}^{2}} \sim F_{v_{1}:n_{1}-1; v_{2}: n_{2}-1}
+\end{eqnarray}
+\\
+\\
+%\end{multicols} 
+%$H_{o}: \theta \leq \theta_{o}$ vs $H_{a}: \theta > \theta_{o}$ & ----------------xxx\\
+%\rule{9cm}{1pt} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textcolor{col3}{\bf \large Regla1}:  \hspace{.3cm}Si el $EdeP$ cae en la $RdeR$, entonce se rechaza la $H_{0}$ y se {\bf acepta} $H_{a}$ como verdadera. Si por el contrario el $EdeP$ NO cae en la $RdeR$, entonces NO se rechaza $H_{0}$, no existe suficiente evidencia para rechazarla, {\bf asumimos} que $H_{0}$ es verdad.\\
+
+\textcolor{col5}{\bf \large  Regla2}: \hspace{.3cm}Si $\alpha >$ valor-p entonces rechazamos $H_{0}$, se {\bf acepta} $H_{a}$. Si por el contrario $\alpha <$ $valor-p$, no rechazamos $H_{0}$, {\bf asumimos} 	que $H_{0}$ es verdad.\\
+
+\textcolor{col3}{\bf \large Regla3}: \hspace{.3cm} El $valor-p$ se interpreta como el error que puedo cometer al rechazar $H_{0}$, siendo esta verdadera (cometer error tipo I). Si este valor es considerado como pequeño, rechazo $H_{0}$, se {\bf acepta} $H_{a}$. Si por el contrario se considera este valor grande, entonce no rechazo $H_{0}$, asumo que $H_{0}$ es verdad.\\
+
+\rule{9cm}{1pt}
+\textcolor{col4}{\bf Tipos de pruebas} \\
+{\small
+	\begin{tabular}{lc}
+		$H_{0}: \theta = \theta_{o}$ vs $H_{0}: \theta \neq \theta_{o}$ & $RdeR*|$------------------$|*RdeR$\\
+		&\\
+		$H_{0}: \theta \leq \theta_{o}$ vs $H_{0}: \theta > \theta_{o}$ & ----------------------------$|*RdeR**$\\
+		&\\
+		$H_{0}: \theta \geq \theta_{o}$ vs $H_{0}: \theta < \theta_{o}$ & $**RdeR*|$------------------------\\
+		
+	\end{tabular}
+}
+
+\rule{9cm}{1pt}
+
+\vspace{.5cm}
+\textcolor{col4}{\bf Códigos en R pruebas paramétricas }\\
+{\scriptsize
+\begin{verbatim}
+# Entrada de datos 
+x1=c(7, 13, 6, 5, 5, 10, 8, 6, 7)
+x2=c(3,7,2,3,6,2,1,0,2)
+\end{verbatim} 
+Una población
+\begin{verbatim}
+z.test(datos,mu=10,stdev=4, conf.level=98)
+t.test(datos, mu=10,conf.level=0.98)
+t.test(datos, mu=10,conf.level=0.98,alternative="greater")
+t.test(datos, mu=10,conf.level=0.98,alternative="less)
+prop.test(x,n, p=0.20, conf.level=0.98)
+\end{verbatim}%
+Dos poblaciones \\
+\begin{verbatim}
+t.test(x1,x2,  paired=TRUE)
+t.test(x1,x2,  paired=FALSE, var.equal=TRUE, conf.level=0-98)
+t.test(x1,x2,  paired=FALSE, var.equal=FALSE, conf.level=0.98)
+var.test(x,y)
+prop.test(c(x1,x2), c(n1,n2))
+\end{verbatim}
+}
+
+\end{multicols}
+\newpage 
+
+.\vspace{1cm}
+\begin{multicols}{2} 
+\textcolor{col4}{\bf Códigos en R pruebas no paramétricas }\\
+{\scriptsize
+\begin{verbatim}
+ library(BSDA)
+ sign.test(x,md=6.5,alternative= "less")  "greater", "two.sided"
+ sign.test(x,y,md=0, "two.sided")
+ 
+ wilcox.test(x,y,paired=TRUE, laternative="two.sided")
+ wilcox.test(x,y,paired=FALSE, alternative="two.sided")
+ 
+ runs.test(x)
+ 
+ obs=c(10,15,20)
+ esp=c(0.333,0.333,0.334)
+ chisq.test(obs,p=esp)  
+\end{verbatim}
+}
+\vspace{.5cm}
+
+\textcolor{col4}{\bf Códigos en R pruebas de normalidad}\\
+{\scriptsize
+\begin{verbatim}
+x=rnorm(200,100,25)
+hist(x)
+qqnorm(x)
+qqline(x)	
+	
+shapiro.test(x)
+
+library(nortest)
+ad.test(x)
+cvm.test(x)
+lillie.test(x)
+pearson.test(x)
+sf.test(x)
+
+library(normtest)
+ajb.norm.test(x)
+frosini.test(x)
+geary.test(x)
+hegazy1.test(x)
+hegazy2.test(x)
+jb.test(x)
+skewness.test(x)
+kurtosis.test(x)
+dpirgelhalter(x)
+wb.test(x)
+\end{verbatim}
+}
+
+
+%{\bf Paquete R-comander}\\
+%library(Rcmdr)
+\end{multicols}
+ 
+\rule{18.5cm}{1pt}
+\begin{flushright}
+{\small Profesor Daniel Enrique González Gómez\\
+Curso: Probabilidad y Estadística\\
+\end{flushright}
+%\newpage %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\begin{multicols}{2}
+
+
+\end{document}

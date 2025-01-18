@@ -1,0 +1,355 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 1.1**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = NA)
+
+library(RColorBrewer)
+library(summarytools)
+library(knitr)
+library(readxl)
+library(tidyverse)
+
+#install.packages('remotes')  # solo una vez
+# library(remotes) # solo una vez
+# install_github("dgonxalex80/paqueteDEG", force = TRUE) # solo una vez
+# library(paqueteDEG)
+# data(Colombia23)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+
+<br/><br/>
+
+![](img/codigo1.png)
+
+<br/><br/> 
+
+# **Importar datos en R**    
+
+<br/><br/>
+
+ Se puede realizar de formas diferentes :
+ 
+1. Utilizando el menú RStudio 
+
++ Caso formato .csv : *File /Import Dataset/From text (base)*. 
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/g8p_Rn8C6oU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
++ Caso formato .xlsx : *File/ Import Dataset/ From Excel*. 
+
+<iframe width="800" height="450" src="https://www.youtube.com/embed/wB7zmFKRjFk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+ 
+2. Utilizando el paquete Rcmdr y RcomdrMisc que activa una interfas de R que trabaja con menus y ventanas con un proceso parecido al anterio
+
+Los anteriores caso implican que tengamos la base de datos descargada en una carpeta de nuestro PC
+
+3. Podemos importar la base de datos de un repositorio que maneje API que es un permiso a traves de un token. En este caso debemos solicitar el token e instalar el paquete RSocrata
+
+Por ejemplo
+
+Instalación de paquetes requeridos
+
+```{r, eval=FALSE }
+# install.packages("RSocrata", dependencies = TRUE)   # instalación de paquete RSocrata
+ library(RSocrata)    # llamado de libreria
+ # token <- "zxMsD6eXc0zlEMryRGW87Hwrz"  # token
+ # Colombia <- read.socrata("https://www.datos.gov.co/resource/gt2j-8ykr.json", app_token = token) # lectura 
+```
+
+Este proceso tarde unos minutos pues  la base es grande
+
+Para guardar el archivo en mi PC, el formarto RDS es menos pesado En ete caso se guarda el archivo con el nombre de *Colombia.RDS* en la carpeta *data/*
+
+```{r, eval=FALSE}
+saveRDS(Colombia, file = "data/Colombia23.RDS") 
+```
+
+4. Podemos trabajar con Dataset disponible en los paquetes de R. Para ello solo utilizamos la función data
+
+```{r}
+data(iris)  # data set iris
+data(cars)  # data set cars
+```
+
+
+Ahora si tengo un archivo en mi PC, puedo utilizar la siguinte función para conocer la ruta donde esta  el archivo  y luego copiando la ruta obtenida con Ctrl+C, 
+
+```{r, eval=FALSE, warning=FALSE, message=FALSE}
+file.choose()
+```
+
+En mi caso se genera la ruta "data/Colombia.RDS"
+
+
+```{r, eval=FALSE}
+Colombia<- readRDS("data/Colombia23.RDS")
+```
+
+<br/><br/>
+
+# **Revisión y arreglo de los datos**   
+
+<br/><br/>
+
+Después de bajar la data es necesario revisar que no tenga problemas como:
+
++ variables con cadenas escritas de diferente forma, p.ej.: casa, CASA, Casa. esta revisión la podemos hacer rápidamente con la función *summary()*
+
+```{r}
+summary(iris)
+```
+
+
+```{r}
+summary(cars)
+```
+
+```{r, eval=FALSE}
+summary(Colombia23)
+```
+
+
+Por otro lado la función *View()* permite visualizar la base en una ventana de manera separada
+
+
+```{r, eval=FALSE}
+View(Colombia)  
+```
+
+```{r,eval=FALSE}
+View(iris
+```
+
+Podemos visualizar los primeros 6 registros con el nombre de las variables
+
+```{r}
+head(iris) 
+```
+
+y los últimos seis registros  
+
+```{r}
+tail(iris)
+```
+
+Para realizar una revisión de una variable cualitativa utilizamos la función *table()*, la cual construye una tabla de frecuencias 
+
+```{r, eval=FALSE}
+table(Colombia23$ubicacion)
+```
+
+Observemos aparecen valores diferentes para una sola categoría de la variable:
+
++ casa         
++ Casa         
++ CASA    
+
+Es necesario estandarizar estos valores y convertirlos en este caso a todos los valores en *casa* (en minúsculas). Para vamos a utilizar la función : *str_to_lower()* del paquete *stringr*, guardandolo dentro de la misma variable
+
+Inicialmente debemos de instalar y activar el paquete *tidyverse* que es un paquete que contiene ocho  paquetes todos enfocados al análisis de datos:
+
++ ggplot2 - construcción de gráficos     
++ purrr   - herramientas para programación funcional
++ tibble  - manejo de data frames    
++ dplyr   - manejo de datos
++ tidyr    - manejo de datos     
++ stringr  - manejo de cadenas
++ readr    - lectura de datos     
++ forcats  -  pronósticos de series de tiempo y modelos lineales
+
+
+```{r, eval=FALSE, warning=FALSE, message=FALSE}
+install.packages("tidyverse", dependencies = TRUE)
+library(tidyverse)
+```
+
+
+Despues de activar el conjunto de librerías, procedemos a realizar el arreglo de la variable  *Colombia$ubucacion*
+
+ Ahora arreglamos el problema presentado en la variable *ubucacion*, primero unificando todos los valores a  en minúscula
+
+```{r, eval=FALSE}
+Colombia23$ubicacion=str_to_lower(Colombia23$ubicacion)
+```
+
+Para verificar los arreglo volvemos a construir la tabla
+
+```{r, eval=FALSE}
+table(Colombia23$ubicacion)
+```
+Después de esto realizamos en cambio de *n/a* por *NA*
+
+```{r, eval=FALSE}
+Colombia23$ubicacion[Colombia23$ubicacion=="n/a"]=NA
+table(Colombia23$ubicacion)
+```
+
+Otro problema que presenta la base de datos es que la variable edad es en formato *chr* y debería ser numérica. Para cambiar el formato utilizamos la función *as.numeric()* y la guardamos en la misma variable
+
+```{r, eval=FALSE}
+class(Colombia23$edad)
+Colombia23$edad=as.integer(Colombia23$edad)
+class(Colombia23$edad)
+```
+
+De igual manera procedemos con las demás variables
+
+```{r, eval=FALSE}
+Colombia23$sexo=str_to_lower(Colombia23$sexo)
+Colombia23$estado=str_to_lower(Colombia23$estado)
+Colombia23$estado[Colombia23$estado=="n/a"]=NA
+Colombia23$recuperado=str_to_lower(Colombia23$recuperado)
+Colombia23$recuperado[Colombia23$recuperado=="n/a"]=NA
+```
+
+Verificamos los cambios 
+
+```{r, eval=FALSE}
+table(Colombia23$sexo)
+table(Colombia23$estado)
+table(Colombia23$recuperado)
+```
+Finalmente convertimos todas las variables fecha en formado date
+
+```{r, eval=FALSE}
+Colombia23$fecha_reporte_web=lubridate::dmy(Colombia23$fecha_reporte_web)
+Colombia23$fecha_de_notificaci_n=lubridate::dmy(Colombia23$fecha_de_notificaci_n)
+Colombia23$fecha_inicio_sintomas=lubridate::dmy(Colombia23$fecha_inicio_sintomas)
+Colombia23$fecha_diagnostico=lubridate::dmy(Colombia23$fecha_diagnostico)
+Colombia23$fecha_recuperado=lubridate::dmy(Colombia23$fecha_recuperado)
+Colombia23$fecha_muerte=lubridate::dmy(Colombia23$fecha_muerte)
+```
+
+
+**YA ESTA LISTA LA BASE !!!! **
+
+#  **Guardar la base de datos** 
+
+Este un trabajo que demanda mucho tiempo, pero que es necesario para  tener una buena calidad en los datos. Cuando la base esta bien, podemos continuar con los demás procesos y también  guardar  la base transformada para una posterior procesamiento 
+
+En este caso la se guarda en formato *csv*
+
+```{r, eval=FALSE}
+write_csv(Colombia, "data/Colombia23.csv")
+```
+
+o en formato RDS
+
+```{r, eval=FALSE}
+saveRDS(Colombia23, file = "data/Colombia.RDS")
+```
+
+**LISITO !!!! **
+
+**TENEMOS LA BASE DEL COVID.19 ACTUALIZADA Y ARREGLADA**
+
+En caso de querer seleccionar una parte de la data, por ejemplo los datos de CALI utilizamos en siguiente código
+
+
+```{r, eval=FALSE}
+Cali=Colombia23[Colombia23$ciudad_municipio_nom=="CALI",]
+```
+
+
+```{r, eval=FALSE}
+Valle=subset(Colombia23, departamento=="76")
+```
+
+
+
+## **Quitar atipicos**
+
+https://rpubs.com/ydmarinb/429759
+
+
+## **Manejo de MAYUSCULAS y minusculas**
+
+```{r}
+library(stringr)
+texto <- "probabilidad y estadística es importante en la formación de todo profesional"
+str_to_upper(texto)
+#[1] "PROBABILIDAD Y ESTADISTICA ES UNA ASIGNATURA IMPORTANTE EN LA FORMACIÓN DE TODO PROFESIONAL"
+str_to_lower(texto)
+#[1] "probabilidad y estadística es una asignatura importante en la formación de todo profesional"
+str_to_title(texto)
+#[1] "Probabilidad Y Estadística Es Una Asignatura Importante En La Formación De Todo Profesional"
+str_to_sentence(texto)
+#[1] "Probabilidad y estadística es una asignatura importante en la formación de todo profesional"
+```
+
+<br/><br/>
+
+# **Algunos sitios de interés** 
+
+<br/><br/>
+
+[Librerías en R](https://estadistica-dma.ulpgc.es/cursoR4ULPGC/5-librerias.html)
+
+[Creación de paquetes R con Rstudio](https://estadistica-dma.ulpgc.es/cursoR4ULPGC/16-crearPaquetes.html)
+
+[Tutoriales interactivos con R](https://rstudio.github.io/learnr/)
+
+
+# **Código resumen Covid-19**
+
+```{r, eval=FALSE}
+install.packages("tidyverse") #  instalacion de paquete para manejo de datos
+library(tidyverse)   # libreria de librerias util en el manejo de datos
+
+install.packages("RSocrata", dependencies = TRUE)   # instalación de paquete RSocrata
+library(RSocrata)    # llamado de libreria
+token <- "zxMsD6eXc0zlEMryRGW87Hwrz"  # token
+Colombia <- read.socrata("https://www.datos.gov.co/resource/gt2j-8ykr.json", app_token = token) # lectura de manera remota 
+
+# adecuación de la base de datos
+Colombia$edad=as.integer(Colombia$edad)  # convertir en entoro la variable edad
+Colombia$sexo=str_to_lower(Colombia$sexo) # pasar a minusculas todos valores de la variable sexo
+Colombia$estado=str_to_lower(Colombia$estado) # pasar a minusculas todos lo valores de la variable estado
+Colombia$estado[Colombia$estado=="n/a"]=NA   # cambiar el valor  n/a por NA - valores faltantes
+Colombia$recuperado=str_to_lower(Colombia$recuperado) # pasar a minusculas todos los valores de la variable recuperado
+Colombia$recuperado[Colombia$recuperado=="n/a"]=NA 
+
+# seleccion de bases
+Colombia22=subset(Colombia, Colombia$fecha_reporte_web>="2022-01-01") # data del 2022
+Colombia21=subset(Colombia, Colombia$fecha_reporte_web>="2021-01-01" & Colombia$fecha_reporte_web<"2022-01-01") # data de 2021
+Colombia20=subset(Colombia, Colombia$fecha_reporte_web>="2020-01-01" & Colombia$fecha_reporte_web<"2021-01-01") # data de 2020
+
+Valle22=subset(Colombia22, departamento=="76") # data del valle del cauca de 2022
+Cali22= subset(Colombia22, ciudad_municipio_nom=="CALI") # data de cali de 2022
+
+table(Colombia22$estado)
+table(Colombia21$estado)
+table(Colombia20$estado)
+
+summarytools::freq(Colombia22$estado, cumul = F)
+summarytools::freq(Colombia21$estado, cumul = F)
+summarytools::freq(Colombia20$estado, cumul = F)
+summarytools::descr(Colombia22$edad)
+
+saveRDS(Colombia, file = "data/Colombia.RDS")  # guardar base con modificaciones
+#-----------------------------------------------------
+```
+

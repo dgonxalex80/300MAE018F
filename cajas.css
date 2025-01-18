@@ -1,0 +1,53 @@
+/* Contenedor para las cajas */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+/* Estilo de las cajas */
+.box20 {
+    flex: 1 1 20%; 
+    background-color: #E5F3FA; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    min-width: 200px;
+    max-width: 300px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Colores de la paleta */
+.box20:nth-child(1) { background-color: #A5D6A7; } /* Verde */
+.box20:nth-child(2) { background-color: #90CAF9; } /* Azul */
+.box20:nth-child(3) { background-color: #FFCC80; } /* Naranja */
+.box20:nth-child(4) { background-color: #F48FB1; } /* Otro color */
+
+/* Estilo del texto en las cajas */
+.box20 h2, .box20 p {
+    color: #1F5591;
+    margin: 0;
+}
+
+.box20 .number {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #2979B8;
+    margin-bottom: 10px;
+}
+
+/* Responsivo: Pantallas más pequeñas */
+@media (max-width: 800px) {
+    .box20 {
+        flex: 1 1 45%;
+    }
+}
+
+@media (max-width: 500px) {
+    .box20 {
+        flex: 1 1 100%;
+    }
+}

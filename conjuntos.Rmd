@@ -1,0 +1,173 @@
+---
+title: <span style="color:#235784"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#235784">**  </span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---  
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+
+```
+
+![](img/banner000.png) 
+
+<br/><br/>
+
+# **CONJUNTOS**
+
+<br/><br/>
+
+# **Introducción** 
+
+A continuación se relacionan las principales características de los conjuntos y sus principales relaciones. Estos conceptos serán importante en el momento de abordar los conceptos básicos de  probabilidad que serán expuestos en el Modulo 2. 
+
+En pesaremos con su definición
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Definición:</div>
+
+# **Conjunto**
+
+Un conjunto es una colección de objetos que se denota con una letra mayúscula (comúnmente las primeras letras del alfabeto A,B,C..) . 
+
+</div>
+
+<br/><br/><br/>
+
+Se pueden escribir por:
+
++ **por extensión** :  $A=\{0,1,2,3,4,5,6,7,8,9\}$, escribiendo todos los elementos que lo conforman.
+ 
++ **por su nombre** : los dígitos
+
++ **por compresión** : $A=\{ x\in\mathbb{Z},  0\le x  \le 9    \}$, utilizando  nomenclatura matemática.
+
+Al  comparar o combinar conjuntos debemos hacer uso de sus propiedades y operaciones, dentro de  las  cuales se encuentran $A \cup B$, $A \cap B$, 
+
+<br/><br/><br/>
+
+# **Unión del conjunto**
+
+Unión del $A$ con el conjunto $B$.\hspace{.4cm} $A \cup B$, $\overline{A}$ ,$A - B$, entre  otras. La zona sombreada en la siguiente figura representa estas operación
+
+![](img/union.png){width=50%}
+
+
+
+<div class="box1 with-label">
+<div class="label">Ejemplo 1</div> 
+
+Supongamos los siguientes conjuntos  
+
+* $A = \{a,e,i,o,u \}$ y      
+* $B = \{1,2,3,4,5,6,7,8,9,0\}$ 
+
+$$A \cup B = \{a,e,i,o,u, 1,2,3,4,5,6,7,8,9,0 \}$$  
+
+
+</div>
+ 
+<br/><br/><br/>
+
+# **Intersección** 
+
+La intersección entre el conjunto $A$ y el $B$ se denota por : $A \cap B$ y se representa por la siguiente zona sombreada
+
+<centar>
+![](img/interseccion.png){width=50%}
+</center>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Ejemplo 2</div> 
+
+
+Supongamos los siguientes conjuntos: 
+
+* $A = \{1,2,3,4,5,6 \}$ y            
+* $B = \{2,4,6,8,10,12,14,16,18,20 \}$
+
+ $$A \cap B = \{ 2,4,6 \}$$             
+
+
+</div>
+
+<br/><br/><br/>
+
+# **Complemento**
+
+El complemento del conjunto $A$ se escribe como: $\overline{A}$ y se representa por la siguiente zona sombreada
+
+<center>
+![](img/complemento.png){width=50%}
+</center>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Ejemplo 3</div> 
+
+
+Supongamos los siguientes conjuntos: 
+
+* $U = \{0, 1,2,3,4,5,6. 7, 8, 9\}$  y
+* $A = \{1,2,3,4,5,6 \}$ y            
+
+ $$\overline{A}  = \{0, 7, 8, 9 \}$$  
+ 
+</div> 
+ 
+<br/><br/><br/>
+
+# **Resta**
+ 
+La resta del conjunto $B$ menos el conjunto $A$ : $B-A$ , está representada por la zona sombreada en la siguiente figura
+
+<center> 
+ ![](img/resta.png){width=50%}
+</center>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Ejemplo 4</div> 
+
+Supongamos los siguientes conjuntos 
+
+* $A = \{1,2,3,4,5,6 \}$ y 
+* $B = \{2,4,6,8,10,12,14,16,18,20 \}$ 
+
+
+$$B-A =\{ 8,10,12,14,16,18,20 \}$$
+</div>
+
+<br/><br/>
+
+
