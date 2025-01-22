@@ -78,7 +78,7 @@ sum(1:100)
 
 <br/><br/>
 
-<!-- ![](img/ej1.png){width=10%} -->
+<!-- ![](img/ej1.png){width=10%}     -->
 <div class="box1 with-label">
 <div class="label">Ejemplo 1</div>
 
