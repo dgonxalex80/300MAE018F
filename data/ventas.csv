@@ -1,0 +1,201 @@
+Cliente,Tipo_Cliente,Items,Ventas_Netas,Metodo_Pago,Genero,Estado_Civil,Edad
+1,Promocional,3,"63,2",Star Card,Mujer,Casado,44
+2,Promocional,3,94,Star Card,Mujer,Soltero,22
+3,Promocional,4,"65,2",MasterCard,Mujer,Casado,46
+4,Promocional,5,"53,6",Star Card,Mujer,Casado,54
+5,Promocional,1,"31,6",Star Card,Mujer,Soltero,20
+6,Promocional,3,"63,64",Star Card,Mujer,Casado,30
+7,Promocional,6,"176,62",Star Card,Mujer,Casado,38
+8,Promocional,2,"71,4",Star Card,Hombre,Soltero,36
+9,Promocional,2,"39,5",Visa,Hombre,Casado,48
+10,Promocional,2,"63,2",MasterCard,Mujer,Casado,28
+11,Promocional,3,46,Star Card,Mujer,Casado,44
+12,Regular,1,"22,5",Star Card,Mujer,Casado,32
+13,Promocional,5,"155,32",Star Card,Mujer,Casado,30
+14,Promocional,4,"111,14",Star Card,Mujer,Casado,28
+15,Regular,2,39,Star Card,Mujer,Casado,42
+16,Promocional,1,"28,44",Star Card,Mujer,Casado,44
+17,Promocional,10,"287,59",Star Card,Mujer,Casado,52
+18,Promocional,5,"100,4",Star Card,Mujer,Casado,28
+19,Regular,2,"37,5",Visa,Mujer,Casado,44
+20,Regular,1,25,MasterCard,Mujer,Casado,46
+21,Promocional,3,94,Star Card,Mujer,Soltero,22
+22,Promocional,4,"70,82",Star Card,Mujer,Casado,38
+23,Promocional,1,"39,6",Star Card,Mujer,Casado,62
+24,Promocional,4,"19,5",Visa,Mujer,Casado,46
+25,Regular,2,74,Star Card,Mujer,Casado,42
+26,Promocional,1,"31,6",Star Card,Mujer,Soltero,20
+27,Promocional,17,"229,5",Star Card,Mujer,Casado,30
+28,Promocional,2,78,MasterCard,Mujer,Casado,68
+29,Regular,1,69,Star Card,Mujer,Soltero,22
+30,Promocional,1,"22,42",Star Card,Mujer,Casado,54
+31,Regular,1,"44,5",MasterCard,Mujer,Casado,44
+32,Promocional,6,"123,1",Star Card,Mujer,Casado,54
+33,Promocional,6,"57,6",Star Card,Mujer,Casado,42
+34,Regular,1,58,Discover,Mujer,Soltero,78
+35,Regular,1,75,Star Card,Mujer,Casado,52
+36,Promocional,4,"95,2",Star Card,Mujer,Casado,54
+37,Promocional,2,"45,22",Star Card,Mujer,Casado,74
+38,Regular,3,"54,5",Discover,Mujer,Casado,40
+39,Promocional,1,18,Star Card,Mujer,Casado,70
+40,Promocional,4,"70,82",Star Card,Mujer,Casado,38
+41,Regular,4,107,Star Card,Mujer,Casado,36
+42,Regular,1,"22,5",Visa,Mujer,Casado,40
+43,Promocional,1,"108,8",Star Card,Mujer,Casado,46
+44,Promocional,2,78,Star Card,Mujer,Casado,30
+45,Promocional,9,"145,2",MasterCard,Mujer,Casado,46
+46,Promocional,2,"47,6",Star Card,Mujer,Casado,30
+47,Promocional,5,"13,23",Star Card,Mujer,Casado,44
+48,Promocional,9,"160,4",Visa,Mujer,Casado,40
+49,Regular,6,144,MasterCard,Mujer,Soltero,48
+50,Regular,1,"39,5",MasterCard,Mujer,Casado,44
+51,Regular,2,"123,5",Star Card,Mujer,Casado,48
+52,Promocional,4,"58,5",Visa,Mujer,Casado,36
+53,Promocional,6,"44,8",Star Card,Mujer,Casado,56
+54,Promocional,8,"95,05",Star Card,Mujer,Casado,54
+55,Promocional,6,"176,62",Star Card,Mujer,Casado,38
+56,Promocional,2,"71,4",Star Card,Hombre,Soltero,36
+57,Regular,1,58,Discover,Mujer,Soltero,78
+58,Regular,2,39,Star Card,Mujer,Casado,42
+59,Regular,1,"29,5",Star Card,Mujer,Casado,48
+60,Promocional,1,"28,44",Star Card,Mujer,Casado,44
+61,Promocional,1,"30,02",Star Card,Mujer,Casado,60
+62,Regular,2,"123,5",Star Card,Mujer,Casado,48
+63,Promocional,1,"14,82",Star Card,Mujer,Casado,32
+64,Regular,2,54,MasterCard,Mujer,Casado,34
+65,Promocional,6,"53,2",Star Card,Mujer,Soltero,30
+66,Regular,2,74,Star Card,Mujer,Casado,42
+67,Promocional,4,"84,74",Star Card,Mujer,Casado,62
+68,Promocional,1,"31,6",Star Card,Mujer,Soltero,28
+69,Regular,6,144,MasterCard,Mujer,Soltero,48
+70,Promocional,4,"95,2",Star Card,Mujer,Casado,54
+71,Regular,1,"44,5",Star Card,Mujer,Casado,36
+72,Regular,2,"52,5",Star Card,Mujer,Casado,58
+73,Promocional,6,"123,1",Star Card,Mujer,Casado,54
+74,Promocional,3,"71,2",Star Card,Mujer,Casado,32
+75,Regular,4,107,Star Card,Mujer,Casado,36
+76,Promocional,2,78,Star Card,Mujer,Casado,30
+77,Promocional,2,"47,2",Star Card,Hombre,Casado,46
+78,Regular,1,40,Star Card,Mujer,Casado,34
+79,Regular,1,"22,5",Visa,Mujer,Casado,40
+80,Promocional,17,"229,5",Star Card,Mujer,Casado,30
+81,Promocional,9,"145,2",MasterCard,Mujer,Casado,46
+82,Promocional,3,"63,2",Star Card,Mujer,Casado,44
+83,Promocional,3,"86,8",Star Card,Mujer,Casado,38
+84,Regular,2,"37,5",Visa,Mujer,Casado,44
+85,Promocional,1,"20,8",Star Card,Mujer,Casado,62
+86,Promocional,2,"64,5",Visa,Mujer,Casado,46
+87,Promocional,2,"59,5",Star Card,Mujer,Casado,34
+88,Regular,5,"159,75",Star Card,Mujer,Casado,72
+89,Promocional,1,"31,6",Star Card,Mujer,Casado,40
+90,Regular,1,"22,5",Star Card,Mujer,Casado,32
+91,Promocional,3,"59,91",Star Card,Mujer,Soltero,30
+92,Promocional,5,"53,6",Star Card,Mujer,Casado,54
+93,Regular,2,54,MasterCard,Mujer,Casado,34
+94,Regular,1,"44,5",MasterCard,Mujer,Casado,44
+95,Regular,2,"49,5",MasterCard,Mujer,Casado,32
+96,Promocional,2,"38,5",MasterCard,Mujer,Casado,32
+97,Promocional,2,"80,4",Star Card,Mujer,Casado,48
+98,Promocional,9,253,Star Card,Mujer,Casado,30
+99,Promocional,1,"30,02",Star Card,Mujer,Casado,60
+100,Regular,1,"39,5",Discover,Hombre,Casado,32
+101,Promocional,1,"31,6",Star Card,Mujer,Soltero,42
+102,Promocional,2,"39,6",Star Card,Mujer,Casado,60
+103,Promocional,3,"59,91",Star Card,Mujer,Soltero,30
+104,Promocional,2,"39,5",Visa,Hombre,Casado,48
+105,Promocional,2,"47,6",Star Card,Mujer,Casado,30
+106,Promocional,6,"53,2",Star Card,Mujer,Soltero,30
+107,Promocional,8,"95,05",Star Card,Mujer,Casado,54
+108,Promocional,1,"14,82",Star Card,Mujer,Casado,32
+109,Promocional,4,"19,5",Visa,Mujer,Casado,46
+110,Promocional,5,"100,4",Star Card,Mujer,Casado,28
+111,Promocional,1,"39,6",Star Card,Mujer,Casado,62
+112,Regular,2,"102,5",Visa,Mujer,Soltero,42
+113,Regular,1,69,Star Card,Mujer,Soltero,22
+114,Promocional,5,"118,8",Star Card,Hombre,Casado,68
+115,Regular,1,"49,5",Visa,Hombre,Soltero,24
+116,Regular,1,"29,5",MasterCard,Hombre,Soltero,36
+117,Promocional,1,18,Star Card,Mujer,Casado,70
+118,Promocional,5,"192,8",Star Card,Mujer,Soltero,42
+119,Promocional,3,46,Star Card,Mujer,Casado,44
+120,Promocional,2,"63,2",MasterCard,Mujer,Casado,28
+121,Promocional,2,"38,5",MasterCard,Mujer,Casado,32
+122,Promocional,1,"108,8",Star Card,Mujer,Casado,46
+123,Promocional,9,"160,4",Visa,Mujer,Casado,40
+124,Promocional,1,"31,6",Star Card,Mujer,Soltero,28
+125,Promocional,1,"62,4",Star Card,Mujer,Casado,54
+126,Promocional,4,"84,74",Star Card,Mujer,Casado,62
+127,Promocional,5,"105,5",MasterCard,Mujer,Casado,56
+128,Promocional,4,58,MasterCard,Mujer,Casado,32
+129,Promocional,1,"62,4",Star Card,Mujer,Casado,54
+130,Promocional,6,"57,6",Star Card,Mujer,Casado,42
+131,Promocional,3,"141,6",Star Card,Mujer,Casado,38
+132,Promocional,3,"63,64",Star Card,Mujer,Casado,30
+133,Promocional,2,"49,5",Star Card,Mujer,Casado,48
+134,Regular,1,"44,5",Star Card,Mujer,Casado,54
+135,Regular,1,"49,5",Visa,Hombre,Soltero,24
+136,Promocional,6,"117,5",Star Card,Mujer,Casado,50
+137,Promocional,2,"47,2",Star Card,Hombre,Casado,46
+138,Regular,2,"102,5",Visa,Mujer,Soltero,42
+139,Promocional,1,"102,4",Star Card,Mujer,Casado,36
+140,Promocional,2,"23,8",Star Card,Mujer,Casado,38
+141,Promocional,2,"59,5",Star Card,Mujer,Casado,34
+142,Regular,1,"29,5",MasterCard,Hombre,Soltero,36
+143,Promocional,5,"13,23",Star Card,Mujer,Casado,44
+144,Promocional,2,78,MasterCard,Mujer,Casado,68
+145,Promocional,2,"46,5",Star Card,Mujer,Casado,32
+146,Promocional,1,"102,4",Star Card,Mujer,Casado,36
+147,Regular,2,74,Visa,Mujer,Soltero,20
+148,Promocional,1,"31,6",Star Card,Mujer,Casado,40
+149,Regular,1,"29,5",Star Card,Mujer,Casado,48
+150,Promocional,13,"198,8",Star Card,Mujer,Casado,42
+151,Regular,3,66,American Express,Mujer,Casado,46
+152,Regular,1,"44,5",Star Card,Mujer,Casado,54
+153,Regular,1,75,Star Card,Mujer,Casado,52
+154,Promocional,3,"71,2",Star Card,Mujer,Casado,32
+155,Promocional,2,"56,52",Star Card,Mujer,Casado,46
+156,Promocional,5,"155,32",Star Card,Mujer,Casado,30
+157,Regular,1,25,MasterCard,Mujer,Casado,46
+158,Promocional,6,"117,5",Star Card,Mujer,Casado,50
+159,Promocional,5,"146,8",Star Card,Mujer,Casado,28
+160,Regular,2,"49,5",MasterCard,Mujer,Casado,32
+161,Promocional,5,"105,5",MasterCard,Mujer,Casado,56
+162,Promocional,2,"64,5",Visa,Mujer,Casado,46
+163,Promocional,1,"20,8",Star Card,Mujer,Casado,62
+164,Promocional,1,"22,42",Star Card,Mujer,Casado,54
+165,Promocional,2,"49,5",Star Card,Mujer,Casado,48
+166,Regular,2,89,Discover,Mujer,Casado,54
+167,Regular,2,"52,5",Star Card,Mujer,Casado,58
+168,Promocional,5,"192,8",Star Card,Mujer,Soltero,42
+169,Promocional,4,"58,5",Visa,Mujer,Casado,36
+170,Promocional,5,"146,8",Star Card,Mujer,Casado,28
+171,Promocional,4,113,Star Card,Mujer,Soltero,50
+172,Promocional,1,"31,6",Star Card,Mujer,Soltero,42
+173,Promocional,9,253,Star Card,Mujer,Casado,30
+174,Promocional,3,"141,6",Star Card,Mujer,Casado,38
+175,Regular,3,"54,5",Discover,Mujer,Casado,40
+176,Promocional,4,"65,2",MasterCard,Mujer,Casado,46
+177,Regular,2,74,Visa,Mujer,Soltero,20
+178,Regular,3,66,American Express,Mujer,Casado,46
+179,Promocional,2,"56,52",Star Card,Mujer,Casado,46
+180,Promocional,2,"80,4",Star Card,Mujer,Casado,48
+181,Promocional,7,266,American Express,Mujer,Casado,50
+182,Promocional,4,58,MasterCard,Mujer,Casado,32
+183,Regular,1,"44,5",Star Card,Mujer,Casado,36
+184,Regular,1,"39,5",MasterCard,Mujer,Casado,44
+185,Promocional,7,266,American Express,Mujer,Casado,50
+186,Promocional,4,"111,14",Star Card,Mujer,Casado,28
+187,Regular,5,"159,75",Star Card,Mujer,Casado,72
+188,Regular,2,89,Discover,Mujer,Casado,54
+189,Promocional,2,"46,5",Star Card,Mujer,Casado,32
+190,Regular,1,"39,5",Discover,Hombre,Casado,32
+191,Promocional,10,"287,59",Star Card,Mujer,Casado,52
+192,Promocional,5,"118,8",Star Card,Hombre,Casado,68
+193,Promocional,2,"23,8",Star Card,Mujer,Casado,38
+194,Promocional,4,113,Star Card,Mujer,Soltero,50
+195,Promocional,3,"86,8",Star Card,Mujer,Casado,38
+196,Promocional,6,"44,8",Star Card,Mujer,Casado,56
+197,Promocional,2,"39,6",Star Card,Mujer,Casado,60
+198,Regular,1,40,Star Card,Mujer,Casado,34
+199,Promocional,2,"45,22",Star Card,Mujer,Casado,74
+200,Promocional,13,"198,8",Star Card,Mujer,Casado,42
