@@ -258,7 +258,7 @@ abline(h=3, col="#f95738", lwd=2)
 boxplot(nf~cc)
 ```
 
-
+<br/><br/>
 
 ```{r}
 nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8,
@@ -351,6 +351,9 @@ Para empezar, inicialmente se instalar el paquete
 ```{r, eval=FALSE}
 install.packages("ggplo2")
 ```
+
+<br/><br/>
+
 Y luego habilitarlo para su uso
 
 ```{r}
@@ -366,15 +369,19 @@ fig=ggplot(data=casas)
 fig
 ```
 
+<br/><br/>
 
 Como segundo paso se definen las variables que se van a utilizar en la construcción del gráfico
 
 ![](img/ge_aes.png){width=50%}
+<br/><br/>
 
 ```{r}
 fig=ggplot(data=casas,  aes(x=area.con , y=precio))
 fig
 ```
+
+<br/><br/>
 
 Luego de tener definida la base y las variables a utilizar se indica la geometria a utilizar, en este caso se trata de puntos
 
@@ -385,6 +392,9 @@ fig=ggplot(data=casas,  aes(x=area.con , y=precio))+
   geom_point()
 fig
 ```
+
+
+<br/><br/>
 
 Otros elementos a utilizar son :
 
@@ -399,6 +409,8 @@ fig=ggplot(data=casas,  aes(x=area.con , y=precio))+
 fig
 ```
 
+<br/><br/>
+
 ### **stat** permite realizar modelos lineales y mostrar asi la relación existente entre las variables 
 
 ![](img/ge_stats.png){width=50%}
@@ -408,6 +420,8 @@ fig=ggplot(data=casas,  aes(x=area.con , y=precio))+
   geom_point() + facet_wrap(~ mes)+stat_smooth(method = "loess" , formula =y ~ x)
 fig
 ```
+
+<br/><br/>
 
 ### **coordinates**  la cual permite ajustar los ejes , por ejemplo podemos determian el rango de que queremos presentar en la gráfica
 
@@ -420,6 +434,9 @@ fig=ggplot(data=casas,  aes(x=area.con , y=precio)) + geom_point() +
         coord_cartesian(xlim = c(0,200))
 fig
 ```
+
+<br/><br/>
+
 
 ### **themes**  finalmente la capa del tema o fondo de la gráfica
 
@@ -435,30 +452,10 @@ fig=ggplot(data=casas,  aes(x=area.con , y=precio)) + geom_point() +
 fig
 ```
 
+<br/><br/>
 
 ### **Otros ejemplos de ggplot2**
 
-```{r}
-casas$mes=as.factor(casas$id)
-fig2 = ggplot(data=casas, aes(x=precio, y=mes)) +
-  geom_boxplot(fill="lightSalmon", 
-               color="black")+
-  geom_point(color="#0d3b66")+
-  ggtitle("Precio de casas por mes")+
-  labs(x="miles de pesos " , y="mes")
-  
-fig2        
-```
-
-
-```{r}
-fig3=ggplot(casas, aes(edad)) +
-       geom_histogram(bins = 5,fill="#69b3a2", color="#e9ecef", alpha=0.9)+
-       theme_minimal() +
-       labs(x = "años", y = "frecuencia absoluta") +
-       ggtitle("Antigüedad de las casas")
-fig3 
-```
 
 
 ```{r}
@@ -467,6 +464,9 @@ fig=ggplot(data = diamonds, aes(x = cut, fill = color)) +
   coord_polar()
 fig
 ```
+
+<br/><br/>
+
 ```{r}
 # Libraries
 library(tidyverse)
@@ -498,6 +498,7 @@ data %>%
 ```
 
 
+<br/><br/>
 
 ## **highcharter**  
 
@@ -511,6 +512,7 @@ Gran parte de los gráficos se realizan con la función : ** hchart() ** que es 
 
 Inicialmente se instala el paquete por una única vez
 
+
 ```{r, eval=FALSE}
 # install.packages("highcharter")
 ```
@@ -521,12 +523,15 @@ Luego se carga para utilizar sus funciones
 library(highcharter)
 ```
 
+<br/><br/>
 
 ```{r, message=FALSE,warning=FALSE, echo=FALSE}
 
 hchart(casas, "scatter", hcaes(x = precio, y = area.con, group = mes)) %>%
 hc_title(text = "Precio por área construida") 
 ```
+
+<br/><br/>
 
 ```{r}
 # paquetes requeridos
@@ -546,6 +551,7 @@ ggplot(df, aes(x = grupo, y = y, color = grupo)) +
   geom_beeswarm(cex = 3)
 ```
 
+<br/><br/>
 
 ```{r}
 # construccion de la data
@@ -562,6 +568,8 @@ library(ggplot2)
 ggplot(df, aes(x = depth, y = color, fill = color, color = color)) +
   geom_density_ridges() 
 ```
+
+<br/><br/>
 
 ```{r}
 # Datos
@@ -587,8 +595,9 @@ polygon(deny, col = rgb(0.41, 0.44, 1, alpha = 0.6))
 ```
 
 
-
 Tomado de  : https://r-charts.com/es/distribucion/ggbeeswarm/
+
+<br/><br/>
 
 ## **plotly**
  
@@ -620,6 +629,7 @@ radarchart(df,
            pfcol = rgb(0, 0.4, 1, 0.25)) 
 
 ```
+
 <br/><br/>
 
 ```{r}
@@ -692,7 +702,7 @@ plot # imprime grafico
 
 ```
 
- <br/><br/><br/>
+<br/><br/>
  
 # **Mapas** 
  
@@ -702,7 +712,7 @@ Archivos .shp : https://sites.google.com/site/seriescol/shapes
  
 A continuación el código para el mapa de Cali sin información
  
-<br/>
+<br/><br/>
 
 ### **Mapa de Cali** 
 
@@ -834,6 +844,8 @@ x=rnorm(100,100,20)
 plot(density(x))
 ```
 
+<br/><br/>
+
 ### **margenes de la grafica  c(bottom, left, top, right)**
 
 ```{r}
@@ -842,6 +854,8 @@ par(mar = c(5, 4, 4, 2) + 0.1)
 x=rnorm(100,100,20)
 plot(density(x))
 ```
+
+<br/><br/>
 
 ###  **margenes de la gráfica**
 
@@ -852,6 +866,8 @@ x=rnorm(100,100,20)
 plot(density(x))
 
 ```
+ 
+ <br/><br/>
  
  ### **Matriz de gráficos mfrow = c(2, 2)**
 
@@ -868,6 +884,7 @@ hist(x)
 plot(x,y)
 ```
 
+<br/><br/>
 
 ### **margenes exteriores c(bottom, left, top, right)**
 
@@ -881,6 +898,8 @@ hist(x)
 plot(x,y)
 
 ```
+
+<br/><br/>
 
 # **Tamaño texto**
 
@@ -897,12 +916,14 @@ plot(density(x),cex.lab=.8,  # tamaño de etiqueta ejes
 https://r-charts.com/es/r-base/margenes/
 
 
+<br/><br/>
 
 # **Flexdashboard**
 
 Este paquete permite la construcción de tableros que pueden ser publicados en formato html. A continuación se describen las principales características y la forma que podemos construir un tablero
 
 Iniciaremos cargando el paquete (por una única vez)
+
 ```{r, eval=FALSE, message=FALSE, warning=FALSE}
 # install.packages("flexdashboard")
 ```
@@ -913,7 +934,7 @@ Tambien debemos activarlo, aunque este procedimiento viene en el formato que nos
 library(flexdashboard)
 ```
 
-
+<br/><br/>
 Inicialmente utilizamos la plantilla que para este propósito tiene RStudio, entrando por el menú : **File/ New file /  RMarkdown..**
 
 ![](img/flexdashboard1.png){width=50%}
@@ -932,6 +953,7 @@ En este formato podemos distinguir varias partes :
 + Definicion de columnas o filas del tablero y hojas del tablero
 + Bloques de R con el contenido
 
+<br/><br/>
 
 
 ## **Uso de color**
@@ -939,6 +961,9 @@ En este formato podemos distinguir varias partes :
 https://r-charts.com/colors/
 
 http://brandcolors.net/
+
+
+<br/><br/>
 
 ## **Algunos paquetes**
 

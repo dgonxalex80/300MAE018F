@@ -1,7 +1,7 @@
 ---
-title: <span style="color:#235784"> **Indicadores estadísticos**</span>  
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 1.1**</span> 
 author: "dgonzalez "
-subtitle: <span style="color:#235784">**Módulo 1**</span> 
 output:
   html_document:
     toc: no
@@ -11,895 +11,597 @@ output:
     theme: flatly
 ---    
 
+
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, comment = NA)
-library(psych)
-library(summarytools)
+knitr::opts_chunk$set(comment = NA)
+
 library(RColorBrewer)
+library(summarytools)
 library(knitr)
 library(readxl)
 library(tidyverse)
-
-# install.packages("devtools")
-# devtools::install_github("dgonxalex80/paquete018")
-library(paquete018)
-# 
-# install.packages('remotes')  # solo una vez
-library(remotes) # solo una vez
-data(Colombia23)
-library(readr)
-futbol <- read_csv("data/futbol.csv")
+# Colombia<- readRDS("data/Colombia.RDS")
+pye20222 <- read_excel("data/pye20222.xlsx", sheet = "Sheet4")
 # colores
-c0= "#F7AA00"
-c1= "#235784"
-c2= "#40A8C4"
-c3= "#EEF6F7"
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c6,c5,c4,c3)
 
-c4= "#11224D"
-c5= "#5B84C4"
-
-paleta4=c(c0,c1,c2,c4)
-
-```
-
-
-<br/><br/>
-
-
-# **¿Que es un indicador?**
-
-<br/><br/>
-
-```{r, echo=FALSE, out.width="70%", fig.align = "center"}
-knitr::include_graphics("img/tablero1.jpg")
-```
-
-
-<br/><br/>
-
-Cuando nos subimos a un auto  observamos un tablero con muchos indicadores que permiten al conductor validar el estado del vehículo. Todos los podemos visualizar al tiempo con el fin de darnos una idea del nivel de combustible, la temperatura, el estado de la batería, si alguna puerta esta abierta, la velocidad a la que se viaja, entre otros.
-
-<br/>
-
-Al igual que la situación anterior cuando nos enfrentamos a una análisis de datos, requerimos resumirlos en indicadores, tablas y gráficos que nos permitan un fácil análisis de ellos
-
-<br/> <br/> <br/>
-
-Tomaremos una base de datos de la FIFA para analizar indicadores de las selecciones de futbol asociadas a 6 confederaciones.
-
-```{r}
-library(DT)
-DT::datatable(head(futbol, 218),fillContainer = FALSE, options = list(pageLength = 8))
-```
-portal FiveThirtyEight : https://data.fivethirtyeight.com/
-
-<br/> <br/> <br/>
-
-# **Tablas de frecuencia** 
-
-
- <br/>
- 
-## **Tablas de frecuencia para variables cualitativas**
-
-<br/>
-<br/>
-
-Las distribuciones de frecuencia o también llamadas tablas de frecuencia nos sirven para agrupar los datos y así permitir resumir para poder tener una idea mas clara de sus características.
-
-Para las variables cualitativas la tabla posee 3 columnas : 
-
-+ c1: los diferentes valores que toma la variable. 
-
-+ c2:  **frecuencia absoluta** que consiste en el conteo para cada uno de los valores distintos que toma la variable. 
-
-+ c3: **frecuencia relativa ** que corresponde  al porcentaje la cantidad de datos para cada los valores
-
-
- <br/> <br/>
-
-```{r, echo=TRUE, message=FALSE, warning=FALSE}
-library(readr)
-futbol <- read_csv("data/futbol.csv")
-# Forma simple
-table(futbol$confed)
-```
- 
- <br/> <br/>
-
-```{r, message=FALSE, warning=FALSE}
-#utilizando summarytools
-confederacion=as.factor(futbol$confed)
-summarytools::freq(confederacion, cumul = FALSE)
-```
-
-Nota: paquete [summarytools](https://cran.r-project.org/web/packages/summarytools/vignettes/Introduction.html) 
-
- <br/> <br/>
- 
-## **Tablas de frecuencia para variables cuantitativas**
-
-Para las variables cuantitativas las tablas de frecuencias tiene una presentación diferente a la vista anteriormente. Como se trata de variables con una gran número de valores diferentes, es necesario dividirlas por intervalos .
-
-Cuando tenemos los datos sin agrupar nos es difícil extraer información que nos permita hacer un análisis de los mismos
-
-```{r}
-futbol$off
-```
-
-Una primera aproximación pude ser el diagrama de tallos y hojas con consiste en separar los dígitos de los datos en dos : una primera parte que se repite llamada tallo y otra parte que tiene diversos valores. Este diagrama también nos permite ordenar los datos de menor a mayor
-
-```{r}
-stem(futbol$off)
-```
-
-Una forma de construir una tabla de freciencias por intervalos es utilizando la funcion `graph.freq` del paquete agricolae
-
-```{r,  echo=TRUE, message=FALSE, warning=FALSE}
-library(agricolae)
-h2=with(futbol,graph.freq(off,plot=FALSE))
-t2=table.freq(h2)
-colnames(t2) = c("  LI  ", "  LS  ", "marca clase'", "Frec.Abs","Frec.Rel", "Frec.Abs.Ac","Frec.Rel.Ac")
-t2
-```
-Frec.Abs : Frecuencia absoluta <br/>
-Frec.Rel : Frecuencia relativa <br/><br/>
-Frec.Abs.Ac : Frecuencia Absoluta Acumuada <br/>
-Frec.Rel.Ac : Frecuencia Relativa Acumulada 
-
- <br/> <br/>
-
-Si se requiere dividir el rango en intervalos determinados se utiliza la función `cut` 
- 
-```{r}
-c <- cut(futbol$off, breaks = c(0, 0.999, 1.99, 2.99, 3.995, 4))
-levels(c) <- c("[0-1)", "[1-2)", "[2-3)", "[3-4)","[4-5]")
-table(c)
-```
- 
- 
-
-```{r}
-data("iris")
-summarytools::freq(iris$Species, cumul = FALSE, headings = FALSE)
-```
-
- <br/> <br/> <br/>
- 
-
- 
- 
- 
-# **El rango percentil**
-
- <br/>
- 
-Es un número que divide la muestra en dos partes. $x$ % de los datos de la muestra son iguales o menores que $P_{x}$ y un $(100-x)$ % por encima  de el.
-
-![](img/carrera.jpg)
-
- <br/>
- 
- Para ilustrar el concepto, pensemos en que participamos de una carrera y que el grupo está conformado por 100 corredores.  El percentil dará cuenta de mi posición dentro del grupo. Por ejemplo si mi posición en la carrera en orden de llegada es la décima, indica que por detrás de mi están 90 atletas. Indica esto que soy el percentil 90 ($P_{90}$).
- 
- <br/> <br/>
- 
-
-<div class="content-box-blue"> 
-### **Reto :** 
- 
- Que significado tiene :
- 
-  <br/>
-  
-+ Participar en una carrera **K10** y ocupar el percentil 30 : $P_{30}$
-
-+ Una nota en un examen de matemáticas ocupó el percentil 90 : $P_{90}$
-
-+ Que significa: $P_{25}$ ; $P_{50}$ ;  $P_{75}$
-
-</div>
-
- <br/> <br/> <br/>
- 
-### **Diagrama de cajas** 
-
- <br/>
- 
-
-
-```{r, warning=FALSE, message=FALSE, fig.height=2.5, fig.width=10} 
- p=ggplot(futbol, aes(x=off))+geom_boxplot(fill = "#40A8C4",           # Color caja
-                alpha = 0.3,        # Transparencia
-                color = "#000000",          # Color del borde
-                outlier.colour = "#000000") # Color atípicos
- 
- p + geom_text(data = NULL, x = 1.63, y = 0.34, label = "Q3",col="#b0394a")+
-     geom_text(data = NULL, x = 1.2, y = 0.34, label = "Q2",col="#b0394a")+
-     geom_text(data = NULL, x = 0.6, y = 0.34, label = "Q1",col="#b0394a") +
-     geom_text(data = NULL, x = 0.2, y = 0.34, label = "mín",col="#b0394a") +
-     geom_text(data = NULL, x = 3.5, y = 0.34, label = "máx",col="#b0394a") +
-     geom_text(data = NULL, x = 3, y = 0.34, label = "atípicos",col="#b0394a") +
-     geom_text(data = NULL, x = 1.166468, y = 0, label = "*  media",col="#b0394a")# +
-     geom_text(data = NULL, x = 1.2, y = 0.34, label = "media",col="#b0394a")
-   
-```
-
- <br/>
- 
-atípico | $LI=Q_{1}- 1.5(Q_{3}-Q_{1})$ | $Q_{1}$ | $Q_{2}$ | $Q_{3}$ | $LS=Q_{3}+ 1.5(Q_{3}-Q_{1})$ |  atípico 
-
- <br/> <br/> <br/>
- 
- 
- Con ayuda del diagrama de tallos y hojas es posible ubicar los percentiles en un conjunto de datos
- 
-```{r}
-stem(futbol$off)
-```
- <br/> <br/>
- 
-En este caso el valor mínimo corresponde a 0.20 y el máximo a 3.44
-
- <br/> <br/>
- 
-Ahora determine en este diagrama los percentiles :
-
-+ $P_{25}$
-+ $P_{50}$
-+ $P_{75}$
-+ $P_{10}$
-
-Es más rápido utilizando la función de R : `quantile`
-
-```{r}
-quantile(futbol$off, c(0.25,.50,0.75,0.10))
-```
- 
- <br/> <br/>
-
-<div class="content-box-blue">
-## **Renumen**
- 
- |                |                                                            |
- |:---------------|:-----------------------------------------------------------|
- | Percentiles    | Divide la muestra en 100 partes de igual porcentaje, cada una con un 1%. $P_{1}, P_{2}, \dots P_{99}$ |
- | Deciles        | Dividen la muestra en 10 parte de igual porcentaje,  cada una con un 10%. $D_{1}, D_{2}, \dots D_{9}$ |
- | Quintiles      | Dividen la muestra en 5 partes de igual porcentaje, cada una con un 20%. $K_{1}, K_{2}, K_{3}, K_{4}$ |
- | Cuartiles     | Dividen la muestra en 4 partes de igual porcentaje, cada una con un 25%. $Q_{1}, Q_{2}, Q_{3}$ |
-
-</div>  
- 
-  <br/> <br/>
-  
-# **Indicadores de los Datos**
-
- <br/> <br/>
-
-<div class="content-box-blue">
-
-| Tendencia central          | Dispersión                   | Forma                          |
-|:---------------------------|:-----------------------------|:-------------------------------|
-| media                      | rango                        | sesgo o asimetría              |
-| mediana                    | varianza                     | curtosis                       |
-| moda                       | desviación estándar          |                                |
-| media truncada             | coeficiente de variación     |                                |
-| rango medio                |                              |                                |
-| media armónica             |                              |                                |
-| media geométrica           |                              |                                |
-| media ponderada            |                              |                                |
- 
-</div>
-
- <br/> <br/>
-
-# **Indicadores de Centro**
-
-## **Media aritmética** 
-
- <br/>
-
-<div class="content-box-blue">
- 
-$$\bar{x}= \frac{1}{n} \sum_{i=1}^{n} x_{i}$$
-</div>
-
- <br/>
- 
-Es una de los indicadores estadísticos mas conocidos
-
-Propiedades de la media :
-
-+ La suma de las desviaciones de los datos con respecto a la media es cero. $\sum (x_{i}-\bar{x})=0$.
-
-+ La suma de los cuadrados de las desviaciones de los datos con respecto a un valor $a$ es mínimo cuando $a=\bar{x}$.
-
-+ Si $x_{i}=k$ para todo $i$, entonces, $\bar{x}=k$.
-
-+ Si a todos los datos de una variable se le suma una constante $k$, es decir  $y_{i}=x_{i} + k$, entonces $\bar{y}=\bar{x} +k$
-
-+ Si todos los datos de una variable se multiplican por una constante $k$, es decir $y_{i}=kx_{i}$, entonces $\bar{y}=k\bar{x}$
-
-+ Si $z_{i}=a x_{i}+b y_{i}$, donde: *a*, *b* constantes y $x_{i}$, $y_{i}$ variables, entonces: $\bar{z}=a\bar{x}+b\bar{y}$. 
-
- <br/> <br/>
- 
-**Ejemplo 1**
-
-El promedio de el rendimiento de millas por galón de combustible del grupo de autos observados es de $20.09$ mpg
-
-```{r}
-mean(mtcars$mpg,na.rm = TRUE)
-```
-
- <br/> <br/>
-
-**Ejemplo 2**
-
-El valor promedio de poder ofencivo de las selecciones de futbol asociadas a la FIFA es de 1.16
-
-```{r}
-mean(futbol$off, na.rm = TRUE)
-```
-
- <br/> <br/>
- 
-**Ejemplo 3**
-
-El promedio del conjunto de números enteros entre uno y diez es 5.5 
-
-```{r}
-x=1:10
-x
-cat("media :",mean(x))
-
-
-```
-
-
- <br/> <br/>
- 
- **Ejemplo 4**
-
-Surge el problema a que se puede tener es este indicador cuando uno de sus datos cambia drásticamente, por ejemplo si se cambia el último datos (10) por otro valor como 100 entonces, que pasaría con la media ?
-
-En este caso el promedio se eleva a 14.5 por el cambio realizado. Esto puede suceder en algunos casos donde trabajamos información que puede presentar datos extremos o atípicos
-
-```{r}
-x=1:10
-x[10]=100
-x
-cat("media :" ,mean(x))
-```
-
- <br/> <br/>
- 
-### **Mediana** 
-
-
-<div class="content-box-blue">
-**Me** :Es el número que divide la muestra en dos partes de igual proporción (50% : 50%). Es decir que corresponde a:
-
-$$P_{50} = D_{5} = Q_{2}$$
-
-</div>
-
-también corresponde a la linea central del diagrama de cajas.
-
-```{r}
-median(futbol$off,na.rm = TRUE)
-```
-
- <br/> <br/>
- 
-```{r, warning=FALSE, message=FALSE, fig.height=4, fig.width=7}
-boxplot(futbol$off, las=1, horizontal = TRUE, col = "#40A8C4")
-
-# library(ggplot2)
-# ggplot(futbol, aes(x = off)) +
-#   geom_boxplot(fill = "#40A8C4", orientation = "horizontal") +
-#   labs(title = "Boxplot de Offense", x = "Valor de Offense") +
-#   theme_minimal()
-```
- 
- <br/> <br/>
- 
-La **Me** corresponde a la linea central de a caja en el diagrama de cajas
-
-
-La mediana es mas robusta a los cambio en los datos extremos. En presencia de datos atípicos es mejor utilizar la mediana en lugar que la media.
-
-```{r}
-x=1:10
-x
-cat("media :" ,median(x))
-```
-
- <br/> <br/>
- 
-```{r}
-x[10]=20
-x
-cat("media :" ,median(x))
-```
-
- <br/> <br/>
-
-### **Moda**  
-
-<div class="content-box-blue">
-
-**Mo** : Dato o valor que más se repite. Es utilizada como medida de tendencia central en variables cualitativas o o en cuantitativas discretas con pocos valores. En una tabla o  gráfico se puede distinguir fácilmente. 
-
-</div>
-
-```{r, message=FALSE}
-#utilizando summarytools
-summarytools::freq(futbol$confed, cumul = FALSE, headings = FALSE)
-```
-
-moda : **UEFA**, es la confederación con más selecciones nacionales de futbol ascritas
-
- <br/> <br/>
- 
-## **Otras medidas de centro**
-
- <br/> <br/>
- 
-## **Media truncada**
-
-
-Con el fin de evitar que los datos atípicos generen sesgos en el indicador de la media, es posible separar el 90% de los datos, quitando un 5% de los datos mas pequeños y un  5% de los datos mayores. A este indicador de le llama media truncada al 10%  ($\bar{x}_{_{0.10}}$)
-
- <br/> <br/>
- 
-```{r, warning=FALSE, message=FALSE}
-
-mean(futbol$off, na.rm = TRUE, trim = 0.10)
-```
-
- <br/> <br/>
- 
-## **Rango medio**  
-
-<div class="content-box-blue">
-
-$$\frac{1}{2}\big(max(x)+min(x)\big)$$
-</div>
-
-```{r, warning=FALSE, message=FALSE}
-(max(futbol$off,na.rm = TRUE)+min(futbol$off,na.rm = TRUE))/2
-```
-
-La diferencia entre el equipo con mas poder ofencivo y el equipo como menor valor es de 1.87 puntos. 
- <br/> <br/>
- 
-##  **Media geométrica** 
-
-Este indicador de tendencia central se utiliza para promediar tasa de crecimiento o de interés. Para encontrar su valor se multiplican los valores de $n$ tasas incrementadas en uno ($1+r$). A ese producto se le extrae la raíz n-esima.
-
-<div class="content-box-blue">
-
-$$MG = \Bigg(\displaystyle\prod_{i=1}^n (r_{i}+1)\Bigg)^{1/n}$$
-</div>
-
- <br/> <br/>
-
-###  **Media armónica**  
-
-<div class="content-box-blue">
-$$H = \dfrac{n}{\frac{1}{x_{1}}+\frac{1}{x_{2}}+ ... + \frac{1}{x_{n}}}  $$
-
-</div>
-
-Este indicador corresponde al inverso de la media aritmética 
-
- <br/> <br/>
- 
-# **Problema reconocimiento de grupo**
-
-Spongaos que solo se nos dice que un grupo conformado por 4 personas tiene un promedio de edad de $20$ años. Todos inicialmente suponemos que se trata de cuatro jóvenes que tienen edades cercanas a $20$ años. Pero  puede ocurrir que estemos lejos de acertarlo, pues existen multiples combinaciones de edades que tienen como promedio $20$ años. 
-
-Por ello es necesario tener más informacion sobre el grupo.
-
-|                             |                                    |
-|:----------------------------|:-----------------------------------|
-|**Grupo 1**                  |**Grupo 2**                         | 
-|Edades : 19, 22, 18, 21      |Edades : 39, 38, 2, 1               |
-|Promedio : 20 años           |Promedio : 20 años                  |
-|                             |                                    |
-
-<img src="img/grupos3.png" width="700">
-
-
-Hace falta otro indicador que nos oriente de cual grupo hablamos cuando solo tenemos como información : media = $20$ años. Esta necesidad la suplen los `indicadores de dispersión`.
-
- <br/> <br/>
- 
-# **Indicadores de Dispersión**
-
-## **Rango**
-
-<div class="content-box-blue">
-
-$r = max(x) - min(x)$
-</div>
-
-En caso de los dos grupos:
-
-|**Grupo 1**                  | **Grupo 1**                        |
-|:----------------------------|:-----------------------------------|
-|$\bar{x} = 20$ años          |$\bar{x} = 20$ años                 |
-|$r = 4$ años                 |$r = 38$ años                       |  
-|                             |                                    |
-
-
-
-Es importante hacer notar que si además de la media conocemos tambien un indicador de dispersión, en este caso el rango, podemos intuir si se trata del primero o segundo grupo. El ranto es un indicador muy útil cuando se deben realizar cálculos rápidos.
-
- <br/> <br/>
- 
-## **Varianza**
-
-Es la medida de dispersión más utilizada en estadística y está definida por 
-
-<div class="content-box-blue">
-$$s^{2}=\frac{1}{n-1} \sum_{i=1}^{n} (x_{i}-\bar{x})^{2}$$
-</div>
-
- <br/> <br/>
-
-<div class="content-box-blue"> 
-## **Propiedades de la varianza**
-
-+ $s^{2} = \frac{1}{n} \sum x_{i}^{2}- (\bar{x})^{2}$ 
-
-+ La varianza es siempre no negativa  $s^{2} >=0$
-
-+ La varianza de una constante es cero $s_{k}^{2}=0$
-
-+ Si $y_{i}= x_{i} + k$, entonces $s_{y}^{2}= s_{x}^{2}$
-
-+ Si $y_{i}=k x_{i}$, entonces $s_{y}^{2}= k^{2} s_{x}^{2}$
-
-+ Si $y_{i}=x_{i} + k$ , entonces  $s_{y}^{2} = s_{x}^{2}$
-
-+ Si $z_{i} = a x_{i} + b y_{i}$, entonces $s_{z}^{2}$ = $a^{2}s_{x}^{2}$ + $b^{2}s_{y}^{2}$ + $2ab$ $cov(xy)$
-
-</div>
-
-La varianza se puede interpretar como el promedio de las diferencias cuadradas entre cada uno de los datos y la media
-
-El problema de la varianza es su **interpretación**
-
-Sus unidades son al cuadrado y en la mayoría de los casos no es posible interpretarlos. Por esta razón se optó por utilizar otra mediada de dispersión
-
- <br/> <br/>
- 
-## **Desviación estándar** 
-
-Es la raíz cuadrada de la varianza
-
-$$s=\sqrt{s^{2}}$$
-
-<div class="content-box-gray">
-
-### <span style="color:#686868">**NOTA**</span>
-
-No aplican todas las propiedades de la varianza
-
-</div>
-
-
-
-```{r}
-cat( "Varianza :",var(futbol$off), "\n" )
-cat("Desviación estándar :",sd(futbol$off))
-```
-
-Aunque la desviación estándar reduce el problema debido a tener las mismas unidades de la variable, es útil para comparación de dos grupos
-
- <br/> <br/>
- 
-## **Coeficiente de variación**
-
-Nos indica que tan grande o que tan pequeña es la desviación estándar con respecto a su media
-
-<div class="content-box-blue">
-$$CV= \dfrac{s}{\bar{x}} \times 100 \% $$
-</div>
-
-Existen diferentes reglas empíricas para la interpretación del coeficiente de variación. Una de ellas establece como límite el 20% para separar los grupos homogéneos de los heterogéneos Por lo general se utiliza un valor hasta el 20% para determinar que un grupo de datos son homogéneos, de lo contrario se calificará como heterogéneo.
-
-```{r}
-cat("Coeficiente de variación :",sd(futbol$off)/mean(futbol$off)*100, " %")
-```
-
-En este caso se obtiene un valor muy alto del coeficiente de variación lo cual indica que los datos en este caso el poder ofencivo de los equipos es alta, pudiendo calificar esta variable como heterogenea
-
-
- <br/> <br/>
- 
-## **Indicadores de Forma**
-
-<br/>
-
-### **Curtosis**
-
-
-Se mide a través del coeficiente de curtosis que mide cuan **puntiaguda** es una distribución respecto a la curva de la distribución normal entandar.
-
-
-De acuerdo con su valor, la puntudez de los datos puede clasificarse en tres grupos:
-
-+ <span style="color:#ee3b3b">**Leptocúrtica**</span>, con valores grandes para el coeficiente ( <span style="color:#ee3b3b">**CA>0**</span>)
-
-+ <span style="color:#0000cd">**Mesocúrtica**</span>, con valores medianos para el coeficiente ( <span style="color:#0000cd">**CA=0**</span>)
-
-+ <span style="color:#ee9a00">**Platicútrica**</span>, con valores pequeños para el coeficiente ( <span style="color:#ee9a00">**CA<0**</span>) 
-
-```{r, echo=FALSE, fig.height=3.5, fig.width=9}
-# Distribucion normal
-library(ggfortify)
-
-p=ggdistribution(dnorm, seq(-5, 5, 0.01), mean = 0, sd = 1,colour = 'blue')
-p=ggdistribution(dnorm, seq(-5, 5, 0.01), mean = 0, sd = .7,colour = 'red', p=p)
-p=ggdistribution(dnorm, seq(-5, 5, 0.01),   mean = 0, sd = 1.5,colour = 'orange', p=p)
-p
-```
-
- <br/> <br/>
-
-
-<div class="content-box-blue">
-$$CA = \dfrac{1}{s^{4}}\Bigg(\dfrac{1}{n} \sum_{i=1}^{n} (x-\bar{x})^{4} \Bigg) - 3$$
-</div>
-
-<br/><br/>
-
-
-
- 
-```{r}
-rapportools::kurtosis(futbol$off)
-```
- 
-<br/><br/> 
- 
-## **Asimetría o sesgo**
-
-
-Mide que tanto la forma de la distribución de frecuencias de los datos es simétrica o no con respecto a la media. Esta característica de los datos se mide a través del coeficiente de asimetría o sesgo.
-
-
-
-+ Es <span style="color:#ee3b3b">**simétrica**</span> si el  valor del indicador es 0  ($\bar{x}=Me$)
-
-+ Es <span style="color:#ee9a00">**asimétrica a la izquierda**</span> si el valor del indicador es negativo ($\bar{x}<Me$)
-
-+ Es <span style="color:#0000cd">**asimétrica a la derecha**</span> si el valor del indicador es positivo ($\bar{x}>Me$)
-
-![](img/simetria.png)
-
-+ **Asimetria negativa ** : Poco con poco, mucho con mucho
-+ **Simetrica** : Poco con poco, poco con mucho, mucho al rededor de un centro
-+ **Asimetria positiva** : Mucho con poco, poco con mucho
-
-<br/><br/>
-
-
-<div class="content-box-blue">
-$$CA = \dfrac{1}{s^{4}}\Bigg(\dfrac{1}{n} \sum_{i=1}^{n} (x-\bar{x})^{4} \Bigg) - 3$$
-</div>
-
-<br/><br/>
-
-```{r}
-rapportools::skewness(futbol$off)
 ```
 
 <br/><br/>
 
-El valor obtenido para el sesgos nos indica que existe un mediano sesgo positivo o a la derecha ( mucho con poco - poco con mucho). Este resultado nos indica que muchos equipos tienen bajo nivel ofencivo y unos pocos son los que tienen un alto poder ofencivo.
-
-<br/>
-
-```{r, message=FALSE, warning=FALSE}
-summarytools::descr(futbol$off)
-```
-
-<br/><br/>
-
-```{r}
-summarytools::descr(mtcars$mpg)
-```
-
-<br/><br/>
-
-
-```{r, message=FALSE, warning=FALSE}
-d1=density(futbol$off, na.rm=TRUE); plot(d1)
-```
-
-
-```{r, message=FALSE, warning=FALSE}
-data("mtcars")
-d2=density(mtcars$mpg); plot(d2)
-
-```
-
-
- <br/> <br/>
- 
-
-<br/><br/><br/>
-
-<div class="content-box-blue">
-## **Formulario**
-
-<br/>
-
-|Estadística             | fórmula                               | código R                      |
-|:-----------------------|:--------------------------------------|:------------------------------|
-|**centro**              |                                       |                               |
-|media aritmética        | $\displaystyle\dfrac{1}{n}\sum_{i=1}^{n} x_{i}$    | `mean(x)`                     |
-|mediana                 | $Me = P_{50} = X_{n+1/2}$             | `median(x)`                   |
-|moda                    | $Mo$ dato que más se repite           |                               |
-|media truncada | media calculada con el 90% central de los datos|`mean(x,trim=10/100)`          |
-|rango medio             | $rm=\dfrac{min\{x\}-max\{x\}}{2}$     | `max(x)-min(x)`               |
-|media geométrica        | $(x_{1} \times x_{2} \times x_{3} .... x_{n})^{1/n}$  |               |
-|media armónica          | $\dfrac{n}{\dfrac{1}{x_{1}}+\dfrac{1}{x_{2}}+\dfrac{1}{x_{3}}+...+\dfrac{1}{x_{n}}}$ | |
-|**dispersión**          |                                       |                               |
-|rango                   |$r= max\{x\}-min\{x\}$                 |`max(x)-min(x)`                |
-|varianza                |$s^{2} = \dfrac{1}{n-1} \displaystyle\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}$  |`var(x)`    |
-|desviación estandar     |$s = \sqrt{s^{2}}$                     |`sd(x)`                        |
-|coeficiente de variación|$cv= \dfrac{s}{\bar{x}} \times 100$ %  |`sd(x)/mean(x)*100`            |
-|**forma**               |                                       |                               |
-|coeficiente de curtosis |$\displaystyle\dfrac{Q_{3}-Q_{1}}{P_{90}-P_{10}}$ |`rapportools::kurtosis(bpe$promedio)`|
-|coeficiente de asimetría|$\displaystyle\dfrac{3(\bar{x}-Me)}{s}$|`rapportools::skewness(bpe$promedio)`|
-|percentil 25            |$X_{n \times 0.25}$                    |`quantile(x,0.25)`             |
-|percentil 50            |$X_{n \times 0.50}$                    |`quantile(x,0.50)`             |
-|percentil 75            |$X_{n \times 0.75}$                    |`quantile(x,0.75)`             |
-|rango intercuartílico   |$Q_{3}-Q_{1}$                          |                          |
-</div>
-
-
- <br/> <br/>
-
-
-## **Ejemplo**
-
- <br/> <br/>
- 
-### **Nivel de ansiedad**
-
-
-|               |                             |
-|:--------------|:----------------------------|    
-| ![](img/ansiedad.png)| Los siguientes datos corresponden al **nivel de ansiedad** de un grupo de estudiantes de la universidad valorada antes de la presentación del primer examen parcial. El investigador a cargo del proyecto utilizó una prueba para medir el nivel de ansiedad que permite puntajes entre 0 y 100. Los valores inferiores a 50 puntos se consideran como nivel bajo . Entre 50 y 80 , nivel medio y superiores a 80 se consideran altos.|
-
-
-Otra variable importante en el análisis corresponde a la **facultad** a la que pertence el estudiante
-
-1. Facultad de Ingeniería y Ciencias
-2. Facultad de Ciencias Económicas y Administrativas
-3. Facultad de Humanidades
-4. Facultad de Salud
-
-
-Los resultados obtenidos se presenta a continuación :
-
-```{r nivel, exercise=TRUE}
-nivans=c(28,33,34,36,38,38,41,41,45,45,46,46,47,47,48,48,49,50,51,51,51,52,53,53,
-         53,54,54,54,55,55,55,56,56,56,57,57,58,60,61,61,61,62,63,64,64,65,65,65,
-         65,65,66,67,67,68,68,68,69,69,69,70,70,71,74,77,77,78,79,79,80,82,85,89,
-         90,96,58,90,77,71,41,55,53,65,57,56,68,56,50,36,70,57,41,62,48,67,33,52,
-         65,67,79,55,34,46,55,56,47,69,61,54,74,47,64,79,85,61,28,46,65,51,49,45,
-         78,96,68,38,77,34,69,69,38,65,63,68,48,53,82,61,51,45,66,65,64,70,89,51,
-         54,53,80,54,60,53)
-
-fac=c(2,1,2,2,4,3,4,2,4,2,4,1,1,1,1,1,1,2,3,3,3,3,1,2,1,2,2,1,1,2,3,2,3,2,2,3,3,
-      1,1,1,2,1,2,2,2,3,1,1,3,1,4,3,1,3,2,1,2,3,4,3,2,3,4,4,1,3,4,4,2,2,1,4,2,1,
-      2,4,1,1,1,3,4,1,1,1,1,1,3,3,3,3,1,1,1,2,2,1,3,1,1,1,3,2,2,2,2,1,2,2,1,3,2,
-      1,2,2,2,4,2,1,3,4,1,1,3,1,2,2,2,1,3,3,1,1,2,2,3,3,3,1,4,3,1,2,4,2,2,1,2,3,
-      2,2)
-
-data=data.frame(fac, nivans) # forma base de datos 
-```
-
-
-<br/><br/>
-
-## Tablas de frecuencia
-
-+ Construya una tabla de frecuencia que le permita establecer las frecuencias en cada uno de los rangos descritos y analice los resultados obtenidos.
-
-**Primera forma** : Utilizando el paquete  `agricolae` 
-
-```{r}
-h2=with(data,graph.freq(nivans,plot=FALSE))
-t2=table.freq(h2);
-colnames(t2) = c("  LI  ", "  LS  ", "marca clase'", "Frec.Abs","Frec.Rel", "Frec.Abs.Ac","Frec.Rel.Ac")
-t2
-```
-
-**Segunda forma** : utilizando la función `hist`
-
-```{r}
-h=hist(data$nivans, breaks = c(20,29.99,39.99,49.99,59.99,69.99,79.99,89.99,100), plot=FALSE)
-LI=round(h$breaks[1:8],0) 
-LS=round(h$breaks[2:9],0) 
-ni=h$counts
-hi=h$counts/150
-Ni=cumsum(h$counts)
-Hi=Ni/150
-
-t=data.frame(LI,LS,ni,hi,Ni,Hi)
-t
-```
-
-**Tercera forma** : utilizando la funciones :  `cut` y `cbind`
-
-```{r}
-nivans1=cut(data$nivans, breaks = c(20,29.99,39.99,49.99,59.99,69.99,79.99,89.99,100))
-t2=table(nivans1)
-t2=cbind(t2, t2/sum(t2),cumsum(t2), cumsum(t2)/sum(t2))
-colnames(t2)=c("n","h","N","H")
-t2
-```
-
-
-
-
-+ Cálculos las estadísticas descriptivas del nivel de ansiedad y describa los resultados en un párrafo
-
-
-```{r}
-summarytools::descr(data$nivans)
-```
-El grupo observado corresponde a un total de 150 estudiantes de las cuatro facultades de la universidad (aun no estaba la Facultad de Habitat) y presentan un valor promedio de 59.5 puntos que corresponde a un nivel medio. Su coeficiente de variación (24%) muestra un poco de heterogeneidad en los valores alcanzados por los estudiantes, mientras que su forma se aproxima a una distribución simétrica
-
-<br/><br/>
-
-
-Tabla de frecuencias para variables cualitativas  utilizando del paquete `summarytools` la función `freq`
-
-```{r facultad, exercise=TRUE }
-data$fac[data$fac==1]="Facultad de Ingeniería y Ciencias"
-data$fac[data$fac==2]="Facultad de Ciencias Económicas y Administrativas"
-data$fac[data$fac==3]="Facultad de Humanidades"
-data$fac[data$fac==4]="Facultad de Salud"
-summarytools::freq(data$fac, cumul = FALSE)
-
-```
-
-Los reultados indican una mayor proporción de estudiantes de la Facultad de Ingenieria y Ciencias (34%), mientras que la Facultad de Salud la menor (11.3%)
-
-<br/><br/>
-
-## **Video**
-
-<center>
-<iframe width="800" height="450" src="https://www.youtube.com/embed/dWVs-M7oCh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</center>
-<br/><br/>
 
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "center"}
-knitr::include_graphics("img/person-1245959_1920.jpg")
+knitr::include_graphics("img/recursos1.png")
 ```
 
-<center>
-<sub>
-Imagen tomada de : https://pixabay.com/es/images/search/paisaje/
-</sub>
-</center>
+
 <br/><br/>
 
-# **Lo podemos lograr...**
-#### Daniel Enrique González Gómez 
+
+
+## **Introducción**
+
+>Una gráfica o una representación gráfica o un gráfico, es un tipo de representación de datos, generalmente cuantitativos, mediante recursos visuales (líneas, vectores, superficies o símbolos), para que se manifieste visualmente la relación matemática o correlación estadística que guardan entre sí.
+
+Wikipedia
+
+## **Paquetes de R para gráficos**
+
+R posee una serie de paquetes construido para la visualización de datos que hacen que tengan una excelente presentación. Empezando por funciones del núcleo base, hasta paquetes que elaboran gráficos interactivos
+
+
+<img src="img/RStudio.jpeg" width="90">
+<img src="img/ggplot2.png" width="80"> 
+<img src="img/highcharter.png" width="80">
+<img src="img/shiny.png" width="80">
+<img src="img/plotly.png" width="80">
+<img src="img/dashboard.png" width="80">
+
+Elegir el gráfico adecuado es muy importante pues existen diferentes alternativos  y se debe escoger el apropiado para representar los datos. El tipo de dato determina el tipo de grafico asi:
+
+|Tipo de variable  | Escala          | Gráfico                                   |
+|:-----------------|:----------------|:------------------------------------------|
+|Cualitativas      |                 |                                           |
+|                  |Nominal          | torta                                     |
+|                  |Ordinal          | barras                                    |
+|                  |                 |                                           |
+|Cuantitativas     |Intervalo-razón  | diagrama de tallos y hojas                |
+|                  |                 | histograma                                |
+|                  |                 | diagrama de cajas                         |
+|                  |                 | diagrama de densidad                      |
+|                  |                 | diagrama de puntos                        |
+|                  |                 | diagrama de lineas                        |
+|                  |                 | diagrama de radar                         |
+|                  |                 | gráfico likert                            |
+|                  |                 | mapa de calor                             |
+
+
+### **Gráficos variables cualitativas con R base**
+
+Gráfico de tortas
+
+```{r, fig.height=6}
+a=rep("Cultutal", 360145)
+b=rep("Pastoral", 61496)
+c=rep("Bienestar",49912)
+d=rep("Deportivo",11777)
+data=c(a,b,c,d)
+t=table(data)
+lbs=c("Cultural", "Pastoral", "Bienestar", "Deportivo")
+pct=round(t/sum(t)*100)
+labs=paste(lbs, pct)
+labs=paste(labs, "%", sep = " ") 
+pie(t, labels=labs, main=" Participación eventos Medio Universitario",
+    col = paleta4)
+```
+
+### **Diagrama de barras**
+
+```{r, fig.height=6}
+ev=c(4,  8, 12, 43, 32)
+names(ev)=c("Muy regular", "Regular", "Bueno", "Muy bueno","Excelente")
+barplot(ev, col=c("#ff5b00","#dcf600","#7dbd00","#659cef","#2956b2"), main = "Evaluación proceso de inducción")
+```
+
+### **Diagrama de barras dos variables**
+
+```{r, fig.height=5.5}
+counts <- table(mtcars$vs, mtcars$gear); rownames(counts)=c("Montor en linea", "Motor en V")
+barplot(counts, main="Numero de cambios adelante por Tipo de motor",  xlab="Numero de cambios adelante ",col=c(c6,c2),
+  legend = rownames(counts))
+```
+
+
+### **Gráficas variables cuantitativas con R base**
+
+### **Diagrama de árbol**
+
+```{r}
+nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+stem(nf)
+```
+Este diagrama ordena los datos de manera que se puede determinar tanto en mínimo (1.6) como el máximo (4.3) , además de visualizar donde están la mayor concentración de ellos.
+
+
+### **Histograma**
+
+```{r, fig.height=5}
+nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+
+h1 = hist(nf, main = "Nota final matemáticas fundamentales", xlab = "nota", ylab="frecuencias absolutas", labels=TRUE, col=c6, ylim = c(0,30))
+abline(v=3,col="#f6b915", lwd=2)
+h1
+```
 
 
 
+
+<br/><br/>
+
+### **Diagrama de densidad**
+
+```{r, fig.height=5}
+nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+plot(density(nf), main="Distribucion de las notas de matematias fundamentales", col=c6, lwd=2)
+```
+
+<br/><br/>
+  
+### **Diagrama de cajas**
+
+```{r}
+nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+boxplot(nf, main="Nota final matemáticas fundamentales",col=c4, las=1)
+abline(h=3, col="red")
+```
+  
+<br/><br/>
+
+### **Diagrama de cajas**
+
+```{r, fig.height=4.5}
+nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+cc=c(20, 10, 20, 20, 20, 20, 20, 20, 20, 30, 20, 20, 20, 10, 30, 20, 20, 30, 20, 30, 30, 20, 10, 30, 20, 20, 30, 30, 10, 20, 10, 20, 20, 20, 10, 20, 10, 20, 20, 30, 30, 30, 10, 30, 20, 20, 20, 20, 20, 20, 10, 20, 30, 30, 10, 10, 10, 20, 10, 20, 10, 30, 20, 10, 20, 30, 10, 30, 30, 30, 20, 30, 30, 30, 30, 30, 30, 20, 10, 30, 10, 20, 20, 10, 20, 20, 20, 20, 10, 20)
+labs=c("Ing. de Sistemas","Ing. Industrial","Ing. Mecánica")
+boxplot((nf~cc),main="Nota final matemáticas fundamentales por carrera", 
+        col=c(c4,c5,c6), names=labs, xlab = "carrera", ylab = "nota")
+abline(h=3, col=c2,  lwd=2)
+abline(h=4, col=c3, lwd=2)
+```
+
+<br/><br/>
+
+### **Diagrama de dispersión**
+
+```{r, fig.height=5}
+ed=round(rnorm(90,18,1),1)
+plot(ed,nf, main="Edad vs Nota final matemáticas fundamentales", ylim = c(0,5), xlab = "Edad", ylab = "Nota final",col="#447270",pch=19)
+grid()
+```
+
+
+<br/><br/>
+
+### **Gráfica de series de tiempo**
+
+```{r, fig.height=5}
+plot(AirPassengers, main="Numero de pasajeros por mes", col=c6, lwd = 2)
+```
+
+<br/><br/>
+
+### **Resumen**
+
+```{r, eval=FALSE}
+x=rnorm(100,100,20)
+y=rnorm(100,100,25)
+z=rbinom(100,4,0.30)
+t=1:100
+par(mfrow=c(2, 2))
+pie(table(z))
+barplot(table(z))
+stem(x)
+hist(x)
+boxplot(x)
+plot(x,y)
+plot(t,y, type="l")
+plot(density(x))
+par(mfrow=c(1, 1))
+```
+    
+
+<br/><br/>
+
+
+## **Gráficos con ggplot2**
+
+![](img/ge_themes.png)
+
++ **Data**: capa de los datos
+
++ **Aesthetics**: capa estética (**aes**), definimos las variables a utilizar en el gráfico
+
++ **Geometries**: capa de geometrías, se define el tipo de gráfica a realizar
+
++ **Facets**: capa de facetas, permite detallar la gráfica por categorías
+
++ **Statistics**: capa de estadística, permite agregar modelos
+
++ **Coordinates**: capa de coordenadas, permite ajustar las escalas de los ejes
+
++ **Theme**: capas de características del gráfico que no dependen de  los datos
+
+
+
+
+
+<br/><br/>
+
+
+[Visualizacion de datos con ggplot2](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+
+</br></br>
+
+
+### Primer paso instalar y cargar la libreria
+
+```{r, eval=FALSE}
+# Instalar ggplot2 si no lo tienes
+install.packages("ggplot2")
+
+# Cargar la librería ggplot2
+library(ggplot2)
+```
+
+
+
+</br></br>
+
+### Segundo paso : declarar la base de datos y las varibles
+
+
+```{r,fig.height=5}
+p <- ggplot(mtcars, aes(x = wt, y = mpg))
+p
+
+
+```
+
+
+</br></br>
+
+### Cuarto paso : crear grafico base
+
+```{r,fig.height=5}
+p <- p + geom_point()  
+p
+
+```
+
+</br></br>
+
+|                   |                    |                     |                      |
+|:------------------|:-------------------|:--------------------|:---------------------|
+|geo_point()        |geom_bar()          |geom_col()           |stat_count()          |
+|geom_boxplot()     |stat_boxplot()      |geom_density()       |stat_density()        |
+|geom_histogram()   |geom_violin()       |                     |                      |
+
+</br></br>
+
+
+### Quinto paso : agregar caracteristicas adicionales
+
+```{r,fig.height=5}
+p <- ggplot(mtcars, aes(x = wt, y = mpg, color = cyl)) +
+          geom_point(size = 2, alpha = 0.7)  # Tamaño y transparencia de los puntos
+p
+
+```
+
+
+
+</br></br>
+
+
+### Paso sexto : agregar títilo,  etiquetas a los ejes  leyenda aclararoria
+
+```{r, message=FALSE, warning=FALSE,fig.height=5}
+p <- p + labs(
+  title = "Relación entre Peso del Auto y Consumo de Combustible",
+  subtitle = "Clasificación por número de cilindros",
+  x = "Peso del Auto (1000 lbs)",
+  y = "Millas por Galón (mpg)",
+  color = "Cilindros"
+)
+p
+```
+
+
+
+</br></br>
+
+### Septimo paso : agregar una línea de tendencia
+
+```{r, message=FALSE, warning=FALSE,fig.height=5}
+p <- p + geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "black")
+p
+```
+
+</br></br>
+
+### Octavo paso : agreagar un tema o fondo
+
+```{r}
+p <- p + theme_minimal(base_size = 14)
+p
+```
+
+
+
+</br></br>
+
+### Noveno paso : ajustar la escala de colores
+
+```{r}
+library(ggplot2)
+
+# Asegurar que cyl es un factor
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+# Crear el gráfico desde cero
+p <- ggplot(mtcars, aes(x = wt, y = mpg, color = cyl)) +
+  geom_point(size = 4, alpha = 0.7) +  # Agregar puntos
+  scale_color_brewer(palette = "Set1") +  # Aplicar escala de color discreta
+  labs(
+    title = "Relación entre Peso y Consumo de Combustible",
+    subtitle = "Clasificación por número de cilindros",
+    x = "Peso del Auto (1000 lbs)",
+    y = "Millas por Galón (mpg)",
+    color = "Cilindros"
+  ) +
+  theme_minimal(base_size = 14)
+
+# Mostrar el gráfico
+p
+```
+
+</br></br>
+
+
+
+
+## Otros gráficos
+
+```{r, fig.height=5}
+library(ggplot2)
+data=data.frame(carrera=c("biologia","biomedica","civil","electronica","mecanica",  "sistemas"),frecuencia=c(8, 9,10,2, 3,7))
+
+ggplot(data, aes(x=carrera, y=frecuencia)) +
+  geom_bar(stat="identity", fill="#203c3d")+
+  geom_text(aes(label=frecuencia), vjust=2.5, color="white", size=7)+
+  theme_minimal()
+```
+
+
+
+</br></br>
+
+```{r, message=FALSE, warning=FALSE,fig.height=5}
+ggplot(iris, aes(Sepal.Length)) +
+       geom_histogram(bins = 7,fill="#447270", color="#e9ecef", alpha=0.9)+
+       theme_minimal() +
+       labs(x = "cm", y = "frecuencia absoluta") +
+       ggtitle("Longitud del sepalo")
+
+
+```
+
+</br></br>
+
+```{r, message=FALSE, warning=FALSE}
+ggplot(iris, aes(x=Sepal.Length, y=Species)) +
+  geom_boxplot(fill=c("#faf0ca","#f4d35e","#ee964d"),  # color de relleno
+               color="#0d3b66",    # color de lineas
+               alpha=0.5)+
+  geom_point(color="#2C5697",alpha=0.2)     # color puntos
+```
+
+</br></br>
+
+## **Gráficos con plotly**
+
+```{r, message=FALSE, warning=FALSE}
+# Instalar paquetes si es necesario
+# install.packages("plotly")
+
+# Cargar librerías necesarias
+library(ggplot2)
+library(plotly)
+
+# Convertir 'cyl' a factor para que se represente como variable categórica
+mtcars$cyl <- as.factor(mtcars$cyl)
+
+# Crear gráfico base con ggplot2
+p <- ggplot(mtcars, aes(
+  x = wt, y = mpg, color = cyl,
+  text = paste(
+    "Modelo:", rownames(mtcars), "<br>",
+    "Peso (wt):", wt, "<br>",
+    "Millas por Galón (mpg):", mpg, "<br>",
+    "Cilindros:", cyl
+  )
+)) +
+  geom_point(size = 2, alpha = 0.7) +  # Agregar puntos
+  scale_color_brewer(palette = "Set1") +  # Escala de color
+  labs(
+    title = "Relación entre Peso y Consumo de Combustible",
+    subtitle = "Datos de mtcars",
+    x = "Peso del Auto (1000 lbs)",
+    y = "Millas por Galón (mpg)",
+    color = "Cilindros"
+  ) +
+  theme_minimal(base_size = 14)
+
+# Convertir el gráfico de ggplot2 a un gráfico interactivo con Plotly
+p_interactivo <- ggplotly(p, tooltip = "text")
+
+# Mostrar el gráfico interactivo
+p_interactivo
+
+```
+
+</br></br>
+
+
+## **Graficos con highcharter**
+
+
+
+```{r, message=FALSE, warning=FALSE}
+# Instalar paquetes si es necesario
+# install.packages("highcharter")
+# install.packages("dplyr")
+
+# Cargar librerías necesarias
+library(highcharter)
+library(dplyr)
+
+# Convertir 'cyl' a factor para diferenciar los colores
+mtcars <- mtcars %>%
+  mutate(
+    cyl = as.factor(cyl),  # Convertir a factor
+    modelo = rownames(mtcars)  # Guardar nombres de los autos
+  )
+
+# Crear gráfico interactivo con highcharter
+hchart(mtcars, "scatter", hcaes(x = wt, y = mpg, group = cyl, name = modelo)) %>%
+  hc_title(text = "Relación entre Peso y Consumo de Combustible") %>%
+  hc_subtitle(text = "Datos de mtcars con diferenciación por cilindros") %>%
+  hc_xAxis(title = list(text = "Peso del Auto (1000 lbs)")) %>%
+  hc_yAxis(title = list(text = "Millas por Galón (mpg)")) %>%
+  hc_tooltip(
+    useHTML = TRUE,
+    pointFormat = "<b>Modelo:</b> {point.name}<br>
+                   <b>Peso (wt):</b> {point.x}<br>
+                   <b>Millas por Galón (mpg):</b> {point.y}<br>
+                   <b>Cilindros:</b> {point.group}"
+  ) %>%
+  hc_chart(zoomType = "xy")
+
+```
+
+
+
+</br></br>
+
+## **Graficos con Shiny**
+
+
++ [Genoma humano](https://shiny.rstudio.com/gallery/genome-browser.html)
+
++ [Paquetes de R](https://gallery.shinyapps.io/087-crandash/)
+
++ [Galeria](https://shiny.rstudio.com/gallery/)
+
+</br></br>
+
+### **RMarkdown**
+
+[RMarkdown resumen](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)<br/>
+
+[R flexdashboard - ejemplo](https://rpubs.com/joscani/flexdashboard_examples)<br/>
+[R flexdashboard - implementaciòn](https://geoprocesamiento-2020i.github.io/tutorial-flexdashboard/)
+
+
+<br/><br/>
+
+### **Estética en la visualización**
+
+
+La **estética** juega un papel fundamental en la visualización de datos, ya que ayuda a hacer que la información sea más comprensible y atractiva para el espectador. Entre las diferentes formas de estética utilizadas en la visualización, se encuentran:
+
+* Forma
+* Tamaño
+* Color
+* Ancho línea
+* Tipo línea
+* 1D, 2D, 3D
+
+<br/><br/>
+
+La **posición** se refiere a la ubicación de los elementos dentro de la visualización y es fundamental para transmitir información espacial. Por lo general haciendo referencia al plano cartesiano (2D) e indicando relaciones de asociación y correlación entre variables. 
+
+La **forma** se refiere a la apariencia de los elementos, que puede ser útil para representar categorías o para resaltar ciertos datos, como pueden ser: circulos, cuadrados, triangulos, estrellas, entre otras formas. 
+
+El **tamaño**, por otro lado, se utiliza para indicar magnitudes y hacer que ciertos elementos destaquen sobre otros.
+
+El **color** es una de las estéticas más poderosas en la visualización, ya que puede transmitir información de manera rápida y efectiva. Se puede utilizar para representar categorías, resaltar elementos importantes o crear jerarquías visuales. Tambien reforzando el significado de la variable, por ejemplo en presentación de resultados de clima laboral se utilizan colores relacionados con el semaforo (escalas entre rojo y verde), para representar magnitudes desde colores suaves a colores fuertes para indicar grandes cantidades. Por último tambien se emplean colores para resaltar un nivel u objeto dentro de todo el grupo.
+
+El **ancho de línea** y el **tipo de línea** se utilizan para diferenciar entre elementos y resaltar ciertos aspectos de la visualización.
+
+La dimensión (1D, 2D, 3D) se refiere a la cantidad de dimensiones que se utilizan en la visualización. Mientras que las visualizaciones 1D se limitan a una sola dimensión, como una línea de tiempo, las visualizaciones 2D y 3D pueden representar información en dos o tres dimensiones, lo que permite una representación más detallada y compleja de los datos. Es recomendable no utilizar 3D para que las visializaciones sean más limpias y sencillas 
+
+<br/><br/>
+
+```{r, echo=FALSE, out.width="50%", fig.align = "center"}
+knitr::include_graphics("img/formas.png")
+```
+
+<br/><br/>
+
+## **Formas**
+
+Es posible utilizar circulos, cuadrados, triangulos y en general figuras geométricas para resaltar puntos que represente valores numéricos en un plano 2D y de esta forma representar una secuencia o tendencia de la información.
+
+<br/><br/>
+
+```{r, echo=FALSE, out.width="50%", fig.align = "center"}
+knitr::include_graphics("img/formas2.png")
+```
+
+<br/><br/>
+
+
+## **Paletas**
+
+<br/><br/>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/paletacolores.png")
+```
+
+
+
+<br/><br/>
+
+
+```{r, echo=FALSE, out.width="30%", fig.align = "center"}
+knitr::include_graphics("img/paleta2.png")
+```
+</br></br>
+
+
+```{r, echo=FALSE, out.width="30%", fig.align = "center"}
+knitr::include_graphics("img/paleta3.png")
+```
+
+![](img/pujcali.jpeg)
+
+</br></br>
+
+### **Una imagen dice mas que mil palabras...** 
+
+Daniel Enrique González Gómez 
+
+Imagen tomada de :https://javerianacali.edu.co/noticias/la-javeriana-bogota-y-cali-1-de-colombia
 

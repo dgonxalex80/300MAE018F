@@ -71,19 +71,13 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 |:--------------|:-----------------------------|
 |Trabajo individual | A partir de la base de datos trabajada en las dos unidades anteriores construya un **tablero** (Dashboard)  que contenga gráficos e indicadores estaísticos  de las variables contenidas  en la base de datos seleccionada en la Actividad 112 de la unidad 1.1. Realice una descripción con los resultados obtenidos en el tablero. |
 | Recurso       |  Código 13.R  y TableroM1 |
-||[Resumen R base](https://www.i3s.unice.fr/~malapert/R/pdf/base-r.pdf)|
-||[Dashboard en R](https://pkgs.rstudio.com/flexdashboard/)   |  
-||[**Tableros con flexdashboard**](https://warin.ca/dpr/dashboards.html) |
-||[Resumen ggplot2](https://www.maths.usyd.edu.au/u/UG/SM/STAT3022/r/current/Misc/data-visualization-2.1.pdf)|
-||[Resumen RMarkdown](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)|
 |Fecha  | 10 de febrero de 2025 |
 |Hora   | 23:59 hora local |
 
 |Actividad 132   | Descripción                   | 
 |:--------------|:-----------------------------  |
 |Trabajo equipo|  Deben construir un **mapa mental** del *Módulo 1*  que resuma los conceptos más importantes del Modulo 1. El mapa debe ser construido a mano en medio pliego de cartulina. Los equipos podrán estar conformados por 3 o 4 estudiantes - Se sugiere que cada estudiante lleve su mapa mental como aporte a la construcción colectiva |
-|	Recurso    |[Capitulo 1](https://github.com/dgonzalez80/presentacionespye.io/blob/main/pdf/Capitulo1.pdf), web del curso, || Presentaciones y videos clases |
-|Fecha  | **12 de agosto  de 2024** - al finalizar la sesión|
+|Fecha  | **06 de febrero de 2025** - al finalizar la sesión|
 |Hora   | al final de la sesión |
 
 <br/><br/>
