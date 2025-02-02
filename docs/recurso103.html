@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> Indicadores estadísticos</title>
+
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a></a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#235784">
+<strong>Indicadores estadísticos</strong></span></h1>
+<h3 class="subtitle"><span style="color:#235784"><strong>Módulo
+1</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><br/><br/></p>
+<div id="que-es-un-indicador" class="section level1">
+<h1><strong>¿Que es un indicador?</strong></h1>
+<p><br/><br/></p>
+<p><img src="img/tablero1.jpg" width="70%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<p>Cuando nos subimos a un auto observamos un tablero con muchos
+indicadores que permiten al conductor validar el estado del vehículo.
+Todos los podemos visualizar al tiempo con el fin de darnos una idea del
+nivel de combustible, la temperatura, el estado de la batería, si alguna
+puerta esta abierta, la velocidad a la que se viaja, entre otros.</p>
+<p><br/></p>
+<p>Al igual que la situación anterior cuando nos enfrentamos a una
+análisis de datos, requerimos resumirlos en indicadores, tablas y
+gráficos que nos permitan un fácil análisis de ellos</p>
+<p><br/> <br/> <br/></p>
+<p>Tomaremos una base de datos de la FIFA para analizar indicadores de
+las selecciones de futbol asociadas a 6 confederaciones.</p>
+<pre class="r"><code>library(DT)
+DT::datatable(head(futbol, 218),fillContainer = FALSE, options = list(pageLength = 8))</code></pre>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-07167b990953c60bf822" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-07167b990953c60bf822">{"x":{"filter":"none","vertical":false,"fillContainer":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,214,215,216,217,218],["Spain","Brazil","Belgium","France","England","Argentina","Portugal","Netherlands","Germany","Italy","Switzerland","Uruguay","Colombia","Denmark","Mexico","Chile","Croatia","Austria","Ecuador","Serbia","USA","Russia","Sweden","Poland","Czech Republic","Algeria","Venezuela","Peru","Iran","Morocco","Paraguay","Senegal","Japan","Wales","Norway","Turkey","Australia","Ghana","Romania","Ukraine","Greece","Tunisia","Ivory Coast","South Korea","Bosnia and Herzegovina","Egypt","Qatar","Hungary","Canada","Scotland","Israel","Basque Country","Slovenia","Uganda","Mali","Nigeria","Finland","Iraq","Costa Rica","Zimbabwe","Burkina Faso","Northern Ireland","Iceland","Rep of Ireland","Slovakia","Honduras","Bolivia","Uzbekistan","Saudi Arabia","Panama","Cameroon","Georgia","Albania","Haiti","Bahrain","Montenegro","China PR","Belarus","FYR Macedonia","Benin","Kosovo","Zambia","Bulgaria","Guinea","Namibia","Congo","South Africa","Jamaica","Gabon","Congo DR","Libya","Armenia","Togo","Tanzania","Guatemala","Kenya","New Zealand","Angola","Jordan","Cape Verde Islands","Madagascar","Curacao","El Salvador","Oman","Equatorial Guinea","Gambia","Malawi","Botswana","Luxembourg","Mozambique","Syria","Liberia","Kuwait","Sudan","Mauritania","United Arab Emirates","Trinidad and Tobago","Niger","Azerbaijan","Cuba","Kazakhstan","Rwanda","Lithuania","Cyprus","Estonia","Burundi","Sierra Leone","Bermuda","St. Kitts and Nevis","Lesotho","Comoros","Lebanon","Ethiopia","Guinea-Bissau","Vietnam","Nicaragua","Latvia","Dominican Republic","Palestine","Thailand","Central African Republic","North Korea","Moldova","Kyrgyzstan","Faroe Islands","Turkmenistan","Chad","Fiji","Martinique","Guyana","Belize","Suriname","Antigua and Barbuda","South Sudan","Solomon Islands","Zanzibar","Puerto Rico","New Caledonia","Malaysia","Malta","Barbados","Dominica","Swaziland","Eritrea","Tahiti","Philippines","India","Tajikistan","Singapore","Sao Tome and Principe","St. Vincent and the Grenadines","Hong Kong","Grenada","Vanuatu","Mauritius","St. Lucia","Yemen","Liechtenstein","Gibraltar","Afghanistan","Aruba","Djibouti","Indonesia","Myanmar","Andorra","Montserrat","Cayman Islands","Papua New Guinea","Somalia","Bahamas","Seychelles","Maldives","Bangladesh","French Guiana","Nepal","Mongolia","Chinese Taipei","San Marino","British Virgin Islands","Bonaire","Cambodia","Turks and Caicos Islands","Guam","Guadeloupe","Anguilla","Brunei","US Virgin Islands","Sri Lanka","Pakistan","Laos","Bhutan","St. Martin","Sint Maarten","Tuvalu","Timor-Leste","Macau","Samoa","Tonga"],["UEFA","CONMEBOL","UEFA","UEFA","UEFA","CONMEBOL","UEFA","UEFA","UEFA","UEFA","UEFA","CONMEBOL","CONMEBOL","UEFA","CONCACAF","CONMEBOL","UEFA","UEFA","CONMEBOL","UEFA","CONCACAF","UEFA","UEFA","UEFA","UEFA","CAF","CONMEBOL","CONMEBOL","AFC","CAF","CONMEBOL","CAF","AFC","UEFA","UEFA","UEFA","AFC","CAF","UEFA","UEFA","UEFA","CAF","CAF","AFC","UEFA","CAF","AFC","UEFA","CONCACAF","UEFA","UEFA","UEFA","UEFA","CAF","CAF","CAF","UEFA","AFC","CONCACAF","CAF","CAF","UEFA","UEFA","UEFA","UEFA","CONCACAF","CONMEBOL","AFC","AFC","CONCACAF","CAF","UEFA","UEFA","CONCACAF","AFC","UEFA","AFC","UEFA","UEFA","CAF","UEFA","CAF","UEFA","CAF","CAF","CAF","CAF","CONCACAF","CAF","CAF","CAF","UEFA","CAF","CAF","CONCACAF","CAF","OFC","CAF","AFC","CAF","CAF","CONCACAF","CONCACAF","AFC","CAF","CAF","CAF","CAF","UEFA","CAF","AFC","CAF","AFC","CAF","CAF","AFC","CONCACAF","CAF","UEFA","CONCACAF","UEFA","CAF","UEFA","UEFA","UEFA","CAF","CAF","CONCACAF","CONCACAF","CAF","CAF","AFC","CAF","CAF","AFC","CONCACAF","UEFA","CONCACAF","AFC","AFC","CAF","AFC","UEFA","AFC","UEFA","AFC","CAF","OFC","CONCACAF","CONCACAF","CONCACAF","CONCACAF","CONCACAF","CAF","OFC","CAF","CONCACAF","OFC","AFC","UEFA","CONCACAF","CONCACAF","CAF","CAF","OFC","AFC","AFC","AFC","AFC","CAF","CONCACAF","AFC","CONCACAF","OFC","CAF","CONCACAF","AFC","UEFA","UEFA","AFC","CONCACAF","CAF","AFC","AFC","UEFA","CONCACAF","CONCACAF","OFC","CAF","CONCACAF","CAF","AFC","AFC","CONCACAF","AFC","AFC","AFC","UEFA","CONCACAF","CONCACAF","AFC","CONCACAF","AFC","CONCACAF","CONCACAF","AFC","CONCACAF","AFC","AFC","AFC","AFC","CONCACAF","CONCACAF","OFC","AFC","AFC","OFC","OFC"],[3.54,3.04,2.96,2.9,2.7,2.54,2.7,2.69,3.04,2.52,2.52,2.36,2.17,2.12,2.34,2.22,2.42,2.11,2.24,2.08,2.04,2.18,1.97,1.92,1.96,2.03,1.87,1.89,1.78,2.04,1.8,1.65,1.86,1.65,1.99,1.88,1.92,1.54,1.88,1.67,1.5,1.56,1.62,1.51,1.74,1.55,1.75,1.54,1.82,1.46,1.72,1.63,1.4,1.58,1.26,1.77,1.61,1.39,1.49,1.6,1.38,1.37,1.52,1.26,1.53,1.56,1.57,1.47,1.56,1.3,1.19,1.27,1.32,1.47,1.24,1.23,1.2,1.34,1.3,1.14,1.33,1.46,1.2,1.27,0.96,1.13,1.35,1.32,1.16,1.28,1.24,1.48,1.32,1.21,1.25,1.11,1.26,1.07,0.93,1.04,1.3,1.29,1.05,1.08,1.06,1.18,0.66,0.77,1.12,1.12,1.36,1.05,1.05,0.96,1,1.04,1.09,1.05,0.82,0.89,0.98,0.6899999999999999,1.03,1.01,0.88,0.88,1.08,1.19,1.15,0.79,1,0.62,0.84,0.9,0.68,0.88,0.92,1.01,0.78,0.9,1.03,0.87,0.76,0.85,0.86,0.87,0.85,0.67,0.9399999999999999,1.13,0.79,0.76,1.09,0.73,0.6899999999999999,0.49,0.73,0.6899999999999999,0.76,0.7,0.54,0.55,0.5600000000000001,0.79,0.8100000000000001,0.72,0.54,0.71,0.65,0.79,0.7,0.34,0.68,0.64,0.7,0.64,0.51,0.6,0.49,0.53,0.64,0.64,0.62,0.57,0.28,0.8100000000000001,0.4,0.6,0.55,0.73,0.41,0.41,0.26,0.52,0.21,0.25,0.45,0.24,0.42,0.37,0.28,0.68,0.51,0.2,0.35,0.21,0.38,0.2,0.2,0.21,0.22,0.23,0.21,0.38,0.33,0.2,0.2,0.2],[0.39,0.32,0.58,0.55,0.45,0.42,0.52,0.53,0.73,0.44,0.62,0.5600000000000001,0.54,0.58,0.73,0.72,0.86,0.6899999999999999,0.79,0.77,0.74,0.85,0.74,0.72,0.76,0.8100000000000001,0.74,0.77,0.7,0.92,0.73,0.62,0.78,0.64,0.91,0.86,0.9,0.66,1,0.82,0.7,0.78,0.85,0.8,1.01,0.88,1.09,0.91,1.16,0.84,1.08,1,0.82,0.98,0.6899999999999999,1.15,1.03,0.84,0.93,1.06,0.89,0.92,1.06,0.82,1.14,1.2,1.22,1.13,1.24,1,0.89,1,1.06,1.23,1,1.04,1.02,1.16,1.13,0.97,1.2,1.34,1.07,1.15,0.82,1,1.24,1.21,1.04,1.18,1.17,1.49,1.32,1.2,1.27,1.12,1.3,1.14,0.99,1.15,1.44,1.47,1.2,1.24,1.26,1.41,0.85,0.99,1.44,1.45,1.74,1.37,1.37,1.29,1.34,1.43,1.5,1.47,1.22,1.31,1.44,1.06,1.53,1.51,1.35,1.37,1.65,1.82,1.76,1.3,1.6,1.09,1.4,1.49,1.19,1.5,1.59,1.73,1.42,1.59,1.79,1.59,1.45,1.62,1.65,1.73,1.71,1.45,1.85,2.22,1.73,1.71,2.2,1.74,1.71,1.47,1.89,1.85,1.98,1.88,1.61,1.65,1.67,2.1,2.15,2.02,1.82,2.13,2.05,2.38,2.23,1.57,2.22,2.17,2.31,2.24,2.09,2.27,2.08,2.46,2.76,2.85,2.83,2.71,2.09,3.24,2.41,2.88,2.8,3.44,2.8,2.81,2.48,3.18,2.47,2.72,3.48,2.9,3.62,3.59,3.35,4.76,4.42,3.49,4.08,3.71,4.38,3.81,3.92,4.11,4.62,4.89,4.93,5.62,5.56,5.11,5.78,6.08],[93.98999999999999,92.22,87.70999999999999,87.64,87.44,86.59,86.2,86.06999999999999,86.05,86.04000000000001,82.56999999999999,81.8,79.63,78.09999999999999,77.92,76.47,76.37,75.41,75.28,73.37,73.19,73.06999999999999,72.20999999999999,71.67,71.48999999999999,71.42,70.38,69.91,69.77,69.26000000000001,69.26000000000001,69.2,69.17,68.73,68.56,67.81,67.34,66.08,64.55,64.53,64.12,63.55,62.71,61.9,61.29,60.6,59.93,59.84,59.71,59.71,59.39,59.32,58.87,58.85,58.82,58.73,58.39,58.09,58.04,57.58,56.74,55.7,55.68,55.62,54.08,53.21,53.13,52.97,52.47,52.02,51.99,51.42,51.04,50.56,50.49,49.31,49.21,49.19,48.8,48.62,48.1,48.09,48,48,47.83,47.82,47.7,47.69,47.6,47.34,46.61,45.34,45.31,45.28,44.7,44.4,44.18,42.82,42.64,42.17,42.16,41.53,41.27,41.19,40.12,40.04,38.22,38.1,38.03,37.79,37.65,37.46,37.45,36.91,36.91,36.24,35.92,35.69,34.73,34.58,34.35,34.3,34.08,33.86,33.74,33.29,32.95,32.69,32.67,32.21,32.05,31.7,31.68,31.61,31.55,30.87,30.44,30.13,29.82,29.77,29.55,28.99,28.87,28.08,27.7,26.68,26.54,26.35,26.34,25.06,24.84,24.52,24.48,23.16,22.71,21.39,21.11,20.92,20.71,20.58,20.53,20.29,20.28,19.77,19.56,19.31,17.9,17.67,17.47,16.48,16.4,16.04,16.04,15.99,15.5,15.12,14.29,14.03,13.79,11.07,10.68,10.03,9.93,9.91,9.710000000000001,9.65,9.43,9.16,8.970000000000001,7.5,7.04,7.01,6.73,6.57,6.12,5.41,4.58,4.55,3.88,3.5,3.44,2.75,2.48,2.47,2.29,2.13,1.93,1.87,1.71,1.48,0.98,0.8100000000000001,0.74,0.7,0.64,0.6,0.34,0.26]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>rank<\/th>\n      <th>name<\/th>\n      <th>confed<\/th>\n      <th>off<\/th>\n      <th>def<\/th>\n      <th>spi<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":8,"columnDefs":[{"className":"dt-right","targets":[1,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"rank","targets":1},{"name":"name","targets":2},{"name":"confed","targets":3},{"name":"off","targets":4},{"name":"def","targets":5},{"name":"spi","targets":6}],"order":[],"autoWidth":false,"orderClasses":false,"lengthMenu":[8,10,25,50,100]}},"evals":[],"jsHooks":[]}</script>
+<p>portal FiveThirtyEight : <a href="https://data.fivethirtyeight.com/"
+class="uri">https://data.fivethirtyeight.com/</a></p>
+<p><br/> <br/> <br/></p>
+</div>
+<div id="tablas-de-frecuencia" class="section level1">
+<h1><strong>Tablas de frecuencia</strong></h1>
+<p><br/></p>
+<div id="tablas-de-frecuencia-para-variables-cualitativas"
+class="section level2">
+<h2><strong>Tablas de frecuencia para variables
+cualitativas</strong></h2>
+<p><br/> <br/></p>
+<p>Las distribuciones de frecuencia o también llamadas tablas de
+frecuencia nos sirven para agrupar los datos y así permitir resumir para
+poder tener una idea mas clara de sus características.</p>
+<p>Para las variables cualitativas la tabla posee 3 columnas :</p>
+<ul>
+<li><p>c1: los diferentes valores que toma la variable.</p></li>
+<li><p>c2: <strong>frecuencia absoluta</strong> que consiste en el
+conteo para cada uno de los valores distintos que toma la
+variable.</p></li>
+<li><p>c3: <strong>frecuencia relativa </strong> que corresponde al
+porcentaje la cantidad de datos para cada los valores</p></li>
+</ul>
+<p><br/> <br/></p>
+<pre class="r"><code>library(readr)
+futbol &lt;- read_csv(&quot;data/futbol.csv&quot;)
+# Forma simple
+table(futbol$confed)</code></pre>
+<pre><code>
+     AFC      CAF CONCACAF CONMEBOL      OFC     UEFA 
+      46       55       41       10       10       56 </code></pre>
+<p><br/> <br/></p>
+<pre class="r"><code>#utilizando summarytools
+confederacion=as.factor(futbol$confed)
+summarytools::freq(confederacion, cumul = FALSE)</code></pre>
+<pre><code>Frequencies  
+
+                 Freq   % Valid   % Total
+-------------- ------ --------- ---------
+           AFC     46     21.10     21.10
+           CAF     55     25.23     25.23
+      CONCACAF     41     18.81     18.81
+      CONMEBOL     10      4.59      4.59
+           OFC     10      4.59      4.59
+          UEFA     56     25.69     25.69
+          &lt;NA&gt;      0                0.00
+         Total    218    100.00    100.00</code></pre>
+<p>Nota: paquete <a
+href="https://cran.r-project.org/web/packages/summarytools/vignettes/Introduction.html">summarytools</a></p>
+<p><br/> <br/></p>
+</div>
+<div id="tablas-de-frecuencia-para-variables-cuantitativas"
+class="section level2">
+<h2><strong>Tablas de frecuencia para variables
+cuantitativas</strong></h2>
+<p>Para las variables cuantitativas las tablas de frecuencias tiene una
+presentación diferente a la vista anteriormente. Como se trata de
+variables con una gran número de valores diferentes, es necesario
+dividirlas por intervalos .</p>
+<p>Cuando tenemos los datos sin agrupar nos es difícil extraer
+información que nos permita hacer un análisis de los mismos</p>
+<pre class="r"><code>futbol$off</code></pre>
+<pre><code>  [1] 3.54 3.04 2.96 2.90 2.70 2.54 2.70 2.69 3.04 2.52 2.52 2.36 2.17 2.12 2.34
+ [16] 2.22 2.42 2.11 2.24 2.08 2.04 2.18 1.97 1.92 1.96 2.03 1.87 1.89 1.78 2.04
+ [31] 1.80 1.65 1.86 1.65 1.99 1.88 1.92 1.54 1.88 1.67 1.50 1.56 1.62 1.51 1.74
+ [46] 1.55 1.75 1.54 1.82 1.46 1.72 1.63 1.40 1.58 1.26 1.77 1.61 1.39 1.49 1.60
+ [61] 1.38 1.37 1.52 1.26 1.53 1.56 1.57 1.47 1.56 1.30 1.19 1.27 1.32 1.47 1.24
+ [76] 1.23 1.20 1.34 1.30 1.14 1.33 1.46 1.20 1.27 0.96 1.13 1.35 1.32 1.16 1.28
+ [91] 1.24 1.48 1.32 1.21 1.25 1.11 1.26 1.07 0.93 1.04 1.30 1.29 1.05 1.08 1.06
+[106] 1.18 0.66 0.77 1.12 1.12 1.36 1.05 1.05 0.96 1.00 1.04 1.09 1.05 0.82 0.89
+[121] 0.98 0.69 1.03 1.01 0.88 0.88 1.08 1.19 1.15 0.79 1.00 0.62 0.84 0.90 0.68
+[136] 0.88 0.92 1.01 0.78 0.90 1.03 0.87 0.76 0.85 0.86 0.87 0.85 0.67 0.94 1.13
+[151] 0.79 0.76 1.09 0.73 0.69 0.49 0.73 0.69 0.76 0.70 0.54 0.55 0.56 0.79 0.81
+[166] 0.72 0.54 0.71 0.65 0.79 0.70 0.34 0.68 0.64 0.70 0.64 0.51 0.60 0.49 0.53
+[181] 0.64 0.64 0.62 0.57 0.28 0.81 0.40 0.60 0.55 0.73 0.41 0.41 0.26 0.52 0.21
+[196] 0.25 0.45 0.24 0.42 0.37 0.28 0.68 0.51 0.20 0.35 0.21 0.38 0.20 0.20 0.21
+[211] 0.22 0.23 0.21 0.38 0.33 0.20 0.20 0.20</code></pre>
+<p>Una primera aproximación pude ser el diagrama de tallos y hojas con
+consiste en separar los dígitos de los datos en dos : una primera parte
+que se repite llamada tallo y otra parte que tiene diversos valores.
+Este diagrama también nos permite ordenar los datos de menor a mayor</p>
+<pre class="r"><code>stem(futbol$off)</code></pre>
+<pre><code>
+  The decimal point is 1 digit(s) to the left of the |
+
+   2 | 00000011112345688345788
+   4 | 01125991123445567
+   6 | 0022444456788899900012333666789999
+   8 | 112455677888900234668
+  10 | 00113344555567889912233456899
+  12 | 001344566677890002223456789
+  14 | 0667789012344566678
+  16 | 012355724578
+  18 | 026788922679
+  20 | 34481278
+  22 | 2446
+  24 | 2224
+  26 | 900
+  28 | 06
+  30 | 44
+  32 | 
+  34 | 4</code></pre>
+<p>Una forma de construir una tabla de freciencias por intervalos es
+utilizando la funcion <code>graph.freq</code> del paquete agricolae</p>
+<pre class="r"><code>library(agricolae)
+h2=with(futbol,graph.freq(off,plot=FALSE))
+t2=table.freq(h2)
+colnames(t2) = c(&quot;  LI  &quot;, &quot;  LS  &quot;, &quot;marca clase&#39;&quot;, &quot;Frec.Abs&quot;,&quot;Frec.Rel&quot;, &quot;Frec.Abs.Ac&quot;,&quot;Frec.Rel.Ac&quot;)
+t2</code></pre>
+<pre><code>    LI     LS   marca clase&#39; Frec.Abs Frec.Rel Frec.Abs.Ac Frec.Rel.Ac
+1   0.20   0.58         0.39       40     18.3          40        18.3
+2   0.58   0.96         0.77       52     23.9          92        42.2
+3   0.96   1.34         1.15       53     24.3         145        66.5
+4   1.34   1.72         1.53       32     14.7         177        81.2
+5   1.72   2.10         1.91       21      9.6         198        90.8
+6   2.10   2.48         2.29        9      4.1         207        95.0
+7   2.48   2.86         2.67        6      2.8         213        97.7
+8   2.86   3.24         3.05        4      1.8         217        99.5
+9   3.24   3.62         3.43        1      0.5         218       100.0</code></pre>
+<p>Frec.Abs : Frecuencia absoluta <br/> Frec.Rel : Frecuencia relativa
+<br/><br/> Frec.Abs.Ac : Frecuencia Absoluta Acumuada <br/> Frec.Rel.Ac
+: Frecuencia Relativa Acumulada</p>
+<p><br/> <br/></p>
+<p>Si se requiere dividir el rango en intervalos determinados se utiliza
+la función <code>cut</code></p>
+<pre class="r"><code>c &lt;- cut(futbol$off, breaks = c(0, 0.999, 1.99, 2.99, 3.995, 4))
+levels(c) &lt;- c(&quot;[0-1)&quot;, &quot;[1-2)&quot;, &quot;[2-3)&quot;, &quot;[3-4)&quot;,&quot;[4-5]&quot;)
+table(c)</code></pre>
+<pre><code>c
+[0-1) [1-2) [2-3) [3-4) [4-5] 
+   95    99    21     3     0 </code></pre>
+<pre class="r"><code>data(&quot;iris&quot;)
+summarytools::freq(iris$Species, cumul = FALSE, headings = FALSE)</code></pre>
+<pre><code>
+                   Freq   % Valid   % Total
+---------------- ------ --------- ---------
+          setosa     50     33.33     33.33
+      versicolor     50     33.33     33.33
+       virginica     50     33.33     33.33
+            &lt;NA&gt;      0                0.00
+           Total    150    100.00    100.00</code></pre>
+<p><br/> <br/> <br/></p>
+</div>
+</div>
+<div id="el-rango-percentil" class="section level1">
+<h1><strong>El rango percentil</strong></h1>
+<p><br/></p>
+<p>Es un número que divide la muestra en dos partes. <span
+class="math inline">\(x\)</span> % de los datos de la muestra son
+iguales o menores que <span class="math inline">\(P_{x}\)</span> y un
+<span class="math inline">\((100-x)\)</span> % por encima de el.</p>
+<p><img src="img/carrera.jpg" /></p>
+<p><br/></p>
+<p>Para ilustrar el concepto, pensemos en que participamos de una
+carrera y que el grupo está conformado por 100 corredores. El percentil
+dará cuenta de mi posición dentro del grupo. Por ejemplo si mi posición
+en la carrera en orden de llegada es la décima, indica que por detrás de
+mi están 90 atletas. Indica esto que soy el percentil 90 (<span
+class="math inline">\(P_{90}\)</span>).</p>
+<p><br/> <br/></p>
+<div id="reto" class="section level3 content-box-blue">
+<h3><strong>Reto :</strong></h3>
+<p>Que significado tiene :</p>
+<p><br/></p>
+<ul>
+<li><p>Participar en una carrera <strong>K10</strong> y ocupar el
+percentil 30 : <span class="math inline">\(P_{30}\)</span></p></li>
+<li><p>Una nota en un examen de matemáticas ocupó el percentil 90 :
+<span class="math inline">\(P_{90}\)</span></p></li>
+<li><p>Que significa: <span class="math inline">\(P_{25}\)</span> ;
+<span class="math inline">\(P_{50}\)</span> ; <span
+class="math inline">\(P_{75}\)</span></p></li>
+</ul>
+</div>
+<p><br/> <br/> <br/></p>
+<div id="diagrama-de-cajas" class="section level3">
+<h3><strong>Diagrama de cajas</strong></h3>
+<p><br/></p>
+<pre class="r"><code> p=ggplot(futbol, aes(x=off))+geom_boxplot(fill = &quot;#40A8C4&quot;,           # Color caja
+                alpha = 0.3,        # Transparencia
+                color = &quot;#000000&quot;,          # Color del borde
+                outlier.colour = &quot;#000000&quot;) # Color atípicos
+ 
+ p + geom_text(data = NULL, x = 1.63, y = 0.34, label = &quot;Q3&quot;,col=&quot;#b0394a&quot;)+
+     geom_text(data = NULL, x = 1.2, y = 0.34, label = &quot;Q2&quot;,col=&quot;#b0394a&quot;)+
+     geom_text(data = NULL, x = 0.6, y = 0.34, label = &quot;Q1&quot;,col=&quot;#b0394a&quot;) +
+     geom_text(data = NULL, x = 0.2, y = 0.34, label = &quot;mín&quot;,col=&quot;#b0394a&quot;) +
+     geom_text(data = NULL, x = 3.5, y = 0.34, label = &quot;máx&quot;,col=&quot;#b0394a&quot;) +
+     geom_text(data = NULL, x = 3, y = 0.34, label = &quot;atípicos&quot;,col=&quot;#b0394a&quot;) +
+     geom_text(data = NULL, x = 1.166468, y = 0, label = &quot;*  media&quot;,col=&quot;#b0394a&quot;)# +</code></pre>
+<p><img src="recurso103_files/figure-html/unnamed-chunk-10-1.png" width="960" /></p>
+<pre class="r"><code>     geom_text(data = NULL, x = 1.2, y = 0.34, label = &quot;media&quot;,col=&quot;#b0394a&quot;)</code></pre>
+<pre><code>geom_text: parse = FALSE, check_overlap = FALSE, size.unit = mm, na.rm = FALSE
+stat_identity: na.rm = FALSE
+position_identity </code></pre>
+<p><br/></p>
+<p>atípico | <span class="math inline">\(LI=Q_{1}-
+1.5(Q_{3}-Q_{1})\)</span> | <span class="math inline">\(Q_{1}\)</span> |
+<span class="math inline">\(Q_{2}\)</span> | <span
+class="math inline">\(Q_{3}\)</span> | <span
+class="math inline">\(LS=Q_{3}+ 1.5(Q_{3}-Q_{1})\)</span> | atípico</p>
+<p><br/> <br/> <br/></p>
+<p>Con ayuda del diagrama de tallos y hojas es posible ubicar los
+percentiles en un conjunto de datos</p>
+<pre class="r"><code>stem(futbol$off)</code></pre>
+<pre><code>
+  The decimal point is 1 digit(s) to the left of the |
+
+   2 | 00000011112345688345788
+   4 | 01125991123445567
+   6 | 0022444456788899900012333666789999
+   8 | 112455677888900234668
+  10 | 00113344555567889912233456899
+  12 | 001344566677890002223456789
+  14 | 0667789012344566678
+  16 | 012355724578
+  18 | 026788922679
+  20 | 34481278
+  22 | 2446
+  24 | 2224
+  26 | 900
+  28 | 06
+  30 | 44
+  32 | 
+  34 | 4</code></pre>
+<p><br/> <br/></p>
+<p>En este caso el valor mínimo corresponde a 0.20 y el máximo a
+3.44</p>
+<p><br/> <br/></p>
+<p>Ahora determine en este diagrama los percentiles :</p>
+<ul>
+<li><span class="math inline">\(P_{25}\)</span></li>
+<li><span class="math inline">\(P_{50}\)</span></li>
+<li><span class="math inline">\(P_{75}\)</span></li>
+<li><span class="math inline">\(P_{10}\)</span></li>
+</ul>
+<p>Es más rápido utilizando la función de R : <code>quantile</code></p>
+<pre class="r"><code>quantile(futbol$off, c(0.25,.50,0.75,0.10))</code></pre>
+<pre><code>  25%   50%   75%   10% 
+0.690 1.075 1.540 0.380 </code></pre>
+<p><br/> <br/></p>
+</div>
+<div id="renumen" class="section level2 content-box-blue">
+<h2><strong>Renumen</strong></h2>
+<table>
+<colgroup>
+<col width="21%" />
+<col width="78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Percentiles</td>
+<td align="left">Divide la muestra en 100 partes de igual porcentaje,
+cada una con un 1%. <span class="math inline">\(P_{1}, P_{2}, \dots
+P_{99}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Deciles</td>
+<td align="left">Dividen la muestra en 10 parte de igual porcentaje,
+cada una con un 10%. <span class="math inline">\(D_{1}, D_{2}, \dots
+D_{9}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Quintiles</td>
+<td align="left">Dividen la muestra en 5 partes de igual porcentaje,
+cada una con un 20%. <span class="math inline">\(K_{1}, K_{2}, K_{3},
+K_{4}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Cuartiles</td>
+<td align="left">Dividen la muestra en 4 partes de igual porcentaje,
+cada una con un 25%. <span class="math inline">\(Q_{1}, Q_{2},
+Q_{3}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/> <br/></p>
+</div>
+<div id="indicadores-de-los-datos" class="section level1">
+<h1><strong>Indicadores de los Datos</strong></h1>
+<p><br/> <br/></p>
+<div class="content-box-blue">
+<table>
+<colgroup>
+<col width="31%" />
+<col width="33%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Tendencia central</th>
+<th align="left">Dispersión</th>
+<th align="left">Forma</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">media</td>
+<td align="left">rango</td>
+<td align="left">sesgo o asimetría</td>
+</tr>
+<tr class="even">
+<td align="left">mediana</td>
+<td align="left">varianza</td>
+<td align="left">curtosis</td>
+</tr>
+<tr class="odd">
+<td align="left">moda</td>
+<td align="left">desviación estándar</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">media truncada</td>
+<td align="left">coeficiente de variación</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">rango medio</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">media armónica</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">media geométrica</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">media ponderada</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/> <br/></p>
+</div>
+<div id="indicadores-de-centro" class="section level1">
+<h1><strong>Indicadores de Centro</strong></h1>
+<div id="media-aritmética" class="section level2">
+<h2><strong>Media aritmética</strong></h2>
+<p><br/></p>
+<div class="content-box-blue">
+<p><span class="math display">\[\bar{x}= \frac{1}{n} \sum_{i=1}^{n}
+x_{i}\]</span></p>
+</div>
+<p><br/></p>
+<p>Es una de los indicadores estadísticos mas conocidos</p>
+<p>Propiedades de la media :</p>
+<ul>
+<li><p>La suma de las desviaciones de los datos con respecto a la media
+es cero. <span class="math inline">\(\sum
+(x_{i}-\bar{x})=0\)</span>.</p></li>
+<li><p>La suma de los cuadrados de las desviaciones de los datos con
+respecto a un valor <span class="math inline">\(a\)</span> es mínimo
+cuando <span class="math inline">\(a=\bar{x}\)</span>.</p></li>
+<li><p>Si <span class="math inline">\(x_{i}=k\)</span> para todo <span
+class="math inline">\(i\)</span>, entonces, <span
+class="math inline">\(\bar{x}=k\)</span>.</p></li>
+<li><p>Si a todos los datos de una variable se le suma una constante
+<span class="math inline">\(k\)</span>, es decir <span
+class="math inline">\(y_{i}=x_{i} + k\)</span>, entonces <span
+class="math inline">\(\bar{y}=\bar{x} +k\)</span></p></li>
+<li><p>Si todos los datos de una variable se multiplican por una
+constante <span class="math inline">\(k\)</span>, es decir <span
+class="math inline">\(y_{i}=kx_{i}\)</span>, entonces <span
+class="math inline">\(\bar{y}=k\bar{x}\)</span></p></li>
+<li><p>Si <span class="math inline">\(z_{i}=a x_{i}+b y_{i}\)</span>,
+donde: <em>a</em>, <em>b</em> constantes y <span
+class="math inline">\(x_{i}\)</span>, <span
+class="math inline">\(y_{i}\)</span> variables, entonces: <span
+class="math inline">\(\bar{z}=a\bar{x}+b\bar{y}\)</span>.</p></li>
+</ul>
+<p><br/> <br/></p>
+<p><strong>Ejemplo 1</strong></p>
+<p>El promedio de el rendimiento de millas por galón de combustible del
+grupo de autos observados es de <span
+class="math inline">\(20.09\)</span> mpg</p>
+<pre class="r"><code>mean(mtcars$mpg,na.rm = TRUE)</code></pre>
+<pre><code>[1] 20.09062</code></pre>
+<p><br/> <br/></p>
+<p><strong>Ejemplo 2</strong></p>
+<p>El valor promedio de poder ofencivo de las selecciones de futbol
+asociadas a la FIFA es de 1.16</p>
+<pre class="r"><code>mean(futbol$off, na.rm = TRUE)</code></pre>
+<pre><code>[1] 1.166468</code></pre>
+<p><br/> <br/></p>
+<p><strong>Ejemplo 3</strong></p>
+<p>El promedio del conjunto de números enteros entre uno y diez es
+5.5</p>
+<pre class="r"><code>x=1:10
+x</code></pre>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>cat(&quot;media :&quot;,mean(x))</code></pre>
+<pre><code>media : 5.5</code></pre>
+<p><br/> <br/></p>
+<p><strong>Ejemplo 4</strong></p>
+<p>Surge el problema a que se puede tener es este indicador cuando uno
+de sus datos cambia drásticamente, por ejemplo si se cambia el último
+datos (10) por otro valor como 100 entonces, que pasaría con la media
+?</p>
+<p>En este caso el promedio se eleva a 14.5 por el cambio realizado.
+Esto puede suceder en algunos casos donde trabajamos información que
+puede presentar datos extremos o atípicos</p>
+<pre class="r"><code>x=1:10
+x[10]=100
+x</code></pre>
+<pre><code> [1]   1   2   3   4   5   6   7   8   9 100</code></pre>
+<pre class="r"><code>cat(&quot;media :&quot; ,mean(x))</code></pre>
+<pre><code>media : 14.5</code></pre>
+<p><br/> <br/></p>
+<div id="mediana" class="section level3">
+<h3><strong>Mediana</strong></h3>
+<div class="content-box-blue">
+<p><strong>Me</strong> :Es el número que divide la muestra en dos partes
+de igual proporción (50% : 50%). Es decir que corresponde a:</p>
+<p><span class="math display">\[P_{50} = D_{5} = Q_{2}\]</span></p>
+</div>
+<p>también corresponde a la linea central del diagrama de cajas.</p>
+<pre class="r"><code>median(futbol$off,na.rm = TRUE)</code></pre>
+<pre><code>[1] 1.075</code></pre>
+<p><br/> <br/></p>
+<pre class="r"><code>boxplot(futbol$off, las=1, horizontal = TRUE, col = &quot;#40A8C4&quot;)</code></pre>
+<p><img src="recurso103_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<pre class="r"><code># library(ggplot2)
+# ggplot(futbol, aes(x = off)) +
+#   geom_boxplot(fill = &quot;#40A8C4&quot;, orientation = &quot;horizontal&quot;) +
+#   labs(title = &quot;Boxplot de Offense&quot;, x = &quot;Valor de Offense&quot;) +
+#   theme_minimal()</code></pre>
+<p><br/> <br/></p>
+<p>La <strong>Me</strong> corresponde a la linea central de a caja en el
+diagrama de cajas</p>
+<p>La mediana es mas robusta a los cambio en los datos extremos. En
+presencia de datos atípicos es mejor utilizar la mediana en lugar que la
+media.</p>
+<pre class="r"><code>x=1:10
+x</code></pre>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<pre class="r"><code>cat(&quot;media :&quot; ,median(x))</code></pre>
+<pre><code>media : 5.5</code></pre>
+<p><br/> <br/></p>
+<pre class="r"><code>x[10]=20
+x</code></pre>
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 20</code></pre>
+<pre class="r"><code>cat(&quot;media :&quot; ,median(x))</code></pre>
+<pre><code>media : 5.5</code></pre>
+<p><br/> <br/></p>
+</div>
+<div id="moda" class="section level3">
+<h3><strong>Moda</strong></h3>
+<div class="content-box-blue">
+<p><strong>Mo</strong> : Dato o valor que más se repite. Es utilizada
+como medida de tendencia central en variables cualitativas o o en
+cuantitativas discretas con pocos valores. En una tabla o gráfico se
+puede distinguir fácilmente.</p>
+</div>
+<pre class="r"><code>#utilizando summarytools
+summarytools::freq(futbol$confed, cumul = FALSE, headings = FALSE)</code></pre>
+<pre><code>
+                 Freq   % Valid   % Total
+-------------- ------ --------- ---------
+           AFC     46     21.10     21.10
+           CAF     55     25.23     25.23
+      CONCACAF     41     18.81     18.81
+      CONMEBOL     10      4.59      4.59
+           OFC     10      4.59      4.59
+          UEFA     56     25.69     25.69
+          &lt;NA&gt;      0                0.00
+         Total    218    100.00    100.00</code></pre>
+<p>moda : <strong>UEFA</strong>, es la confederación con más selecciones
+nacionales de futbol ascritas</p>
+<p><br/> <br/></p>
+</div>
+</div>
+<div id="otras-medidas-de-centro" class="section level2">
+<h2><strong>Otras medidas de centro</strong></h2>
+<p><br/> <br/></p>
+</div>
+<div id="media-truncada" class="section level2">
+<h2><strong>Media truncada</strong></h2>
+<p>Con el fin de evitar que los datos atípicos generen sesgos en el
+indicador de la media, es posible separar el 90% de los datos, quitando
+un 5% de los datos mas pequeños y un 5% de los datos mayores. A este
+indicador de le llama media truncada al 10% (<span
+class="math inline">\(\bar{x}_{_{0.10}}\)</span>)</p>
+<p><br/> <br/></p>
+<pre class="r"><code>mean(futbol$off, na.rm = TRUE, trim = 0.10)</code></pre>
+<pre><code>[1] 1.111989</code></pre>
+<p><br/> <br/></p>
+</div>
+<div id="rango-medio" class="section level2">
+<h2><strong>Rango medio</strong></h2>
+<div class="content-box-blue">
+<p><span
+class="math display">\[\frac{1}{2}\big(max(x)+min(x)\big)\]</span></p>
+</div>
+<pre class="r"><code>(max(futbol$off,na.rm = TRUE)+min(futbol$off,na.rm = TRUE))/2</code></pre>
+<pre><code>[1] 1.87</code></pre>
+<p>La diferencia entre el equipo con mas poder ofencivo y el equipo como
+menor valor es de 1.87 puntos. <br/> <br/></p>
+</div>
+<div id="media-geométrica" class="section level2">
+<h2><strong>Media geométrica</strong></h2>
+<p>Este indicador de tendencia central se utiliza para promediar tasa de
+crecimiento o de interés. Para encontrar su valor se multiplican los
+valores de <span class="math inline">\(n\)</span> tasas incrementadas en
+uno (<span class="math inline">\(1+r\)</span>). A ese producto se le
+extrae la raíz n-esima.</p>
+<div class="content-box-blue">
+<p><span class="math display">\[MG = \Bigg(\displaystyle\prod_{i=1}^n
+(r_{i}+1)\Bigg)^{1/n}\]</span></p>
+</div>
+<p><br/> <br/></p>
+<div id="media-armónica" class="section level3">
+<h3><strong>Media armónica</strong></h3>
+<div class="content-box-blue">
+<p><span class="math display">\[H =
+\dfrac{n}{\frac{1}{x_{1}}+\frac{1}{x_{2}}+ ... +
+\frac{1}{x_{n}}}  \]</span></p>
+</div>
+<p>Este indicador corresponde al inverso de la media aritmética</p>
+<p><br/> <br/></p>
+</div>
+</div>
+</div>
+<div id="problema-reconocimiento-de-grupo" class="section level1">
+<h1><strong>Problema reconocimiento de grupo</strong></h1>
+<p>Spongaos que solo se nos dice que un grupo conformado por 4 personas
+tiene un promedio de edad de <span class="math inline">\(20\)</span>
+años. Todos inicialmente suponemos que se trata de cuatro jóvenes que
+tienen edades cercanas a <span class="math inline">\(20\)</span> años.
+Pero puede ocurrir que estemos lejos de acertarlo, pues existen
+multiples combinaciones de edades que tienen como promedio <span
+class="math inline">\(20\)</span> años.</p>
+<p>Por ello es necesario tener más informacion sobre el grupo.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Grupo 1</strong></td>
+<td align="left"><strong>Grupo 2</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Edades : 19, 22, 18, 21</td>
+<td align="left">Edades : 39, 38, 2, 1</td>
+</tr>
+<tr class="odd">
+<td align="left">Promedio : 20 años</td>
+<td align="left">Promedio : 20 años</td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><img src="img/grupos3.png" width="700"></p>
+<p>Hace falta otro indicador que nos oriente de cual grupo hablamos
+cuando solo tenemos como información : media = <span
+class="math inline">\(20\)</span> años. Esta necesidad la suplen los
+<code>indicadores de dispersión</code>.</p>
+<p><br/> <br/></p>
+</div>
+<div id="indicadores-de-dispersión" class="section level1">
+<h1><strong>Indicadores de Dispersión</strong></h1>
+<div id="rango" class="section level2">
+<h2><strong>Rango</strong></h2>
+<div class="content-box-blue">
+<p><span class="math inline">\(r = max(x) - min(x)\)</span></p>
+</div>
+<p>En caso de los dos grupos:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><strong>Grupo 1</strong></th>
+<th align="left"><strong>Grupo 1</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\bar{x} = 20\)</span>
+años</td>
+<td align="left"><span class="math inline">\(\bar{x} = 20\)</span>
+años</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(r = 4\)</span> años</td>
+<td align="left"><span class="math inline">\(r = 38\)</span> años</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Es importante hacer notar que si además de la media conocemos tambien
+un indicador de dispersión, en este caso el rango, podemos intuir si se
+trata del primero o segundo grupo. El ranto es un indicador muy útil
+cuando se deben realizar cálculos rápidos.</p>
+<p><br/> <br/></p>
+</div>
+<div id="varianza" class="section level2">
+<h2><strong>Varianza</strong></h2>
+<p>Es la medida de dispersión más utilizada en estadística y está
+definida por</p>
+<div class="content-box-blue">
+<p><span class="math display">\[s^{2}=\frac{1}{n-1} \sum_{i=1}^{n}
+(x_{i}-\bar{x})^{2}\]</span></p>
+</div>
+<p><br/> <br/></p>
+</div>
+<div id="propiedades-de-la-varianza"
+class="section level2 content-box-blue">
+<h2><strong>Propiedades de la varianza</strong></h2>
+<ul>
+<li><p><span class="math inline">\(s^{2} = \frac{1}{n} \sum x_{i}^{2}-
+(\bar{x})^{2}\)</span></p></li>
+<li><p>La varianza es siempre no negativa <span
+class="math inline">\(s^{2} &gt;=0\)</span></p></li>
+<li><p>La varianza de una constante es cero <span
+class="math inline">\(s_{k}^{2}=0\)</span></p></li>
+<li><p>Si <span class="math inline">\(y_{i}= x_{i} + k\)</span>,
+entonces <span class="math inline">\(s_{y}^{2}=
+s_{x}^{2}\)</span></p></li>
+<li><p>Si <span class="math inline">\(y_{i}=k x_{i}\)</span>, entonces
+<span class="math inline">\(s_{y}^{2}= k^{2} s_{x}^{2}\)</span></p></li>
+<li><p>Si <span class="math inline">\(y_{i}=x_{i} + k\)</span> ,
+entonces <span class="math inline">\(s_{y}^{2} =
+s_{x}^{2}\)</span></p></li>
+<li><p>Si <span class="math inline">\(z_{i} = a x_{i} + b
+y_{i}\)</span>, entonces <span class="math inline">\(s_{z}^{2}\)</span>
+= <span class="math inline">\(a^{2}s_{x}^{2}\)</span> + <span
+class="math inline">\(b^{2}s_{y}^{2}\)</span> + <span
+class="math inline">\(2ab\)</span> <span
+class="math inline">\(cov(xy)\)</span></p></li>
+</ul>
+</div>
+<p>La varianza se puede interpretar como el promedio de las diferencias
+cuadradas entre cada uno de los datos y la media</p>
+<p>El problema de la varianza es su <strong>interpretación</strong></p>
+<p>Sus unidades son al cuadrado y en la mayoría de los casos no es
+posible interpretarlos. Por esta razón se optó por utilizar otra mediada
+de dispersión</p>
+<p><br/> <br/></p>
+<div id="desviación-estándar" class="section level2">
+<h2><strong>Desviación estándar</strong></h2>
+<p>Es la raíz cuadrada de la varianza</p>
+<p><span class="math display">\[s=\sqrt{s^{2}}\]</span></p>
+<div id="nota" class="section level3 content-box-gray">
+<h3><span style="color:#686868"><strong>NOTA</strong></span></h3>
+<p>No aplican todas las propiedades de la varianza</p>
+</div>
+<pre class="r"><code>cat( &quot;Varianza :&quot;,var(futbol$off), &quot;\n&quot; )</code></pre>
+<pre><code>Varianza : 0.4319888 </code></pre>
+<pre class="r"><code>cat(&quot;Desviación estándar :&quot;,sd(futbol$off))</code></pre>
+<pre><code>Desviación estándar : 0.6572586</code></pre>
+<p>Aunque la desviación estándar reduce el problema debido a tener las
+mismas unidades de la variable, es útil para comparación de dos
+grupos</p>
+<p><br/> <br/></p>
+</div>
+<div id="coeficiente-de-variación" class="section level2">
+<h2><strong>Coeficiente de variación</strong></h2>
+<p>Nos indica que tan grande o que tan pequeña es la desviación estándar
+con respecto a su media</p>
+<div class="content-box-blue">
+<p><span class="math display">\[CV= \dfrac{s}{\bar{x}} \times 100 \%
+\]</span></p>
+</div>
+<p>Existen diferentes reglas empíricas para la interpretación del
+coeficiente de variación. Una de ellas establece como límite el 20% para
+separar los grupos homogéneos de los heterogéneos Por lo general se
+utiliza un valor hasta el 20% para determinar que un grupo de datos son
+homogéneos, de lo contrario se calificará como heterogéneo.</p>
+<pre class="r"><code>cat(&quot;Coeficiente de variación :&quot;,sd(futbol$off)/mean(futbol$off)*100, &quot; %&quot;)</code></pre>
+<pre><code>Coeficiente de variación : 56.34605  %</code></pre>
+<p>En este caso se obtiene un valor muy alto del coeficiente de
+variación lo cual indica que los datos en este caso el poder ofencivo de
+los equipos es alta, pudiendo calificar esta variable como
+heterogenea</p>
+<p><br/> <br/></p>
+</div>
+<div id="indicadores-de-forma" class="section level2">
+<h2><strong>Indicadores de Forma</strong></h2>
+<p><br/></p>
+<div id="curtosis" class="section level3">
+<h3><strong>Curtosis</strong></h3>
+<p>Se mide a través del coeficiente de curtosis que mide cuan
+<strong>puntiaguda</strong> es una distribución respecto a la curva de
+la distribución normal entandar.</p>
+<p>De acuerdo con su valor, la puntudez de los datos puede clasificarse
+en tres grupos:</p>
+<ul>
+<li><p><span style="color:#ee3b3b"><strong>Leptocúrtica</strong></span>,
+con valores grandes para el coeficiente ( <span
+style="color:#ee3b3b"><strong>CA&gt;0</strong></span>)</p></li>
+<li><p><span style="color:#0000cd"><strong>Mesocúrtica</strong></span>,
+con valores medianos para el coeficiente ( <span
+style="color:#0000cd"><strong>CA=0</strong></span>)</p></li>
+<li><p><span style="color:#ee9a00"><strong>Platicútrica</strong></span>,
+con valores pequeños para el coeficiente ( <span
+style="color:#ee9a00"><strong>CA&lt;0</strong></span>)</p></li>
+</ul>
+<p><img src="recurso103_files/figure-html/unnamed-chunk-26-1.png" width="864" /></p>
+<p><br/> <br/></p>
+<div class="content-box-blue">
+<p><span class="math display">\[CA = \dfrac{1}{s^{4}}\Bigg(\dfrac{1}{n}
+\sum_{i=1}^{n} (x-\bar{x})^{4} \Bigg) - 3\]</span></p>
+</div>
+<p><br/><br/></p>
+<pre class="r"><code>rapportools::kurtosis(futbol$off)</code></pre>
+<pre><code>[1] 0.5363538</code></pre>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="asimetría-o-sesgo" class="section level2">
+<h2><strong>Asimetría o sesgo</strong></h2>
+<p>Mide que tanto la forma de la distribución de frecuencias de los
+datos es simétrica o no con respecto a la media. Esta característica de
+los datos se mide a través del coeficiente de asimetría o sesgo.</p>
+<ul>
+<li><p>Es <span style="color:#ee3b3b"><strong>simétrica</strong></span>
+si el valor del indicador es 0 (<span
+class="math inline">\(\bar{x}=Me\)</span>)</p></li>
+<li><p>Es <span style="color:#ee9a00"><strong>asimétrica a la
+izquierda</strong></span> si el valor del indicador es negativo (<span
+class="math inline">\(\bar{x}&lt;Me\)</span>)</p></li>
+<li><p>Es <span style="color:#0000cd"><strong>asimétrica a la
+derecha</strong></span> si el valor del indicador es positivo (<span
+class="math inline">\(\bar{x}&gt;Me\)</span>)</p></li>
+</ul>
+<p><img src="img/simetria.png" /></p>
+<ul>
+<li><strong>Asimetria negativa </strong> : Poco con poco, mucho con
+mucho</li>
+<li><strong>Simetrica</strong> : Poco con poco, poco con mucho, mucho al
+rededor de un centro</li>
+<li><strong>Asimetria positiva</strong> : Mucho con poco, poco con
+mucho</li>
+</ul>
+<p><br/><br/></p>
+<div class="content-box-blue">
+<p><span class="math display">\[CA = \dfrac{1}{s^{4}}\Bigg(\dfrac{1}{n}
+\sum_{i=1}^{n} (x-\bar{x})^{4} \Bigg) - 3\]</span></p>
+</div>
+<p><br/><br/></p>
+<pre class="r"><code>rapportools::skewness(futbol$off)</code></pre>
+<pre><code>[1] 0.8169614</code></pre>
+<p><br/><br/></p>
+<p>El valor obtenido para el sesgos nos indica que existe un mediano
+sesgo positivo o a la derecha ( mucho con poco - poco con mucho). Este
+resultado nos indica que muchos equipos tienen bajo nivel ofencivo y
+unos pocos son los que tienen un alto poder ofencivo.</p>
+<p><br/></p>
+<pre class="r"><code>summarytools::descr(futbol$off)</code></pre>
+<pre><code>Descriptive Statistics  
+value  
+N: 218  
+
+                     value
+----------------- --------
+             Mean     1.17
+          Std.Dev     0.66
+              Min     0.20
+               Q1     0.69
+           Median     1.08
+               Q3     1.54
+              Max     3.54
+              MAD     0.62
+              IQR     0.85
+               CV     0.56
+         Skewness     0.82
+      SE.Skewness     0.16
+         Kurtosis     0.54
+          N.Valid   218.00
+        Pct.Valid   100.00</code></pre>
+<p><br/><br/></p>
+<pre class="r"><code>summarytools::descr(mtcars$mpg)</code></pre>
+<pre><code>Descriptive Statistics  
+value  
+N: 32  
+
+                     value
+----------------- --------
+             Mean    20.09
+          Std.Dev     6.03
+              Min    10.40
+               Q1    15.35
+           Median    19.20
+               Q3    22.80
+              Max    33.90
+              MAD     5.41
+              IQR     7.38
+               CV     0.30
+         Skewness     0.61
+      SE.Skewness     0.41
+         Kurtosis    -0.37
+          N.Valid    32.00
+        Pct.Valid   100.00</code></pre>
+<p><br/><br/></p>
+<pre class="r"><code>d1=density(futbol$off, na.rm=TRUE); plot(d1)</code></pre>
+<p><img src="recurso103_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<pre class="r"><code>data(&quot;mtcars&quot;)
+d2=density(mtcars$mpg); plot(d2)</code></pre>
+<p><img src="recurso103_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p><br/> <br/></p>
+<p><br/><br/><br/></p>
+</div>
+<div id="formulario" class="section level2 content-box-blue">
+<h2><strong>Formulario</strong></h2>
+<p><br/></p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="41%" />
+<col width="32%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Estadística</th>
+<th align="left">fórmula</th>
+<th align="left">código R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>centro</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">media aritmética</td>
+<td align="left"><span
+class="math inline">\(\displaystyle\dfrac{1}{n}\sum_{i=1}^{n}
+x_{i}\)</span></td>
+<td align="left"><code>mean(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">mediana</td>
+<td align="left"><span class="math inline">\(Me = P_{50} =
+X_{n+1/2}\)</span></td>
+<td align="left"><code>median(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left">moda</td>
+<td align="left"><span class="math inline">\(Mo\)</span> dato que más se
+repite</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">media truncada</td>
+<td align="left">media calculada con el 90% central de los datos</td>
+<td align="left"><code>mean(x,trim=10/100)</code></td>
+</tr>
+<tr class="even">
+<td align="left">rango medio</td>
+<td align="left"><span
+class="math inline">\(rm=\dfrac{min\{x\}-max\{x\}}{2}\)</span></td>
+<td align="left"><code>max(x)-min(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">media geométrica</td>
+<td align="left"><span class="math inline">\((x_{1} \times x_{2} \times
+x_{3} .... x_{n})^{1/n}\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">media armónica</td>
+<td align="left"><span
+class="math inline">\(\dfrac{n}{\dfrac{1}{x_{1}}+\dfrac{1}{x_{2}}+\dfrac{1}{x_{3}}+...+\dfrac{1}{x_{n}}}\)</span></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>dispersión</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">rango</td>
+<td align="left"><span class="math inline">\(r=
+max\{x\}-min\{x\}\)</span></td>
+<td align="left"><code>max(x)-min(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">varianza</td>
+<td align="left"><span class="math inline">\(s^{2} = \dfrac{1}{n-1}
+\displaystyle\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}\)</span></td>
+<td align="left"><code>var(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left">desviación estandar</td>
+<td align="left"><span class="math inline">\(s =
+\sqrt{s^{2}}\)</span></td>
+<td align="left"><code>sd(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">coeficiente de variación</td>
+<td align="left"><span class="math inline">\(cv= \dfrac{s}{\bar{x}}
+\times 100\)</span> %</td>
+<td align="left"><code>sd(x)/mean(x)*100</code></td>
+</tr>
+<tr class="even">
+<td align="left"><strong>forma</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">coeficiente de curtosis</td>
+<td align="left"><span
+class="math inline">\(\displaystyle\dfrac{Q_{3}-Q_{1}}{P_{90}-P_{10}}\)</span></td>
+<td align="left"><code>rapportools::kurtosis(bpe$promedio)</code></td>
+</tr>
+<tr class="even">
+<td align="left">coeficiente de asimetría</td>
+<td align="left"><span
+class="math inline">\(\displaystyle\dfrac{3(\bar{x}-Me)}{s}\)</span></td>
+<td align="left"><code>rapportools::skewness(bpe$promedio)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">percentil 25</td>
+<td align="left"><span class="math inline">\(X_{n \times
+0.25}\)</span></td>
+<td align="left"><code>quantile(x,0.25)</code></td>
+</tr>
+<tr class="even">
+<td align="left">percentil 50</td>
+<td align="left"><span class="math inline">\(X_{n \times
+0.50}\)</span></td>
+<td align="left"><code>quantile(x,0.50)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">percentil 75</td>
+<td align="left"><span class="math inline">\(X_{n \times
+0.75}\)</span></td>
+<td align="left"><code>quantile(x,0.75)</code></td>
+</tr>
+<tr class="even">
+<td align="left">rango intercuartílico</td>
+<td align="left"><span class="math inline">\(Q_{3}-Q_{1}\)</span></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/> <br/></p>
+<div id="ejemplo" class="section level2">
+<h2><strong>Ejemplo</strong></h2>
+<p><br/> <br/></p>
+<div id="nivel-de-ansiedad" class="section level3">
+<h3><strong>Nivel de ansiedad</strong></h3>
+<table>
+<colgroup>
+<col width="34%" />
+<col width="65%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><img src="img/ansiedad.png" /></td>
+<td align="left">Los siguientes datos corresponden al <strong>nivel de
+ansiedad</strong> de un grupo de estudiantes de la universidad valorada
+antes de la presentación del primer examen parcial. El investigador a
+cargo del proyecto utilizó una prueba para medir el nivel de ansiedad
+que permite puntajes entre 0 y 100. Los valores inferiores a 50 puntos
+se consideran como nivel bajo . Entre 50 y 80 , nivel medio y superiores
+a 80 se consideran altos.</td>
+</tr>
+</tbody>
+</table>
+<p>Otra variable importante en el análisis corresponde a la
+<strong>facultad</strong> a la que pertence el estudiante</p>
+<ol style="list-style-type: decimal">
+<li>Facultad de Ingeniería y Ciencias</li>
+<li>Facultad de Ciencias Económicas y Administrativas</li>
+<li>Facultad de Humanidades</li>
+<li>Facultad de Salud</li>
+</ol>
+<p>Los resultados obtenidos se presenta a continuación :</p>
+<pre class="r"><code>nivans=c(28,33,34,36,38,38,41,41,45,45,46,46,47,47,48,48,49,50,51,51,51,52,53,53,
+         53,54,54,54,55,55,55,56,56,56,57,57,58,60,61,61,61,62,63,64,64,65,65,65,
+         65,65,66,67,67,68,68,68,69,69,69,70,70,71,74,77,77,78,79,79,80,82,85,89,
+         90,96,58,90,77,71,41,55,53,65,57,56,68,56,50,36,70,57,41,62,48,67,33,52,
+         65,67,79,55,34,46,55,56,47,69,61,54,74,47,64,79,85,61,28,46,65,51,49,45,
+         78,96,68,38,77,34,69,69,38,65,63,68,48,53,82,61,51,45,66,65,64,70,89,51,
+         54,53,80,54,60,53)
+
+fac=c(2,1,2,2,4,3,4,2,4,2,4,1,1,1,1,1,1,2,3,3,3,3,1,2,1,2,2,1,1,2,3,2,3,2,2,3,3,
+      1,1,1,2,1,2,2,2,3,1,1,3,1,4,3,1,3,2,1,2,3,4,3,2,3,4,4,1,3,4,4,2,2,1,4,2,1,
+      2,4,1,1,1,3,4,1,1,1,1,1,3,3,3,3,1,1,1,2,2,1,3,1,1,1,3,2,2,2,2,1,2,2,1,3,2,
+      1,2,2,2,4,2,1,3,4,1,1,3,1,2,2,2,1,3,3,1,1,2,2,3,3,3,1,4,3,1,2,4,2,2,1,2,3,
+      2,2)
+
+data=data.frame(fac, nivans) # forma base de datos </code></pre>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="tablas-de-frecuencia-1" class="section level2">
+<h2>Tablas de frecuencia</h2>
+<ul>
+<li>Construya una tabla de frecuencia que le permita establecer las
+frecuencias en cada uno de los rangos descritos y analice los resultados
+obtenidos.</li>
+</ul>
+<p><strong>Primera forma</strong> : Utilizando el paquete
+<code>agricolae</code></p>
+<pre class="r"><code>h2=with(data,graph.freq(nivans,plot=FALSE))
+t2=table.freq(h2);
+colnames(t2) = c(&quot;  LI  &quot;, &quot;  LS  &quot;, &quot;marca clase&#39;&quot;, &quot;Frec.Abs&quot;,&quot;Frec.Rel&quot;, &quot;Frec.Abs.Ac&quot;,&quot;Frec.Rel.Ac&quot;)
+t2</code></pre>
+<pre><code>    LI     LS   marca clase&#39; Frec.Abs Frec.Rel Frec.Abs.Ac Frec.Rel.Ac
+1   28.0   36.5        32.25        9      6.0           9         6.0
+2   36.5   45.0        40.75        8      5.3          17        11.3
+3   45.0   53.5        49.25       35     23.3          52        34.7
+4   53.5   62.0        57.75       32     21.3          84        56.0
+5   62.0   70.5        66.25       40     26.7         124        82.7
+6   70.5   79.0        74.75       10      6.7         134        89.3
+7   79.0   87.5        83.25       10      6.7         144        96.0
+8   87.5   96.0        91.75        6      4.0         150       100.0</code></pre>
+<p><strong>Segunda forma</strong> : utilizando la función
+<code>hist</code></p>
+<pre class="r"><code>h=hist(data$nivans, breaks = c(20,29.99,39.99,49.99,59.99,69.99,79.99,89.99,100), plot=FALSE)
+LI=round(h$breaks[1:8],0) 
+LS=round(h$breaks[2:9],0) 
+ni=h$counts
+hi=h$counts/150
+Ni=cumsum(h$counts)
+Hi=Ni/150
+
+t=data.frame(LI,LS,ni,hi,Ni,Hi)
+t</code></pre>
+<pre><code>  LI  LS ni         hi  Ni         Hi
+1 20  30  2 0.01333333   2 0.01333333
+2 30  40 11 0.07333333  13 0.08666667
+3 40  50 22 0.14666667  35 0.23333333
+4 50  60 41 0.27333333  76 0.50666667
+5 60  70 44 0.29333333 120 0.80000000
+6 70  80 18 0.12000000 138 0.92000000
+7 80  90  8 0.05333333 146 0.97333333
+8 90 100  4 0.02666667 150 1.00000000</code></pre>
+<p><strong>Tercera forma</strong> : utilizando la funciones :
+<code>cut</code> y <code>cbind</code></p>
+<pre class="r"><code>nivans1=cut(data$nivans, breaks = c(20,29.99,39.99,49.99,59.99,69.99,79.99,89.99,100))
+t2=table(nivans1)
+t2=cbind(t2, t2/sum(t2),cumsum(t2), cumsum(t2)/sum(t2))
+colnames(t2)=c(&quot;n&quot;,&quot;h&quot;,&quot;N&quot;,&quot;H&quot;)
+t2</code></pre>
+<pre><code>          n          h   N          H
+(20,30]   2 0.01333333   2 0.01333333
+(30,40]  11 0.07333333  13 0.08666667
+(40,50]  22 0.14666667  35 0.23333333
+(50,60]  41 0.27333333  76 0.50666667
+(60,70]  44 0.29333333 120 0.80000000
+(70,80]  18 0.12000000 138 0.92000000
+(80,90]   8 0.05333333 146 0.97333333
+(90,100]  4 0.02666667 150 1.00000000</code></pre>
+<ul>
+<li>Cálculos las estadísticas descriptivas del nivel de ansiedad y
+describa los resultados en un párrafo</li>
+</ul>
+<pre class="r"><code>summarytools::descr(data$nivans)</code></pre>
+<pre><code>Descriptive Statistics  
+value  
+N: 150  
+
+                     value
+----------------- --------
+             Mean    59.51
+          Std.Dev    14.13
+              Min    28.00
+               Q1    51.00
+           Median    58.00
+               Q3    68.00
+              Max    96.00
+              MAD    14.08
+              IQR    17.00
+               CV     0.24
+         Skewness     0.19
+      SE.Skewness     0.20
+         Kurtosis    -0.20
+          N.Valid   150.00
+        Pct.Valid   100.00</code></pre>
+<p>El grupo observado corresponde a un total de 150 estudiantes de las
+cuatro facultades de la universidad (aun no estaba la Facultad de
+Habitat) y presentan un valor promedio de 59.5 puntos que corresponde a
+un nivel medio. Su coeficiente de variación (24%) muestra un poco de
+heterogeneidad en los valores alcanzados por los estudiantes, mientras
+que su forma se aproxima a una distribución simétrica</p>
+<p><br/><br/></p>
+<p>Tabla de frecuencias para variables cualitativas utilizando del
+paquete <code>summarytools</code> la función <code>freq</code></p>
+<pre class="r"><code>data$fac[data$fac==1]=&quot;Facultad de Ingeniería y Ciencias&quot;
+data$fac[data$fac==2]=&quot;Facultad de Ciencias Económicas y Administrativas&quot;
+data$fac[data$fac==3]=&quot;Facultad de Humanidades&quot;
+data$fac[data$fac==4]=&quot;Facultad de Salud&quot;
+summarytools::freq(data$fac, cumul = FALSE)</code></pre>
+<pre><code>Frequencies  
+
+                                                          Freq   % Valid   % Total
+------------------------------------------------------- ------ --------- ---------
+      Facultad de Ciencias Económicas y Administrativas     48     32.00     32.00
+                                Facultad de Humanidades     34     22.67     22.67
+                      Facultad de Ingeniería y Ciencias     51     34.00     34.00
+                                      Facultad de Salud     17     11.33     11.33
+                                                   &lt;NA&gt;      0                0.00
+                                                  Total    150    100.00    100.00</code></pre>
+<p>Los reultados indican una mayor proporción de estudiantes de la
+Facultad de Ingenieria y Ciencias (34%), mientras que la Facultad de
+Salud la menor (11.3%)</p>
+<p><br/><br/></p>
+</div>
+<div id="video" class="section level2">
+<h2><strong>Video</strong></h2>
+<center>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/dWVs-M7oCh4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</center>
+<p><br/><br/></p>
+<p><img src="img/person-1245959_1920.jpg" width="100%" style="display: block; margin: auto;" /></p>
+<center>
+<sub> Imagen tomada de : <a
+href="https://pixabay.com/es/images/search/paisaje/"
+class="uri">https://pixabay.com/es/images/search/paisaje/</a> </sub>
+</center>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="lo-podemos-lograr" class="section level1">
+<h1><strong>Lo podemos lograr…</strong></h1>
+<div id="daniel-enrique-gonzález-gómez" class="section level4">
+<h4>Daniel Enrique González Gómez</h4>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
