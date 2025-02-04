@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,comment = NA)
-knitr::opts_chunk$set(echo = TRUE,comment = NA)
+
 library(ggplot2)
 library(readr)
 
@@ -104,7 +104,7 @@ cc=c(20, 10, 20, 20, 20, 20, 20, 20, 20, 30, 20, 20, 20, 10, 30, 20, 20, 30, 20,
      20, 30, 30, 30, 10, 30, 20, 20, 20, 20, 20, 20, 10, 20, 30, 30, 10, 10, 10, 
      20, 10, 20, 10, 30, 20, 10, 20, 30, 10, 30, 30, 30, 20, 30, 30, 30, 30, 30, 
      30, 20, 10, 30, 10, 20, 20, 10, 20, 20, 20, 20, 10, 20) 
-labs=c("Ing. Mecánica","Ing. Civil ","Ing.Sistemas") 
+labs=c("Administración de Empresas.","Negocion Internacionales.","Mercadeo") 
 pct=round(table(cc)/sum(table(cc))*100) 
 labs=paste(labs, pct);labs=paste(labs, "%", sep = " ") 
 t1=table(cc)

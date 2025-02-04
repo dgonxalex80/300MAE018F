@@ -90,7 +90,7 @@ Elegir el gráfico adecuado es muy importante pues existen diferentes alternativ
 
 Gráfico de tortas
 
-```{r, fig.height=6}
+```{r }
 a=rep("Cultutal", 360145)
 b=rep("Pastoral", 61496)
 c=rep("Bienestar",49912)
@@ -115,14 +115,14 @@ barplot(ev, col=c("#ff5b00","#dcf600","#7dbd00","#659cef","#2956b2"), main = "Ev
 
 ### **Diagrama de barras dos variables**
 
-```{r, fig.height=5.5}
+```{r }
 counts <- table(mtcars$vs, mtcars$gear); rownames(counts)=c("Montor en linea", "Motor en V")
 barplot(counts, main="Numero de cambios adelante por Tipo de motor",  xlab="Numero de cambios adelante ",col=c(c6,c2),
   legend = rownames(counts))
 ```
 
 
-### **Gráficas variables cuantitativas con R base**
+# **Gráficas variables cuantitativas con R base**
 
 ### **Diagrama de árbol**
 
@@ -135,7 +135,7 @@ Este diagrama ordena los datos de manera que se puede determinar tanto en mínim
 
 ### **Histograma**
 
-```{r, fig.height=5}
+```{r }
 nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
 
 h1 = hist(nf, main = "Nota final matemáticas fundamentales", xlab = "nota", ylab="frecuencias absolutas", labels=TRUE, col=c6, ylim = c(0,30))
@@ -150,7 +150,7 @@ h1
 
 ### **Diagrama de densidad**
 
-```{r, fig.height=5}
+```{r }
 nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
 plot(density(nf), main="Distribucion de las notas de matematias fundamentales", col=c6, lwd=2)
 ```
@@ -202,7 +202,7 @@ plot(AirPassengers, main="Numero de pasajeros por mes", col=c6, lwd = 2)
 
 ### **Resumen**
 
-```{r, eval=FALSE}
+```{r}
 x=rnorm(100,100,20)
 y=rnorm(100,100,25)
 z=rbinom(100,4,0.30)
@@ -223,7 +223,7 @@ par(mfrow=c(1, 1))
 <br/><br/>
 
 
-## **Gráficos con ggplot2**
+# **Gráficos con ggplot2**
 
 ![](img/ge_themes.png)
 
@@ -248,12 +248,7 @@ par(mfrow=c(1, 1))
 <br/><br/>
 
 
-[Visualizacion de datos con ggplot2](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
-
-</br></br>
-
-
-### Primer paso instalar y cargar la libreria
+### Primer paso:  **Instalar y cargar la libreria**
 
 ```{r, eval=FALSE}
 # Instalar ggplot2 si no lo tienes
@@ -263,11 +258,18 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
+<pre>
+# Instalar ggplot2 si no lo tienes
+install.packages("ggplot2")
 
+# Cargar la librería ggplot2
+library(ggplot2)
+
+</pre>
 
 </br></br>
 
-### Segundo paso : declarar la base de datos y las varibles
+### Segundo paso : **Declarar la base de datos y las varibles**
 
 
 ```{r,fig.height=5}
@@ -280,7 +282,7 @@ p
 
 </br></br>
 
-### Cuarto paso : crear grafico base
+### Tercer paso : **Crear grafico base** con las diferentes geometrías
 
 ```{r,fig.height=5}
 p <- p + geom_point()  
@@ -299,7 +301,7 @@ p
 </br></br>
 
 
-### Quinto paso : agregar caracteristicas adicionales
+### Cuarto paso : **Agregar caracteristicas adicionales**
 
 ```{r,fig.height=5}
 p <- ggplot(mtcars, aes(x = wt, y = mpg, color = cyl)) +
@@ -313,16 +315,15 @@ p
 </br></br>
 
 
-### Paso sexto : agregar títilo,  etiquetas a los ejes  leyenda aclararoria
+### Quinto paso :  **Agregar títilo,  etiquetas a los ejes  leyenda aclararoria**
 
 ```{r, message=FALSE, warning=FALSE,fig.height=5}
-p <- p + labs(
-  title = "Relación entre Peso del Auto y Consumo de Combustible",
-  subtitle = "Clasificación por número de cilindros",
-  x = "Peso del Auto (1000 lbs)",
-  y = "Millas por Galón (mpg)",
-  color = "Cilindros"
-)
+p <- p + labs(title = "Relación entre Peso del Auto y Consumo de Combustible",
+              subtitle = "Clasificación por número de cilindros",
+              x = "Peso del Auto (1000 lbs)",
+              y = "Millas por Galón (mpg)",
+              color = "Cilindros"
+              )
 p
 ```
 
@@ -330,7 +331,7 @@ p
 
 </br></br>
 
-### Septimo paso : agregar una línea de tendencia
+### Sexto paso : **Agregar una línea de tendencia**
 
 ```{r, message=FALSE, warning=FALSE,fig.height=5}
 p <- p + geom_smooth(method = "lm", se = FALSE, linetype = "dashed", color = "black")
@@ -339,7 +340,7 @@ p
 
 </br></br>
 
-### Octavo paso : agreagar un tema o fondo
+### Septimo paso : **Agreagar un tema o fondo**
 
 ```{r}
 p <- p + theme_minimal(base_size = 14)
@@ -350,7 +351,7 @@ p
 
 </br></br>
 
-### Noveno paso : ajustar la escala de colores
+### Octavo paso : **Ajustar la escala de colores**
 
 ```{r}
 library(ggplot2)
@@ -384,7 +385,8 @@ p
 
 ```{r, fig.height=5}
 library(ggplot2)
-data=data.frame(carrera=c("biologia","biomedica","civil","electronica","mecanica",  "sistemas"),frecuencia=c(8, 9,10,2, 3,7))
+data=data.frame(carrera=c("Mercadeo","Finansas","Administración de Emp.","Negocios Int."),
+                frecuencia=c(8, 9,10,17))
 
 ggplot(data, aes(x=carrera, y=frecuencia)) +
   geom_bar(stat="identity", fill="#203c3d")+
@@ -408,7 +410,7 @@ ggplot(iris, aes(Sepal.Length)) +
 
 </br></br>
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, fig.height=4}
 ggplot(iris, aes(x=Sepal.Length, y=Species)) +
   geom_boxplot(fill=c("#faf0ca","#f4d35e","#ee964d"),  # color de relleno
                color="#0d3b66",    # color de lineas
@@ -418,9 +420,9 @@ ggplot(iris, aes(x=Sepal.Length, y=Species)) +
 
 </br></br>
 
-## **Gráficos con plotly**
+# **Gráficos con plotly**
 
-```{r, message=FALSE, warning=FALSE}
+```{r, eval=FALSE}
 # Instalar paquetes si es necesario
 # install.packages("plotly")
 
@@ -460,14 +462,18 @@ p_interactivo
 
 ```
 
-</br></br>
+https://gganimate.com/
 
 
-## **Graficos con highcharter**
+[Anàlisis de datos con R Cap,7 ggplot2](https://rafalab.github.io/dslibro/ggplot2.html)<br/>
+[ggplot2 resumen](https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf)
+
+
+# **Graficos con highcharter**
 
 
 
-```{r, message=FALSE, warning=FALSE}
+```{r}
 # Instalar paquetes si es necesario
 # install.packages("highcharter")
 # install.packages("dplyr")
@@ -504,7 +510,7 @@ hchart(mtcars, "scatter", hcaes(x = wt, y = mpg, group = cyl, name = modelo)) %>
 
 </br></br>
 
-## **Graficos con Shiny**
+# **Graficos con Shiny**
 
 
 + [Genoma humano](https://shiny.rstudio.com/gallery/genome-browser.html)
@@ -515,7 +521,7 @@ hchart(mtcars, "scatter", hcaes(x = wt, y = mpg, group = cyl, name = modelo)) %>
 
 </br></br>
 
-### **RMarkdown**
+# **RMarkdown**
 
 [RMarkdown resumen](https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)<br/>
 
@@ -525,7 +531,7 @@ hchart(mtcars, "scatter", hcaes(x = wt, y = mpg, group = cyl, name = modelo)) %>
 
 <br/><br/>
 
-### **Estética en la visualización**
+# **Estética en la visualización**
 
 
 La **estética** juega un papel fundamental en la visualización de datos, ya que ayuda a hacer que la información sea más comprensible y atractiva para el espectador. Entre las diferentes formas de estética utilizadas en la visualización, se encuentran:
@@ -595,6 +601,97 @@ knitr::include_graphics("img/paleta2.png")
 knitr::include_graphics("img/paleta3.png")
 ```
 
+
+</br></br>
+
+# **Normas EEEE**
+
+
+Las normas **EEEE** para la construcción de gráficos son principios fundamentales en la visualización de datos que garantizan claridad, precisión y eficacia en la comunicación. Estas normas son:
+
+</br></br>
+
+#### **Eficiencia**:
+
+El gráfico debe transmitir la información de manera rápida y clara.
+Evita decoraciones innecesarias (chartjunk).
+Usa escalas adecuadas para facilitar la interpretación.
+
+</br></br>
+
+#### **Eficacia**:
+
+El gráfico debe cumplir con su propósito comunicativo.
+Elige el tipo de gráfico más adecuado para los datos (barras, líneas, dispersión, etc.).
+Usa etiquetas, títulos y leyendas para orientar al lector.
+
+</br></br>
+
+#### **Exactitud**:
+
+Representa los datos de forma fiel y sin distorsiones.
+Usa escalas proporcionales y evita manipulaciones visuales que alteren la percepción.
+Si se usan porcentajes, asegúrate de que la suma sea 100%.
+
+</br></br>
+
+#### **Estética**:
+
+El diseño debe ser limpio y atractivo sin afectar la legibilidad.
+Usa colores adecuados con suficiente contraste.
+Mantén coherencia en los estilos y fuentes.
+Siguiendo estas normas, se logra que los gráficos sean interpretados correctamente y comuniquen la información de manera efectiva
+
+
+</br></br>
+
+```{r}
+ggplot(cars, aes(x = speed)) +
+  geom_histogram(fill = "steelblue", bins = 10, color = "black", alpha = 0.7) +
+  labs(
+    title = "Distribución de la Velocidad de los Automóviles",
+    x = "Velocidad (mph)",
+    y = "Frecuencia",
+    caption = "Fuente: Base de Datos 'cars' de R"
+  ) +
+  theme_minimal()
+```
+
+</br></br>
+
+```{r, warning=FALSE, message=FALSE}
+library(highcharter)
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = "darkred", size = 2, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "black", linetype = "dashed") +
+  labs(
+    title = "Relación entre Velocidad y Distancia de Frenado",
+    x = "Velocidad (mph)",
+    y = "Distancia de Frenado (ft)",
+    caption = "Fuente: Base de Datos 'cars' de R"
+  ) +
+  theme_minimal()
+
+```
+
+
+</br></br>
+
+
+# Video  - **tablero con R flexdashboard**
+
+
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XnXD5ZkUu-s?si=TnqoLtiFK2Eab13F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+</center>
+
+
+
+
+</br></br>
+
+
 ![](img/pujcali.jpeg)
 
 </br></br>
@@ -604,4 +701,5 @@ knitr::include_graphics("img/paleta3.png")
 Daniel Enrique González Gómez 
 
 Imagen tomada de :https://javerianacali.edu.co/noticias/la-javeriana-bogota-y-cali-1-de-colombia
+
 

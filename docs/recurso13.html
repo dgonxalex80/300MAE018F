@@ -36,12 +36,6 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
 <script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
-<script src="site_libs/plotly-binding-4.10.4/plotly.js"></script>
-<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
-<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <script src="site_libs/proj4js-2.3.15/proj4.js"></script>
 <link href="site_libs/highcharts-9.3.1/css/motion.css" rel="stylesheet" />
 <script src="site_libs/highcharts-9.3.1/highcharts.js"></script>
@@ -633,10 +627,10 @@ barplot(counts, main=&quot;Numero de cambios adelante por Tipo de motor&quot;,  
   legend = rownames(counts))</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 </div>
-<div id="gráficas-variables-cuantitativas-con-r-base"
-class="section level3">
-<h3><strong>Gráficas variables cuantitativas con R base</strong></h3>
 </div>
+<div id="gráficas-variables-cuantitativas-con-r-base"
+class="section level1">
+<h1><strong>Gráficas variables cuantitativas con R base</strong></h1>
 <div id="diagrama-de-árbol" class="section level3">
 <h3><strong>Diagrama de árbol</strong></h3>
 <pre class="r"><code>nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
@@ -734,18 +728,30 @@ t=1:100
 par(mfrow=c(2, 2))
 pie(table(z))
 barplot(table(z))
-stem(x)
-hist(x)
-boxplot(x)
-plot(x,y)
+stem(x)</code></pre>
+<pre><code>
+  The decimal point is 1 digit(s) to the right of the |
+
+   4 | 489
+   6 | 3467781667778
+   8 | 11222333334677990000223333566778899
+  10 | 000111123344677888880112233344456678899
+  12 | 2346796
+  14 | 58
+  16 | 8</code></pre>
+<pre class="r"><code>hist(x)
+boxplot(x)</code></pre>
+<p><img src="recurso13_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<pre class="r"><code>plot(x,y)
 plot(t,y, type=&quot;l&quot;)
 plot(density(x))
 par(mfrow=c(1, 1))</code></pre>
+<p><img src="recurso13_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 <p><br/><br/></p>
 </div>
 </div>
-<div id="gráficos-con-ggplot2" class="section level2">
-<h2><strong>Gráficos con ggplot2</strong></h2>
+<div id="gráficos-con-ggplot2" class="section level1">
+<h1><strong>Gráficos con ggplot2</strong></h1>
 <p><img src="img/ge_themes.png" /></p>
 <ul>
 <li><p><strong>Data</strong>: capa de los datos</p></li>
@@ -764,30 +770,37 @@ ajustar las escalas de los ejes</p></li>
 no dependen de los datos</p></li>
 </ul>
 <p><br/><br/></p>
-<p><a
-href="https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">Visualizacion
-de datos con ggplot2</a></p>
-<p></br></br></p>
 <div id="primer-paso-instalar-y-cargar-la-libreria"
 class="section level3">
-<h3>Primer paso instalar y cargar la libreria</h3>
+<h3>Primer paso: <strong>Instalar y cargar la libreria</strong></h3>
 <pre class="r"><code># Instalar ggplot2 si no lo tienes
 install.packages(&quot;ggplot2&quot;)
 
 # Cargar la librería ggplot2
 library(ggplot2)</code></pre>
+<pre>
+# Instalar ggplot2 si no lo tienes
+install.packages("ggplot2")
+
+# Cargar la librería ggplot2
+library(ggplot2)
+
+</pre>
 <p></br></br></p>
 </div>
 <div id="segundo-paso-declarar-la-base-de-datos-y-las-varibles"
 class="section level3">
-<h3>Segundo paso : declarar la base de datos y las varibles</h3>
+<h3>Segundo paso : <strong>Declarar la base de datos y las
+varibles</strong></h3>
 <pre class="r"><code>p &lt;- ggplot(mtcars, aes(x = wt, y = mpg))
 p</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p></br></br></p>
 </div>
-<div id="cuarto-paso-crear-grafico-base" class="section level3">
-<h3>Cuarto paso : crear grafico base</h3>
+<div id="tercer-paso-crear-grafico-base-con-las-diferentes-geometrías"
+class="section level3">
+<h3>Tercer paso : <strong>Crear grafico base</strong> con las diferentes
+geometrías</h3>
 <pre class="r"><code>p &lt;- p + geom_point()  
 p</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
@@ -822,9 +835,10 @@ p</code></pre>
 </table>
 <p></br></br></p>
 </div>
-<div id="quinto-paso-agregar-caracteristicas-adicionales"
+<div id="cuarto-paso-agregar-caracteristicas-adicionales"
 class="section level3">
-<h3>Quinto paso : agregar caracteristicas adicionales</h3>
+<h3>Cuarto paso : <strong>Agregar caracteristicas
+adicionales</strong></h3>
 <pre class="r"><code>p &lt;- ggplot(mtcars, aes(x = wt, y = mpg, color = cyl)) +
           geom_point(size = 2, alpha = 0.7)  # Tamaño y transparencia de los puntos
 p</code></pre>
@@ -832,40 +846,39 @@ p</code></pre>
 <p></br></br></p>
 </div>
 <div
-id="paso-sexto-agregar-títilo-etiquetas-a-los-ejes-leyenda-aclararoria"
+id="quinto-paso-agregar-títilo-etiquetas-a-los-ejes-leyenda-aclararoria"
 class="section level3">
-<h3>Paso sexto : agregar títilo, etiquetas a los ejes leyenda
-aclararoria</h3>
-<pre class="r"><code>p &lt;- p + labs(
-  title = &quot;Relación entre Peso del Auto y Consumo de Combustible&quot;,
-  subtitle = &quot;Clasificación por número de cilindros&quot;,
-  x = &quot;Peso del Auto (1000 lbs)&quot;,
-  y = &quot;Millas por Galón (mpg)&quot;,
-  color = &quot;Cilindros&quot;
-)
+<h3>Quinto paso : <strong>Agregar títilo, etiquetas a los ejes leyenda
+aclararoria</strong></h3>
+<pre class="r"><code>p &lt;- p + labs(title = &quot;Relación entre Peso del Auto y Consumo de Combustible&quot;,
+              subtitle = &quot;Clasificación por número de cilindros&quot;,
+              x = &quot;Peso del Auto (1000 lbs)&quot;,
+              y = &quot;Millas por Galón (mpg)&quot;,
+              color = &quot;Cilindros&quot;
+              )
 p</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p></br></br></p>
 </div>
-<div id="septimo-paso-agregar-una-línea-de-tendencia"
+<div id="sexto-paso-agregar-una-línea-de-tendencia"
 class="section level3">
-<h3>Septimo paso : agregar una línea de tendencia</h3>
+<h3>Sexto paso : <strong>Agregar una línea de tendencia</strong></h3>
 <pre class="r"><code>p &lt;- p + geom_smooth(method = &quot;lm&quot;, se = FALSE, linetype = &quot;dashed&quot;, color = &quot;black&quot;)
 p</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p></br></br></p>
 </div>
-<div id="octavo-paso-agreagar-un-tema-o-fondo" class="section level3">
-<h3>Octavo paso : agreagar un tema o fondo</h3>
+<div id="septimo-paso-agreagar-un-tema-o-fondo" class="section level3">
+<h3>Septimo paso : <strong>Agreagar un tema o fondo</strong></h3>
 <pre class="r"><code>p &lt;- p + theme_minimal(base_size = 14)
 p</code></pre>
 <pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p></br></br></p>
 </div>
-<div id="noveno-paso-ajustar-la-escala-de-colores"
+<div id="octavo-paso-ajustar-la-escala-de-colores"
 class="section level3">
-<h3>Noveno paso : ajustar la escala de colores</h3>
+<h3>Octavo paso : <strong>Ajustar la escala de colores</strong></h3>
 <pre class="r"><code>library(ggplot2)
 
 # Asegurar que cyl es un factor
@@ -889,11 +902,11 @@ p</code></pre>
 <p><img src="recurso13_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p></br></br></p>
 </div>
-</div>
 <div id="otros-gráficos" class="section level2">
 <h2>Otros gráficos</h2>
 <pre class="r"><code>library(ggplot2)
-data=data.frame(carrera=c(&quot;biologia&quot;,&quot;biomedica&quot;,&quot;civil&quot;,&quot;electronica&quot;,&quot;mecanica&quot;,  &quot;sistemas&quot;),frecuencia=c(8, 9,10,2, 3,7))
+data=data.frame(carrera=c(&quot;Mercadeo&quot;,&quot;Finansas&quot;,&quot;Administración de Emp.&quot;,&quot;Negocios Int.&quot;),
+                frecuencia=c(8, 9,10,17))
 
 ggplot(data, aes(x=carrera, y=frecuencia)) +
   geom_bar(stat=&quot;identity&quot;, fill=&quot;#203c3d&quot;)+
@@ -916,8 +929,9 @@ ggplot(data, aes(x=carrera, y=frecuencia)) +
 <p><img src="recurso13_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p></br></br></p>
 </div>
-<div id="gráficos-con-plotly" class="section level2">
-<h2><strong>Gráficos con plotly</strong></h2>
+</div>
+<div id="gráficos-con-plotly" class="section level1">
+<h1><strong>Gráficos con plotly</strong></h1>
 <pre class="r"><code># Instalar paquetes si es necesario
 # install.packages(&quot;plotly&quot;)
 
@@ -954,19 +968,27 @@ p_interactivo &lt;- ggplotly(p, tooltip = &quot;text&quot;)
 
 # Mostrar el gráfico interactivo
 p_interactivo</code></pre>
-<div class="plotly html-widget html-fill-item" id="htmlwidget-9e072f3542f0aab1a564" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-9e072f3542f0aab1a564">{"x":{"data":[{"x":[2.3199999999999998,3.1899999999999999,3.1499999999999999,2.2000000000000002,1.615,1.835,2.4649999999999999,1.9350000000000001,2.1400000000000001,1.5129999999999999,2.7799999999999998],"y":[22.800000000000001,24.399999999999999,22.800000000000001,32.399999999999999,30.399999999999999,33.899999999999999,21.5,27.300000000000001,26,30.399999999999999,21.399999999999999],"text":["Modelo: Datsun 710 <br> Peso (wt): 2.32 <br> Millas por Galón (mpg): 22.8 <br> Cilindros: 4","Modelo: Merc 240D <br> Peso (wt): 3.19 <br> Millas por Galón (mpg): 24.4 <br> Cilindros: 4","Modelo: Merc 230 <br> Peso (wt): 3.15 <br> Millas por Galón (mpg): 22.8 <br> Cilindros: 4","Modelo: Fiat 128 <br> Peso (wt): 2.2 <br> Millas por Galón (mpg): 32.4 <br> Cilindros: 4","Modelo: Honda Civic <br> Peso (wt): 1.615 <br> Millas por Galón (mpg): 30.4 <br> Cilindros: 4","Modelo: Toyota Corolla <br> Peso (wt): 1.835 <br> Millas por Galón (mpg): 33.9 <br> Cilindros: 4","Modelo: Toyota Corona <br> Peso (wt): 2.465 <br> Millas por Galón (mpg): 21.5 <br> Cilindros: 4","Modelo: Fiat X1-9 <br> Peso (wt): 1.935 <br> Millas por Galón (mpg): 27.3 <br> Cilindros: 4","Modelo: Porsche 914-2 <br> Peso (wt): 2.14 <br> Millas por Galón (mpg): 26 <br> Cilindros: 4","Modelo: Lotus Europa <br> Peso (wt): 1.513 <br> Millas por Galón (mpg): 30.4 <br> Cilindros: 4","Modelo: Volvo 142E <br> Peso (wt): 2.78 <br> Millas por Galón (mpg): 21.4 <br> Cilindros: 4"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(228,26,28,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(228,26,28,1)"}},"hoveron":"points","name":"4","legendgroup":"4","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2.6200000000000001,2.875,3.2149999999999999,3.46,3.4399999999999999,3.4399999999999999,2.77],"y":[21,21,21.399999999999999,18.100000000000001,19.199999999999999,17.800000000000001,19.699999999999999],"text":["Modelo: Mazda RX4 <br> Peso (wt): 2.62 <br> Millas por Galón (mpg): 21 <br> Cilindros: 6","Modelo: Mazda RX4 Wag <br> Peso (wt): 2.875 <br> Millas por Galón (mpg): 21 <br> Cilindros: 6","Modelo: Hornet 4 Drive <br> Peso (wt): 3.215 <br> Millas por Galón (mpg): 21.4 <br> Cilindros: 6","Modelo: Valiant <br> Peso (wt): 3.46 <br> Millas por Galón (mpg): 18.1 <br> Cilindros: 6","Modelo: Merc 280 <br> Peso (wt): 3.44 <br> Millas por Galón (mpg): 19.2 <br> Cilindros: 6","Modelo: Merc 280C <br> Peso (wt): 3.44 <br> Millas por Galón (mpg): 17.8 <br> Cilindros: 6","Modelo: Ferrari Dino <br> Peso (wt): 2.77 <br> Millas por Galón (mpg): 19.7 <br> Cilindros: 6"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(55,126,184,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(55,126,184,1)"}},"hoveron":"points","name":"6","legendgroup":"6","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3.4399999999999999,3.5699999999999998,4.0700000000000003,3.73,3.7799999999999998,5.25,5.4240000000000004,5.3449999999999998,3.52,3.4350000000000001,3.8399999999999999,3.8450000000000002,3.1699999999999999,3.5699999999999998],"y":[18.699999999999999,14.300000000000001,16.399999999999999,17.300000000000001,15.199999999999999,10.4,10.4,14.699999999999999,15.5,15.199999999999999,13.300000000000001,19.199999999999999,15.800000000000001,15],"text":["Modelo: Hornet Sportabout <br> Peso (wt): 3.44 <br> Millas por Galón (mpg): 18.7 <br> Cilindros: 8","Modelo: Duster 360 <br> Peso (wt): 3.57 <br> Millas por Galón (mpg): 14.3 <br> Cilindros: 8","Modelo: Merc 450SE <br> Peso (wt): 4.07 <br> Millas por Galón (mpg): 16.4 <br> Cilindros: 8","Modelo: Merc 450SL <br> Peso (wt): 3.73 <br> Millas por Galón (mpg): 17.3 <br> Cilindros: 8","Modelo: Merc 450SLC <br> Peso (wt): 3.78 <br> Millas por Galón (mpg): 15.2 <br> Cilindros: 8","Modelo: Cadillac Fleetwood <br> Peso (wt): 5.25 <br> Millas por Galón (mpg): 10.4 <br> Cilindros: 8","Modelo: Lincoln Continental <br> Peso (wt): 5.424 <br> Millas por Galón (mpg): 10.4 <br> Cilindros: 8","Modelo: Chrysler Imperial <br> Peso (wt): 5.345 <br> Millas por Galón (mpg): 14.7 <br> Cilindros: 8","Modelo: Dodge Challenger <br> Peso (wt): 3.52 <br> Millas por Galón (mpg): 15.5 <br> Cilindros: 8","Modelo: AMC Javelin <br> Peso (wt): 3.435 <br> Millas por Galón (mpg): 15.2 <br> Cilindros: 8","Modelo: Camaro Z28 <br> Peso (wt): 3.84 <br> Millas por Galón (mpg): 13.3 <br> Cilindros: 8","Modelo: Pontiac Firebird <br> Peso (wt): 3.845 <br> Millas por Galón (mpg): 19.2 <br> Cilindros: 8","Modelo: Ford Pantera L <br> Peso (wt): 3.17 <br> Millas por Galón (mpg): 15.8 <br> Cilindros: 8","Modelo: Maserati Bora <br> Peso (wt): 3.57 <br> Millas por Galón (mpg): 15 <br> Cilindros: 8"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(77,175,74,1)","opacity":0.69999999999999996,"size":7.559055118110237,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(77,175,74,1)"}},"hoveron":"points","name":"8","legendgroup":"8","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":51.334163553341632,"r":9.2984640929846396,"b":51.141552511415526,"l":47.422166874221674},"font":{"color":"rgba(0,0,0,1)","family":"","size":18.596928185969279},"title":{"text":"Relación entre Peso y Consumo de Combustible","font":{"color":"rgba(0,0,0,1)","family":"","size":22.316313823163139},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[1.3174499999999998,5.6195500000000003],"tickmode":"array","ticktext":["2","3","4","5"],"tickvals":[2,3,4,5],"categoryorder":"array","categoryarray":["2","3","4","5"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.6492320464923198,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":14.877542548775427},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.8453149175440583,"zeroline":false,"anchor":"y","title":{"text":"Peso del Auto (1000 lbs)","font":{"color":"rgba(0,0,0,1)","family":"","size":18.596928185969279}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[9.2249999999999996,35.074999999999996],"tickmode":"array","ticktext":["10","15","20","25","30","35"],"tickvals":[10,15,20,25,30,35],"categoryorder":"array","categoryarray":["10","15","20","25","30","35"],"nticks":null,"ticks":"","tickcolor":null,"ticklen":4.6492320464923198,"tickwidth":0,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":14.87754254877543},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.8453149175440583,"zeroline":false,"anchor":"x","title":{"text":"Millas por Galón (mpg)","font":{"color":"rgba(0,0,0,1)","family":"","size":18.596928185969279}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":null,"bordercolor":null,"borderwidth":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.877542548775427},"title":{"text":"Cilindros","font":{"color":"rgba(0,0,0,1)","family":"","size":18.596928185969279}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"42353622c211":{"x":{},"y":{},"colour":{},"text":{},"type":"scatter"}},"cur_data":"42353622c211","visdat":{"42353622c211":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
-<p></br></br></p>
+<p><a href="https://gganimate.com/"
+class="uri">https://gganimate.com/</a></p>
+<p><a href="https://rafalab.github.io/dslibro/ggplot2.html">Anàlisis de
+datos con R Cap,7 ggplot2</a><br/> <a
+href="https://rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf">ggplot2
+resumen</a></p>
 </div>
-<div id="graficos-con-highcharter" class="section level2">
-<h2><strong>Graficos con highcharter</strong></h2>
+<div id="graficos-con-highcharter" class="section level1">
+<h1><strong>Graficos con highcharter</strong></h1>
 <pre class="r"><code># Instalar paquetes si es necesario
 # install.packages(&quot;highcharter&quot;)
 # install.packages(&quot;dplyr&quot;)
 
 # Cargar librerías necesarias
-library(highcharter)
-library(dplyr)
+library(highcharter)</code></pre>
+<pre><code>Registered S3 method overwritten by &#39;quantmod&#39;:
+  method            from
+  as.zoo.data.frame zoo </code></pre>
+<pre><code>Highcharts (www.highcharts.com) is a Highsoft software product which is</code></pre>
+<pre><code>not free for commercial and Governmental use</code></pre>
+<pre class="r"><code>library(dplyr)
 
 # Convertir &#39;cyl&#39; a factor para diferenciar los colores
 mtcars &lt;- mtcars %&gt;%
@@ -989,12 +1011,12 @@ hchart(mtcars, &quot;scatter&quot;, hcaes(x = wt, y = mpg, group = cyl, name = m
                    &lt;b&gt;Cilindros:&lt;/b&gt; {point.group}&quot;
   ) %&gt;%
   hc_chart(zoomType = &quot;xy&quot;)</code></pre>
-<div class="highchart html-widget html-fill-item" id="htmlwidget-de79173d88528b7baaa1" style="width:672px;height:480px;"></div>
-<script type="application/json" data-for="htmlwidget-de79173d88528b7baaa1">{"x":{"hc_opts":{"chart":{"reflow":true,"zoomType":"xy"},"title":{"text":"Relación entre Peso y Consumo de Combustible"},"yAxis":{"title":{"text":"Millas por Galón (mpg)"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"4","data":[{"mpg":22.8,"cyl":"4","disp":108,"hp":93,"drat":3.85,"wt":2.32,"qsec":18.61,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Datsun 710","x":2.32,"y":22.8,"name":"Datsun 710"},{"mpg":24.4,"cyl":"4","disp":146.7,"hp":62,"drat":3.69,"wt":3.19,"qsec":20,"vs":1,"am":0,"gear":4,"carb":2,"modelo":"Merc 240D","x":3.19,"y":24.4,"name":"Merc 240D"},{"mpg":22.8,"cyl":"4","disp":140.8,"hp":95,"drat":3.92,"wt":3.15,"qsec":22.9,"vs":1,"am":0,"gear":4,"carb":2,"modelo":"Merc 230","x":3.15,"y":22.8,"name":"Merc 230"},{"mpg":32.4,"cyl":"4","disp":78.7,"hp":66,"drat":4.08,"wt":2.2,"qsec":19.47,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Fiat 128","x":2.2,"y":32.4,"name":"Fiat 128"},{"mpg":30.4,"cyl":"4","disp":75.7,"hp":52,"drat":4.93,"wt":1.615,"qsec":18.52,"vs":1,"am":1,"gear":4,"carb":2,"modelo":"Honda Civic","x":1.615,"y":30.4,"name":"Honda Civic"},{"mpg":33.9,"cyl":"4","disp":71.09999999999999,"hp":65,"drat":4.22,"wt":1.835,"qsec":19.9,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Toyota Corolla","x":1.835,"y":33.9,"name":"Toyota Corolla"},{"mpg":21.5,"cyl":"4","disp":120.1,"hp":97,"drat":3.7,"wt":2.465,"qsec":20.01,"vs":1,"am":0,"gear":3,"carb":1,"modelo":"Toyota Corona","x":2.465,"y":21.5,"name":"Toyota Corona"},{"mpg":27.3,"cyl":"4","disp":79,"hp":66,"drat":4.08,"wt":1.935,"qsec":18.9,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Fiat X1-9","x":1.935,"y":27.3,"name":"Fiat X1-9"},{"mpg":26,"cyl":"4","disp":120.3,"hp":91,"drat":4.43,"wt":2.14,"qsec":16.7,"vs":0,"am":1,"gear":5,"carb":2,"modelo":"Porsche 914-2","x":2.14,"y":26,"name":"Porsche 914-2"},{"mpg":30.4,"cyl":"4","disp":95.09999999999999,"hp":113,"drat":3.77,"wt":1.513,"qsec":16.9,"vs":1,"am":1,"gear":5,"carb":2,"modelo":"Lotus Europa","x":1.513,"y":30.4,"name":"Lotus Europa"},{"mpg":21.4,"cyl":"4","disp":121,"hp":109,"drat":4.11,"wt":2.78,"qsec":18.6,"vs":1,"am":1,"gear":4,"carb":2,"modelo":"Volvo 142E","x":2.78,"y":21.4,"name":"Volvo 142E"}],"type":"scatter"},{"name":"6","data":[{"mpg":21,"cyl":"6","disp":160,"hp":110,"drat":3.9,"wt":2.62,"qsec":16.46,"vs":0,"am":1,"gear":4,"carb":4,"modelo":"Mazda RX4","x":2.62,"y":21,"name":"Mazda RX4"},{"mpg":21,"cyl":"6","disp":160,"hp":110,"drat":3.9,"wt":2.875,"qsec":17.02,"vs":0,"am":1,"gear":4,"carb":4,"modelo":"Mazda RX4 Wag","x":2.875,"y":21,"name":"Mazda RX4 Wag"},{"mpg":21.4,"cyl":"6","disp":258,"hp":110,"drat":3.08,"wt":3.215,"qsec":19.44,"vs":1,"am":0,"gear":3,"carb":1,"modelo":"Hornet 4 Drive","x":3.215,"y":21.4,"name":"Hornet 4 Drive"},{"mpg":18.1,"cyl":"6","disp":225,"hp":105,"drat":2.76,"wt":3.46,"qsec":20.22,"vs":1,"am":0,"gear":3,"carb":1,"modelo":"Valiant","x":3.46,"y":18.1,"name":"Valiant"},{"mpg":19.2,"cyl":"6","disp":167.6,"hp":123,"drat":3.92,"wt":3.44,"qsec":18.3,"vs":1,"am":0,"gear":4,"carb":4,"modelo":"Merc 280","x":3.44,"y":19.2,"name":"Merc 280"},{"mpg":17.8,"cyl":"6","disp":167.6,"hp":123,"drat":3.92,"wt":3.44,"qsec":18.9,"vs":1,"am":0,"gear":4,"carb":4,"modelo":"Merc 280C","x":3.44,"y":17.8,"name":"Merc 280C"},{"mpg":19.7,"cyl":"6","disp":145,"hp":175,"drat":3.62,"wt":2.77,"qsec":15.5,"vs":0,"am":1,"gear":5,"carb":6,"modelo":"Ferrari Dino","x":2.77,"y":19.7,"name":"Ferrari Dino"}],"type":"scatter"},{"name":"8","data":[{"mpg":18.7,"cyl":"8","disp":360,"hp":175,"drat":3.15,"wt":3.44,"qsec":17.02,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"Hornet Sportabout","x":3.44,"y":18.7,"name":"Hornet Sportabout"},{"mpg":14.3,"cyl":"8","disp":360,"hp":245,"drat":3.21,"wt":3.57,"qsec":15.84,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Duster 360","x":3.57,"y":14.3,"name":"Duster 360"},{"mpg":16.4,"cyl":"8","disp":275.8,"hp":180,"drat":3.07,"wt":4.07,"qsec":17.4,"vs":0,"am":0,"gear":3,"carb":3,"modelo":"Merc 450SE","x":4.07,"y":16.4,"name":"Merc 450SE"},{"mpg":17.3,"cyl":"8","disp":275.8,"hp":180,"drat":3.07,"wt":3.73,"qsec":17.6,"vs":0,"am":0,"gear":3,"carb":3,"modelo":"Merc 450SL","x":3.73,"y":17.3,"name":"Merc 450SL"},{"mpg":15.2,"cyl":"8","disp":275.8,"hp":180,"drat":3.07,"wt":3.78,"qsec":18,"vs":0,"am":0,"gear":3,"carb":3,"modelo":"Merc 450SLC","x":3.78,"y":15.2,"name":"Merc 450SLC"},{"mpg":10.4,"cyl":"8","disp":472,"hp":205,"drat":2.93,"wt":5.25,"qsec":17.98,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Cadillac Fleetwood","x":5.25,"y":10.4,"name":"Cadillac Fleetwood"},{"mpg":10.4,"cyl":"8","disp":460,"hp":215,"drat":3,"wt":5.424,"qsec":17.82,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Lincoln Continental","x":5.424,"y":10.4,"name":"Lincoln Continental"},{"mpg":14.7,"cyl":"8","disp":440,"hp":230,"drat":3.23,"wt":5.345,"qsec":17.42,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Chrysler Imperial","x":5.345,"y":14.7,"name":"Chrysler Imperial"},{"mpg":15.5,"cyl":"8","disp":318,"hp":150,"drat":2.76,"wt":3.52,"qsec":16.87,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"Dodge Challenger","x":3.52,"y":15.5,"name":"Dodge Challenger"},{"mpg":15.2,"cyl":"8","disp":304,"hp":150,"drat":3.15,"wt":3.435,"qsec":17.3,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"AMC Javelin","x":3.435,"y":15.2,"name":"AMC Javelin"},{"mpg":13.3,"cyl":"8","disp":350,"hp":245,"drat":3.73,"wt":3.84,"qsec":15.41,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Camaro Z28","x":3.84,"y":13.3,"name":"Camaro Z28"},{"mpg":19.2,"cyl":"8","disp":400,"hp":175,"drat":3.08,"wt":3.845,"qsec":17.05,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"Pontiac Firebird","x":3.845,"y":19.2,"name":"Pontiac Firebird"},{"mpg":15.8,"cyl":"8","disp":351,"hp":264,"drat":4.22,"wt":3.17,"qsec":14.5,"vs":0,"am":1,"gear":5,"carb":4,"modelo":"Ford Pantera L","x":3.17,"y":15.8,"name":"Ford Pantera L"},{"mpg":15,"cyl":"8","disp":301,"hp":335,"drat":3.54,"wt":3.57,"qsec":14.6,"vs":0,"am":1,"gear":5,"carb":8,"modelo":"Maserati Bora","x":3.57,"y":15,"name":"Maserati Bora"}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"Peso del Auto (1000 lbs)"}},"subtitle":{"text":"Datos de mtcars con diferenciación por cilindros"},"tooltip":{"useHTML":true,"pointFormat":"<b>Modelo:<\/b> {point.name}<br>\n                   <b>Peso (wt):<\/b> {point.x}<br>\n                   <b>Millas por Galón (mpg):<\/b> {point.y}<br>\n                   <b>Cilindros:<\/b> {point.group}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
+<div class="highchart html-widget html-fill-item" id="htmlwidget-40427b5a9e7800b4acfb" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-40427b5a9e7800b4acfb">{"x":{"hc_opts":{"chart":{"reflow":true,"zoomType":"xy"},"title":{"text":"Relación entre Peso y Consumo de Combustible"},"yAxis":{"title":{"text":"Millas por Galón (mpg)"},"type":"linear"},"credits":{"enabled":false},"exporting":{"enabled":false},"boost":{"enabled":false},"plotOptions":{"series":{"label":{"enabled":false},"turboThreshold":0,"showInLegend":true},"treemap":{"layoutAlgorithm":"squarified"},"scatter":{"marker":{"symbol":"circle"}}},"series":[{"name":"4","data":[{"mpg":22.8,"cyl":"4","disp":108,"hp":93,"drat":3.85,"wt":2.32,"qsec":18.61,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Datsun 710","x":2.32,"y":22.8,"name":"Datsun 710"},{"mpg":24.4,"cyl":"4","disp":146.7,"hp":62,"drat":3.69,"wt":3.19,"qsec":20,"vs":1,"am":0,"gear":4,"carb":2,"modelo":"Merc 240D","x":3.19,"y":24.4,"name":"Merc 240D"},{"mpg":22.8,"cyl":"4","disp":140.8,"hp":95,"drat":3.92,"wt":3.15,"qsec":22.9,"vs":1,"am":0,"gear":4,"carb":2,"modelo":"Merc 230","x":3.15,"y":22.8,"name":"Merc 230"},{"mpg":32.4,"cyl":"4","disp":78.7,"hp":66,"drat":4.08,"wt":2.2,"qsec":19.47,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Fiat 128","x":2.2,"y":32.4,"name":"Fiat 128"},{"mpg":30.4,"cyl":"4","disp":75.7,"hp":52,"drat":4.93,"wt":1.615,"qsec":18.52,"vs":1,"am":1,"gear":4,"carb":2,"modelo":"Honda Civic","x":1.615,"y":30.4,"name":"Honda Civic"},{"mpg":33.9,"cyl":"4","disp":71.09999999999999,"hp":65,"drat":4.22,"wt":1.835,"qsec":19.9,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Toyota Corolla","x":1.835,"y":33.9,"name":"Toyota Corolla"},{"mpg":21.5,"cyl":"4","disp":120.1,"hp":97,"drat":3.7,"wt":2.465,"qsec":20.01,"vs":1,"am":0,"gear":3,"carb":1,"modelo":"Toyota Corona","x":2.465,"y":21.5,"name":"Toyota Corona"},{"mpg":27.3,"cyl":"4","disp":79,"hp":66,"drat":4.08,"wt":1.935,"qsec":18.9,"vs":1,"am":1,"gear":4,"carb":1,"modelo":"Fiat X1-9","x":1.935,"y":27.3,"name":"Fiat X1-9"},{"mpg":26,"cyl":"4","disp":120.3,"hp":91,"drat":4.43,"wt":2.14,"qsec":16.7,"vs":0,"am":1,"gear":5,"carb":2,"modelo":"Porsche 914-2","x":2.14,"y":26,"name":"Porsche 914-2"},{"mpg":30.4,"cyl":"4","disp":95.09999999999999,"hp":113,"drat":3.77,"wt":1.513,"qsec":16.9,"vs":1,"am":1,"gear":5,"carb":2,"modelo":"Lotus Europa","x":1.513,"y":30.4,"name":"Lotus Europa"},{"mpg":21.4,"cyl":"4","disp":121,"hp":109,"drat":4.11,"wt":2.78,"qsec":18.6,"vs":1,"am":1,"gear":4,"carb":2,"modelo":"Volvo 142E","x":2.78,"y":21.4,"name":"Volvo 142E"}],"type":"scatter"},{"name":"6","data":[{"mpg":21,"cyl":"6","disp":160,"hp":110,"drat":3.9,"wt":2.62,"qsec":16.46,"vs":0,"am":1,"gear":4,"carb":4,"modelo":"Mazda RX4","x":2.62,"y":21,"name":"Mazda RX4"},{"mpg":21,"cyl":"6","disp":160,"hp":110,"drat":3.9,"wt":2.875,"qsec":17.02,"vs":0,"am":1,"gear":4,"carb":4,"modelo":"Mazda RX4 Wag","x":2.875,"y":21,"name":"Mazda RX4 Wag"},{"mpg":21.4,"cyl":"6","disp":258,"hp":110,"drat":3.08,"wt":3.215,"qsec":19.44,"vs":1,"am":0,"gear":3,"carb":1,"modelo":"Hornet 4 Drive","x":3.215,"y":21.4,"name":"Hornet 4 Drive"},{"mpg":18.1,"cyl":"6","disp":225,"hp":105,"drat":2.76,"wt":3.46,"qsec":20.22,"vs":1,"am":0,"gear":3,"carb":1,"modelo":"Valiant","x":3.46,"y":18.1,"name":"Valiant"},{"mpg":19.2,"cyl":"6","disp":167.6,"hp":123,"drat":3.92,"wt":3.44,"qsec":18.3,"vs":1,"am":0,"gear":4,"carb":4,"modelo":"Merc 280","x":3.44,"y":19.2,"name":"Merc 280"},{"mpg":17.8,"cyl":"6","disp":167.6,"hp":123,"drat":3.92,"wt":3.44,"qsec":18.9,"vs":1,"am":0,"gear":4,"carb":4,"modelo":"Merc 280C","x":3.44,"y":17.8,"name":"Merc 280C"},{"mpg":19.7,"cyl":"6","disp":145,"hp":175,"drat":3.62,"wt":2.77,"qsec":15.5,"vs":0,"am":1,"gear":5,"carb":6,"modelo":"Ferrari Dino","x":2.77,"y":19.7,"name":"Ferrari Dino"}],"type":"scatter"},{"name":"8","data":[{"mpg":18.7,"cyl":"8","disp":360,"hp":175,"drat":3.15,"wt":3.44,"qsec":17.02,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"Hornet Sportabout","x":3.44,"y":18.7,"name":"Hornet Sportabout"},{"mpg":14.3,"cyl":"8","disp":360,"hp":245,"drat":3.21,"wt":3.57,"qsec":15.84,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Duster 360","x":3.57,"y":14.3,"name":"Duster 360"},{"mpg":16.4,"cyl":"8","disp":275.8,"hp":180,"drat":3.07,"wt":4.07,"qsec":17.4,"vs":0,"am":0,"gear":3,"carb":3,"modelo":"Merc 450SE","x":4.07,"y":16.4,"name":"Merc 450SE"},{"mpg":17.3,"cyl":"8","disp":275.8,"hp":180,"drat":3.07,"wt":3.73,"qsec":17.6,"vs":0,"am":0,"gear":3,"carb":3,"modelo":"Merc 450SL","x":3.73,"y":17.3,"name":"Merc 450SL"},{"mpg":15.2,"cyl":"8","disp":275.8,"hp":180,"drat":3.07,"wt":3.78,"qsec":18,"vs":0,"am":0,"gear":3,"carb":3,"modelo":"Merc 450SLC","x":3.78,"y":15.2,"name":"Merc 450SLC"},{"mpg":10.4,"cyl":"8","disp":472,"hp":205,"drat":2.93,"wt":5.25,"qsec":17.98,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Cadillac Fleetwood","x":5.25,"y":10.4,"name":"Cadillac Fleetwood"},{"mpg":10.4,"cyl":"8","disp":460,"hp":215,"drat":3,"wt":5.424,"qsec":17.82,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Lincoln Continental","x":5.424,"y":10.4,"name":"Lincoln Continental"},{"mpg":14.7,"cyl":"8","disp":440,"hp":230,"drat":3.23,"wt":5.345,"qsec":17.42,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Chrysler Imperial","x":5.345,"y":14.7,"name":"Chrysler Imperial"},{"mpg":15.5,"cyl":"8","disp":318,"hp":150,"drat":2.76,"wt":3.52,"qsec":16.87,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"Dodge Challenger","x":3.52,"y":15.5,"name":"Dodge Challenger"},{"mpg":15.2,"cyl":"8","disp":304,"hp":150,"drat":3.15,"wt":3.435,"qsec":17.3,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"AMC Javelin","x":3.435,"y":15.2,"name":"AMC Javelin"},{"mpg":13.3,"cyl":"8","disp":350,"hp":245,"drat":3.73,"wt":3.84,"qsec":15.41,"vs":0,"am":0,"gear":3,"carb":4,"modelo":"Camaro Z28","x":3.84,"y":13.3,"name":"Camaro Z28"},{"mpg":19.2,"cyl":"8","disp":400,"hp":175,"drat":3.08,"wt":3.845,"qsec":17.05,"vs":0,"am":0,"gear":3,"carb":2,"modelo":"Pontiac Firebird","x":3.845,"y":19.2,"name":"Pontiac Firebird"},{"mpg":15.8,"cyl":"8","disp":351,"hp":264,"drat":4.22,"wt":3.17,"qsec":14.5,"vs":0,"am":1,"gear":5,"carb":4,"modelo":"Ford Pantera L","x":3.17,"y":15.8,"name":"Ford Pantera L"},{"mpg":15,"cyl":"8","disp":301,"hp":335,"drat":3.54,"wt":3.57,"qsec":14.6,"vs":0,"am":1,"gear":5,"carb":8,"modelo":"Maserati Bora","x":3.57,"y":15,"name":"Maserati Bora"}],"type":"scatter"}],"xAxis":{"type":"linear","title":{"text":"Peso del Auto (1000 lbs)"}},"subtitle":{"text":"Datos de mtcars con diferenciación por cilindros"},"tooltip":{"useHTML":true,"pointFormat":"<b>Modelo:<\/b> {point.name}<br>\n                   <b>Peso (wt):<\/b> {point.x}<br>\n                   <b>Millas por Galón (mpg):<\/b> {point.y}<br>\n                   <b>Cilindros:<\/b> {point.group}"}},"theme":{"chart":{"backgroundColor":"transparent"},"colors":["#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9","#f15c80","#e4d354","#2b908f","#f45b5b","#91e8e1"]},"conf_opts":{"global":{"Date":null,"VMLRadialGradientURL":"http =//code.highcharts.com/list(version)/gfx/vml-radial-gradient.png","canvasToolsURL":"http =//code.highcharts.com/list(version)/modules/canvas-tools.js","getTimezoneOffset":null,"timezoneOffset":0,"useUTC":true},"lang":{"contextButtonTitle":"Chart context menu","decimalPoint":".","downloadCSV":"Download CSV","downloadJPEG":"Download JPEG image","downloadPDF":"Download PDF document","downloadPNG":"Download PNG image","downloadSVG":"Download SVG vector image","downloadXLS":"Download XLS","drillUpText":"◁ Back to {series.name}","exitFullscreen":"Exit from full screen","exportData":{"annotationHeader":"Annotations","categoryDatetimeHeader":"DateTime","categoryHeader":"Category"},"hideData":"Hide data table","invalidDate":null,"loading":"Loading...","months":["January","February","March","April","May","June","July","August","September","October","November","December"],"noData":"No data to display","numericSymbolMagnitude":1000,"numericSymbols":["k","M","G","T","P","E"],"printChart":"Print chart","resetZoom":"Reset zoom","resetZoomTitle":"Reset zoom level 1:1","shortMonths":["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],"shortWeekdays":["Sat","Sun","Mon","Tue","Wed","Thu","Fri"],"thousandsSep":" ","viewData":"View data table","viewFullscreen":"View in full screen","weekdays":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]}},"type":"chart","fonts":[],"debug":false},"evals":[],"jsHooks":[]}</script>
 <p></br></br></p>
 </div>
-<div id="graficos-con-shiny" class="section level2">
-<h2><strong>Graficos con Shiny</strong></h2>
+<div id="graficos-con-shiny" class="section level1">
+<h1><strong>Graficos con Shiny</strong></h1>
 <ul>
 <li><p><a
 href="https://shiny.rstudio.com/gallery/genome-browser.html">Genoma
@@ -1004,8 +1026,9 @@ R</a></p></li>
 <li><p><a href="https://shiny.rstudio.com/gallery/">Galeria</a></p></li>
 </ul>
 <p></br></br></p>
-<div id="rmarkdown" class="section level3">
-<h3><strong>RMarkdown</strong></h3>
+</div>
+<div id="rmarkdown" class="section level1">
+<h1><strong>RMarkdown</strong></h1>
 <p><a
 href="https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RMarkdown
 resumen</a><br/></p>
@@ -1015,8 +1038,8 @@ href="https://geoprocesamiento-2020i.github.io/tutorial-flexdashboard/">R
 flexdashboard - implementaciòn</a></p>
 <p><br/><br/></p>
 </div>
-<div id="estética-en-la-visualización" class="section level3">
-<h3><strong>Estética en la visualización</strong></h3>
+<div id="estética-en-la-visualización" class="section level1">
+<h1><strong>Estética en la visualización</strong></h1>
 <p>La <strong>estética</strong> juega un papel fundamental en la
 visualización de datos, ya que ayuda a hacer que la información sea más
 comprensible y atractiva para el espectador. Entre las diferentes formas
@@ -1064,8 +1087,6 @@ visializaciones sean más limpias y sencillas</p>
 <p><br/><br/></p>
 <p><img src="img/formas.png" width="50%" style="display: block; margin: auto;" /></p>
 <p><br/><br/></p>
-</div>
-</div>
 <div id="formas" class="section level2">
 <h2><strong>Formas</strong></h2>
 <p>Es posible utilizar circulos, cuadrados, triangulos y en general
@@ -1084,6 +1105,78 @@ tendencia de la información.</p>
 <p><img src="img/paleta2.png" width="30%" style="display: block; margin: auto;" />
 </br></br></p>
 <p><img src="img/paleta3.png" width="30%" style="display: block; margin: auto;" /></p>
+<p></br></br></p>
+</div>
+</div>
+<div id="normas-eeee" class="section level1">
+<h1><strong>Normas EEEE</strong></h1>
+<p>Las normas <strong>EEEE</strong> para la construcción de gráficos son
+principios fundamentales en la visualización de datos que garantizan
+claridad, precisión y eficacia en la comunicación. Estas normas son:</p>
+<p></br></br></p>
+<div id="eficiencia" class="section level4">
+<h4><strong>Eficiencia</strong>:</h4>
+<p>El gráfico debe transmitir la información de manera rápida y clara.
+Evita decoraciones innecesarias (chartjunk). Usa escalas adecuadas para
+facilitar la interpretación.</p>
+<p></br></br></p>
+</div>
+<div id="eficacia" class="section level4">
+<h4><strong>Eficacia</strong>:</h4>
+<p>El gráfico debe cumplir con su propósito comunicativo. Elige el tipo
+de gráfico más adecuado para los datos (barras, líneas, dispersión,
+etc.). Usa etiquetas, títulos y leyendas para orientar al lector.</p>
+<p></br></br></p>
+</div>
+<div id="exactitud" class="section level4">
+<h4><strong>Exactitud</strong>:</h4>
+<p>Representa los datos de forma fiel y sin distorsiones. Usa escalas
+proporcionales y evita manipulaciones visuales que alteren la
+percepción. Si se usan porcentajes, asegúrate de que la suma sea
+100%.</p>
+<p></br></br></p>
+</div>
+<div id="estética" class="section level4">
+<h4><strong>Estética</strong>:</h4>
+<p>El diseño debe ser limpio y atractivo sin afectar la legibilidad. Usa
+colores adecuados con suficiente contraste. Mantén coherencia en los
+estilos y fuentes. Siguiendo estas normas, se logra que los gráficos
+sean interpretados correctamente y comuniquen la información de manera
+efectiva</p>
+<p></br></br></p>
+<pre class="r"><code>ggplot(cars, aes(x = speed)) +
+  geom_histogram(fill = &quot;steelblue&quot;, bins = 10, color = &quot;black&quot;, alpha = 0.7) +
+  labs(
+    title = &quot;Distribución de la Velocidad de los Automóviles&quot;,
+    x = &quot;Velocidad (mph)&quot;,
+    y = &quot;Frecuencia&quot;,
+    caption = &quot;Fuente: Base de Datos &#39;cars&#39; de R&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="recurso13_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p></br></br></p>
+<pre class="r"><code>library(highcharter)
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point(color = &quot;darkred&quot;, size = 2, alpha = 0.7) +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE, color = &quot;black&quot;, linetype = &quot;dashed&quot;) +
+  labs(
+    title = &quot;Relación entre Velocidad y Distancia de Frenado&quot;,
+    x = &quot;Velocidad (mph)&quot;,
+    y = &quot;Distancia de Frenado (ft)&quot;,
+    caption = &quot;Fuente: Base de Datos &#39;cars&#39; de R&quot;
+  ) +
+  theme_minimal()</code></pre>
+<p><img src="recurso13_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p></br></br></p>
+</div>
+</div>
+<div id="video---tablero-con-r-flexdashboard" class="section level1">
+<h1>Video - <strong>tablero con R flexdashboard</strong></h1>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XnXD5ZkUu-s?si=TnqoLtiFK2Eab13F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+</iframe>
+</center>
+<p></br></br></p>
 <p><img src="img/pujcali.jpeg" /></p>
 <p></br></br></p>
 <div id="una-imagen-dice-mas-que-mil-palabras" class="section level3">
