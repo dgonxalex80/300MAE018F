@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/htmltools-fill/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets/htmlwidgets.js"></script>
+<link href="site_libs/wordcloud2/wordcloud.css" rel="stylesheet" />
+<script src="site_libs/wordcloud2/wordcloud2-all.js"></script>
+<script src="site_libs/wordcloud2/hover.js"></script>
+<script src="site_libs/wordcloud2-binding/wordcloud2.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#2C5697"> </span></h1>
+<h3 class="subtitle"><span style="color:#2C5697"><strong>Estadística
+para la toma de decisiones</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><img src="img/recursos2.png" width="80%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><br/><br/></p>
+<div id="recursos" class="section level1">
+<h1><strong>Recursos</strong></h1>
+<p>Antes de empezar con el tema reflexionemos sobre los siguientes
+interrogantes:</p>
+<div id="qué-es-la-probabilidad" class="section level4">
+<h4>¿Qué es la probabilidad?</h4>
+</div>
+<div id="cuál-es-su-uso.." class="section level4">
+<h4>¿Cuál es su uso…..?</h4>
+</div>
+<div id="como-se-mide" class="section level4">
+<h4>¿Como se mide……?</h4>
+</div>
+<div id="que-tipos-de-probabilidad-existen" class="section level4">
+<h4>¿Que tipos de probabilidad existen?</h4>
+</div>
+<div id="qué-propiedades-posee." class="section level4">
+<h4>¿Qué propiedades posee….?</h4>
+<p><br/><br/></p>
+</div>
+<div id="qué-significado-tienen-las-palabras" class="section level4">
+<h4>¿Qué significado tienen las palabras…</h4>
+<div id="azar---aleatorio" class="section level5">
+<h5>Azar - Aleatorio</h5>
+</div>
+<div id="determinístico---no-deterministico" class="section level5">
+<h5>Determinístico - No deterministico</h5>
+</div>
+<div id="incertidumbre---probable---improbable" class="section level5">
+<h5>Incertidumbre - Probable - Improbable</h5>
+</div>
+<div id="cierto---incierto---imposible" class="section level5">
+<h5>Cierto - Incierto - Imposible</h5>
+<div class="wordcloud2 html-widget html-fill-item" id="htmlwidget-0ba2a1001bfcc3a546a6" style="width:768px;height:768px;"></div>
+<script type="application/json" data-for="htmlwidget-0ba2a1001bfcc3a546a6">{"x":{"word":["probabilidad","azar","aleatorio","deterministico","incertidumbre","imposible","cierto","incierto","clásico","subjetivo","frecuentista","evento","experimento","conjunto","unión","intersección","marginal","Pascal","Fermat","De Mére","Gauss","Kolmogorov","riesgo","decisión","condicional","marginal","conjunta"],"freq":[11,8,8,8,8,8,8,8,8,6,6,6,6,6,6,6,6,5,5,5,5,5,5,5,4,4,4],"fontFamily":"Segoe UI","fontWeight":"bold","color":["#1B9E77","#D95F02","#7570B3","#E7298A","#66A61E","#E6AB02","#A6761D","#666666"],"minSize":0,"weightFactor":9.818181818181818,"backgroundColor":"white","gridSize":5,"minRotation":-0.7853981633974483,"maxRotation":0.7853981633974483,"shuffle":true,"rotateRatio":0.4,"shape":"circle","ellipticity":0.65,"figBase64":null,"hover":null},"evals":[],"jsHooks":{"render":[{"code":"function(el,x){\n                        console.log(123);\n                        if(!iii){\n                          window.location.reload();\n                          iii = False;\n\n                        }\n  }","data":null}]}}</script>
+<p>Muchos relacionamos el concepto de probabilidad con los dados, pues
+forma parte de su origen y de su desarrollo inicial a través de
+preguntas y situaciones imaginarias y de alguna forma modelables desde
+la matemáticas. Pero este concepto va mucho mas alla como lo veremos en
+esta unidad.</p>
+<p>La probabilidad es un concepto que se empieza a trabajar en 1654
+cuando, <strong>caballero de Mered</strong> solicita a <strong>B.
+Pascal</strong> le ayude a resolver un problema relacionado con juegos
+de mesa. En particular este caballero manifestaba que las Matemáticas
+presentaban un vacio, pues sus cálculos no coincidían con lo que pasaba
+en la realidad y como consecuencia de ellos perdía dinero en las
+apuestas que se presentaban en el juego.</p>
+<p>Encomendado Pascal de esta tarea empieza a compartir su trabajo con
+<strong>Fermat</strong>, matemático y de la correspondencia de estos dos
+brillantes matemáticos nace los principios y fundamentos de lo que hoy
+conocemos como probabilidad</p>
+<p><br/><br/></p>
+<p><img src="img/pascal.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Con el fin de motivar la construcción de los conceptos principales
+del tema se plantean las siguientes situaciones :</p>
+<p><br/></p>
+<p><strong>Problema</strong></p>
+<p>El siguiente problema fué planteado por el Caballero de Meré a Pascal
+quien lo consultó con Fermata y conforma una serie de situaciones que
+dan origen a soluciones que conforman los inicios del estudio de la
+Probabilidad (1654).</p>
+<p>Los dados, tal y como los conocemos hoy en día, se hicieron muy
+populares en la edad media. En esta época un caballero llamado Chevalier
+de Mere propuso el siguiente problema:</p>
+<p>Qué es más probable :</p>
+<ul>
+<li><p>Sacar al menos un seis en cuatro tiradas con un solo dado
+o</p></li>
+<li><p>Sacar al menos un doble seis en 24 tiradas con dos
+dados?</p></li>
+</ul>
+<p>El caballero afirmaba que este problema generaba una solución
+matemática que difería de la observación empírica</p>
+<p>Este problema se retoma mas adelante</p>
+<p>Iniciaremos con algunos conceptos básicos que nos permiten la
+contribución de sus fundamentos.</p>
+<p><a
+href="http://materias.df.uba.ar/estadisticaa2019v/files/2019/02/El_caballero_de_Mere.pdf">El
+problema de los dados del caballero de Meré: soluciones publicadas en el
+siglo XVII</a></p>
+<p><br/><br/></p>
+<center>
+<p><img src="img/dados.gif" /> <br/></p>
+Tomada : película El dorado
+</center>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="conceptos-básicos" class="section level2">
+<h2><strong>Conceptos básicos</strong></h2>
+<p><br/><br/></p>
+<div
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE ; border-color: #000000;">
+<p><strong>Experimento aleatorio</strong></p>
+<p>Acción que puede ser replicada bajo las mismas condiciones y cuyo
+resultado no se conoce por anticipado.</p>
+</div>
+<ul>
+<li><p><span class="math inline">\(E_{1}\)</span>: Lanzar una moneda dos
+veces y observar los resultados obtenidos en sus caras
+superiores</p></li>
+<li><p><span class="math inline">\(E_{2}\)</span>: Lanzar dos dados y
+observar la suma de los resultados superiores</p></li>
+<li><p><span class="math inline">\(E_{3}\)</span>: Realizar un examen de
+estadística y observar el resultado obtenido</p></li>
+<li><p><span class="math inline">\(E_{4}\)</span>: En una salida de
+campo, observo si se cumple o no, totalmente el objetivo
+planteado</p></li>
+<li><p><span class="math inline">\(E_{5}\)</span>: Observo el número
+total de ensayos de laboratorio exitosos en 20 intentos
+realizados.</p></li>
+</ul>
+<p><br/><br/></p>
+<div
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE ; border-color: #000000;">
+<p><strong>Espacio muestral</strong></p>
+<p>Conjunto de todos los posibles valores que puede tomar el experimento
+aleatorio. Este conjunto se nombra conuna letra mayuscula <span
+class="math inline">\(S\)</span> o tambien con <strong><span
+class="math inline">\(\Omega\)</span></strong></p>
+</div>
+<ul>
+<li><span class="math inline">\(S_{1}\)</span>= <span
+class="math inline">\(\{ (cc), (cs), (sc), (ss) \}\)</span><br />
+<br/></li>
+</ul>
+<div style="display: flex;">
+<div>
+<ul>
+<li><span class="math inline">\(\begin{equation*}
+  S_{2}=\left\{
+  \begin{array}{cccccc}
+  &amp;(1,1),(1,2),(1,3),(1,4),(1,5),(1,6)&amp;\\
+  &amp;(2,1),(2,2),(2,3),(2,4),(2,5),(2,6)&amp;\\
+  &amp;(3,1),(3,2),(3,3),(3,4),(3,5),(3,6)&amp;\\
+  &amp;(4,1),(4,2),(4,3),(4,4),(4,5),(4,6)&amp;\\
+  &amp;(5,1),(5,2),(5,3),(5,4),(5,5),(5,6)&amp;\\
+  &amp;(6,1),(6,2),(6,3),(6,4),(6,5),(6,6)&amp;
+  \end{array}
+  \right\}
+  \end{equation*}\)</span></li>
+</ul>
+</div>
+<div>
+<p><img src="img/dados.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_{3}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{R} | 0 \leq x \leq
+5   \}\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_{4}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{N}| 0 \leq x \leq 1
+\}\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_{5}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{N}| 0 \leq x \leq 20
+\}\)</span></li>
+</ul>
+<p><br/><br/><br/></p>
+<div
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE ; border-color: #000000;">
+<p><strong>Evento aleatorio</strong></p>
+<p>Subconjunto del espacio muestral que es de nuestro interés. Como todo
+conjunto se nombra con una letra mayúscula por lo general las primeras
+letras del alfabeto</p>
+</div>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="54%" />
+<col width="30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_{1}\)</span></td>
+<td align="left">Obtener solo caras</td>
+<td align="left"><span class="math inline">\(A_{1}=\{
+(c,c)\}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(A_{2}\)</span></td>
+<td align="left">Sacar un resultados es inferior a 4</td>
+<td align="left"><span
+class="math inline">\(A_{2}=\{(1,1),(1,2)(2,1)\}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_{3}\)</span></td>
+<td align="left">Ganar el examen</td>
+<td align="left"><span class="math inline">\(A_{3}=\{ x \in \mathbb{R} |
+3.0 \leq x \leq 5.0 \}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(A_{4}\)</span></td>
+<td align="left">Cumplir el objetivo de la salida</td>
+<td align="left"><span class="math inline">\(A_{4} =\{ 1
+\}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_{5}\)</span></td>
+<td align="left">Obtener más de 5 ensayos éxitos</td>
+<td align="left"><span class="math inline">\(A_{5}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{N}| 6 \leq x \leq 20
+\}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<p>Resumiendo:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="36%" />
+<col width="31%" />
+<col width="31%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Experimento aleatorio</th>
+<th align="left">Espacio muestral</th>
+<th align="left">Evento aleatorio</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lanzar una moneda dos veces y observar los resultados
+obtenidos en sus caras superiores</td>
+<td align="left"><span class="math inline">\(S_{1}\)</span>= <span
+class="math inline">\(\{ (cc), (cs), (sc), (ss) \}\)</span></td>
+<td align="left">Obtiener solo caras</td>
+</tr>
+<tr class="even">
+<td align="left">Lanzar dos dados y observar la suma de los resultados
+superiores</td>
+<td align="left"><span class="math inline">\(S_{2}\)</span>= <span
+class="math inline">\(\{(1,1),(1,2), \dots, (6,6) \}\)</span></td>
+<td align="left">Sacar un resultados es inferior a 6</td>
+</tr>
+<tr class="odd">
+<td align="left">Realizar un examen de estadística y observar el
+resultado obtenido</td>
+<td align="left"><span class="math inline">\(S_{3}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{R} | 0 \leq x \leq 5
+\}\)</span></td>
+<td align="left">Ganar el examen</td>
+</tr>
+<tr class="even">
+<td align="left">En una salida de campo, observo si se cumple o no,
+totalmente el objetivo planteado</td>
+<td align="left"><span class="math inline">\(S_{4}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{N}| 0 \leq x \leq 1
+\}\)</span></td>
+<td align="left">Cumplir el objetivo de la salida</td>
+</tr>
+<tr class="odd">
+<td align="left">Observo el número total de ensayos de laboratorio
+exitosos en 20 intentos realizados</td>
+<td align="left"><span class="math inline">\(S_{5}\)</span>= <span
+class="math inline">\(\{ x \in \mathbb{N}| 0 \leq x \leq 20
+\}\)</span></td>
+<td align="left">Obtener más de 5 ensayos éxitos</td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/><br/></p>
+</div>
+<div id="enfoques-de-probabilidad" class="section level2">
+<h2><strong>Enfoques de probabilidad</strong></h2>
+<p><br/><br/><br/></p>
+<div id="enfoque-clásico" class="section level3"
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE  ; border-color: #000000;">
+<h3><strong>Enfoque clásico</strong></h3>
+<p>Es el enfoque más antiguo de probabilidad y que está basado en el
+supuesto de eventos individuales igualmente probables. La probabilidad
+bajo ese enfoque para el evento <span class="math inline">\(A\)</span>
+se calcula como la fracción entre el número de elementos del conjunto
+<span class="math inline">\(A\)</span>, <span
+class="math inline">\(n(A)\)</span> y el número de elementos del espacio
+muestral <span class="math inline">\(n(S)\)</span>:</p>
+<p><span class="math display">\[P(A)=\dfrac{n(A)}{n(S)}\]</span></p>
+</div>
+<p>En el caso del evento <span
+class="math inline">\(A_{1}=\{(c,c)\}\)</span>, su probabilidad se
+obtiene como:</p>
+<p><span
+class="math inline">\(P(A_{1}=\dfrac{n(A_{1})}{n(S_{1})}=\dfrac{1}{4}=0.25\)</span></p>
+<p>Para <span class="math inline">\(A_{2}\)</span>, la suma de los
+resultados es inferior a 6, se obtiene de la siguiente forma</p>
+<p><span
+class="math inline">\(P(A_{2})=\dfrac{n(A_{2})}{n(S_{2})}=\dfrac{9}{36}=0.25\)</span></p>
+<p><br/><br/></p>
+<p>En la gran mayoria de casos no se cumplen los supuestos anteriores,
+pues se tienen eventos que no son igualmente probables, lo cual impide
+que podamos utilizar el enfoque frecuentista.</p>
+<p>Ahora suponemos que lo ocurrió en el pasado segirá pasando y asi
+estudiando la información recogida podemos predecir la posibilidad de
+ocurrencia de un evento futuro</p>
+<p><br/><br/><br/></p>
+<div id="enfoque-frecuentista" class="section level3"
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE ; border-color: #000000;">
+<h3><strong>Enfoque Frecuentista</strong></h3>
+<p>Este enfoque basa su cálculo en la frecuencia con que ocurre un
+evento en un tamaño de muestra determinado <span
+class="math inline">\(n\)</span>.</p>
+<p><span class="math display">\[\lim_{n \to{+}\infty} P(A)=\Bigg[
+\dfrac{\text{número de veces que ocurre A}}{n} \Bigg]\]</span></p>
+</div>
+<p><br/><br/></p>
+<center>
+<img src="img/penalti.gif" />
+</center>
+<p><br/><br/></p>
+<p>Si observamos el cobro de un penalti en un partido de fútbol, el
+cobrador tiene un gran número de posibilidades (lugares) para colocar el
+balón que podemos simplificar en 6 : parte baja derecha, parte alta
+derecha, parte baja al centro, parte alta central, parte baja izquierda
+y parte alta izquierda. Por su parte el arquero piensa también es estos
+lograres para evitar que el disparo termine en gol. Hoy en dia ambos
+jugadores estudian las frecuencias para determinar cual lugar ofrece
+mayores probabilidades de obtener éxito desde su rol.</p>
+<p><br/></p>
+<p>Para calcular la probabilidad de que un jugador ejecute y convierta
+gol, debemos utilizar el enfoque frecuentista, contando para ello
+información pasada y realizando una división entre el numero de aciertos
+sobre el numero total de cobros.</p>
+<p><br/></p>
+<p>Otro ejemplo puede estar relacionado con la probabilidad de muerte
+por Covid en Colombia. Es de aclarar que esta probabilidad no se
+mantiene constante a través del tiempo pues los efectos causados por la
+vacunación y su evolución hacen que esta probabilidad cambie. Por fines
+prácticos tomaremos la base total de colombianos infectados desde marzo
+del 2019 como denominador y como numerador el numero total de
+muertos</p>
+<pre class="r"><code>Colombia=readRDS(&quot;data/Colombia22.RDS&quot;)
+tabla=summarytools::freq(Colombia22$ubicacion, cumul = FALSE)
+tabla</code></pre>
+<p>Con base en esta tabla podríamos pensar que la probabilidad de que
+una persona muera a causa del Covid-19 es del <code>0.0289</code>. Valor
+que se obtiene al dividir el número de personas fallecidas y el número
+total de personas que se han contraído covid. Claro bajo el supuesto de
+que todos las personas tenemos la misma probabilidad de fallecer. Hecho
+que se discutirá mas adelante.</p>
+<p><br/><br/><br/></p>
+<div id="enfoque-subjetivo" class="section level3"
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE ; border-color: #000000;">
+<h3><strong>Enfoque subjetivo</strong></h3>
+<p>En este caso la probabilidad es valorada y asignada por un
+<strong>EXPERTO</strong>, como un médico, un ingeniero, un abogado, un
+economista, un biólogo, un estadístico ……</p>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="axiomas-de-probabilidad" class="section level2">
+<h2><strong>Axiomas de probabilidad</strong></h2>
+<div
+style="padding: 15px; border: 1px solid transparent; border-color: transparent; margin-bottom: 20px; border-radius: 4px; color: #000000; background-color: #DAEDFE ; border-color: #000000;">
+<ul>
+<li><span class="math inline">\(A_{1}\)</span> : Sea <span
+class="math inline">\(S\)</span> un espacio muestral asociado a un
+experimento. Entonces:</li>
+</ul>
+<p><span class="math display">\[P(S)=1\]</span></p>
+<ul>
+<li><span class="math inline">\(A_{2}\)</span> : Para cualquier evento
+<span class="math inline">\(A\)</span>, se cumple que:</li>
+</ul>
+<p><span class="math display">\[0 \leq P(A) \leq 1\]</span></p>
+<ul>
+<li><span class="math inline">\(A_{3}\)</span> : Si <span
+class="math inline">\(A\)</span> y <span
+class="math inline">\(B\)</span> son dos eventos mutuamente excluyentes,
+entonces: <span class="math display">\[P(A \cup B) = P(A) +
+P(B)\]</span> En general</li>
+</ul>
+<p><span class="math display">\[P(A \cup B) = P(A)+ P(B) - P(A \cap
+B)\]</span></p>
+<ul>
+<li><p><span class="math inline">\(A_{4}\)</span> : Para cualquier
+evento <span class="math inline">\(A\)</span>, <span
+class="math inline">\(P(A&#39;)=1-P(A)\)</span></p></li>
+<li><p><span class="math inline">\(A_{5}\)</span> : La probabilidad que
+no ocurra nada :</p></li>
+</ul>
+<p><span class="math display">\[P(\phi) = 0\]</span></p>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="tipos-de-probabilidad" class="section level2">
+<h2><strong>Tipos de probabilidad</strong></h2>
+<p><br/><br/></p>
+<div style="display: flex;">
+<div>
+<p><img src="img/tabla1_22.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+<div>
+<p><img src="img/diagrama5_22.png" width="70%" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<p><br/><br/></p>
+<div id="probabilidad-simple-o-marginal" class="section level3">
+<h3><strong>Probabilidad simple o marginal</strong></h3>
+<ul>
+<li><p><span class="math inline">\(P(A)\)</span> : probabilidad de que
+ocurra A</p></li>
+<li><p><span class="math inline">\(P(A&#39;)\)</span> : probabilidad de
+que NO ocurra A</p></li>
+<li><p><span class="math inline">\(P(B)\)</span> : probabilidad de que
+ocurra B</p></li>
+<li><p><span class="math inline">\(P(B&#39;)\)</span> : probabilidad de
+que NO ocurra B</p></li>
+</ul>
+<p><br/><br/><br/></p>
+</div>
+<div id="probabilidad-conjunta" class="section level3">
+<h3><strong>Probabilidad conjunta</strong></h3>
+<ul>
+<li><p><span class="math inline">\(P(A \cap B)\)</span> : probabilidad
+de que ocurra A y B</p></li>
+<li><p><span class="math inline">\(P(A&#39; \cap B)\)</span> :
+probabilidad de que NO ocurra A y ocurra B</p></li>
+<li><p><span class="math inline">\(P(A \cap B&#39;)\)</span> :
+probabilidad de que ocurra A y NO ocurra B</p></li>
+<li><p><span class="math inline">\(P(A&#39; \cap B&#39;)\)</span> :
+probabilidad de que NO ocurra A ni B</p></li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="ejemplo" class="section level3">
+<h3><strong>Ejemplo</strong></h3>
+<p>Se requiere estudiar la relación entre la satisfacción del cliente y
+la lealtad a la marca en una empresa. Para ello, se emplea información
+contenida en una tabla de contingencia y posteriormente se calcularan
+probabilidades conjuntas y marginales relacionadas con los eventos.</p>
+<p><br/><br/></p>
+<div id="varibales" class="section level4">
+<h4><strong>Varibales</strong></h4>
+<ul>
+<li><strong>Satisfacción del Cliente</strong>: Alta, Media, Baja</li>
+<li><strong>Lealtad a la Marca</strong>: Alta, Media, Baja</li>
+</ul>
+<p>La siguiente tabla recoge la respuesta dada por 150 clientes</p>
+<p><img src="img/tabla211.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<p>Bajo el enfoque frecuentista los resultado se convierten en
+probabilidades de obtener un cliente con las características
+seleccionadas</p>
+<p><img src="img/tabla212.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="probabilidad-simple-o-marginal-1" class="section level3">
+<h3><strong>Probabilidad simple o marginal</strong></h3>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="93%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LA)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad con la marca <strong>alta</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(LM)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad con la marca <strong>media</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LB)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad con la marca <strong>baja</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(SA)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga un nivel de satisfación <strong>alta</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(SM)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga un nivel de satisfación <strong>media</strong></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(SB)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga un nivel de satisfación <strong>baja</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/><br/></p>
+</div>
+<div id="probabilidad-conjunta-1" class="section level3">
+<h3><strong>Probabilidad conjunta</strong></h3>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LA \cap SA)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>alta</strong> con la marca y presente un
+nivel <strong>alto</strong> de satisfacción</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(LA \cap SM)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>alta</strong> con la marca y presente un
+nivel <strong>medio</strong> de satisfacción</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LA \cap SB)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>alta</strong> con la marca y presente un
+nivel <strong>bajo</strong> de satisfacción</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(LM \cap SA)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>media</strong> con la marca y presente
+un nivel <strong>alto</strong> de satisfacción</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LM \cap SM)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>media</strong> con la marca y presente
+un nivel <strong>medio</strong> de satisfacción</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(LM \cap SB)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>media</strong> con la marca y presente
+un nivel <strong>bajo</strong> de satisfacción</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LB \cap SA)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>baja</strong> con la marca y presente un
+nivel <strong>alto</strong> de satisfacción</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(P(LB \cap SM)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>baja</strong> con la marca y presente un
+nivel <strong>medio</strong> de satisfacción</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(P(LB \cap SB)\)</span></td>
+<td align="left">probabilidad de que un cliente seleccionado de manera
+aleatoria tenga lealtad <strong>baja</strong> con la marca y presente un
+nivel <strong>bajo</strong> de satisfacción</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,98 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 2- Unidad 2.1**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia2.png")
+```
+
+
+<br/><br/>
+
+
+## **Introducción**
+
+El concepto de **probabilidad** constituye uno de los  pilares de la estadística que permiten la construcción de  conceptos posteriores como el de  **Variable Aleatoria** e **Inferencia Estadística**. Se parte de  los  conceptos básicos para lo cual se requiere revisar los temas de teoría de  conjuntos y técnicas de conteo del **Módulo 0** (**Unidad 0.2**). 
+
+En esta unidad se consideran los conceptos básicos de probabilidad, los axiomas que la rigen y los diferentes enfoques para su calculo.
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la  unidad el estudiante estará en capacidad de DESARROLLAR el pensamiento probabilístico mediante el calculo e interpretación de probabilidades mediante la  comprensión de los CONCEPTOS BÁSICOS, los diferentes ENFOQUES y TIPOS de probabilidad  que le ayuden a cuantificar el riesgo para la toma de decisiones.
+
+<br/><br/>
+
+## **Duración**
+
+La presente  unidad será desarrollada durante la  cuarta semana del semestre . Ademas del material suministrado  contaran con el acompañamiento del profesor en tres sesiones y de manera asincrónica con  foro de actividades académicas. Los entregables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  17 de febrero.
+
+Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
+
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+
+|Actividad      | Descripción                    | 
+|:--------------|:-----------------------------  |
+| Actividad 211 | **Actividad211**.  Resuelva las preguntas del siguiente  taller y entregue su solución  en formato **pdf**  en el enlace correspondiente de Brightspace.|
+| En parejas    | Cada integrante debe subir la solución de manera indivudial en la plataforma  Bs  | 
+|Fecha  |  17 de febrero de 2025 |
+|Hora   |  23:59 hora local     |
+|||
+
+<br/><br/>
+
+## **Criterios de evaluación**
+
+El **Actividad211** de la unidad 2.1 recoge los elementos estudiados y por tanto  tiene objetivo la revisión de los principales conceptos tratados.
+
++ Reconocer los principales conceptos de  probabilidad y su efecto sobre la toma de decisiones informadas.
+
++ Reconocer e identificar los diferentes tipos de probabilidad  y sus respectivas interpretación.
+	
+	
+<br/><br/>
+
+## **Entregables** 
+
+| Entregable |  Descripción                    |
+|:--------------|:-----------------------------|
+| **Actividad211**    | Solucionario taller 211 | 
+| Fecha           | 17 de febrero de 2025 | 
+|Hora límite      | 23:59  hora  local |
+ 
+<br/><br/><br/><br/>
+
