@@ -79,7 +79,15 @@ navbar:
         - text: "Actividad 211"  
           href: actividad211.html      
         - text: "--------"        
-        
+        - text: "Guía 2.2"
+          href: guia22.html        
+        - text: "recursos 2.2"
+          href: recurso22.html
+        - text: "Actividad 211"  
+          href: actividad221.html   
+        - text: "--------"      
+        - text: "Monitoria 2"
+          href: monitoria2.html          
           
     - text: "Módulo 3"
       menu:

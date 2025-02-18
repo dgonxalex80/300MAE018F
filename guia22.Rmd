@@ -1,0 +1,99 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 2- Unidad 2.2**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia2.png")
+```
+
+
+<br/><br/>
+
+
+## **Introducción**
+
+Como fue mencionado en la Unidad 2.1 el concepto de probabilidad es fundamental dentro de la Estadística, pues soporta los conceptos de variable aleatoria y de las funciones que las rigen. Entre sus principales aplicaciones está la valoración del riesgo en relación con la toma de decisiones, la fiabilidad de productos y garantías de productos, teoría de juegos, entre otras aplicaciones.
+
+Como complemento de los conceptos vistos en la Unidad 2.1, en esta unidad se aborda el concepto de **Probabilidad total** y el **Teorema de Bayes**.
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la unidad los estudiantes estarán  en  capacidad de  RECONOCER, CALCULAR e INTERPRETAR  los diferentes tipos de probabilidad y sus aplicaciones, con el propósito de valorar los riesgos asociados a una decisión. 
+
+<br/><br/>
+
+## **Duración**
+
+La presente  unidad será desarrollada durante la semana comprendida entre el 17  y 23 de febrero de 2025. Ademas del material suministrado  contaran con el acompañamiento del profesor. 
+
+Los entregables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  23 de febrero de 2025.
+
+Para alcanzar los objetivos planteados se propone realizar la siguiente actividad
+
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+
+|Actividad      | Descripción                    | 
+|:--------------|:-----------------------------  |
+| Actividad 221 | A partir de los conceptos vistos en las Unidades 2.1 y 2.2 deberá resolver los problemas propuestos en el **Taller 221** y entregue su solución  en formato **pdf**  en el enlace correspondiente de Brightspace.|
+|Trabajo en parejas||
+|Fecha  |  27 de febrero  de 2025 |
+|Hora   |  13:59 hora local     |
+|||
+
+
+<br/><br/>
+
+## **Criterios de evaluación**
+
+El taller del Modulo 2 recoge los elementos estudiados y por tanto  tiene objetivo la revisión de los principales conceptos tratados.
+
++ Reconocer los principales conceptos de  probabilidad y su efecto sobre la toma de decisiones informadas.
+
++ Reconocer e identificar los diferentes tipos de probabilidad  y sus respectivas interpretación.
+
+<br/><br/>
+
+## **Entregables**
+
+| Entregable |  Descripción                    |
+|:--------------|:-----------------------------|
+| Actividad221    | Solucionario **Taller 221**. Cada estudiante debe subir a la plataforma una copia en pdf del trabajo realizado que incluya el nombre de los dos | 
+| Fecha           |Lunes   27 de febrero de 2025 | 
+|Hora límite      | 13:59  hora  local |
+
+<br/><br/><br/><br/>
