@@ -283,7 +283,7 @@ En el colegio Anglo-Frances se imparten sólo los idiomas inglés y francés. El
 <div class="label">Problema 15</div>  
 
 
-En una universidad de la región hay 4000 estudiantes distribuidos en tres grupos. Primeros semestre (1 a 3), mitad de carrera (4 a 7) y final de carrera (8 a 10). Esta población esta conformada por estudiantes que realizan actividades extracuricolares y aquellos que no participan en ninguna actividad, distribuidos como se muestra en la siguiente tabla:
+En una universidad de la región hay 135 estudiantes distribuidos en tres grupos. Primeros semestre (1 a 3), mitad de carrera (4 a 7) y final de carrera (8 a 10). Esta población esta conformada por estudiantes que realizan actividades extracuricolares y aquellos que no participan en ninguna actividad, distribuidos como se muestra en la siguiente tabla:
 
 |                   |Participa en actividades del MU| No participa en actividades del MU |
 |:------------------|:------------------------------|:-----------------------------------|
@@ -295,6 +295,16 @@ Se ha encomendado a un grupo de profesores consejeros, seleccionar un estudiante
 
 Sandra prefiere que el grupo de estudiantes a su cargo sean estudiantes de primeros semestre y que participan en actividades del Medio Universitario (MU) . Isabel en cambio los eligirá dentro del grupo de estudiantes que está finalizando carrera, dentro de los que prefieren no participar en actividades del MU. Por su parte David desea estudiantes sean del rango intermedio o mitad de carrera, pues ellos no han realizado la escogencia del énfasis. Daniel solicita un listado de los estudiantes que participan  e actividades del MU y de ellos desea que el estudiante a su cargo esté cursando últimos semestre. Finalmente Gerardo solo quiere que el estudiante seleccionado para su acompañamiento sea de primeros semestre.  Si en cada caso los estudiantes son selecionados de maneta aletatoria de toda la población tiene la mayor probabilidad de ver cumplido sus deseos?
 
+```{r, eval=FALSE}
+library(dplyr)
+x = c(1250,465,270,1530,350,270) %>% 
+         matrix(nrow=3)  
+colnames(x) = c("| particima MU", "| NO participa MU")
+rownames(x) = c("Primeros semestres", "Mitad carrera", "Final carrera")
+x1 =prop.table(x)
+addmargins(x1)
+
+```
 
 </div>
 

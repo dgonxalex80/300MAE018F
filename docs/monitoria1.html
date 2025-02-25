@@ -804,11 +804,10 @@ etiquetadas por día. A partir de los resultados procesados en R presente
 un análisis estadístico para el número de botellas etiquetadas por
 día</p>
 <pre class="r"><code>summarytools::descr(x)  </code></pre>
+<pre><code>Error in match.call(f, call): ... used in a situation where it does not exist</code></pre>
 <pre><code>Descriptive Statistics  
-value  
-N: 40  
 
-                     value
+                         x
 ----------------- --------
              Mean    76.08
           Std.Dev     7.82
@@ -824,6 +823,7 @@ N: 40
       SE.Skewness     0.37
          Kurtosis    -0.81
           N.Valid    40.00
+                N    40.00
         Pct.Valid   100.00</code></pre>
 <p>Punto 11 pag. 34 notas Alonso</p>
 </div>
@@ -847,6 +847,7 @@ Jun = c(12.0, 12.0, 12.0, 12.7, 12.8, 12.9, 8.0, 8.0, 13.2, 13.3, 13.5, 13.6, 11
 comportamiento tomados en el estudio</p>
 <p><img src="monitoria1_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
 <p><br/><br/></p>
+<pre><code>Error in match.call(f, call): ... used in a situation where it does not exist</code></pre>
 <pre><code>Descriptive Statistics  
 
                        Jun      May
@@ -865,6 +866,7 @@ comportamiento tomados en el estudio</p>
       SE.Skewness     0.43     0.43
          Kurtosis    -0.87    -0.66
           N.Valid    30.00    30.00
+                N    30.00    30.00
         Pct.Valid   100.00   100.00</code></pre>
 <p><br/><br/></p>
 <p>De acuerdo con la información anterior, responda falso o verdadero a
@@ -1382,6 +1384,7 @@ estrato =c(5, 3, 3, 3, 5, 4, 2, 4, 5, 2, 2, 3, 3, 4, 6, 6, 6, 3, 5, 5, 2, 5, 4, 
 
 datosENE =data.frame(id=1:100,ventas,costos,utilidad,empleados, estrato)
 summarytools::descr(datosENE[,2:6])</code></pre>
+<pre><code>Error in match.call(f, call): ... used in a situation where it does not exist</code></pre>
 <pre><code>Descriptive Statistics  
 
                     costos   empleados   estrato   utilidad   ventas
@@ -1400,6 +1403,7 @@ summarytools::descr(datosENE[,2:6])</code></pre>
       SE.Skewness     0.24        0.24      0.24       0.24     0.24
          Kurtosis    -0.70       -0.15     -1.31      -0.56     1.58
           N.Valid   100.00      100.00    100.00     100.00   100.00
+                N   100.00      100.00    100.00     100.00   100.00
         Pct.Valid   100.00      100.00    100.00     100.00   100.00</code></pre>
 </div>
 </div>
@@ -1555,27 +1559,27 @@ tiempos</code></pre>
 plot(tiempos, type = &quot;b&quot;, main = &quot;Distribución de Tiempos de Procesamiento de Préstamos&quot;, xlab = &quot;Número de Solicitud&quot;, ylab = &quot;Tiempo de Procesamiento (horas)&quot;)</code></pre>
 <p><img src="monitoria1_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre class="r"><code>summarytools::descr(tiempos)</code></pre>
+<pre><code>Error in match.call(f, call): ... used in a situation where it does not exist</code></pre>
 <pre><code>Descriptive Statistics  
-value  
-N: 100  
 
-                     value
------------------ --------
-             Mean    18.36
-          Std.Dev     3.65
-              Min     8.80
-               Q1    16.00
-           Median    18.25
-               Q3    20.80
-              Max    26.70
-              MAD     3.56
-              IQR     4.80
-               CV     0.20
-         Skewness     0.06
-      SE.Skewness     0.24
-         Kurtosis    -0.22
-          N.Valid   100.00
-        Pct.Valid   100.00</code></pre>
+                    tiempos
+----------------- ---------
+             Mean     18.36
+          Std.Dev      3.65
+              Min      8.80
+               Q1     16.00
+           Median     18.25
+               Q3     20.80
+              Max     26.70
+              MAD      3.56
+              IQR      4.80
+               CV      0.20
+         Skewness      0.06
+      SE.Skewness      0.24
+         Kurtosis     -0.22
+          N.Valid    100.00
+                N    100.00
+        Pct.Valid    100.00</code></pre>
 <p>Criterios establecidos por el banco:</p>
 <ul>
 <li>No poseer tiempos de procesamiento extremadamente largos

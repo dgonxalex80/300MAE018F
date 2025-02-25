@@ -456,3 +456,12 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 800px) {
     .box22 {
         flex: 1
+
+
+
+
+
+.gt_table {
+    vertical-align: top;
+    margin-top: 0px;
+}

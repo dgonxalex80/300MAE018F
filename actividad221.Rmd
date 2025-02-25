@@ -73,18 +73,55 @@ Construya un diagrama de árbol que represente la información suministrada y a 
 :::
 ::: {}
 
+```{r, echo=FALSE, results='asis'}
+library(gt)
+library(tidyverse)
 
-```{r, echo=FALSE, fig.align = "center"}
-knitr::include_graphics("img/tabla221.png")
+# Crear el dataframe con nombres de columnas sin caracteres especiales
+tabla <- data.frame(
+  Marca = c("Rayquaza", "Etenatus", "Mewtwo", "Groudon", ""),
+  Proporcion_Autos = c(0.27, 0.17, 0.35, 0.21, 1.00),
+  Probabilidad_Accidente = c(0.03, 0.03, 0.05, 0.04, " ")
+)
+
+# Generar la tabla con gt
+tabla_html <- tabla %>%
+  gt() %>%
+  tab_header(
+    title = "",
+    subtitle = ""
+  ) %>%
+  cols_label(
+    Marca = "Marca",
+    Proporcion_Autos = "Proporción de autos",
+    Probabilidad_Accidente = "Probabilidad de accidente"
+  ) %>%
+  fmt_number(
+    columns = c(Proporcion_Autos, Probabilidad_Accidente),
+    decimals = 2
+  ) %>%
+  tab_style(
+    style = list(
+      cell_text(weight = "bold")
+    ),
+    locations = cells_column_labels()
+  ) %>%
+  tab_options(
+    column_labels.background.color = "orange",
+    table.border.top.color = "orange",
+    table.border.bottom.color = "orange",
+    heading.align = "left"
+  ) %>%
+  as_raw_html()
+
+# Incrustar la tabla dentro de un div con CSS para alineación superior
+cat('<div style="display: flex; align-items: flex-start;">')
+cat(tabla_html)
+cat('</div>')
+
+
 ```
 
-<!-- | Marca    |Proporción de autos       | probabilidad de accidente | -->
-<!-- |:--------:|:------------------------:|:-------------------------:| -->
-<!-- | Rayquaza | 0.27                     | 0.03                      | -->
-<!-- | Etenatus | 0.17                     | 0.03                      | -->
-<!-- | Mewtwo   | 0.35                     | 0.05                      | -->
-<!-- | Groudon  | 0.21                     | 0.04                      | -->
-<!-- |          | 1.00                     |                           | -->
 :::
 ::::
 

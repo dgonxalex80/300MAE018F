@@ -761,7 +761,7 @@ esta afirmación? (justifique su respuesta)</p>
 <div class="label">
 Problema 15
 </div>
-<p>En una universidad de la región hay 4000 estudiantes distribuidos en
+<p>En una universidad de la región hay 135 estudiantes distribuidos en
 tres grupos. Primeros semestre (1 a 3), mitad de carrera (4 a 7) y final
 de carrera (8 a 10). Esta población esta conformada por estudiantes que
 realizan actividades extracuricolares y aquellos que no participan en
@@ -815,6 +815,13 @@ Gerardo solo quiere que el estudiante seleccionado para su
 acompañamiento sea de primeros semestre. Si en cada caso los estudiantes
 son selecionados de maneta aletatoria de toda la población tiene la
 mayor probabilidad de ver cumplido sus deseos?</p>
+<pre class="r"><code>library(dplyr)
+x = c(1250,465,270,1530,350,270) %&gt;% 
+         matrix(nrow=3)  
+colnames(x) = c(&quot;| particima MU&quot;, &quot;| NO participa MU&quot;)
+rownames(x) = c(&quot;Primeros semestres&quot;, &quot;Mitad carrera&quot;, &quot;Final carrera&quot;)
+x1 =prop.table(x)
+addmargins(x1)</code></pre>
 </div>
 <p><br/><br/><br/></p>
 <div class="box1 with-label">
