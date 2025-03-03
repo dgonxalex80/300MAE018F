@@ -1,0 +1,119 @@
+
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 3- Unidad 3.3**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia3.png")
+```
+<br/><br/>
+
+
+
+
+
+# **Guía de aprendizaje 3.3**
+
+<br/><br/>
+
+## **Introducción**
+
+En las unidades 3.1 y 3.2 hemos recorrido los principales conceptos relacionados caracterización de las variables aleatorias tanto discretas como continuas.  Características como:  $f(x)$, $F(x)$, $E[X]$, $V[X]$, en el caso univariado. Para el caso conjunto : $f(x,y)$, $F(x,y)$, $E[XY]$, $Cov[XY]$  y  $\rho$. 
+
+En esta unidad se presentan los principales modelos estadísticos tanto para variables discretas como continuas y sus aplicaciones. En el caso de los modelos discretas se deberá identificar el modelo a través de  las características del experimento que la genera la variable. Para el caso continuo los ejemplos indicaran el modelo correspondiente que genera la variable.
+
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la unidad los estudiantes estarán  en  capacidad de  IDENTIFICAR, CALCULAR y APLICAR los diferentes modelos de probabilidad para la solución de problemas en contexto  y su representación a través de la simulación.
+
+<br/><br/>
+
+## **Duración**
+
+La presente  unidad será desarrollada durante la comprendida entre 16 al 30 de septiembre      
+Ademas del material suministrado  contaran con el acompañamiento del profesor en las  sesiones descritas en el calentadario.
+
+Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
+
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+
+|Actividad        | Descripción                                                             | 
+|:----------------|:------------------------------------------------------------------------|
+|**Actividad 331**|                                                                         |    
+|**Poster**       | Construir un poster en formato A1 (59,4 cm x 84 cm).  para el modelo asignado que contenga sus principales características   |
+|Fecha entrega    | 30 de septiembre de 2024                                                |
+|Hora             | 23:59                                                                   |
+
+
+<br/><br/>
+
+|                |                                                                         | 
+|:---------------|:------------------------------------------------------------------------|
+|**Activiad 332**| Cada estudiante deberá seleccionar un problema dentro de los primeros tres enunciados presentados en la Actividad332. Además del problema seleccionado deberá también realizar el Problema 4. En total debe presentar dos problemas (el problema seleccionado y el problema4). | 
+|               | Trabajo individual                                                       |
+|Fecha          | 30 de septiembre  de 2024                                                |
+|Hora           | 23:59                                                                    |
+
+<br/><br/>
+
+## **Criterios de evaluación**
+
+<br/><br/>
+
+
+* Reconoce los modelos especiales asociados a contextos  y problemas reales
+
+* Utiliza las herramientas estadística apropiadas en el calculo de probabilidades en la solución de problemas en contexto
+
+* Utiliza herramientas computacionales que le permita  la solución de problemas en contexto a través de la simulación
+	
+<br/><br/>
+
+## **Entregables** 
+
+<br/><br/>
+
+|Actividad      | Descripción                             | 
+|:--------------|:----------------------------------------|
+|Actividad 331  | poster impreso y presentación del mismo |
+|Actividad 332  | enlace de Rmd publicado en **RPub** con el desarrollo del problema asignado |
+
+
+<br/><br/><br/><br/>
+

@@ -1,0 +1,91 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 3- Unidad 3.1**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia3.png")
+```
+
+
+
+## **Introducción**
+
+El concepto de variable  aleatoria  y sus principales características como es su tipo, su función de probabilidad, función de distribución acumulada,  valor esperado y la varianza, permiten la identificación de diferentes modelos para su uso a través funciones matemáticas y su posterior aplicación  computacional con el fin de representar situaciones reales en la búsqueda de solución a problemas. 
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la unidad los estudiantes estarán  en  capacidad de IDENTIFICAR, CALCULAR y APLICAR los conceptos y las principales características  de las VARIABLE ALEATORIA para representar situaciones reales en la búsqueda de soluciones a problemas o valorar los riesgos que se pueden presentar en toma de decisiones
+
+<br/><br/>
+
+## **Duración**
+
+La presente  unidad será desarrollada durante la semana séptima del semestre . Ademas del material suministrado  contaran con el acompañamiento del profesor en tres sesiones y de manera asincrónica con  foro de actividades académicas. Los entregables para esta unidad podrán enviarse a través de la plataforma BS hasta el  **10 de marzo**.
+
+Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+
+|Actividad      | Descripción                    | 
+|:--------------|:-----------------------------  |
+|Individual     |**Actividad 311**: El siguiente taller recoge los principales conceptos relacionados con variables aleatorias, tanto discretas como continuas y sus aplicaciones en la estimación de probabilidades|
+
+<br/><br/>
+
+## **Criterios de evaluación**
+
+* Reconoce los diferentes tipos de variables aleatorias y sus principales características 
+
+* Utiliza las herramientas estadística apropiadas en el calculo de probabilidades en la solución de problemas en contexto
+
+* Utiliza herramientas computacionales que le permiten representar y calcular probabilidades en la solución de problemas en contexto
+
+* Interpreta y expresa el desarrollo de los problemas con el lenguaje propio de la estadística
+
+<br/><br/>
+
+## **Entregables** 
+
+|                   |                                       |
+|:------------------|:--------------------------------------|
+|**Actividad 311.pdf** | El taller tiene un valor de 50 puntos si es resuelto completamente y enviado dentro de los tiempos establecidos  y **sustentado**.|
+|                      | El 11 de marzo se realizará la evaluación de la actividad (sustentación), sorteando uno de los ejercicios propuestos. La nota de esta evaluación será la nota de la Actividad311. Es condición necesaria para la evaluación haber entregado la actividad en pdf en la plataforma Bs.  |
+| Fecha             | 10  de marzo de 2024 |
+| Hora límite       | 23:59  hora  local           |
+
+<br/><br/><br/><br/>
+

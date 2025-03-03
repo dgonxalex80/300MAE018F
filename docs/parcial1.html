@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia22.html">Guía 2.2</a>
+    </li>
+    <li>
+      <a href="recurso22.html">recursos 2.2</a>
+    </li>
+    <li>
+      <a href="actividad221.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria2.html">Monitoria 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+    <li>
+      <a href="parcial1.html">Primer parcial</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#235784"> </span></h1>
+<h3 class="subtitle"><span style="color:#235784"><strong>Módulo
+3</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><strong>PONTIFICIA UNIVERSIDAD JAVERIANA CALI</strong><br />
+Departamento de Ciencias Naturales y Matemáticas<br />
+300MAE018 Estadística para la toma de decisiones - grupo F</p>
+<div style="text-align: right;">
+<p><strong>Profesor:</strong> Daniel Enrique González Gómez<br />
+Cali, febrero 27 de 2025</p>
+</div>
+<div style="text-align: center;">
+<p><strong>PRIMER EXAMEN PARCIAL</strong></p>
+</div>
+<p><br/><br/></p>
+<div id="punto-1" class="section level2">
+<h2>Punto 1</h2>
+<p>Una compañía de seguros de automóviles trabaja con cuatro tipos de
+autos: <strong>Rayquaza, Etenatus, Mewtwo y Groudon</strong>, sobre los
+que cuenta con la siguiente información:</p>
+<table>
+<colgroup>
+<col width="27%" />
+<col width="28%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Marca</th>
+<th>Proporción de autos</th>
+<th>Probabilidad de <strong>A</strong>ccidente</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>R</strong> : Rayquaza</td>
+<td><span class="math inline">\(P(R)=0.27\)</span></td>
+<td><span class="math inline">\(P(A|R) =0.03\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>E</strong> : Etenatus</td>
+<td><span class="math inline">\(P(E)=0.17\)</span></td>
+<td><span class="math inline">\(P(A|E) =0.04\)</span></td>
+</tr>
+<tr class="odd">
+<td><strong>M</strong> : Mewtwo</td>
+<td><span class="math inline">\(P(M)=0.35\)</span></td>
+<td><span class="math inline">\(P(A|M) =0.05\)</span></td>
+</tr>
+<tr class="even">
+<td><strong>G</strong> : Groudon</td>
+<td><span class="math inline">\(P(G)=0.21\)</span></td>
+<td><span class="math inline">\(P(A|G) =0.06\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Construya un diagrama de árbol que represente la información
+suministrada y a partir de los resultados obtenidos, ayude al gerente de
+la compañía a conocer qué marca tiene mayor probabilidad de accidente si
+se sabe que ha ocurrido un accidente (<strong>A</strong>). Construya un
+listado de mayor a menor.</p>
+<p><br/><br/></p>
+<div id="solución" class="section level3">
+<h3><strong>Solución</strong></h3>
+<p><img src="img/diagrama.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>A partir de la identificación de las probabilidades de la tabla
+procedemos a calcular las probabilidades conjuntas:</p>
+<pre class="r"><code>P = c(0.27, 0.17, 0.35, 0.21)
+C = c(0.03,0.04,0.05,0.06)
+
+P*C</code></pre>
+<pre><code>[1] 0.0081 0.0068 0.0175 0.0126</code></pre>
+<pre class="r"><code>p = P*C/sum(P*C)
+names(p) = c(&quot;(3):P(R|A)&quot;, &quot;(4):P(E|A)&quot;, &quot;(1):P(M|A)&quot;, &quot;(2):P(G|A)&quot; )
+p</code></pre>
+<pre><code>(3):P(R|A) (4):P(E|A) (1):P(M|A) (2):P(G|A) 
+ 0.1800000  0.1511111  0.3888889  0.2800000 </code></pre>
+<pre>  
+(1) : P(M|A) = 0.3888889 
+(2) : P(G|A) = 0.2800000 
+(3) : P(R|A) = 0.1800000 
+(4) : P(E|A) = 0.1511111 
+</pre>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="punto-2" class="section level2">
+<h2>Punto 2</h2>
+<p>Un una fabrica de de jabones para el aseo personal realizó un estudio
+con el objetivo de mejorar una linea de este producto, mediante la
+medición de los pesos (en onzas) de 50 barras.</p>
+<p>Los resultados obtenidos y algunos cálculos sobre los datos se
+presentan a continuación :</p>
+<pre><code>
+  The decimal point is at the |
+
+  11 | 6
+  12 | 678
+  13 | 13678
+  14 | 133468
+  15 | 126678899
+  16 | 122345556
+  17 | 01334467
+  18 | 1233558
+  19 | 2
+  20 | 3</code></pre>
+<ul>
+<li><p><span class="math inline">\(\displaystyle\sum_{i=1}^{50} x_{i} =
+798.6\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle\sum_{i=1}^{50}
+x_{i}^2  = 12941.46\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle\sum_{i=1}^{50} x_{i}^3
+=  212596.4\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle\sum_{i=1}^{50} x_{i}^4
+= 3537246\)</span></p></li>
+<li><p><span
+class="math inline">\(\sqrt{\dfrac{\displaystyle\sum_{i=1}^{50}
+(x_{i}-\bar{x})^2}{49}} = 1.949468\)</span></p></li>
+</ul>
+<p><br/><br/></p>
+<p>Por política de la empresa, el peso del producto debe estar en un 90%
+de los casos entre mas o menos dos onzas al rededor del peso
+especificado en la etiquete del producto (16.0 onzas). Un segundo
+criterio importante es el de establecer si en los datos obtenidos se
+presentan datos atípicos y si los valores se pueden clasificar como
+homogéneos, teniendo como referencia un indicador del 10%. En caso de no
+cumplimiento de los criterios de calidad será necesario detener la
+producción y llamar a la empresa de mantenimiento para que realice los
+ajustes necesarios.</p>
+<p>Debido a que la muestra obtenida constituye una muestra
+representativa del proceso, el director de la empresa le pide le ayude a
+validar los resultados y le indique que decisión debe tomarse a partir
+de la información obtenida</p>
+<p><br/><br/></p>
+<div id="solución-1" class="section level3">
+<h3><strong>Solución</strong></h3>
+<ol style="list-style-type: lower-alpha">
+<li>90% de los casos entre mas o menos dos onzas al rededor del peso
+especificado en la etiquete del producto (16.0 onzas)</li>
+</ol>
+<pre class="r"><code>media = 798.6/50
+L = c(media - 2,  media + 2)
+L</code></pre>
+<pre><code>[1] 13.972 17.972</code></pre>
+<p>Los valores que cumplen esta política son 32 de los 50 barras de la
+muestra, es decir el 64%. <strong>NO CUMPLE EL PRIMER
+CRITERIO</strong>.</p>
+<pre>
+  14 | 133468
+  15 | 126678899
+  16 | 122345556
+  17 | 01334467
+</pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Si en los datos obtenidos se presentan datos atípicos</li>
+</ol>
+<p>Para ello requerimos determinar los dos límites que se calcula con
+los cuartiles 1 y 2.</p>
+<pre class="r"><code># Q1 = X12.5
+Q1 = (14.3+14.4)/2
+
+# Q2 = X25
+Q2 = 16.1
+  
+# Q3 = X37.5  
+Q3 = (17.3+17.4)/2
+
+L = c(Q1-1.5*(Q3-Q1), Q3+1.5*(Q3-Q1))
+
+names(L)= c(&quot;LI&quot;, &quot;LS&quot;)
+L</code></pre>
+<pre><code>   LI    LS 
+ 9.85 21.85 </code></pre>
+<p>Como ningun valor se encuentra por debajo de 9.85, ni por encima de
+21.85, podemos afirmar que <strong>NO EXISTEN DATOS
+ATÍPICOS</strong>.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Si los valores se pueden clasificar como homogéneos</li>
+</ol>
+<p>Para determinar si los valores de la muestra son homogeneos o no se
+debe calcular el coeficiente de variación.</p>
+<pre class="r"><code>desviacion = 1.949468/49
+
+CV = desviacion/media *100
+
+CV</code></pre>
+<pre><code>[1] 0.2490925</code></pre>
+<p>Como el coeficiente de variación es del 0.25%, indica que los datos
+recogidos en la muestra son <strong>HOMOGENEOS</strong>.</p>
+<p>En conclusión no se cumplen <strong>todos</strong> los criterios
+fijados por la empresa. Al incumplirse el primer criterio, se recomienda
+llamar a la empresa encargada del mantenimiento para que realice los
+ajustes requeridos y detener la producción hasta tanto no se realicen
+los ajustes.</p>
+<p>Tambien que despues de hacer realizado los ajustes, nuevamente se
+tome una muestra y se analicen los requerimientos.</p>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

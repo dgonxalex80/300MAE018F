@@ -109,6 +109,8 @@ navbar:
       menu:
         - text: "300MAE018G"
           href: about.html  
+        - text: "Primer parcial"
+          href: parcial1.html  
           
 output:  
  html_document:

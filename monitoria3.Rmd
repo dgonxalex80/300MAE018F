@@ -1,0 +1,1860 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Módulo 3**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---      
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, comment = NA)
+library(psych)
+library(summarytools)
+
+# install.packages("devtools")
+#devtools::install_github("dgonxalex80/paquete018")
+#library(paquete018)
+
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+```
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/monitorias3.png")
+```
+
+
+<br/><br/>
+
+# **Ejercicios U3.1**
+
+<br/>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.1</div> 
+
+Clasifique las siguientes variables aleatorias como discretas o continuas:
+
+* $X$ : el número de accidentes automovilísticos que ocurren al año en una ciudad determinada
+* $Y$ : el tiempo que dura un partido de futbol - tiempo real de juego en minutos-
+* $M$ : la cantidad de leche que una vaca determinada produce anualmente
+* $N$ : el número de huevos que una gallina pone mensualmente
+* $P$ : el número de permisos para construcción que los funcionarios de una  ciudad emiten cada mes
+* $Q$ : el peso del grano maiz producido por hectarea
+* $R$ : la edad de un estudiante que ingresa a la universidad
+* $S$ : el número de zapatos que tiene un adolescente 
+* $T$ : el número de crias que tiene una tortuga
+* $U$ : el consumo mensual de energía de un hogar en Cali
+* $V$ : el número de hijos por hagar en Colombia
+* $W$ : el número de pasajeros de un bus de servicio publico MIO
+* $X$ : el gasto diario de un estudiante universitario de la Javeriana Cali
+* $Y$ : la cantidad de calorías que un adulto  con actividad moderada gasta diariamente
+* $Z$ : la utilidad mensual de una microempresa
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.2</div> 
+
+El tiempo que pasa, en horas, para que un radar detecte entre conductores sucesivos a los que exceden los límites de velocidad es una variable aleatoria continua con una  función de distribución acumulada:
+
+$$F_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				 0  & \mbox{ , }	x \leq 0\\ 
+				 1-exp\{-8x \}  & x \geq 0 
+				\end{matrix}\right.  
+				$$
+				
+Calcule la probabilidad de que el tiempo que  pase para que el radar detecte entre conductores sucesivos a  los que exceden los límites de velocidad sea menor a 12 minutos
+
+* usando la función de distribución de probabilidad acumulada de $X$
+* utilizando la función de densidad de probabilidad de $X$
+* Represente las función $f(x)$ gráficamente
+
+</div>
+
+```{r, fig.align='center', fig.width=5, fig.height=5}
+# Cargar ggplot2
+library(ggplot2)
+
+# Definir la función F(x)
+Fx <- function(x) {
+  ifelse(x <= 0, 0, 1 - exp(-8 * x))
+}
+
+# Crear un rango de valores para x
+x_values <- seq(0, 1, length.out = 500)
+
+# Calcular los valores de F(x)
+Fx_values <- Fx(x_values)
+
+# Crear un dataframe con los valores
+data <- data.frame(x = x_values, Fx = Fx_values)
+
+# Graficar usando ggplot2
+ggplot(data, aes(x = x, y = Fx)) +
+  geom_line(color = c3, size = 1.2) +
+  labs(x = "x", y = "F(x)", title = expression(F[x](x))) +
+  theme_minimal() +
+  xlim(0, 1) +
+  ylim(0, 1) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12)
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  geom_vline(xintercept = 0, linetype = "dashed")
+
+
+```
+
+
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 1.3</div> 
+
+Una variable aleatoria continua $X$, que puede tomar valores entre $x=2$ y $x=5$, tiene una función de densidad data por $f(x)=2(1*x)/27$.  
+ 
+ Calcule: 
+* $P(X < 4)$
+* $P(3 \leq X < 4)$
+* Represente la función $f(x)$ gráficamente
+ 
+ </div>
+ 
+ <br/><br/>
+ 
+ <div class="box1 with-label">
+<div class="label">Problema 1.4</div>
+
+Suponga que cierto tipo de pequeñas empresas de procesamiento de datos están tan especializadas que algunas tienen dificultades para obtener utilidades durante su primer año de operación. La función de densidad de probabilidad está dada por:
+ 
+ $$f_{_{Y}}(y) = \left \{ 
+				\begin{matrix} 
+				ky^4 (1-y)^3 & \mbox{ , }	0 \leq y \leq 1\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+ 
+ 
+* ¿Cuál es el valor de $k$ que hace de la anterior una función de densidad de probabilidad válida?
+* Calcule la probabilidad de que al menos 50% de las empresas tengan utilidades durante el primer año
+* Calcule la probabilidad de que al menos el 80% de las empresas tengan utilidad durante el primer año
+* Represente la función $f(x)$ gráficamente
+
+</div>
+
+ <br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.5</div> 
+ 
+Calcule la distribución de probabilidad par el número de discos compactos de jazz, de una colección que consta de  5 de jazz, 2 de música clásica y 3 de rock, al seleccionar de esta colección 4 de manera aleatoria. Explique sus resultados utilizando una fórmula.
+ 
+</div> 
+ 
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.6</div> 
+
+De una caja que contiene 4 monedad de 10 centavos y 2 monedas de 5 centavos se seleccionan 3 monedas de manera aleatoria  y sin reemplazo. calcule la distribución de probabilidad para el total $T$ de las 3 monedas .  Exprese la distribución de probabilidad de forma gráfica 
+
+</div>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 1.7</div> 
+
+Con base en las pruebas extensas, el fabricante de una lavadora determinó que el tiempo $Y$ (en años) para que el electrodoméstico requiera una reparación mayor se obtiene mediante la siguiente función de densidad de probabilidad :
+
+ 
+  $$f_{_{Y}}(y) = \left \{ 
+				\begin{matrix} 
+				\dfrac{1}{4} exp\{-y/4\} & \mbox{ , }	y \geq 0\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+ 
+* Los críticos considerarían que la lavadora es una ganga si no hay una probabilidad de que requiera una reparación mayor antes del sexto año. ¿Se puede considerar la lavadora como una ganga?
+
+* ¿Cuál es la probabilidad de que a lavadora requiera una reparación mayor durante el primer año?
+* Represente la función $f(x)$ gráficamente
+  
+</div>
+
+
+```{r, fig.align='center', fig.width=5, fig.height=5}
+# Cargar ggplot2
+library(ggplot2)
+
+# Definir la función f_Y(y)
+fy <- function(y) {
+  ifelse(y >= 0, (1 / 4) * exp(-y / 4), 0)
+}
+
+# Crear un rango de valores para y
+y_values <- seq(0, 20, length.out = 500)
+
+# Calcular los valores de f_Y(y)
+fy_values <- fy(y_values)
+
+# Crear un dataframe con los valores
+data_fy <- data.frame(y = y_values, fy = fy_values)
+
+# Graficar usando ggplot2
+ggplot(data_fy, aes(x = y, y = fy)) +
+  geom_line(color = c3, size = 1.2) +
+  labs(x = "y", y = "f(y)", title = expression(f[Y](y))) +
+  theme_minimal() +
+  xlim(0, 20) +
+  ylim(0, 0.3) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12)
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  geom_vline(xintercept = 0, linetype = "dashed")
+
+```
+
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.8</div>
+
+Sea el número de llamadas telefónicas que recibe un conmutador durante un intervalo de 5 minutos una variable aleatoria $X$ con la siguiente función de distribución de probabilidad:
+
+$$f(x)= \dfrac{exp\{-2\}\hspace{.2cm} 2^x}{x!}\hspace{.3cm} \mbox{ , para }\hspace{.3cm} x = 01,2,3,4,5.... $$
+
+* Determine la probabilidad de que $X$ sea igual a $0, 1, 2, 3, 4, 5$ y $6$
+* Grafique la función de distribución de probabilidad para estos valores de $X$
+* Determine la función de distribución acumulada para estos valores de $X$.
+* Represente la función $f(x)$ gráficamente
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.9</div> 
+
+El congestionamiento de pasajeros es un problema de servicio en los aeropuertos, en los cuales se instalan trenes para reducir la congestión.  cuando se usa el tren el tiempo $X$, en minutos, que toma viajar desde la terminal principal hasta una  explanada específica tiene la siguiente función de densidad:
+
+
+ $$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				\dfrac{1}{10} & \mbox{ , }	0 \leq y \leq 10\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+
+* Determine que la función de  densidad de probabilidad anterior es válida
+* Calcule la probabilidad de que el tiempo que le toma a un pasajero viajar desde la terminal principal hasta la explanada no exceda los 7 minutos
+* Represente la función $f(x)$ gráficamente
+
+</div>
+
+```{r, fig.align='center', fig.width=5, fig.height=5}
+# Cargar ggplot2
+library(ggplot2)
+
+# Definir la función f_X(x)
+fx <- function(x) {
+  ifelse(x >= 0 & x <= 10, 1/10, 0)
+}
+
+# Crear un rango de valores para x
+x_values <- seq(0, 10, length.out = 500)
+
+# Calcular los valores de f_X(x)
+fx_values <- fx(x_values)
+
+# Crear un dataframe con los valores
+data_fx <- data.frame(x = x_values, fx = fx_values)
+
+# Graficar usando ggplot2
+ggplot(data_fx, aes(x = x, y = fx)) +
+  geom_line(color = c6, size = 1.2) +
+  labs(x = "x", y = "f(x)", title = expression(f[X](x))) +
+  theme_minimal() +
+  xlim(0, 10) +
+  ylim(0, 0.12) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12)
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed") + 
+  geom_vline(xintercept = 0, linetype = "dashed")
+
+```
+
+
+
+
+<br/>
+
+Problemas tomado de walpole (2006)
+
+<br/><br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 1.10</div>
+
+**10.** Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
+
+Determine :
+
+* $P(1 < X)$
+* $P(1 < X < 2.5$
+* $P(X = 3$
+* $P(X < 4)$
+* Los valores de $Me$, $Q_{1}$ y $Q_{3}$
+
+</div>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 1.11</div>
+
+Para una variable aleatoria con función de densidad : $f(x)= x/8$ para $3 < X < 5$. 
+
+Determine :
+
+* $P(X < 4)$
+* $P(X > 3.5)$
+* $P(4 < X < 5)$
+* $P((X < 3.5) \cup (X > 4.5))$
+* el valor de $Me$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.12</div> 
+
+Suponga que $X$ tiene una función de distribución acumulada :
+
+$$F_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				 0    & \mbox{ , } x \leq 0\\ 
+				 2x   & \mbox{, } x < 0 < x 5  \\
+				 1    & \mbox{ , } 5 \leq 5
+				\end{matrix}\right.  
+				$$
+
+Determine:
+
+* $P(X < 4)$
+* $P(X = 1.5)$
+* $P(X > 3)$
+* $P(0.5 < X < 2.7$
+
+</div>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 1.13</div>
+
+Para la variable aleatoria que tiene la siguiente función de distribución de probabilidad :
+
+| $x$  | $-2$ | $-1$   | $0$    |  $1$   | $2$    |
+|:----:|:----:|:------:|:------:|:------:|:------:|
+|$f(x)$|$1/8$ |$2/8$   |$2/8$   |$2/8$   | $1/8$  |
+
+Determine:
+
+* $P(X \leq 2)$
+* $P(X > 3)$
+* $P(-1 \leq X \leq 1)$
+* $P(X < 3.5 ; X > 4.5)$
+* El valor de $Me$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.14</div>
+
+Para una variable con función de distribución de probabilidad : 
+
+ $$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				\dfrac{2x + 1}{25} & \mbox{ , }	x=0, 1, 2, 3, 4\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+
+Determine:
+
+* $P(X =1)$
+* $P(X \leq 1)$
+* $P(2 \leq X < 4)$
+
+</div>
+
+```{r, fig.align='center', fig.width=5, fig.height=5}
+# Cargar ggplot2
+library(ggplot2)
+
+# Definir la función f_X(x)
+fx <- function(x) {
+  ifelse(x %in% 0:4, (2*x + 1)/25, 0)
+}
+
+# Crear un rango de valores para x
+x_values <- 0:4
+
+# Calcular los valores de f_X(x)
+fx_values <- fx(x_values)
+
+# Crear un dataframe con los valores
+data_fx <- data.frame(x = x_values, fx = fx_values)
+
+# Graficar usando ggplot2 en un diagrama de puntos
+ggplot(data_fx, aes(x = x, y = fx)) +
+  geom_point(color = c6, size = 2) +
+  #geom_line(color = "blue", linetype = "dashed") +
+  labs(x = "x", y = "f(x)", title = expression(f[X](x))) +
+  theme_minimal() +
+  ylim(0, 0.4) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16),
+    axis.title = element_text(size = 14),
+    axis.text = element_text(size = 12)
+  )
+
+
+```
+
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.15</div> 
+
+Para una variable aleatoria con función de distribución de probabilidad: $f(x)= (3/4)(1/4)^{x}$, para $x=0, 1, 2, 3,...$
+
+* $P(X = 2)$
+* $P(X \leq 2)$
+* $P(2 \leq X$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.16</div> 
+
+Sponga que $X$ tiene una función de probabilidad acumulada: 
+
+$$F_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				 0    & \mbox{ , } x \leq 0\\ 
+				 0.2 x   & \mbox{, } 0 < x < 5  \\
+				 1    & \mbox{ , } x \geq 5
+				\end{matrix}\right.  
+				$$
+
+Determine: 
+* $P(X < 2.8)$
+
+```{r}
+Fx=function(x){0.2*x }
+Fx(2.8)
+```
+
+* $P(X > 1.5)$
+* $P(X < -2)$
+* Determine $f_{_{X}}(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.17</div> 
+
+El tiempo de reparación (en minutos) de una máquina fotocopiadora tiene una función de densidad:
+
+
+ $$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				\dfrac{1}{22} exp\{-x/22\} & \mbox{ , }	x > 0\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+
+Cuando el profesor de Probabilidad y Estadística se preparaba para imprimir el cuestionario del segundo examen parcial, fue enterado por la secretaria del departamento que la máquina fotocopiadora se había averiado y que el técnico había acabado de llegar en ese instante y empezado a repararla. El profesor debe contar con por lo menos 10 minutos extras - tiempo de fotocopiado de 35 exámenes, organizar sus respectivas hojas de respuestas, sumado tiempo de su desplazamiento hasta el salón de clase, arreglo de las mesas y entrega de los cuestionarios a los estudiantes. Al mirar el reloj, el profesor observa que faltan 20 minutos para la hora en que debe empezar el examen y decide esperar a que el técnico repare la fotocopiadora. ¿Es acertada o no la decisión que tomó el profesor? Justifique su respuesta.   
+
+</div>
+
+<!-- ```{r, echo=FALSE} -->
+<!-- library(downloadthis) -->
+<!-- download_link( -->
+<!--   link = "https://github.com/dgonxalex80/probabilidad20212.io/blob/main/talleres/Solucion_Taller_303.pdf", -->
+<!--   button_label = "Descarga: solución pdf ", -->
+<!--   button_type = "primary", -->
+<!--   has_icon = TRUE, -->
+<!--   icon = "fa fa-save", -->
+<!--   self_contained = FALSE -->
+<!-- ) -->
+<!-- ``` -->
+
+<br/><br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.18</div>
+
+**18.** Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
+
+Determine :
+
+* $E[X]$
+* $V[X]$
+* $P_{20}$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.19</div>
+
+Para una variable aleatoria con función de densidad : $f(x)= x/8$ para $3 < X < 5$. 
+
+Determine :
+
+* $\mu_{_{X}}$
+* $\sigma_{_{X}}$
+
+</div>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.20</div>
+
+Suponga que $X$ tiene una función de distribución acumulada:
+
+$$F_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				 0    & \mbox{ , } x \leq 0\\ 
+				 \dfrac{1}{5}x   & \mbox{, }  0 \leq x \leq 5  \\
+				 1    & \mbox{ , } x \geq 5
+				\end{matrix}\right.  
+				$$
+
+Determine : 
+
+* $E[X]$
+* $V[X]$
+* $P_{50}$
+* Se podría obtener el coeficiente de variación?. En caso afirmativo, ¿que valor tendría?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.21</div>
+
+Para la variable aleatoria que tiene la siguiente función de distribución de probabilidad :
+
+| $x$  | $-2$ | $-1$   | $0$    |  $1$   | $2$    |
+|:----:|:----:|:------:|:------:|:------:|:------:|
+|$f(x)$|$1/8$ |$2/8$   |$2/8$   |$2/8$   | $1/8$  |
+
+Determine : 
+
+* $E[X]$
+* $V[X]$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.22</div> 
+
+Para una variable con función de distribución de probabilidad : 
+
+ $$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				\dfrac{2x * 1}{25} & \mbox{ , }	x=0, 1, 2, 3, 4\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+
+Determine : 
+
+* $E[X]$
+* $V[X]$
+* Coeficiente de variación
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.23</div>
+
+Para una variable aleatoria con función de distribución de probabilidad: $f(x)= (3/4)(1/4)^{x}$, para $x=0, 1, 2, 3,... $
+
+Determine : 
+
+* $E[X]$
+* $V[X]$
+
+</div>
+
+Problemas tomados de Mongomery(2003)
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 1.24</div> 
+
+Una de las preocupaciones que tienen los padres hoy en dia está relacionada con el tiempo que pasan sus hijos usando celular. Un estudio determinó que el número de llamadas que un joven realiza durante un dia es una variable aleatoria ($X$) con función de distribución :
+
+ $$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				\dfrac{8^{x}\hspace{.2cm} exp\{-8\}}{x!} & \mbox{ , para } \hspace{.3cm}	x = 0,1,2,3,4,5,.....\\ 
+				0  & \mbox{en otro caso }
+				\end{matrix}\right.  
+				$$
+
+El estudio afirma también que los jóvenes en promedio reciben al rededor de 12 llamadas por día, valor que es considerado muy alto, debido a que a esa edad por lo regular no se tienen actividades económicas que lo ameriten. También mencionan que debido a que se ha logrado identificar la función de distribución de probabilidad es fácil establecer que se trata de una variable con un comportamiento homogéneo. ¿Está de acuerdo con la información suministrada en el artículo? . Justifique su respuesta. 
+
+</div>
+
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Problema 2</div>  -->
+
+
+
+
+<!-- ```{r, echo=FALSE} -->
+<!-- library(downloadthis) -->
+<!-- download_link( -->
+<!--   link = "https://github.com/dgonxalex80/probabilidad20212.io/blob/main/talleres/Solucion_Taller_304.pdf", -->
+<!--   button_label = "Descarga: solución pdf ", -->
+<!--   button_type = "primary", -->
+<!--   has_icon = TRUE, -->
+<!--   icon = "fa fa-save", -->
+<!--   self_contained = FALSE -->
+<!-- ) -->
+<!-- ``` -->
+
+
+
+<br/><br/><br/>
+<!-- =======================================================  -->
+<!-- ## **Taller 321** -->
+
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Problema 2.1</div> -->
+
+
+<!-- **1.** Considere como $X$ el número de veces que falla una máquina de control numérico ( $R_{X} = \{0, 1, 2 \}$ ) al dia y $Y$ el número de veces en que se llama a un ingeniéro para restaurar el proceso ( $R_{Y} = \{0, 1, 2 \}$ ). Su función de distribucion conjuna está dada por : -->
+
+
+<!-- |    |        |       |  $y$ |      | -->
+<!-- |:--:|:------:|:-----:|:----:|:----:| -->
+<!-- |    |$f(x,y)$| 0     |  1   |  2   | -->
+<!-- |$x$ |  0     | 0.15  | 0.05 | 0    | -->
+<!-- |    |  1     | 0     | 0.20 | 0.35 | -->
+<!-- |    |  2     | 0     | 0.10 | 0.15 | -->
+
+<!-- a. Determine : -->
+
+<!--   * $P(X \geq 1 ; Y \geq 1 )$ -->
+<!--   * $P(X=1)$ -->
+<!--   * $P(Y \leq 1$ -->
+
+<!-- b. Encuentre $P(Y = 1 | X = 2)$ , exprese en palabras el resultado -->
+
+<!-- c. Determine si existe dependencia entre  las dos variables ( calcule $Cov[XY]$ ) e interprete el resultado obtenido -->
+
+<!-- </div> -->
+
+<!-- <br/><br/> -->
+
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Problema 2.2</div> -->
+
+<!-- **2.** Un restaurante de  comidas rápidas opera tanto en un local que da servicios a clientes que llegan en automóviles (servicio-auto) como como en un segundo local en el que atiende a los clientes que llegan caminando. En un dia cualquiera, la proporción del tiempo en servicio del servicio-auto que se representa por $X$  y $Y$ que representa la proporción de tiempo que el segundo local esa en servicio, están representadas por la función de densidad conjunta dada por : -->
+
+<!-- $$f(x,y) = \left \{ \begin{matrix} \dfrac{2}{3}(x+2y) & \mbox{ } 0 \leq x \leq 1\\ -->
+<!--                                      & \mbox{ } 0 \leq y \leq 1 \\ -->
+<!--                                      &\\ -->
+<!--                                    0 & \mbox{ en otro caso }\end{matrix}\right.  $$ -->
+
+
+
+
+<!-- a. Determine si $f_{XY}(x,y)$ es una función de densidad de probabilidad conjunta -->
+
+<!-- b. Determine: -->
+
+<!--   * $P(X \leq 0.5 ; Y \leq 0.3)$ -->
+<!--   * $P(X \leq 0.80)$ -->
+<!--   * $P(Y \geq 0.60)$ -->
+
+<!-- c. Realice un dibujo que represente la función de densidasd conjunta -->
+
+<!-- c. Determine  $Cor[XY]$ ,  interprete su resultado -->
+
+<!-- <br/> -->
+
+<!-- ```{r, echo=FALSE} -->
+<!-- # library(downloadthis) -->
+<!-- # download_link( -->
+<!-- #   link = "https://github.com/dgonzalez80/pye20221.io/blob/main/talleres/Taller301.pdf", -->
+<!-- #   button_label = "Descarga: solución pdf ", -->
+<!-- #   button_type = "primary", -->
+<!-- #   has_icon = TRUE, -->
+<!-- #   icon = "fa fa-save", -->
+<!-- #   self_contained = FALSE -->
+<!-- # ) -->
+<!-- ``` -->
+
+<!-- </div> -->
+
+<!-- <br/><br/> -->
+
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Problema 2.3</div> -->
+
+
+
+<!-- **1.** Sea $X$ la proporción de agua (sustancia 1) y $Y$ la proporción de alcohol (sustancia 2) que se encuentran en una muestra de una mezcla usada en la industria. La cantidad de ambas sustancias en la muestra se modela con la función $f_{_{XY}}$ dada como: -->
+
+<!-- $$\begin{equation*} -->
+<!-- f_{_{X,Y}}(x,y)=\left\lbrace -->
+<!-- \begin{array}{ccl} -->
+<!-- 2 & ,  &  0 \leq x \leq 1 \\ -->
+<!--   &    &  0\leq y \leq 1  \\ -->
+<!--   &    &  x * y  \leq 1   \\ -->
+<!--   &&\\ -->
+<!-- 0&;& \text{en otro caso.} -->
+<!-- \end{array} -->
+<!-- \right. -->
+<!-- \end{equation*}$$ -->
+
+
+<!-- a. ¿Qué porcentaje de las muestras seleccionadas aleatoriamente tienen menos del setenta y cinco por ciento de ambas sustancias? -->
+
+<!-- b. Se han seleccionado cien preparaciones de la mezcla aleatoriamente. ¿Cuántas de estas tienen menos del cincuenta por ciento de cada sustancia? -->
+
+<!-- c. Cien muestras contienen menos del cincuenta por ciento de la sustancia 2, ¿cuántas muestras de estas contienen menos del cuarenta por ciento de la sustancia 1? -->
+
+<!-- d. Una mezcla seleccionada aleatoriamente contiene el cincuenta por ciento de la sustancia 2, ¿cuál es la probabilidad que contenga menos del cuarenta por ciento de la sustancia 1? -->
+
+
+<!-- </div> -->
+
+<!-- <br/><br/> -->
+
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Problema 2.4</div> -->
+
+<!-- **2.** Una empresa arma paquetes de maní y chocolate. Cada paquete contiene pesos diferentes de maní y chocolate. Para un paquete seleccionado al azar, sea $X$ la cantidad de maní y $Y$ la cantidad de chocolate. Los pesos están dados en kilogramos. La función de densidad conjunta de $X$ y $Y$ esta dada por: -->
+
+<!-- $$ -->
+<!-- f_{_{X,Y}}(x,y) = \left \{ -->
+<!-- \begin{matrix} -->
+<!-- k & \hspace{.3cm}	5 \leq x \leq 9 \\ -->
+<!--   & \hspace{.3cm} 4 \leq y \leq 9 \\ -->
+<!-- &\\ -->
+<!-- 0  & \mbox{en otro caso } -->
+<!-- \end{matrix}\right. -->
+<!-- $$ -->
+
+
+<!-- a. Determinar la función de densidad conjunta que modela la cantidad de maní y chocolate que contiene un paquete. -->
+
+<!-- b. ¿Qué porcentaje de las veces que se seleccionan paquetes al azar, contienen menos cantidad de maní que de chocolate? -->
+
+<!-- c. Cien paquetes contienen menos de seis kilogramos de maní, ¿cuántos de ellos contienen menos de cinco kilogramos de chocolate? -->
+
+<!-- d. Doscientos paquetes seleccionados aleatoriamente contienen cinco kilogramos de chocolate, ¿cuántos de ellos contienen más de ocho kilogramos de maní? -->
+
+<!-- </div> -->
+
+<!-- <br/> -->
+
+<!-- ```{r, echo=FALSE} -->
+<!-- library(downloadthis) -->
+<!-- download_link( -->
+<!--   link = "https://github.com/dgonzalez80/pye20221.io/blob/main/talleres/Solucion_Taller322.pdf", -->
+<!--   button_label = "Descarga: solución pdf ", -->
+<!--   button_type = "primary", -->
+<!--   has_icon = TRUE, -->
+<!--   icon = "fa fa-save", -->
+<!--   self_contained = FALSE -->
+<!-- ) -->
+<!-- ``` -->
+
+
+<!-- <br/><br/><br/> -->
+
+<!-- # **Ejercicios U3.3** -->
+
+<!-- <br/><br/> -->
+
+
+<!-- ## <span style="color:#104E8B">**Taller 331**</span> -->
+
+<!-- <br/><br/> -->
+
+<!-- El siguiente taller tiene como objetivo el entendimiento de los diferentes modelos de probabilidad mas utiizados para **variables discretas** y utilizar el programa RStudio en su solución. -->
+
+<!-- <br/><br/> -->
+
+<!-- **1. Modelo binomial**  Para una variable aleatoria con distribución binomial $X sim binom(x, n=10, p=0.2)$  Determine: -->
+
+<!-- a. $P(X = 2)$ -->
+
+<!-- $$P(X=5) = \displaystyle\binom{10}{5} 0.2^{5} (1-0.2)^{10-5}$$ -->
+
+<!-- ```{r} -->
+<!-- # dbinom(x,     # valor de x -->
+<!-- #        size,  # tamaño -->
+<!-- #        prob)  # probabilidad de exito -->
+
+<!-- dbinom(5,10,0.2) -->
+<!-- ``` -->
+
+
+<!-- <br/><br/> -->
+
+<!-- b. $P(X \leq 2)$ -->
+
+<!-- $$P(X\leq 2) = \sum_{x=0}^{2}\displaystyle\binom{10}{x} 0.2^{x} (1-0.2)^{10-x} =f(0)*f(1)*f(2)$$ -->
+
+<!-- ```{r} -->
+<!-- pbinom(2,10,0.2) -->
+<!-- ``` -->
+
+
+<!-- <br/><br/> -->
+
+<!-- c. $P(3 \leq  X < 5)$ -->
+
+<!-- $$P(3 \leq  X < 5) = F(4) - F(2) = f(3) * f(4)$$ -->
+
+<!-- ```{r} -->
+<!-- pbinom(4,10,0.2)-pbinom(2,10,0.2) -->
+<!-- ``` -->
+
+
+<!-- <br/><br/> -->
+
+<!-- d. $P(X \geq 8)$ -->
+
+<!-- $$P(X \geq 8) = f(8) * f(9) * f(10) = 1 - F(1)$$ -->
+
+<!-- ```{r} -->
+<!-- pbinom(7,10,0.2, lower.tail = FALSE) -->
+<!-- ``` -->
+
+
+
+<!-- <br/><br/> -->
+
+<!-- e. Construya la gráfica de $f(x)$ -->
+
+<!-- ```{r } -->
+<!-- x=0:10 -->
+<!-- fx=dbinom(x,10,0.2) -->
+<!-- plot(x,fx, -->
+<!--      main = " Distribución binomial(n=10, p=0.20)", -->
+<!--      pch=19, col = c3) -->
+<!-- grid() -->
+<!-- abline(v = 1:10,  lty = 2, col = c4) -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- **2. Modelo geometrico**  Sea una variable geométrica $X \sim geomn,(x,p=0.05)$ . Determine : -->
+
+<!-- a. $P(X = 1)$ -->
+
+<!-- ```{r} -->
+<!-- # dgeom(x,    # valor de x -->
+<!-- #       prob) # probabilidad de exito -->
+
+<!-- dgeom(1,0.05) -->
+<!-- ``` -->
+
+
+<!-- b. $P(X \leq 2)$ -->
+
+<!-- c. $P(X = 8)$ -->
+
+<!-- d. $P(X \geq 2)$ -->
+
+<!-- e. Construya la gráfica de $f(x)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **3. Modelo hipergeometrico** Suponga que $X$ tiene una distribución hipergeometrica con $N=100$, $n=4$ y $K=20$. ($X\sim hyper(x,N=100,n=4,k=20)$) Determine: -->
+
+<!-- a. $P(X = 1)$ -->
+
+<!-- ```{r} -->
+<!-- # dhyper(x,   # valor de x -->
+<!-- #        m,   # casos existoros : k = 20 -->
+<!-- #        n,   # casos no exitosos : N-k = 80 -->
+<!-- #        k)   # muestra que se extrae  :n = 4 -->
+<!-- # m*n = N : total de la urna  : 100 -->
+<!-- # -->
+<!-- dhyper(1, m=20, n=80, k=4 ) -->
+<!-- ``` -->
+
+
+<!-- b. $P(X = 6)$ -->
+
+<!-- c. $P(X \geq 1)$ -->
+
+<!-- d. $P(X = 4)$ -->
+
+<!-- e. Construya la gráfica de $f(x)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **4. Modelo Poisson** Suponga que $X$ tiene una distribución Poisson con media $lambda=4$ ($X \sim pois(x,lambda=4)$). Determine: -->
+
+<!-- a. $P(X = 0)$ -->
+
+<!-- ```{r} -->
+<!-- #  dpois(x,       # valor de x -->
+<!-- #        lambda)  # media o lambda -->
+<!-- dpois(0,4) -->
+<!-- ``` -->
+
+
+<!-- b. $P(X = 4)$ -->
+
+<!-- c. $P(X \geq 2)$ -->
+
+<!-- d. $P(X \leq 2)$ -->
+
+<!-- e. Construya la gráfica de $f(x)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **5. Modelo binomial negativo** Sea la variable $X$ con distribución binomial negativa con $p=0.20$ y $k=3$, $n=5$.	Determine: -->
+
+<!-- a. $P(X = 3)$ -->
+
+<!-- ```{r} -->
+<!-- # dnbinom(x,     # valor de x -->
+<!-- #         size,  # numero de exitos requeridos -->
+<!-- #         prob)  # probabilidad de exito -->
+
+<!-- dnbinom(3,3,0.20) -->
+<!-- ``` -->
+
+
+<!-- b. $P(X = 6)$ -->
+
+<!-- c. $P(X \geq 10)$ -->
+
+<!-- d. $P(X \leq 12)$ -->
+
+<!-- e. $EX$ y $VX$ -->
+
+<!-- f. Construya la gráfica de $f(x)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **6. Modelo binomial** En un cargamento grande de llantas para automóviles, el 5 tiene imperfecciones. Se eligen de manera aleatoria 4 llantas para ser instalada en un automóvil.  (Sea X el número de llantas con imperfecciones. $X \sim binom(n=4, p=0.05$ ) -->
+
+<!-- a. ¿ Cuál es la probabilidad de que ninguna de las llantas tenga imperfecciones? -->
+
+<!-- b. ¿ Cuál es la probabilidad de que sólo una de las llantas tenga imperfecciones? -->
+
+<!-- c. ¿ Cuál es la probabilidad de una o más llantas tenga imperfecciones? -->
+
+<!-- <br/><br/> -->
+
+<!-- **7. Modelo Poisson** Los clientes llegan al mostrador de una tienda de acuerdo con una variable aleatoria Poisson con una frecuencia promedio de ocho clientes por hora. -->
+
+<!-- a. Calcule la probabilidad de que entre las 8 AM y las 9 AM lleguen exactamente cinco clientes. -->
+
+<!-- b. Calcule la probabilidad de que entre las 2:30 PM y las 3:30 PM no lleguen más de tres clientes. -->
+
+<!-- c. Calcule la probabilidad de que lleguen exactamente dos clientes dentro de un intervalo de dos horas continuas, por ejemplo entre 10 AM y 12 M. -->
+
+<!-- d. Calcule el valor esperado del número de personas que llegan a la tienda entre las 2 PM y las 4:30 PM. -->
+
+
+<!-- <br/><br/> -->
+
+<!-- **8.** Se está desarrollando una nueva variedad de maíz en una extensión de experimentación agrícola. Se espera que tenga una tasa de germinación del 90. Para verificar esto, se plantan 20 semillas en suelos de idéntica composición y se les dedican los mismos cuidados. Si la cifra 90 es correcta, ¿cuántas semillas se espera que germinen? Si sólo germinan 15 o menos, ¿hay razón para sospechar de la cifra 90? -->
+
+<!-- <br/><br/> -->
+
+<!-- **9.** Un examen de Probabilidad consta de 100 preguntas de selección múltiple, cada una con cuatro opciones de respuesta. Maria responde cada pregunta al azar y sus respuestas son independientes -->
+
+<!-- a. Si para aprobar el examen Maria debe responder mínimo 60 preguntas correctamente, calcule la probabilidad de que Maria apruebe el examen. -->
+
+<!-- b. Calcule la probabilidad de que Maria  deba responder 10 preguntas hasta responder la primera pregunta correctamente. -->
+
+<!-- c. ¿Cuál es el número esperado de preguntas que Maria responderá erróneamente hasta responder 5 preguntas correctamente? -->
+
+<!-- <br/><br/> -->
+
+<!-- **10.** Se sospecha que muchas muestras de agua, todas del mismo tamaño y tomadas del Hillbank River, han sido contaminadas por operarios irresponsables de una planta de tratamiento de aguas. Se contó el número de microorganismos conformes en cada muestra. El número medio de microorganismos por muestra fue de 15. Suponiendo que el número de microorganismos se distribuye según una distribución de Poisson, calcular la probabilidad de que: -->
+
+<!-- a. La siguiente muestra contenga al menos 17 microorganismos. -->
+
+<!-- b. La siguiente muestra contenga 18 o menos microorganismos. -->
+
+<!-- c. La siguiente muestra contenga exactamente dos microorganismos. -->
+
+<!-- <br/><br/> -->
+
+
+<!-- **11.** Una aéreolinea nacional tiene aviones de 100 asientos para el servicio de transporte nacional. Se estima que la probabilidad de que una persona llegue al vuelo es de 0.90, debido a lo cual  la aereolinea vende 105 tiquetes con el fin de minimizar la partida de aviones con sillas vacias. ¿cuál es la probabilidad de que todas las personas que lleguen para abordar el avión tengan asiento? -->
+
+<!-- <br/><br/> -->
+
+<!-- **12** El número de grietas en un pavimento se estima en una grieta por cada 100m  en promedio. Se desea estimar la probabilidad de: -->
+
+<!-- a. Haya exactamente 8 grietas en una longitud de 500 m -->
+
+<!-- b. No se presente ninguna grieta en 100 m -->
+
+<!-- c. Se presenten menos de 2 grietas en 500 m -->
+
+<!-- <br/><br/> -->
+
+<!-- **13**. Un sistema de seguridad para casas está diseñado para tener una confiabilidad del 95 . Suponga que 10 casas equipadas con este dispositivo sufrieron tentativa de robo. Se requiere calcular la probabilidad de que en siete de las nueve, la alarma se activará. -->
+
+<!-- <br/><br/> -->
+
+
+<!-- ```{r, echo=FALSE} -->
+<!-- # library(downloadthis) -->
+<!-- # download_link( -->
+<!-- #   link = "https://github.com/dgonxalex80/probabilidad20212.io/blob/main/talleres/Solucion_Taller_%20307.pdf", -->
+<!-- #   button_label = "Descarga: solución pdf ", -->
+<!-- #   button_type = "primary", -->
+<!-- #   has_icon = TRUE, -->
+<!-- #   icon = "fa fa-save", -->
+<!-- #   self_contained = FALSE -->
+<!-- # ) -->
+<!-- ``` -->
+
+
+
+
+<!-- <br/><br/><br/> -->
+
+<!-- ## **Taller 332** -->
+
+<!-- **1. Modelo uniforme** Para una variable aleatoria $X\sim unif(x,a,b)$  con $a=10$ y $b=20$ determine: -->
+
+<!-- a. Construya un bosquejo de la gráfica de la función de densidad de probabilidad $f_{_{X}}(x)$. -->
+
+<!-- b. $P(X \leq 12)$. -->
+
+<!-- c. $P(13\leq X <15)$. -->
+
+<!-- d. $P(X\geq 18)$ . -->
+
+<!-- e. $E[X]$ y $V[X]$. -->
+
+<!-- <br/><br/> -->
+
+<!-- **2. Modelo normal** Para una variable $Z\sim N(0,1)$, determine el área: -->
+
+<!-- a.  A la derecha de z = - 0.85. -->
+
+<!-- ```{r} -->
+<!-- pnorm(-0.85, lower.tail = FALSE) -->
+<!-- 1-pnorm(-0.85) -->
+<!-- ``` -->
+
+
+<!-- b.Entre $z = 0.40$ y $z = 1.30$. -->
+
+<!-- c. Entre $z = -0.30$ y $z = 0.90$. -->
+
+<!-- d.  Desde $z = -1.50$ hasta $z = -0.45$. -->
+
+<!-- **Nota**: en cada caso realice un  bosquejo del área que representa la probabilidad -->
+
+<!-- <br/><br/> -->
+
+<!-- **3. Modelo normal estandar** Para una variable $Z\sim N(0,1)$, determine el área: -->
+
+<!-- a.	A la izquierda de $z = 0.56$. -->
+
+<!-- b. Entre $z = - 2.93$ y $z = -2.06$. -->
+
+<!-- c. Entre $z = -1.08$ y $z = 0.70$. -->
+
+<!-- d. Desde $z = 0.96$ hasta $z = 1.62$. -->
+
+<!-- Nota: En cada caso represente gráficamente los valores solicitados -->
+
+<!-- <br/><br/> -->
+
+<!-- **4. Modelo normal** Para una variable aleatoria continua $X\sim norm(\mu=150, \sigma^{2}=1000)$ determine: -->
+
+<!-- a. Realice un bosquejo de la gráfica de la función de  densidad de probabilidad de $X$ -->
+
+<!-- b. $P(X \leq 130)$. -->
+
+<!-- ```{r} -->
+<!-- pnorm(130, 150, 10) -->
+<!-- ``` -->
+
+
+<!-- c. $P(300 \leq X \leq 400)$. -->
+
+<!-- d. $P(X\geq 550)$. -->
+
+<!-- e. Determine el valor de $k$ que cumpla : $P(-k < X < k)= 0.90$. -->
+
+<!-- f. Determine el valor de $k$ que cumpla : $P(-k < X < k)= 0.95$. -->
+
+<!-- <br/><br/> -->
+
+<!-- **5. Modelo exponencial** Sea $X$ una variable aleatoria con distribución exponencial . ($X\sim exp(\lambda=2)$). Determine: -->
+
+<!-- a. $P(X \leq 1)$. -->
+
+<!-- ```{r} -->
+<!-- pexp(1,2) -->
+<!-- ``` -->
+
+
+<!-- b. $P(X \geq 2)$. -->
+
+<!-- c. $P(1 < X < 2)$. -->
+
+<!-- d. Realice un bosquejo de la gráfica de $f_{_{X}}(x)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **6.** Doris  y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en Unicentro. Sea $X$ el tiempo que transcurre entre las 5:00 pm y el momento en que llega Doris y $Y$ el tiempo que transcurre entre las 5:00 pm y el momento en que llega Mauricio. Suponga que X y Y son variables aleatorias independientes uniformemente distribuidas en el intervalo [0; 60]  en minutos. -->
+
+<!-- a. Cuál es la distribución de probabilidad conjunta de X y Y? -->
+
+<!-- b. ¿Cuál es la probabilidad de que ambos lleguen entre las 5:30 y 5:40? -->
+
+<!-- c. Sea T = X − Y el tiempo que Mauricio espera a Doris. ¿Cuánto debe esperar en promedio Mauricio a Doris? -->
+
+<!-- d. Si Doris y Mauricio acuerdan además, que cada uno esperará al otro un máximo 10 minutos. Cuál es la probabilidad de que Mauricio y Doris se encuentren? -->
+
+<!-- <br/><br/> -->
+
+<!-- **7.** Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una prueba y cuya distribución es aproximadamente normal con media de $480$ puntos y desviación estándar de $90$ puntos, determine: -->
+
+<!-- a. ¿Cuál es la proporción de puntuaciones mayores a 700? -->
+
+<!-- b. ¿Cuál es el 25o. percentil de las puntuaciones? -->
+
+<!-- c. Si la puntuación de alguien es de 600, ¿en qué percentil se encuentra? -->
+
+<!-- d. ¿Qué proporción de las puntuaciones se encuentra entre 420 y 520? -->
+
+<!-- <br/><br/> -->
+
+<!-- **8.** Suponga que la estatura de las personas en una población sigue la curva normal con media de 64.3 pulgadas y desviación estándar de 2.6 pulgadas. -->
+
+<!-- a. ¿Qué proporción de personas en esa región tiene estatura entre 60 y 66 pulgadas? -->
+
+<!-- b. La estatura de Juan es 0.5 de desviación estándar mayor a la media. ¿Qué proporción de personas miden más que Juan? -->
+
+<!-- c. ¿Cuánto mide una persona cuya estatura se encuentra en el 90o. percentil? -->
+
+<!-- d. Se elige aleatoriamente una persona de esta población. ¿Cuál es la probabilidad de que ella mida más de 67 pulgadas? -->
+
+<!-- e. Se elige aleatoriamente a cinco personas de esta población. ¿Cuál es la probabilidad de que sólo una de ellas mida más de 67 pulgadas? -->
+
+<!-- <br/><br/> -->
+
+<!-- **9.** La resistencia de una aleación de aluminio se distribuye normalmente con media de 10 gigapascales (GPa) y desviación estándar de 1.4 GPa. -->
+
+<!-- a. ¿Cuál es la probabilidad de que una muestra de esta aleación tenga resistencia mayor a 12 GPa? -->
+
+<!-- b. Determine el primer cuartil de la resistencia de esta aleación. -->
+
+<!-- c. Determine el 95o. percentil de la resistencia de esta aleación. -->
+
+<!-- <br/><br/> -->
+
+<!-- **10.** La vida útil de una bombilla de un vehículo opera en un ambiente a alta temperatura dada su cercania al motor del vehículo. Esta variable medida en años sigue aproximadamente una distribución lognormal con media $\mu=1.2$ y varianza $\sigma^{2} =0.4$ . -->
+
+<!-- a. Determine el tiempo medio de vida de la bombilla -->
+
+<!-- b. Determine la probabilidad de que la bombilla dure entre 3 y 6 años -->
+
+<!-- c. Determine  el valor de la mediana -->
+
+<!-- d. Determine el percentil 95° de los tiempos de vida -->
+
+
+<!-- <br/><br/> -->
+
+<!-- **11.**	Un indicador importante para el control del estado físico de una persona es el Indice de Masa Corporal (IMC).  Este indice se obtiene al dividir el valor de la masa  corporal de  una persona ($kg$) entre el cuadrado de la talla de la persona ($m^{2}$). En su artículo W.Bolch y E Farfan establecen que este indice (en $kg/m^{2}$)se distribuye  aproximadamente lognormal con media $\mu=3.215$ y $\sigma = 0.157$ para hombre con edad entre 17 y 25 años. -->
+
+<!-- La organización mundial de la salud ha establecido rangos para este indice y los ha clasificado de acuerdo al riesgo así: -->
+
+<!-- * De 25.0 a 29.9 :  Sobrepeso o no obeso ; -->
+<!-- * Entre 30 a 34.9 : Obesidad clase 1 o de bajo riesgo. -->
+<!-- * Entre 35 y 39.9 : Obesidad clase 2 o de riesgo medio. -->
+<!-- * Más de 40: Obesidad clase 3 o de alto riesgo. -->
+
+<!-- Con el fin de establecer una campaña sobre buenos hábitos en el deporte y la dieta el Centro de Bienestar Universitario desea conocer las proporciones de una población de jóvenes con estas edades, en cada uno de los rangos establecidos. -->
+
+
+<!-- <br/><br/> -->
+
+<!-- **12.**	Un fabricante manifiesta que su producto principal (un ventilador para el  hogar ) dura más de 9000 horas.de uso. Que si algún cliente presenta una avería en su producto antes de este tiempo, él garantiza la entrega de otro de similares condiciones como parte de su estrategia de venta. Uno de  sus asesores le indica que no es adecuado realizar esta promoción y que será muy costosa realizarla. Con  el fin de validad quien tiene la razón, le entregan a Usted la siguiente información:  La variable  tiempo de vida de un ventilador de similares condiciones se puede modelar mediante una distribución Weibull con parámetros : $\alpha=1.5$ y $\beta=0.0001$ . ¿quien tiene la razón? -->
+
+<!-- <br/><br/> -->
+
+<!-- **13.** Una de las dificultades que presentan las Empresas Municipales se relaciona con la reparación de rupturas de tubos de alcantarillados debido especialmente a la antigüedad de las tuberías y a las raíces de los árboles que los rompen y generan suspensiones en el servicio de agua. Para la reparación de estos daños la empresa contrata con terceros los arreglos. La empresa conoce que el tiempo de reparación (en horas) se puede modelar mediante una distribución gamma con parámetros $\alpha=2$ y $\beta=1/2$, pero además tienen como indicador de calidad que el tiempo máximo de reparación no debe exceder una hora. ¿Qué tan probable es que se cumpla esta política con las actuales condiciones? -->
+
+
+<!-- <br/><br/> -->
+
+<!-- **14.** Uno de los producto más vendidos por IK, fabricantes de cocinas integrales, corresponde a un novedoso estilo de puertas para gabinetes. Cada una de las puertas se construye ensamblando tres partes de madra $P_1$, $P_2$ y $P_3$, que son cortadas y procesadas por tres operarios y máquinas diferentes. Un estudio realizado recientemente en estos tres procesos determinó que el ancho de cada pieza se distribuye aproximadamente normal con medias : $10.4$ cm, $7.2$ cm y $12.2$  respectivamente y con desviaciones de : $0.2$ cm, $0.1$ cm y $0.3$ cm respectivamente. Para pegar las piezas se emplea una cinta doble faz de espesor de $0.1$ cm, la cual se considera constante. -->
+
+<!-- Para garantizar la calidad de los gabinetes, se debe obtener un ancho de la puerta entre 29.6 y 30.3 cm. El producto por debajo de este intervalo de ser desechado y no podrá ser reutilizado. Por el contrario los producrtos que estén por encima de estas especificaciones descritas, deberan ser reprocesados para ser evaluados nuevamente. -->
+
+<!-- Como politicas de calidad, la empresa tiene que el proceso se encuentra bajo control siempre y cuando el porcentaje de material desechado no supere el 5% de la producción y el material reprocesado sea inferior al 2%. -->
+
+<!-- a. Basados en la información anterior, es posible establecer si el proceso de fabricación de las puertas está bajo control? En caso de poder hacerlo, realice los cálculos y determine el estado del proceso. En todos los casos justifique la respuesta. -->
+
+<!-- b. Actualmente la empresa tiene una capacidad para fabricar 120 puertas diariamente y se tiene como meta que de ellas por lo menos 100 se encuentren dentro de los estandares establecidos por la empresa. -->
+<!-- Suponiendo que la pruducción en la empresa se mantiene con las características descritas anteriormente, qué tan probable es cumplir la meta planteada? Justirique su respuesta. -->
+
+
+<!-- <br/><br/> -->
+
+<!-- ```{r, echo=FALSE} -->
+<!-- # library(downloadthis) -->
+<!-- # download_link( -->
+<!-- #   link = "https://github.com/dgonxalex80/probabilidad20212.io/blob/main/talleres/Solucion_Taller_%20308.pdf", -->
+<!-- #   button_label = "Descarga: solución pdf ", -->
+<!-- #   button_type = "primary", -->
+<!-- #   has_icon = TRUE, -->
+<!-- #   icon = "fa fa-save", -->
+<!-- #   self_contained = FALSE -->
+<!-- # ) -->
+<!-- ``` -->
+
+<!-- <br/><br/><br/> -->
+
+<!-- ## **Taller 333** -->
+
+<!-- <br/><br/> -->
+
+<!-- **1.** Para una variable $Z$ con distribución de probabilidad normal estandar determine el área bajo la curva: -->
+
+<!-- a. $P(Z < 1.32)$ -->
+
+<!-- b. $P(Z > 1.45)$. -->
+
+<!-- c. $P(Z > -2.15)$. -->
+
+<!-- d. $P(-2.34 < Z < 1.76)$. -->
+
+<!-- e. $P( -0.50 < Z < -1.35)$ -->
+
+<!-- f. $P(0.60 > Z > 1.62)$ -->
+
+<!-- g. $P(-1 < Z < 1)$ -->
+
+<!-- h. $P(-2 < Z < 2)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **2.** Asuma que $Z$ tiene una distribución normal estándar. Determine el valor de $z$ para las siguientes probabilidades: -->
+
+<!-- a. $P(Z < z) = 0.90$ -->
+
+<!-- ```{r} -->
+<!-- qnorm(0.90) -->
+<!-- ``` -->
+
+
+<!-- b. $P(Z < z ) = 0.50$ -->
+
+<!-- c. $P(Z > z) = 0.10$ -->
+
+<!-- d. $P(Z > z) = 0.90$ -->
+
+<!-- e. $P(-z < Z < z) =0.95$ -->
+
+<!-- f. $P(-z < Z < z) =0.99$ -->
+
+<!-- g. $P(-z < Z < z) =0.68$ -->
+
+<!-- h. $P(-z < Z < z) =0.9973$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **3.** Para una variable aleatoria $X$ con distribución normal con media 10 y desviación estándar de 2, determine: -->
+
+<!-- a. $P(X < 13)$ -->
+
+<!-- b. $P(X > 9)$ -->
+
+<!-- c. $P( 6 < X < 14)$ -->
+
+<!-- d. $P( 2 < X < 4)$ -->
+
+<!-- e. $P(-2 < X < 8)$ -->
+
+<!-- **4.** Para $X \sim N(\mu=10, \sigma^{2}=4)$ determine el valor de $x$: -->
+
+<!-- a. $P(X > x) = 0.50$ -->
+
+<!-- b. $P(X > x) = 0.95$ -->
+
+<!-- c. $P( x < X < 10) = 0.20$ -->
+
+<!-- d. $P( -x < X-10 < x) = 0.95$ -->
+
+<!-- e. $P(-x < X-10 < x) = 0.99$ -->
+
+<!-- <br/><br/> -->
+
+<!-- **5.** Para una variable $X \sim N(5,16)$ determine: -->
+
+<!-- a. $P(X < 11)$ -->
+
+<!-- b. $P(X > 0)$ -->
+
+<!-- c. $P(3 < X < 7)$ -->
+
+<!-- d. $P(-2 < X < 9)$ -->
+
+<!-- e. $P(2 < X < 8)$ -->
+
+<!-- f. $P(X > x) = 0.55$ -->
+
+<!-- g. $P(x < X < 9) = 0.95$ -->
+
+<!-- h. $P(3 < X < x) = 0.99$ -->
+
+
+<!-- <br/><br/><br/> -->
+
+<!-- ## **Taller 334** -->
+
+<!-- <br/> -->
+
+<!-- Modelos especiales - Simulación -->
+
+<!-- <br/> -->
+
+<!-- **METODO DE MONTECARLO** : Es un método no determinista o estadístico numérico, usado para aproximar expresiones matemáticas complejas y costosas de evaluar con exactitud. El método se llamó así en referencia al Casino de Montecarlo (Mónaco) por ser “la capital del juego de azar”, al ser la ruleta un generador simple de números aleatorios. El nombre y el desarrollo sistemático de los métodos de Montecarlo datan aproximadamente de 1944 y se mejoraron enormemente con el desarrollo de la computadora. -->
+
+<!-- <br/> -->
+
+<!-- El uso de los métodos de Montecarlo como herramienta de investigación, proviene del trabajo realizado en el desarrollo de la bomba atómica durante la Segunda Guerra Mundial en el Laboratorio Nacional de Los Álamos en EE. UU. Este trabajo conllevaba la simulación de problemas probabilísticos de hidrodinámica concernientes a la difusión de neutrones en el material de fisión. Esta difusión posee un comportamiento eminentemente aleatorio.	(tomado de Wikipedia) -->
+
+<!-- <br/><br/> -->
+
+<!-- **1.** Dos diseños de un circuito de semiconductores están compitiendo entre sí. La duración del primero (en horas) se distribuye exponencialmente con $\lambda=10^{-4}$ y la duración del segundo tiene una distribución lognormal con $\mu=6$ y $\sigma^{2}=5.4$ -->
+<!-- a. Utilice una muestra simulada de tamaño $1000$ para estimar la probabilidad de que un circuito con el primer diseño dure más que otro con el segundo diseño. -->
+<!-- b. Estime la probabilidad de que un circuito con el primer diseño  dure el doble del tiempo que otro con el segundo diseño. -->
+
+<!-- <br/><br/> -->
+
+<!-- **2.** Se fabrican placas rectangulares cuyas longitudes en pulgadas se distribuyen como $N(2.0; 0.01)$ y cuyos anchos se distribuyen $N(3.0; 0.04)$. Suponga que las longitudes y los anchos son independientes. El área de una placa esta dada por $A=XY$. -->
+
+<!-- a. Utilice una muestra simulada de tamaño $1000$ para estimar la media y la varianza de $A$. -->
+<!-- b. Estime la probabilidad de que $P(5.9 <A<6.1)$. -->
+<!-- c. Construya una gráfica de distribución normal $(qqplot)$ para el área. ¿El área de una placa sigue una distribución normal? -->
+
+<!-- <br/><br/> -->
+
+<!-- **3.** La duración de un láser (en horas) tiene una distribución lognormal con $\mu=8$ y $\sigma^{2}=2.4$. Dos de estos láser funcionan de forma independiente. -->
+
+<!-- a. Utilice una muestra de tamaño $1000$ para estimar la probabilidad de que la suma de las dos duraciones sea mayor a $20000$ horas. -->
+<!-- b. Estime la probabilidad de que ambos láser duren más de $3000$ horas. -->
+<!-- c. Estime la probabilidad de que ambos láser falle antes de las $10000$ horas. -->
+
+<!-- <br/><br/> -->
+
+<!-- **4.** Un sistema está compuesto por dos subsistemas conectados en serie, como se muestra en la siguiente figura. Cada subsistema consiste en dos componentes conectados en paralelo. El subsistema AB falla cuando no funcionan $A$ y $B$. El subsistema CD falla cuando lo hacen $C$ y $D$. El sistema falla tan pronto como alguno de los dos subsistemas falla. Suponga que los tiempos de vida de los componentes, en meses, tienen las siguientes distribuciones: $A \sim Exp(1)$; $B\sim Exp(0.1)$; $C \sim Exp(0.2)$; $D\sim Exp(0.2)$ -->
+<!-- \begin{center} -->
+<!-- \includegraphics[scale=.56]{simula10} -->
+<!-- \end{center} -->
+
+<!-- a. Genere mediante simulación un gran número (al menos $1000$) de los tiempos de vida del sistema. -->
+<!-- b. Estime el tiempo de vida medio del sistema. -->
+<!-- c. Estime la mediana del tiempo de vida del sistema. -->
+<!-- d. Estime la probabilidad de que el sistema funcione más de seis meses. -->
+<!-- e. Estome el percentil $P_{90}$ de los tiempos de vida del sistema. -->
+<!-- f. Estime la probabilidad de que el subsistema AB falle antes de que lo haga el subsistema CD. -->
+
+<!-- <br/> -->
+
+<!-- (Ejercicios tomados de Navidi(2006) Cap.4). -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **Algunas soluciones en R** -->
+
+<!-- <br/> -->
+
+<!-- ```{r, eval=FALSE} -->
+<!-- # Problema 3 Navidi(2006) Cap 4 ------ -->
+<!-- X2=rnorm(1000,mean=2.0,sd=0.1) -->
+<!-- Y2=rnorm(1000,mean=3.0,sd=0.2) -->
+<!-- Z2=data.frame(X2,Y2) -->
+<!-- A2=apply(Z2,1,prod) -->
+<!-- mediaA=mean(A2) -->
+<!-- varianzaA=var(A2) -->
+<!-- B2=as.numeric(A2>5.9 & A2<6.1) -->
+<!-- Pro3c=sum(B2)/1000 -->
+<!-- hist(A2) -->
+<!-- qqnorm(A2) -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ```{r, eval=FALSE} -->
+<!-- # Problema 3 Navidi(2006) Cap 4 ------ -->
+<!-- X2=rnorm(1000,mean=2.0,sd=0.1) -->
+<!-- Y2=rnorm(1000,mean=3.0,sd=0.2) -->
+<!-- Z2=data.frame(X2,Y2) -->
+<!-- A2=apply(Z2,1,prod) -->
+<!-- mediaA=mean(A2) -->
+<!-- varianzaA=var(A2) -->
+<!-- B2=as.numeric(A2>5.9 & A2<6.1) -->
+<!-- Pro3c=sum(B2)/1000 -->
+<!-- hist(A2) -->
+<!-- qqnorm(A2) -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+
+<!-- ```{r, eval=FALSE} -->
+<!-- # Problema 1 Navidi(2006) Cap 4 -- -->
+<!-- #a.----------------------------- -->
+<!-- # X Binomial(n=100, p=0.03) -->
+<!-- # Y Binomial(n=100, p=0.05) -->
+<!-- # b.----------------------------- -->
+<!-- X=rbinom(1000,size=100,prob=0.03) -->
+<!-- Y=rbinom(1000,size=100,prob=0.05) -->
+<!-- # c. ---------------------------- -->
+<!-- Z=apply(data.frame(X,Y),1,sum) -->
+<!-- C=as.numeric(Z<10) -->
+<!-- Pro1c=sum(C)/1000 -->
+<!-- # d.------------------------------ -->
+<!-- W=apply(data.frame(X,-Y),1,sum) -->
+<!-- D=as.numeric(W>0) -->
+<!-- Pro1d=sum(D)/1000 -->
+<!-- # e.------------------------------ -->
+<!-- qqnorm(Z) -->
+<!-- qqline(Z) -->
+<!-- hist(Z) -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ```{r, eval=FALSE} -->
+<!-- # problema 9 Navidi(2006) Cap 4 ------ -->
+<!-- # Generación de los tiempos de A -->
+<!-- A=rlnorm(1000,meanlog=1, sdlog=0.5) -->
+<!-- # Generación de los tiempos de B -->
+<!-- B=rlnorm(1000,meanlog=2, sdlog=1) -->
+<!-- # Estreuctura como sistema de -->
+<!-- # los tiempos simulados -->
+<!-- AB=data.frame(A,B) -->
+<!-- # Generación de los tiempos del sistema -->
+<!-- minAB=apply(AB,1,min) -->
+<!-- # Calculo de la media de los tiempos -->
+<!-- # del sistema -->
+<!-- mean(minAB) -->
+<!-- # Cosntrucción de variable Bernoulli -->
+<!-- # que toma valores de uno cuando se -->
+<!-- # cumple condición -->
+<!-- D=as.numeric(minAB<2) -->
+<!-- # Calculo de la probabilidad desde -->
+<!-- # enfoque frecuentista -->
+<!-- Prob2=sum(D)/1000 -->
+<!-- # Calculo de percentil 20 -->
+<!-- quantile(minAB,.20) -->
+<!-- # Generación del histograma -->
+<!-- hist(minAB) -->
+<!-- # Generación del grafico de normalidad qqplot -->
+<!-- qqnorm(minAB) -->
+<!-- qqline(minAB) -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+<!-- ```{r, eval=FALSE} -->
+<!-- # Punto 2 Navidi(2006) Cap 4------------- -->
+<!-- X2=rnorm(1000,mean=2.0,sd=0.1) -->
+<!-- Y2=rnorm(1000,mean=3.0,sd=0.2) -->
+<!-- Z2=data.frame(X2,Y2) -->
+<!-- A2=apply(Z2,1,prod) -->
+<!-- mediaA=mean(A2) -->
+<!-- varianzaA=var(A2) -->
+<!-- B2=as.numeric(A2>5.9 & A2<6.1) -->
+<!-- Pro3c=sum(B2)/1000 -->
+<!-- hist(A2) -->
+<!-- ``` -->
+
+
+
+<!-- <br/><br/><br/> -->
+
+
+<!-- ## **Formulario** -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución Bernoulli** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\left\lbrace -->
+<!-- \begin{array}{lll} -->
+<!-- p & \mbox{si } x=1 \\ -->
+<!-- q & \mbox{si } x=0 \\ -->
+<!-- 0 & \mbox{en cualquier otro caso} -->
+<!-- \end{array} -->
+<!-- \right. -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]= p$$ -->
+
+<!-- $$V[X]= pq$$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución binomial** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\displaystyle\binom{n}{x} p^{x} (1-p)^{n-x} , x=0,1,2, \ldots, n -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=np$$ -->
+
+<!-- $$V[X]= np(1-p) $$ -->
+
+<!-- <p style="text-align:center;"> -->
+<!-- $X$ : número de  éxitos en los $n$ ensayos -->
+<!-- </p> -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución Poisson** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\dfrac{\lambda^{x}}{x!} \hspace{.2cm} e^{-\lambda} , x \geq 0 -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\lambda$$ -->
+
+<!-- $$V[X]=\lambda $$ -->
+<!-- <p style="text-align:center;"> -->
+<!-- $X$ : número de  eventos que ocurren por unidad de tiempo, longitud, superficie o volumen. -->
+<!-- </p> -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución geométrica** -->
+
+<!-- \begin{equation*} -->
+<!-- 	f(x)=p(1-p)^{x-1} , x \geq 1 -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\dfrac{1}{p}$$ -->
+
+<!-- $$V[X]=\dfrac{1-p}{p^{2}}$$ -->
+
+<!-- <p style="text-align:center;"> -->
+<!-- $X$: número del evento donde ocurre el primer éxito -->
+<!-- </p> -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución hipergeometrica** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=P(X=x)=\dfrac{\displaystyle\binom{R}{x} \displaystyle\binom{N-R}{n-x}}{\displaystyle\binom{N}{n}} ,{\text{ si } 0 \leq x \leq \min(n,R) } -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\dfrac{nR}{N}$$ -->
+
+<!-- $$V[X]=n\binom{R}{N} \Bigg(1-\dfrac{R}{N}\Bigg)\Bigg(\dfrac{N-n}{N-1}\Bigg)$$ -->
+
+<!-- <p style="text-align:center;"> -->
+<!-- $X$: número de éxitos encontrados en una muestra de tamaño $n$ (sin orden, sin repetición), extraída de una urna que contiene N elementos de los cuales K son éxitos. -->
+<!-- </p> -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución binomial negativa** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\displaystyle \binom{x-1}{r-1} p^{r} (1-p)^{x-r} , x= r, r*1, \ldots -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\dfrac{r}{p}$$ -->
+
+<!-- $$V[X]=\dfrac{r(1-p)}{p^{2}}$$ -->
+
+<!-- <p style="text-align:center;"> -->
+<!-- $X$ : número del evento donde ocurre el r-esimo éxito -->
+<!-- </p> -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución uniforme ($a,b)$** -->
+
+<!-- $$f(x)=\dfrac{1}{b-a} , \hspace{.3cm}\text{ para } a \leq x \leq b $$ -->
+
+<!-- <br/><br/> -->
+
+<!-- $$ E[X]=\dfrac{a*b}{2}$$ -->
+
+<!-- $$V[X]=\dfrac{(b-a)^{2}}{12}$$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución Normal  ($\mu, \sigma^{2}$)** -->
+
+<!-- $$f(x)= \dfrac{1}{\sqrt{2\pi \sigma^{2}}} \hspace{.1cm} exp{\bigg(-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\bigg)}, \hspace{.3cm} -\infty \leq x \leq \infty $$ -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\mu$$ -->
+
+<!-- $$V[X]=\sigma^{2}$$ -->
+
+<!-- $$Z= \dfrac{X-\mu}{\sigma} \sim N(0,1)$$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución exponencial ($\lambda$)** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\lambda e^{-\lambda x} , x > 0 -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\dfrac{1}{\lambda}$$ -->
+
+<!-- $$V[X]= \dfrac{1}{\lambda^{2}}$$ -->
+
+<!-- $$F(x)=P(X \leq x)=1-e^{-\lambda x}$$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución lognormal ($\mu, \sigma^{2}$)** -->
+
+<!-- $$f(x)= \dfrac{1}{\sqrt{2\pi \sigma^{2}}} \hspace{.01cm} exp{\bigg(-\frac{1}{2\sigma^{2}}(\ln(x)-\mu)^{2}\bigg)}, \hspace{.25cm} -\infty \leq x \leq \infty $$ -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X]=\exp(\mu*\sigma^{2}/2)$$ -->
+
+<!-- $$V[X]=\exp(2\mu*\sigma^{2}) \exp(\sigma^{2})-1$$ -->
+
+<!-- $$z = \dfrac{\ln(x) - \mu}{\sigma} \sim N(0,1) $$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución gamma ($\alpha, \beta$)** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\dfrac{1}{\beta^{\alpha}\Gamma(\alpha)} x^{\alpha-1} \exp{\big(-x/\beta\big)},   x>0 , \alpha>0, \beta>0 -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$E[X] =  \alpha \beta $$ -->
+
+<!-- $$V[X] = \alpha \beta^{2} $$ -->
+
+
+<!-- <br/><br/> -->
+
+<!-- ### **Distribución Weibull ($\alpha, \beta$)** -->
+
+<!-- \begin{equation*} -->
+<!-- f(x)=\alpha \beta^{\alpha} x^{\alpha-1} e^{-(\beta x)^{\alpha}} ,\hspace{.3cm} x > 0 -->
+<!-- \end{equation*} -->
+
+<!-- <br/><br/> -->
+
+<!-- $$F(x)=1-\exp{\{-\alpha x^{\beta}\}}$$ -->
+
+<!-- $$E[X]=\frac{1}{\beta} \hspace{.2cm}\Gamma\Bigg(1*\frac{1}{\alpha}\Bigg)$$ -->
+
+<!-- $$V[X]=\frac{1}{\beta^{2}} \Bigg(\Gamma\Bigg(1*\frac{2}{\alpha}\Bigg)- \Bigg[\Gamma \Bigg(1*\frac{1}{\alpha}\Bigg)\Bigg]^{2}\Bigg) $$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Aproximaciones** -->
+
+<!-- * binomial a la normal -->
+
+<!--   * Si $X\sim binom(n,p)$ y si $np>10$ y $nq>10$, entonces se puede  aproximar $X \sim norm(np, np(1-p))$ -->
+
+
+<!-- * Poisson a la normal -->
+
+<!--   * Si $X \sim poiss(\lambda)$, donde $\lambda>10$, entonces se puede aproximar $X \sim norm(\lambda, \lambda)$ -->
+
+<!-- <br/><br/> -->
+
+<!-- ### **Tasa de fallas** -->
+
+<!-- $$Z(t)= \dfrac{f(t)}{1-F(t)} $$ -->
+
+<!-- <br/><br/> -->
+
+<!-- # **Examen Parcial 2016** -->
+
+<!-- ```{r, echo=FALSE} -->
+<!-- # library(downloadthis) -->
+<!-- # download_link( -->
+<!-- #   link = "https://github.com/dgonxalex80/pye20222/blob/main/pdf/FORMULARIO%20SEGUNDO_PARCIAL_300MAE004_20162c.pdf", -->
+<!-- #   button_label = "Descarga: segundo parcial 2016 pdf ", -->
+<!-- #   button_type = "primary", -->
+<!-- #   has_icon = TRUE, -->
+<!-- #   icon = "fa fa-save", -->
+<!-- #   self_contained = FALSE -->
+<!-- # ) -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- # **Examen parcial 2020** -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **1** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p1_parcial2.png") -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **2** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p2_parcial2.png") -->
+<!-- ``` -->
+
+
+<!-- <br/><br/> -->
+
+<!-- ## **3** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p3_parcial2.png") -->
+<!-- ``` -->
+
+
+<!-- <br/><br/> -->
+
+<!-- ## **4** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p4_parcial2.png") -->
+<!-- ``` -->
+
+
+<!-- <br/><br/> -->
+
+<!-- ## **5** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p5_parcial2.png") -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **6** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p6_parcial2.png") -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **7** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p7_parcial2.png") -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **8** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p8_parcial2.png") -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+<!-- ## **9** -->
+<!-- ```{r, echo=FALSE, out.width="100%", fig.align = "center"} -->
+<!-- knitr::include_graphics("img/p9_parcial2.png") -->
+<!-- ``` -->
+
+<!-- <br/><br/> -->
+
+
+
+

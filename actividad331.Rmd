@@ -1,0 +1,155 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 3.3**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c0,c1,c2,c3)
+
+
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+library(summarytools)
+
+#library(dviz.supp)
+```
+
+
+
+</br></br></br>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "left"}
+knitr::include_graphics("img/banner003.png")
+```
+
+<br/><br/>
+
+# **Actividad 331**
+
+Cada estudiante de forma individual  deberá construir un **poster** en formato A1 (59,4 cm x 84 cm).  para el modelo asignado que contenga sus principales características.
+
+<br/><br/>
+
+### **Contenido del poster**
+
+* Origen de la distribución
+* Características principales : f(x), F(x), E[X], V[X], representación gráfica....
+* Ejemplo con enunciado, solución y sintaxis en R
+* Aplicaciones en el campo de las ingeniería, ciencias, economía, salud...
+* Relaciones entre distribuciones univariadas. [(Artículo)](http://www.stat.rice.edu/~dobelman/courses/texts/leemis.distributions.2008amstat.pdf)
+* Referencias bibliográficas 
+
+
+<br/><br/><br/>
+
+## **Asignación de los modelos**
+
+```{r, message=FALSE, warning=FALSE}
+set.seed(123)
+
+distribucion <- c("binomial", "Poisson", "hipergeométrico", "geométrico o de Pascal", "binomial negativo", 
+                  "uniforme", "normal", "exponencial", "gamma", "Weibull", "Cauchy", "lognormal", 
+                  "beta", "Erlang", "Gumbel", "logistic", "Rayleigh")
+
+nombres <- c("Alonso Sanchez,Osmel", "Ayala Arcila,Juan Diego", "Caicedo Mosquera,Miguel Angel", 
+             "Canchala Jimenez,Juan Manuel", "Castañeda Perdomo,Angela Patricia", "Celis Ramirez,Isabella", 
+             "Coral Duque,Alejandra", "Diaz Benavides,Juan Esteban", "Gomez Paramo,Maria Nicolle", 
+             "Hernandez Cabrera,Nicolas", "Holzinger Medina,Eric", "Lasso Gomez,Daniela", 
+             "Martinez Londoño,Alejandro", "Marulanda Poveda,Juan Pablo", "Monsalve Guerrero,Gustavo Alejandro", 
+             "Murcia Daza,Juan Jose", "Ogonaga Garcia,Carlos Alberto", "Ospina Garcia,Alejandra", 
+             "Parra Mejia,Amy Sofia", "Pulido Rubiano,Catalina", "Rincon Barrios,Anne Katherine", 
+             "Rivera Tocora,Laura Valentina", "Ruiz Ceballos,Naomi", "Salmeron Tofiño,Gabriela", 
+             "Sanabria Chacon,Isabela", "Shayeb Shayeb,Mohamad Ali Ahmad", "Torres Murillo,Juan Jose", 
+             "Valencia Gonzalez,Mayra Alexandra", "Verano Rodriguez,Maria Alejandra", 
+             "Villarroel Luengas,Juan Manuel")
+
+id = 1:30
+
+asignacion <- sample(distribucion, 30, replace = TRUE)
+
+datos <- data.frame(
+  ID = id,
+  Nombres = nombres,
+  "Distribución asignada" = asignacion
+)
+
+# Instala kableExtra si aún no lo tienes
+# install.packages("kableExtra")
+
+library(kableExtra)
+
+# Mostrar la tabla en formato bonito
+datos %>%
+  kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"))
+
+```
+
+<br/><br/><br/>
+
+### **Nota**
+
+<br/>
+
+#### **Construcción del Poster**
+
+<br/>
+
+**R** posee librerias para la construcción de posters como : `posterdown`, `drposter`, las cuales despues de ser instaladas generan una plantilla que se puede obtener de la siguiente manera:
+
+<br/>
+**File** / **New File** / **Rmarkdown** / **From Template** / Posterdown HTML {posterdown}
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/poster4.png")
+```
+
+<br/><br/>
+
+#### **Ejemplo poster en Rmd**
+
+<br/>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/poster1.png")
+```
+
+<br/><br/>
+
+### Video
+
+* [Crea posters con posterdown](https://www.youtube.com/watch?v=Znpsmbstu-A)

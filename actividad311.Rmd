@@ -1,0 +1,413 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 3.1**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c0,c1,c2,c3)
+
+
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+library(summarytools)
+
+#library(dviz.supp)
+```
+
+
+
+</br></br></br>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "left"}
+knitr::include_graphics("img/banner003.png")
+```
+</br></br></br>
+
+
+<div class="box2 with-label">
+<div class="label">Problema 1</div>
+
+
+Clasifique las siguientes variables como discretas o continuas:
+
+```{r}
+library(knitr)
+data <- data.frame(
+  Letra = c("X", "Y", "M", "Z", "G", "Q", "R", "S", "T", "V", "W"),
+  Descripción = c(
+    "Número de transacciones realizadas en un banco durante un día.",
+    "Tiempo que tarda un cliente en ser atendido en una sucursal bancaria (en minutos).",
+    "Cantidad de ingresos generados por una empresa en una semana (en pesos).",
+    "Número de facturas emitidas por un negocio en una semana.",
+    "Número de préstamos aprobados por una entidad financiera cada mes.",
+    "Valor de los activos fijos de una empresa (en millones de pesos).",
+    "Tasa de rentabilidad de una inversión a largo plazo (en porcentaje).",
+    "Tiempo que un gerente dedica a reuniones en una semana (en horas).",
+    "Ingresos netos de una empresa en un mes (en pesos).",
+    "Presupuesto mensual destinado a publicidad y marketing.",
+    "Cantidad de dinero que un cliente retira en promedio de un cajero automático (en pesos)."
+  )
+)
+kable(data)
+
+```
+
+
+</div>
+
+
+
+
+
+<br/><br/><br/>
+
+
+<div class="box2 with-label">
+<div class="label">Problema 2</div>
+
+
+Determine el valor de $C$ de modo que cada una de las siguientes funciones sirva
+como una función de probabilidad de una variable aleatoria discreta
+
+$$f(x) = C \binom{2}{x} \binom{3}{3-x}, \text{ para } x=0,1,2$$
+
+</div>
+
+
+<br/><br/><br/>
+
+
+<div class="box2 with-label">
+<div class="label">Problema 3</div>
+
+
+Un embarque de 7 televisores contiene 2 unidades defectuosas. Un hotel compra al azar 3 de los televisores. Si $X$ es el número de unidades defectuosas en un grupo de tres televisores comprados por el hotel al azar, encuentra la función de probabilidad de $X$. Expresa los resultados de forma gráfica. Construye la función de distribución acumulada de $X$. Usar $F(X)$ para responder, ¿cuál es la probabilidad que hayan cero televisores defectuosos en el grupo de tres televisores?, ¿cuál es la probabilidad que haya más de 1 televisor defectuoso en la selección de tres televisores?.
+
+</div>
+
+<br/><br/><br/>
+
+
+<div class="box2 with-label">
+<div class="label">Problema 4</div>
+
+La distribución de probabilidad de $X$, el número de imperfecciones por 10 metros de una tela sintética en rollos continuos de ancho uniforme, está dada por
+
+|   $x$ |   0    |    1   |   2    |  3     |   4    |
+|------:|-------:|-------:|-------:|-------:|-------:|
+| $f(x)$| 0.41   | 0.37   | 0.16   |  0.05  | 0.01   |
+
+
+* Construya la función de distribución acumulada de $X$. 
+* Gratifica la función de probabilidad y la distribución de probabilidad de $X$. 
+* ¿Cuál es la probabilidad de encontrar menos de $3$ imperfecciones en $10$ metros de una tela seleccionada al azar?.
+* Calcule el valor esperado del número de imperfecciones obtenidas por 10 metros de tela. Interpretes su resultado. 
+* Calcule la variaran del número de imperfecciones obtenidas por 10 metros de tela.
+
+</div>
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 5</div>
+
+Sea $W$ el número de sellos en tres lanzamientos de una moneda. Liste los elementos del espacio muestral $S$ para los tres lanzamientos de la moneda y asigne un valor $w$ de $W$ a cada punto muestral.
+
+</div>
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 6</div>
+
+Encuentre la distribución de probabilidad de la variable aleatoria W del ejercicio anterior; suponga que la cara está cargada de manera que una cara tenga doble de probabilidad de ocurrir que un sello.
+
+
+</div>
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 7</div>
+
+
+La vida útil en días, para frascos de cierta medicina de prescripción es una variable aleatoria que tiene función de densidad,
+
+$$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				\dfrac{20000}{(x+100)^{3}}, & \mbox{  }	x \geq 0\\ 
+				& \\
+				0 , & \mbox{en cualquier otro caso }
+				\end{matrix}\right.  
+				$$
+				
+Encuentre la probabilidad de que un frasco de esta medicina tenga una vida útil de : 
+
+* Al menos 22 días. 
+* Cualquier lapso entre 80 a 120 días.
+* Si se requiere encontrar el valor promedio de vida del medicamento, como lo encontrariamos?. Cuál seria su valor?
+
+</div>
+
+<br/><br/><br/>
+
+
+<div class="box2 with-label">
+<div class="label">Problema 8</div>
+
+El número total de horas, medidas en unidades de 100 horas, que una familia utiliza una lavadora en un periodo de un año es una variable aleatoria continua $X$ que tiene la función de densidad,
+
+$$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				x  ,& \mbox{ }	0 \leq x < 1\\ 
+				   & \\
+				2-x ,&  \mbox{ }	1 \leq x \leq 2\\
+				   &\\
+				0  ,& \mbox{en cualquier otro caso }
+				\end{matrix}\right.  
+				$$
+
+Encontrar la probabilidad de :
+
+* menos de 120 horas.
+* entre 50 y 100 horas.
+
+</div>
+
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 9</div>
+
+
+Una variable aleatoria continua $X$ que puede tomar valores entre $x = 1$ y $x = 3$ tiene una función de densidad dada por $f (x) = 1/2$.
+
+* Muestre que el área bajo la curva es igual a $1$.
+
+* Encuentre :
+* $P(2 < X < 2.5)$  
+* $P(X = 2.5)$ 
+* $P(2 \leq X < 2.5)$ 
+* $P(X > 2.5)$ 
+* $P(X \geq 2.5)$.
+
+Para la función de densidad del ejercicio anterior encuentre $F(x)$. Utilíce la función obtenida para encontrar: 
+
+* $P(2 < X < 2.5)$ 
+* $P(X = 2.5)$ 
+* $P(2 \leq X < 2.5)$  
+* $P(X >2.5)$ 
+* $P(X \geq 2.5)$
+  
+</div>
+  
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 10</div>
+
+En una tarea de laboratorio, cuando el equipo está operando la función de densidad
+del resultado, $X$, es el tiempo,
+
+
+$$f_{_{X}}(x) = \left \{ 
+				\begin{matrix} 
+				2(1-x),  & \mbox{   }	0 \leq x \leq 1\\ 
+				& \\
+				0 , & \mbox{en cualquier otro caso }
+				\end{matrix}\right.  
+$$
+
+* Calcule $P(X \leq 1/3)$
+* ¿Cuál es la probabilidad que $X$ excederá a $0.5$?
+* Dado que $X \geq 0.5$, ¿cuál es la probabilidad de que $X$ será menor que $0.75$?
+* Determine su valor espeado y su varianza
+
+
+</div>
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 11</div>
+
+
+
+La probabilidad de tener una unidad defectuosa en una línea de ensamblaje es de $p = 0.05$. Si el conjunto de unidades terminadas constituye un conjunto de ensayos independientes, la función de probabilidad de número de unidades defectuosas está dada por,
+
+
+$$f(x) = \binom{10}{x} p^{x} (1 − p)^{10−x}  \text{,  } x = 0, 1, . . . , 10$$
+
+* ¿cuál es la probabilidad de que en diez unidades dos se encuentren defectuosas?
+* ¿cuál es la probabilidad de encontrar por lo menos dos defectuosas?
+* ¿cuál es la probabilidad de que por lo menos una se encuentre defectuosa?
+
+</div>
+
+<br/><br/><br/>
+
+<div class="box2 with-label">
+<div class="label">Problema 12</div>
+
+
+El gerente de un restaurante que sólo da servicio mediante reservas sabe, por experiencia, que el $20$% de las personas que reservan una mesa no asistirán. Si el restaurante acepta $25$ reservas pero sólo dispone de $20$ mesas, ¿cuál es la probabilidad de que a todas las personas que asistan al restaurante se les asigne una mesa?. 
+
+<br/>
+
+La función de probabilidad del número de personas que llegan al restaurante es,
+
+$$f(x) = \binom{25}{x} (0.80)^{x} (0.20)^{25−x}  \text{,  } x = 0, 1, . . . , 25$$
+
+</div>
+
+<br/><br/><br/>
+
+<div class="box3 with-label">
+<div class="label">Nota</div>
+
+**En todos los casos** represente gráficamente la función de probabilidad correspondiente y en ella resalte las probabilidades solicitadas. 
+
+</div>
+
+
+* Problemas seleccionados de Walpole(2012).
+
+<br/><br/><br/>
+
+### <span style="color:#686868">**AYUDAS**</span>
+
+$$\sum_{x=0}^{2} \binom{2}{x} \binom{3}{3-x} $$
+
+<pre>
+x=0:2
+sum(choose(2,x)*choose(3,3-x))
+</pre>
+
+
+```{r, eval=FALSE}
+
+x=0:2
+sum(choose(2,x)*choose(3,3-x))
+```
+
+
+<br/><br/><br/>
+
+$$\int_{0}^{\infty} \dfrac{20000}{(x+100)^{3}} \,dx$$
+
+
+<pre>
+# Definir la función 
+fx7 <- function(x) {
+  20000 / (x + 100)^3
+}
+# Calcular la integral definida desde 0 hasta infinito
+result <- integrate(fx7, lower = 0, upper = Inf)
+
+# Imprimir el resultado
+result
+
+
+
+Show in New Window
+1 with absolute error < 4.7e-07
+</pre>
+
+
+
+```{r}
+# Definir la función 
+fx7 <- function(x) {
+  20000 / (x + 100)^3
+}
+# Calcular la integral definida desde 0 hasta infinito
+result <- integrate(fx7, lower = 0, upper = Inf)
+
+# Imprimir el resultado
+result
+
+```
+
+
+
+
+
+
+
+```{r, fig.align='center', fig.width=4, fig.height=4}
+# Cargar ggplot2
+library(ggplot2)
+
+# Definir la función f_X(x)
+fx <- function(x) {
+  ifelse(x >= 0, 20000 / (x + 100)^3, 0)
+}
+
+# Crear un rango de valores para x
+x_values <- seq(0, 300, length.out = 500)
+
+# Calcular los valores de f_X(x)
+fx_values <- fx(x_values)
+
+# Crear un dataframe con los valores
+data_fx <- data.frame(x = x_values, fx = fx_values)
+
+# Graficar usando ggplot2 con área sombreada
+ggplot(data_fx, aes(x = x, y = fx)) +
+  geom_line(color = "blue", size = 1.2) +  # Línea de la función
+  geom_ribbon(aes(ymin = 0, ymax = fx), fill = "lightblue", alpha = 0.5) + # Área bajo la curva
+  labs(
+    x = "x", 
+    y = "f(x)", 
+    title = expression(f(x) == frac(20000, (x + 100)^3))
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 8),
+    axis.title = element_text(size = 8),
+    axis.text = element_text(size = 8)
+  ) +
+  xlim(0, 300) +
+  ylim(0, 0.025) +
+  geom_hline(yintercept = 0, linetype = "dashed") +  # Línea en y=0
+  geom_vline(xintercept = 0, linetype = "dashed")    # Línea en x=0
+
+
+```
+
