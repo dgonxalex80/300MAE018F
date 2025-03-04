@@ -381,7 +381,20 @@ $(document).ready(function () {
       <a href="recurso22.html">recursos 2.2</a>
     </li>
     <li>
-      <a href="actividad221.html">Actividad 211</a>
+      <a href="actividad221.html">Actividad 221</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia23.html">Guía 2.3</a>
+    </li>
+    <li>
+      <a href="recurso23.html">recursos23</a>
+    </li>
+    <li>
+      <a href="codigo23.html">Código 23</a>
+    </li>
+    <li>
+      <a href="actividad231.html">Actividad 231</a>
     </li>
     <li class="divider"></li>
     <li>
@@ -402,19 +415,6 @@ $(document).ready(function () {
     <li class="divider"></li>
     <li>
       <a href="guia31.html">Guía 3.1</a>
-    </li>
-    <li>
-      <a href="recurso31.html">recursos 3.1</a>
-    </li>
-    <li>
-      <a href="codigo31.html">Código 3.1</a>
-    </li>
-    <li>
-      <a href="actividad311.html">Actividad 311</a>
-    </li>
-    <li class="divider"></li>
-    <li>
-      <a href="monitoria3.html">Monitoria 3</a>
     </li>
   </ul>
 </li>
@@ -486,7 +486,7 @@ Estadística</strong></span></h3>
 </div>
 
 
-<p><img src="img/recursos3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="img/recursos2.png" width="100%" style="display: block; margin: auto;" /></p>
 <p><br/><br/></p>
 <div id="introducción" class="section level1">
 <h1><strong>Introducción</strong></h1>
@@ -740,7 +740,7 @@ caso}\end{matrix}\right.\)</span></p>
 fx=rep(1,6)/6
 plot(x,fx,pch=19, ylim=c(0,0.18), las=1, xlab=&quot;puntos&quot;, ylab=&quot;f(x)&quot;, col=c1)
 lines(x, fx, type=&quot;h&quot;, col=&quot;#F7D8A8&quot;, lty=3)</code></pre>
-<p><img src="recurso31_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="recurso23_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <p>Para la construcción de la función de distribución acumulada se
 acumulan los valores correspondientes a las probabilidades puntuales de
@@ -751,7 +751,7 @@ Fx=cumsum(fx)
 plot(x,Fx, las=1, ylab=&quot;F(x)&quot;, xlab=&quot;puntos&quot;,pch=19, ylim=c(0,1), col=c1)
 lines(x, Fx, type=&quot;s&quot;, col=&quot;#F7D8D8&quot;)
 grid()</code></pre>
-<p><img src="recurso31_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="recurso23_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>library(dplyr)
 library(kableExtra)  # Asegúrate de cargar esta librería
 
@@ -1161,7 +1161,7 @@ Fx
 fx=choose(20,x)*0.70^x*0.30^(20-x)
 plot(x,fx, las=1, ylab=&quot;f(x)&quot;, xlab=&quot;número personas que asisten&quot;, pch=19, col=c1)
 lines(x, fx, type=&quot;h&quot;, col= &quot;#F7D8A8&quot;)</code></pre>
-<p><img src="recurso31_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
+<p><img src="recurso23_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" />
 <br/></p>
 <pre class="r"><code>x=0:20
 fx=choose(20,x)*0.70^x*0.30^(20-x)
@@ -1169,7 +1169,7 @@ Fx=cumsum(fx)
 plot(x,Fx, las=1, ylab=&quot;F(x)&quot;, xlab=&quot;número personas que asisten&quot;,pch=19, ylim=c(0,1), col=c1)
 lines(x, Fx, type=&quot;s&quot;, col=&quot;#F7D8D8&quot;)
 grid()</code></pre>
-<p><img src="recurso31_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="recurso23_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <pre class="r"><code>x=0:20
 fx=round(choose(20,x)*0.70^x*0.30^(20-x),6)
@@ -1295,7 +1295,7 @@ plot(x,fx(x), type=&quot;l&quot;, col=c1, lwd=5, las=1)
 x1=seq(0,20,0.01)
 f1=fx(x1)
 polygon(c(0,x1,20),c(0,f1,0),col=c1)</code></pre>
-<p><img src="recurso31_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="recurso23_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/><br/><br/></p>
 </div>
 <div id="valor-esperado" class="section level1">

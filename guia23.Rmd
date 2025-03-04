@@ -33,7 +33,7 @@ c7= "#F7F7F7" # FONDO GRIS CLARO WEB
 
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "center"}
-knitr::include_graphics("img/guia3.png")
+knitr::include_graphics("img/guia2.png")
 ```
 
 
@@ -62,7 +62,7 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 
 |Actividad      | Descripción                    | 
 |:--------------|:-----------------------------  |
-|Individual     |**Actividad 311**: El siguiente taller recoge los principales conceptos relacionados con variables aleatorias, tanto discretas como continuas y sus aplicaciones en la estimación de probabilidades|
+|Individual     |**Actividad 231**: El siguiente taller recoge los principales conceptos relacionados con variables aleatorias, tanto discretas como continuas y sus aplicaciones en la estimación de probabilidades|
 
 <br/><br/>
 
@@ -82,7 +82,7 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 
 |                   |                                       |
 |:------------------|:--------------------------------------|
-|**Actividad 311.pdf** | El taller tiene un valor de 50 puntos si es resuelto completamente y enviado dentro de los tiempos establecidos  y **sustentado**.|
+|**Actividad 231.pdf** | El taller tiene un valor de 50 puntos si es resuelto completamente y enviado dentro de los tiempos establecidos  y **sustentado**.|
 |                      | El 11 de marzo se realizará la evaluación de la actividad (sustentación), sorteando uno de los ejercicios propuestos. La nota de esta evaluación será la nota de la Actividad311. Es condición necesaria para la evaluación haber entregado la actividad en pdf en la plataforma Bs.  |
 | Fecha             | 10  de marzo de 2024 |
 | Hora límite       | 23:59  hora  local           |

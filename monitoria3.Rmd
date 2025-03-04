@@ -37,7 +37,7 @@ c7= "#F7F7F7" # FONDO GRIS CLARO WEB
 
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "center"}
-knitr::include_graphics("img/monitorias3.png")
+knitr::include_graphics("img/monitorias2.png")
 ```
 
 

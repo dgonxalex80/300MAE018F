@@ -83,12 +83,21 @@ navbar:
           href: guia22.html        
         - text: "recursos 2.2"
           href: recurso22.html
-        - text: "Actividad 211"  
-          href: actividad221.html   
+        - text: "Actividad 221"  
+          href: actividad221.html
+        - text: "--------"        
+        - text: "Guía 2.3"
+          href: guia23.html            
+        - text: "recursos23"
+          href: recurso23.html
+        - text: "Código 23"  
+          href: codigo23.html
+        - text: "Actividad 231"  
+          href: actividad231.html   
         - text: "--------"      
         - text: "Monitoria 2"
-          href: monitoria2.html          
-          
+          href: monitoria2.html            
+        
     - text: "Módulo 3"
       menu:
         - text: "Módulo 3"
@@ -96,15 +105,6 @@ navbar:
         - text: "---------" 
         - text: "Guía 3.1"
           href: guia31.html        
-        - text: "recursos 3.1"
-          href: recurso31.html
-        - text: "Código 3.1"  
-          href: codigo31.html
-        - text: "Actividad 311"  
-          href: actividad311.html   
-        - text: "--------"      
-        - text: "Monitoria 3"
-          href: monitoria3.html            
 
     - text: "Módulo 4"
       menu:
