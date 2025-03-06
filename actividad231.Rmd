@@ -53,7 +53,7 @@ library(summarytools)
 </br></br></br>
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "left"}
-knitr::include_graphics("img/banner003.png")
+knitr::include_graphics("img/banner002.png")
 ```
 </br></br></br>
 
