@@ -1,0 +1,104 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 2- Unidad 2.4**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia2.png")
+```
+
+
+<br/><br/>
+
+
+## **Introducción**
+
+En las unidad anterior hemos recorrido los principales conceptos relacionados caracterización de las variables aleatorias tanto discretas como continuas.  Características como:  $f(x)$, $F(x)$, $E[X]$, $V[X]$, en el caso univariado. 
+
+En esta unidad se presentan los principales modelos estadísticos tanto para variables **DISCRETAS**  como **CONTINUAS** y sus aplicaciones. En el caso de los modelos discretas se deberá identificar el modelo a través de  las características del experimento que la genera la variable. Para el caso continuo los ejemplos indicaran el modelo correspondiente que genera la variable.
+
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la unidad los estudiantes estarán  en  capacidad de  IDENTIFICAR, CALCULAR y APLICAR los diferentes modelos de probabilidad para la solución de problemas en contexto.
+
+<br/><br/>
+
+## **Duración**
+
+La presente  unidad será desarrollada durante la comprendida entre 24 de septiembre al 10 de octubre.        
+Ademas del material suministrado  contaran con el acompañamiento del profesor en dos sesiones y de un monitor. Los entegables  de esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  de septiembre.
+
+Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
+
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+|**Actividad 241**|                                                                         | 
+|:---------------|:------------------------------------------------------------------------|
+|                | El taller tiene un valor de 50 puntos si es resuelto completamente y enviado dentro de los tiempos establecidos  y **sustentado**. |
+|                |                                                                         |
+| Fecha          | 25  de marzo de 2025                                                    |
+| Hora límite    | 23:59  hora  local                                                      |
+
+|**Mapa mental** |                                                                         |
+|:---------------|:------------------------------------------------------------------------|
+|                | Construir un mapa mental a mano que contenga las principales conceptos desarrollados en el Módulo 2 |
+|                | Trabajo individual                                                      |
+|Fechas          |  10 de abril- al finalizar el segundo parcial se debe entregar con el cuestionario y el cuadernillo de respuestas |            
+|Hora            | al finalizar el segundo parcial                                         |
+
+<br/><br/>
+
+## **Criterios de evaluación**
+
+<br/><br/>
+
+
+* Reconoce los modelos especiales asociados y sus principales caracteristicas y relaciones
+
+<br/><br/>
+
+## **Entregables** 
+
+<br/><br/>
+
+|Actividad      | Descripción                      | 
+|:--------------|:---------------------------------|
+| **Actividad 241** | Solución de la actividad en formato pdf|
+| **Mapa mental**   | Se debe entregar con el el segundo parcial, cuestionario y el cuadernillo de respuestas           |
+
+<br/><br/><br/><br/>
+

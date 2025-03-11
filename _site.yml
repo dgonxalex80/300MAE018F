@@ -85,6 +85,7 @@ navbar:
           href: recurso22.html
         - text: "Actividad 221"  
           href: actividad221.html
+          
         - text: "--------"        
         - text: "Guía 2.3"
           href: guia23.html            
@@ -94,6 +95,17 @@ navbar:
           href: codigo23.html
         - text: "Actividad 231"  
           href: actividad231.html   
+          
+        - text: "--------"        
+        - text: "Guía 2.4"
+          href: guia24.html            
+        - text: "recursos24"
+          href: recurso24.html
+        - text: "Código 24"  
+          href: codigo24.html
+        - text: "Actividad 241"  
+          href: actividad241.html            
+          
         - text: "--------"      
         - text: "Monitoria 2"
           href: monitoria2.html            

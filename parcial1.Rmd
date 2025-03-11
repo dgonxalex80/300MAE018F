@@ -133,6 +133,7 @@ a. 90% de los casos entre mas o menos dos onzas al rededor del peso especificado
 ```{r}
 media = 798.6/50
 L = c(media - 2,  media + 2)
+media
 L
 
 
@@ -180,18 +181,21 @@ c. Si los valores se pueden clasificar como homogéneos
 Para determinar si los valores de la muestra son homogeneos o no se debe calcular el coeficiente de variación.
 
 ```{r}
-desviacion = 1.949468/49
+desviacion = 1.949468
 
 CV = desviacion/media *100
+
+media
+desviacion
 
 CV
 
 ```
 
-Como el coeficiente de variación es del 0.25%, indica que los datos recogidos en la muestra son **HOMOGENEOS**.
+Como el coeficiente de variación es del 0.25%, indica que los datos recogidos en la muestra **NO son HOMOGENEOS**.
 
 
-En conclusión no se cumplen **todos** los criterios fijados por la empresa. Al incumplirse el primer criterio, se recomienda llamar a la empresa encargada del mantenimiento para que realice los ajustes requeridos y detener la producción hasta tanto no se realicen los ajustes. 
+En conclusión no se cumplen **todos** los criterios fijados por la empresa. Al incumplirse el primer y el tercer criterio, se recomienda llamar a la empresa encargada del mantenimiento para que realice los ajustes requeridos y detener la producción hasta tanto no se realicen los ajustes. 
 
 Tambien que despues de hacer realizado los ajustes, nuevamente se tome una muestra y se analicen los requerimientos.
 

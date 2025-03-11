@@ -396,6 +396,19 @@ $(document).ready(function () {
     </li>
     <li class="divider"></li>
     <li>
+      <a href="guia24.html">Guía 2.4</a>
+    </li>
+    <li>
+      <a href="recurso24.html">recursos24</a>
+    </li>
+    <li>
+      <a href="codigo24.html">Código 24</a>
+    </li>
+    <li>
+      <a href="actividad241.html">Actividad 241</a>
+    </li>
+    <li class="divider"></li>
+    <li>
       <a href="monitoria2.html">Monitoria 2</a>
     </li>
   </ul>
@@ -622,7 +635,9 @@ especificado en la etiquete del producto (16.0 onzas)</li>
 </ol>
 <pre class="r"><code>media = 798.6/50
 L = c(media - 2,  media + 2)
-L</code></pre>
+media</code></pre>
+<pre><code>[1] 15.972</code></pre>
+<pre class="r"><code>L</code></pre>
 <pre><code>[1] 13.972 17.972</code></pre>
 <p>Los valores que cumplen esta política son 32 de los 50 barras de la
 muestra, es decir el 64%. <strong>NO CUMPLE EL PRIMER
@@ -661,19 +676,23 @@ ATÍPICOS</strong>.</p>
 </ol>
 <p>Para determinar si los valores de la muestra son homogeneos o no se
 debe calcular el coeficiente de variación.</p>
-<pre class="r"><code>desviacion = 1.949468/49
+<pre class="r"><code>desviacion = 1.949468
 
 CV = desviacion/media *100
 
-CV</code></pre>
-<pre><code>[1] 0.2490925</code></pre>
+media</code></pre>
+<pre><code>[1] 15.972</code></pre>
+<pre class="r"><code>desviacion</code></pre>
+<pre><code>[1] 1.949468</code></pre>
+<pre class="r"><code>CV</code></pre>
+<pre><code>[1] 12.20553</code></pre>
 <p>Como el coeficiente de variación es del 0.25%, indica que los datos
-recogidos en la muestra son <strong>HOMOGENEOS</strong>.</p>
+recogidos en la muestra <strong>NO son HOMOGENEOS</strong>.</p>
 <p>En conclusión no se cumplen <strong>todos</strong> los criterios
-fijados por la empresa. Al incumplirse el primer criterio, se recomienda
-llamar a la empresa encargada del mantenimiento para que realice los
-ajustes requeridos y detener la producción hasta tanto no se realicen
-los ajustes.</p>
+fijados por la empresa. Al incumplirse el primer y el tercer criterio,
+se recomienda llamar a la empresa encargada del mantenimiento para que
+realice los ajustes requeridos y detener la producción hasta tanto no se
+realicen los ajustes.</p>
 <p>Tambien que despues de hacer realizado los ajustes, nuevamente se
 tome una muestra y se analicen los requerimientos.</p>
 </div>

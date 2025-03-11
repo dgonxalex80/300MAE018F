@@ -1,0 +1,220 @@
+
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 2.3**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c0,c1,c2,c3)
+
+
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+library(summarytools)
+
+#library(dviz.supp)
+```
+
+
+
+</br></br></br>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "left"}
+knitr::include_graphics("img/banner002.png")
+```
+</br></br></br>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 1</div>
+
+Para una variable con distribución bonomial $X \sim binom(x, n=10, p=0.40)$, Determinar utilizando la función de distribución de probabilidad asociada a $X$ las siguientes probabilidades: .
+
+* (a.) $P(X = 5)$
+* (b.) $P(X \leq 2)$
+* (c.) $P(3 \leq X \leq 5 )$
+* (d.) $P(X \geq 8)$
+* (e.) Coonstruya una gráfica para $f(x)$
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 2</div>
+
+Suponga que $X$ tiene una distriubución Posson con media $\lambda = 4$ , $X \sim pois(x, \lambda =4)$
+
+* (a.) $P(X = 0)$
+* (b.) $P(X = 4)$
+* (c.) $P(X \geq 2 )$
+* (d.) $P(X \leq 2)$
+* (e.) Construya una gráfica para $f(x)$
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 3</div>
+
+Para una variable aleatória $X \sim unif(x,a,b)$, con $a=10$ y $b=20$, determine :
+
+* (a.) Construya la gráfica de $f(x)$
+* (b.) $P(X \leq 12)$
+* (c.) $P(13 \leq X \leq 15)$
+* (d.) $P(X \geq 18)$
+* (e.) $E[X]$ y $V[X]$
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 4</div>
+
+Para una variable $Z\sim N(0,1)$ determine el área:
+
+* (a.) a la derecha de $z = 0.56$ 
+* (b.) entre $z = -2.93$ y $z = -2.06$
+* (c.) entre $z = -1.08$ y $z = 0.70$
+* (d.) entre $z = 0.96$ y $z = 1.62$
+* (e.) representa las anteriores áreas gráficamente
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 5</div>
+
+
+Para una variable $Z\sim N(150,1000)$ determine :
+
+* (a.) $P(X < 100)$ 
+* (b.) $P(130 < X < 140$
+* (c.) $P(X \geq 200)$
+* (d.) $P(-k < X < k) = 0.95$
+* (e.) representa las anteriores áreas gráficamente
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 5</div>
+
+Sea una variable  con función exponencial, $X \sim exp(\lambda=2)$, determine:
+
+* (a.) $P(X \leq 0)$
+* (b.) $P(X \geq 2)$
+* (c.) $P(1 < X <2)$
+* (d.) $Me$
+* (e.) $P_{90}$
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 6</div>
+
+Una aereolínea nacional tiene aviones de 100 asientos para transporte nacional. se estima que la probabilidad de que una persona llegue al vuelo es de $0.90$, debido a lo cual la aereolínea vende $105$ tiquetes con el fin de minimizare la partida del avión con sillas vaciás. Por otro lado la administración del aeropuerto penaliza con una multa significativa a las aereolíneas que por esta practica deje un pasajero que habiendo comprado su tiquete no pueda viajar porque el avión ya tiene ocupado todos sus asientos. ¿Qué tan probable es que la aereolínea sea multada por la administración del aereopuerto?
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 7</div>
+
+Suponga que la estatura de las personas en una población sigue la curva normal con media de $64.3$ pulgadas y desviación estáandar de $2.6$ pulgadas. 
+
+* (a.) ¿Qué proporción de personas en esa región tiene estatura entre $60$ y $66$ pulgadas? 
+* (b.) La estatura de Juan es $0.5$ de desviación estándar mayor a la media. ¿Qué proporción de personas miden más que Juan? 
+* (c.) ¿Cuánto mide una persona cuya estatura se encuentra en el  percentil $P_{90}$? 
+* (d.) Se elige aleatoriamente una persona de esta población. ¿Cuál es la probabilidad de que ella mida más de $67$ pulgadas? 
+* (e.) Se elige aleatoriamente a cinco personas de esta población. ¿Cuál es la probabilidad de que sólo una de ellas mida más de 67 pulgadas?
+
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 8</div>
+
+Uno de los productos mas vendidos en IK, fabricantes de cocinas integrales, corresponde a un novedoso modelo de puertas para los gabinetes de cocinas. Cada una de las puertas se construye con el ensamble de tres partes de madera: $P_1$, $P_2$ y $P_3$, que son cortadas y procesadas por tres operarios en tres máquinas distintas. Un estudio realizado recientemente en estos tres procesos determinó que el ancho de cada una de las piezas se distribuye aproximadamente normal con medias: $10.4$ cm,  $7.2$ cm y  $12.2$ cm y con desviaciones estándar : $0.2$ cm, $0.1$ cm y $0.3$ cm.  Para pegar las tres piezas el fabricante utiliza una cinta doble faz de espesor constante de $0.1$ cm, la cual se puede suponer constante.  Para garantizar la calidad de los gabinetes se debe obtener un ancho en las puertas entre 29.6 y 30.3 cm. El producto que esté por debajo de este valor de ser desechado y no podrá ser reutilizado. Por el contrario los productos por encima de estas especificaciones descritas deberán ser reutilizadas para luego ser medidas nuevamente.
+
+
+Se podrá afirmar que el proceso está bajo control siempre y cuando el porcentaje de material desechado no supere el $5$% de la prodicción y el material reporecesado solo sea de hasta el $2$%.
+
+* (a.)  Basados en la información anterior, es posible establecer si el proceso de fabricación de las puertas está bajo control?. En caso de poder hacerlo, realice los cálculos y determine el estado del proceso. En todos los casos justifique su respuesta.
+
+* (b.) Actualmente en la fabrica se procesan diariamente 120 puertas y se tiene como meta realizar por lo menos $100$ puertas dentro de los estándares de producción establecidos. Si se supone que la producción mantiene sus característica estables, que tan cerca o alejado está poder cumplir este requerimiento?
+
+</div>
+
+
+<div class="box3 with-label">
+<div class="label">Nota:</div>
+
+Las siguientes son propuedades del valor esperado ($E[X]$) y la varianza $V[X]$ y la suma de dos variables $X$ y $Y$
+* $E[k] =k$, siendo $k$ es una constante
+* $E[aX] = a E[X]$
+* $E[aX + bY] = a E[X] + b E[Y]$
+
+* $V[k] =0$, donde $k$ es una constante
+* $V[aX] = a^2 E[X]$
+* $V[aX + bY] = a^2 V[X] + b^2 V[Y] + 2ab Cov[XY]$
+
+* En caso de ser $X$ y $Y$ dos variables independientes, $Cov[XY]=0$
+</div>
+
+</br></br>
+
+<div class="box1 with-label">
+<div class="label">Problema 9</div>
+
+Un profesor encontró que el tiempo promedio requerido para completar una prueba de clasificación de conocimientos en estadística que realiza la maestría en ciencias de datos era de 70 minutos con una desviación estándar de 12 minutos, con distribución aproximadamente normal.
+
+* (a.) ¿Cuanto tiempo deberá dar el profesor para el desarrollo de la prueba si desea que por lo menos 90% de los estudiantes terminen la prueba completamente?.Justifique su respuesta.
+
+* (b.) Si un estudiante termina en un tiempo de 20 minutos, podría ser sospechoso de haber cometido fraude?, Justifique su respuesta.
+
+</div>
+
+</br></br>

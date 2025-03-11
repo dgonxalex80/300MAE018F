@@ -453,7 +453,7 @@ Sandra prefiere que el grupo de estudiantes a su cargo sean estudiantes de prime
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.1</div> 
+<div class="label">Problema 3.1</div> 
 
 Clasifique las siguientes variables aleatorias como discretas o continuas:
 
@@ -477,7 +477,7 @@ Clasifique las siguientes variables aleatorias como discretas o continuas:
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.2</div> 
+<div class="label">Problema 3.2</div> 
 
 El tiempo que pasa, en horas, para que un radar detecte entre conductores sucesivos a los que exceden los límites de velocidad es una variable aleatoria continua con una  función de distribución acumulada:
 
@@ -538,7 +538,7 @@ ggplot(data, aes(x = x, y = Fx)) +
 
 
 <div class="box1 with-label">
-<div class="label">Problema 2.3</div> 
+<div class="label">Problema 3.3</div> 
 
 Una variable aleatoria continua $X$, que puede tomar valores entre $x=2$ y $x=5$, tiene una función de densidad data por $f(x)=2(1*x)/27$.  
  
@@ -552,7 +552,7 @@ Una variable aleatoria continua $X$, que puede tomar valores entre $x=2$ y $x=5$
  <br/><br/>
  
  <div class="box1 with-label">
-<div class="label">Problema 2.4</div>
+<div class="label">Problema 3.4</div>
 
 Suponga que cierto tipo de pequeñas empresas de procesamiento de datos están tan especializadas que algunas tienen dificultades para obtener utilidades durante su primer año de operación. La función de densidad de probabilidad está dada por:
  
@@ -574,7 +574,7 @@ Suponga que cierto tipo de pequeñas empresas de procesamiento de datos están t
  <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.5</div> 
+<div class="label">Problema 3.5</div> 
  
 Calcule la distribución de probabilidad par el número de discos compactos de jazz, de una colección que consta de  5 de jazz, 2 de música clásica y 3 de rock, al seleccionar de esta colección 4 de manera aleatoria. Explique sus resultados utilizando una fórmula.
  
@@ -583,7 +583,7 @@ Calcule la distribución de probabilidad par el número de discos compactos de j
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.6</div> 
+<div class="label">Problema 3.6</div> 
 
 De una caja que contiene 4 monedad de 10 centavos y 2 monedas de 5 centavos se seleccionan 3 monedas de manera aleatoria  y sin reemplazo. calcule la distribución de probabilidad para el total $T$ de las 3 monedas .  Exprese la distribución de probabilidad de forma gráfica 
 
@@ -593,7 +593,7 @@ De una caja que contiene 4 monedad de 10 centavos y 2 monedas de 5 centavos se s
 
 
 <div class="box1 with-label">
-<div class="label">Problema 2.7</div> 
+<div class="label">Problema 3.7</div> 
 
 Con base en las pruebas extensas, el fabricante de una lavadora determinó que el tiempo $Y$ (en años) para que el electrodoméstico requiera una reparación mayor se obtiene mediante la siguiente función de densidad de probabilidad :
 
@@ -652,7 +652,7 @@ ggplot(data_fy, aes(x = y, y = fy)) +
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.8</div>
+<div class="label">Problema 3.8</div>
 
 Sea el número de llamadas telefónicas que recibe un conmutador durante un intervalo de 5 minutos una variable aleatoria $X$ con la siguiente función de distribución de probabilidad:
 
@@ -668,7 +668,7 @@ $$f(x)= \dfrac{exp\{-2\}\hspace{.2cm} 2^x}{x!}\hspace{.3cm} \mbox{ , para }\hspa
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.9</div> 
+<div class="label">Problema 3.9</div> 
 
 El congestionamiento de pasajeros es un problema de servicio en los aeropuertos, en los cuales se instalan trenes para reducir la congestión.  cuando se usa el tren el tiempo $X$, en minutos, que toma viajar desde la terminal principal hasta una  explanada específica tiene la siguiente función de densidad:
 
@@ -732,7 +732,7 @@ Problemas tomado de walpole (2006)
 
 
 <div class="box1 with-label">
-<div class="label">Problema 2.10</div>
+<div class="label">Problema 3.10</div>
 
 **10.** Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
 
@@ -750,7 +750,7 @@ Determine :
 
 
 <div class="box1 with-label">
-<div class="label">Problema 2.11</div>
+<div class="label">Problema 3.11</div>
 
 Para una variable aleatoria con función de densidad : $f(x)= x/8$ para $3 < X < 5$. 
 
@@ -767,7 +767,7 @@ Determine :
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.12</div> 
+<div class="label">Problema 3.12</div> 
 
 Suponga que $X$ tiene una función de distribución acumulada :
 
@@ -792,7 +792,7 @@ Determine:
 
 
 <div class="box1 with-label">
-<div class="label">Problema 2.13</div>
+<div class="label">Problema 3.13</div>
 
 Para la variable aleatoria que tiene la siguiente función de distribución de probabilidad :
 
@@ -813,7 +813,7 @@ Determine:
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 1.14</div>
+<div class="label">Problema 3.14</div>
 
 Para una variable con función de distribución de probabilidad : 
 
@@ -870,7 +870,7 @@ ggplot(data_fx, aes(x = x, y = fx)) +
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.15</div> 
+<div class="label">Problema 3.15</div> 
 
 Para una variable aleatoria con función de distribución de probabilidad: $f(x)= (3/4)(1/4)^{x}$, para $x=0, 1, 2, 3,...$
 
@@ -883,7 +883,7 @@ Para una variable aleatoria con función de distribución de probabilidad: $f(x)
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.16</div> 
+<div class="label">Problema 3.16</div> 
 
 Sponga que $X$ tiene una función de probabilidad acumulada: 
 
@@ -912,7 +912,7 @@ Fx(2.8)
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.17</div> 
+<div class="label">Problema 3.17</div> 
 
 El tiempo de reparación (en minutos) de una máquina fotocopiadora tiene una función de densidad:
 
@@ -943,7 +943,7 @@ Cuando el profesor de Probabilidad y Estadística se preparaba para imprimir el 
 <br/><br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.18</div>
+<div class="label">Problema 3.18</div>
 
 **18.** Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
 
@@ -958,7 +958,7 @@ Determine :
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 1.19</div>
+<div class="label">Problema 3.19</div>
 
 Para una variable aleatoria con función de densidad : $f(x)= x/8$ para $3 < X < 5$. 
 
@@ -970,7 +970,7 @@ Determine :
 </div>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.20</div>
+<div class="label">Problema 3.20</div>
 
 Suponga que $X$ tiene una función de distribución acumulada:
 
@@ -994,7 +994,7 @@ Determine :
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.21</div>
+<div class="label">Problema 3.21</div>
 
 Para la variable aleatoria que tiene la siguiente función de distribución de probabilidad :
 
@@ -1012,7 +1012,7 @@ Determine :
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.22</div> 
+<div class="label">Problema 3.22</div> 
 
 Para una variable con función de distribución de probabilidad : 
 
@@ -1034,7 +1034,7 @@ Determine :
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.23</div>
+<div class="label">Problema 3.23</div>
 
 Para una variable aleatoria con función de distribución de probabilidad: $f(x)= (3/4)(1/4)^{x}$, para $x=0, 1, 2, 3,... $
 
@@ -1050,7 +1050,7 @@ Problemas tomados de Mongomery(2003)
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 2.24</div> 
+<div class="label">Problema 3.24</div> 
 
 Una de las preocupaciones que tienen los padres hoy en dia está relacionada con el tiempo que pasan sus hijos usando celular. Un estudio determinó que el número de llamadas que un joven realiza durante un dia es una variable aleatoria ($X$) con función de distribución :
 
@@ -1065,16 +1065,567 @@ El estudio afirma también que los jóvenes en promedio reciben al rededor de 12
 
 </div>
 
+<br/><br/>
+
+# **PROBLEMAS 2.4**
 
 
+<div class="box1 with-label">
+<div class="label">Problema 4.1</div> 
+
+Para una variable aleatoria con distribución binomial $X \sim binom(x,n=10,p=0.05)$. Determine: la función de distribución asociada a $X$.
+
+(a) $P(X = 5)$
+
+(b) $P(X \leq 2)$
+
+(c) $P(3 \leq X < 5)$
+
+(d) $P(X \geq 8)$
+
+(e) Construya la gráfica de $f_X(x)$
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.2</div> 
+
+Sea una variable geométrica $X \sim geom(p=0.05)$
+
+(a) $P(X = 1)$
+
+(b) $P(X \leq 2)$
+
+(c) $P(X = 8)$
+
+(d) $P(X \geq 2)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.3</div> 
+
+Suponga que $X$ tiene una distribución hipergeométrica con $N=100$, $n=4$ y $K=20$.
+
+($X \sim hyper(x,N=100,n=4,K=20)$). Determine:
+
+(a) $P(X=1)$
+
+(b) $P(X=6)$
+
+(c) $P(X\geq1)$
+
+(d) $P(X=4)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.5</div> 
 
 
+Suponga que $X$ tiene una distribución Poisson con media $\lambda=4$. ($X \sim pois(x, \lambda=4)$). Determine:
+
+(a) $P(X=0)$
+
+(b) $P(X=4)$
+
+(c) $P(X\geq 2)$
+
+(d) $P(X\leq2)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.6</div> 
+
+Sea la variable $X$ con distribución binomial negativa con $N=10$, $n=5$. ($X \sim nbinom(x,n,p,mu)$)
+
+(a) ¿Cuál es la probabilidad de que ninguno de las llantas tenga imperfecciones?
+
+(b) ¿Cuál es la probabilidad de que sólo una de las llantas tenga imperfecciones?
+
+(c) ¿Cuál es la probabilidad de que una o más llantas tenga imperfecciones?
 
 
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.7</div> 
+
+Los clientes llegan al mostrador de una tienda de acuerdo con una variable aleatoria Poisson con una frecuencia promedio de ocho clientes por hora.
+
+(a) Calcule la probabilidad de que entre las 8 AM y las 9 AM lleguen exactamente cinco clientes.
+
+(b) Calcule la probabilidad de que entre las 2:30 PM y las 3:30 PM no lleguen más de tres clientes.
+
+(c) Calcule la probabilidad de que lleguen dos clientes dentro de un intervalo de dos horas continuas, por ejemplo entre 10 AM y 12 M.
+
+(d) Calcule el valor esperado del número de personas que llegan a la tienda entre las 2:30 y las 4:30 PM.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.8</div> 
+
+Se está desarrollando una nueva variedad de maíz con una extensión de experimentación agrícola. Se espera que tenga una tasa de germinación del 90%. Para verificar esto, se plantan 20 semillas en suelos de idéntica composición y se les dedican los mismos cuidados. Si la cifra 90% es correcta, ¿cuántas semillas se espera que germinen? Si germinan al menos 15 o menos, ¿hay razón para desconfiar?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.9</div> 
+
+Un examen de estadística consta de 100 preguntas de selección múltiple, cada una con cuatro opciones de respuesta. María responde cada pregunta al azar y sus respuestas son independientes.
+
+(a) Si para aprobar el examen Juan debe responder mínimo 60 preguntas correctamente, calcule la probabilidad de que María apruebe el examen.
+
+(b) Calcule la probabilidad de que María deba responder 10 preguntas hasta responder la primera pregunta correctamente.
+
+(c) ¿Cuál es el número esperado de preguntas que María responderá erróneamente hasta responder 5 preguntas correctamente?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.10</div> 
+
+Se sospecha que muchas muestras de agua, todas del mismo tamaño y tomadas del Hillbank River, han sido contaminadas por operarios irresponsables de una planta de tratamiento de aguas. Se contó el número de microorganismos conformes en cada muestra. Si determinamos que las muestras siguen una distribución de Poisson, con media $\lambda=2.5$, calcular lo siguiente:
+
+(a) La probabilidad de que la muestra no contenga microorganismos contaminantes.
+
+(b) La probabilidad de que una muestra contenga más de cinco microorganismos contaminantes.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.11</div> 
+
+El número de grietas en un pavimento se estima que una determinada parte del pavimento tiene una distribución de Poisson con una media de 1.2 grietas por cada 100 metros lineales.
+
+Calcule la probabilidad de encontrar máximo dos grietas en un tramo de 200 metros lineales.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.12</div> 
+
+Para una variable aleatoria $X \sim \text{unif}(x,a,b)$ con $a = 10$ y $b = 20$ determine:
+
+(a) Construya un bosquejo de la gráfica de la función de densidad de probabilidad $f_X(x)$.
+
+(b) $P(X \leq 12)$, $P(13 \leq X \leq 15)$, $P(X \geq 18)$.
+
+(c) $E[X]$ y $V[X]$.
 
 
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.13</div> 
+
+Para una variable $Z \sim N(0,1)$, determine:
+
+(a) A la derecha de $z = -0.85$.
+
+(b) Entre $z = 0.40$ y $z = 1.30$.
+
+(c) Entre $z = -0.30$ y $z = 0.90$.
+
+(d) Desde $z = -1.50$ hasta $z = -0.45$.
+
+*Nota: en cada caso realice un bosquejo del área que representa la probabilidad.*
 
 
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.14</div> 
+
+Para una variable $Z \sim N(0,1)$, determine:
+
+(a) A la izquierda de $z = 0.56$.
+
+(b) Entre $z = -2.93$ y $z = -2.06$.
+
+(c) Entre $z = -1.08$ y $z = 0.70$.
+
+(d) Desde $z = 0.96$ hasta $z = 1.62$.
+
+*Nota: En cada caso represente gráficamente los valores solicitados.*
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.15</div> 
+
+
+Para una variable aleatoria continua $X \sim \text{norm}(\mu=150,\sigma^2=1000)$ determine:
+
+(a) Realice un bosquejo de la gráfica de la función de densidad de probabilidad de X.
+
+(b) $P(X \leq 100)$, $P(300 \leq X \leq 400)$, $P(X \geq 550)$.
+
+(c) Determine el valor de $k$ que cumpla: $P(-k < X < k) = 0.90$.
+
+(d) Determine el valor de $k$ que cumpla: $P(-k < X < k) = 0.95$.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.16</div> 
+
+Sea $X$ una variable aleatoria con distribución exponencial $(X \sim \text{exp}(\lambda=2))$ determine:
+
+(a) $P(X \leq 0)$.
+
+(b) $P(X \geq 2)$.
+
+(c) $P(1 < X < 2)$.
+
+(d) Realice un bosquejo de la gráfica de $f_X(x)$.
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.17</div> 
+
+
+Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en Unicentro. Sea $X$ el tiempo que transcurre entre las 5:00 pm y el momento en que llega Doris, y $Y$ el tiempo entre las 5:00 pm y el momento en que llega Mauricio. Suponga que $X$ y $Y$ son variables independientes uniformemente distribuidas en el intervalo [0,60]. Determine:
+
+(a) ¿Cuál es la distribución de probabilidad conjunta de $X$ y $Y$?
+
+(b) ¿Cuál es la probabilidad de que ambos lleguen entre las 5:30 y 5:40?
+
+(c) Sea $T = X - Y$ el tiempo que Mauricio espera a Doris. ¿Cuánto debe esperar en promedio Mauricio a Doris?
+
+(d) Si Doris y Mauricio acuerdan además, que cada uno esperará al otro un máximo de 10 minutos, ¿cuál es la probabilidad de que se encuentren?
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.18</div> 
+
+Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una prueba cuya distribución es aproximadamente normal con media de 480 puntos y desviación estándar de 90 puntos, determine:
+
+(a) ¿Cuál es la proporción de puntuaciones mayores a 700?
+
+(b) ¿Cuál es el percentil 25 de las puntuaciones?
+
+(c) Si la puntuación de alguien es de 600, ¿en qué percentil se encuentra?
+
+(d) ¿Qué proporción de las puntuaciones se encuentra entre 420 y 520?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.19</div> 
+
+
+Suponga que la estatura de las personas en una población sigue la curva normal con media de 64.3 pulgadas y desviación estándar de 2.6 pulgadas:
+
+(a) ¿Qué proporción de personas tienen estatura entre 60 y 66 pulgadas?
+
+(b) La estatura de Juan es 0.5 desviación estándar mayor a la media. ¿Qué proporción es más alta que Juan?
+
+(c) ¿Cuánto mide una persona cuya estatura se encuentra en el 90 percentil?
+
+(d) Si elige aleatoriamente una persona, ¿cuál es la probabilidad de que mida más de 67 pulgadas?
+
+(e) Si se elige aleatoriamente a cinco personas, ¿cuál es la probabilidad de que sólo una mida más de 67 pulgadas?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.20</div> 
+
+La resistencia de una aleación de aluminio se distribuye normalmente con media de 10 GPa y desviación estándar de 1.4 GPa.
+
+(a) ¿Cuál es la probabilidad de que una muestra tenga resistencia mayor a 12 GPa?
+
+(b) Determine el primer cuartil de la resistencia.
+
+(c) Determine el percentil 95 de la resistencia.
+
+<div class="box1 with-label">
+<div class="label">Problema </div> 
+
+La vida útil de una bombilla de vehículo sigue una distribución lognormal con media $\mu = 1.2$ y varianza $\sigma^2=0.4$:
+
+(a) Determine el tiempo medio de vida.
+
+(b) Determine la probabilidad de que la bombilla dure entre 3 y 6 años.
+
+(c) Determine el valor de la mediana.
+
+(d) Determine el percentil 95 de los tiempos.
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.21</div> 
+
+Un indicador importante de salud es el IMC:
+
+Sea: $\mu = 3.215$ y $\sigma = 0.157$ (hombres).
+
+(a) Si se elige un hombre, ¿cuál es la probabilidad que su riesgo sea Obesidad 1 (30 a 34.9)?
+
+(b) Dieta Bienestar quiere conocer proporciones. ¿Cuál proporción esperaría en cada rango de riesgo?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.22</div> 
+
+Duración de un ventilador ($\mu = 8000$ horas, $\sigma = 500$ horas): ¿Qué porcentaje de ventiladores fallarán antes de 7000 horas de uso?
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.23</div> 
+
+Para una variable aleatoria $X \sim \text{unif}(x,a,b)$ con $a = 10$ y $b = 20$ determine:
+
+(a) Construya un bosquejo de la gráfica de la función de densidad de probabilidad $f_X(x)$.
+
+(b) $P(X \leq 12)$, $P(13 \leq X \leq 15)$, $P(X \geq 18)$.
+
+(c) $E[X]$ y $V[X]$.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.24</div> 
+
+Para una variable $Z \sim N(0,1)$, determine:
+
+(a) A la derecha de $z = -0.85$.
+
+(b) Entre $z = 0.40$ y $z = 1.30$.
+
+(c) Entre $z = -0.30$ y $z = 0.90$.
+
+(d) Desde $z = -1.50$ hasta $z = -0.45$.
+
+*Nota: en cada caso realice un bosquejo del área que representa la probabilidad.*
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.25</div> 
+
+Para una variable $Z \sim N(0,1)$, determine:
+
+(a) A la izquierda de $z = 0.56$.
+
+(b) Entre $z = -2.93$ y $z = -2.06$.
+
+(c) Entre $z = -1.08$ y $z = 0.70$.
+
+(d) Desde $z = 0.96$ hasta $z = 1.62$.
+
+*Nota: En cada caso represente gráficamente los valores solicitados.*
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.26</div> 
+
+Para una variable aleatoria continua $X \sim \text{norm}(\mu=150,\sigma^2=1000)$ determine:
+
+(a) Realice un bosquejo de la gráfica de la función de densidad de probabilidad de X.
+
+(b) $P(X \leq 100)$, $P(300 \leq X \leq 400)$, $P(X \geq 550)$.
+
+(c) Determine el valor de $k$ que cumpla: $P(-k < X < k) = 0.90$.
+
+(d) Determine el valor de $k$ que cumpla: $P(-k < X < k) = 0.95$.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.27</div> 
+
+Sea $X$ una variable aleatoria con distribución exponencial $(X \sim \text{exp}(\lambda=2))$ determine:
+
+(a) $P(X \leq 0)$.
+
+(b) $P(X \geq 2)$.
+
+(c) $P(1 < X < 2)$.
+
+(d) Realice un bosquejo de la gráfica de $f_X(x)$.
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.28</div> 
+
+Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en Unicentro. Sea $X$ el tiempo que transcurre entre las 5:00 pm y el momento en que llega Doris, y $Y$ el tiempo entre las 5:00 pm y el momento en que llega Mauricio. Suponga que $X$ y $Y$ son variables independientes uniformemente distribuidas en el intervalo [0,60]. Determine:
+
+(a) ¿Cuál es la distribución de probabilidad conjunta de $X$ y $Y$?
+
+(b) ¿Cuál es la probabilidad de que ambos lleguen entre las 5:30 y 5:40?
+
+(c) Sea $T = X - Y$ el tiempo que Mauricio espera a Doris. ¿Cuánto debe esperar en promedio Mauricio a Doris?
+
+(d) Si Doris y Mauricio acuerdan además, que cada uno esperará al otro un máximo de 10 minutos, ¿cuál es la probabilidad de que se encuentren?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.29</div> 
+
+Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una prueba cuya distribución es aproximadamente normal con media de 480 puntos y desviación estándar de 90 puntos, determine:
+
+(a) ¿Cuál es la proporción de puntuaciones mayores a 700?
+
+(b) ¿Cuál es el percentil 25 de las puntuaciones?
+
+(c) Si la puntuación de alguien es de 600, ¿en qué percentil se encuentra?
+
+(d) ¿Qué proporción de las puntuaciones se encuentra entre 420 y 520?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.30</div> 
+
+Suponga que la estatura de las personas en una población sigue la curva normal con media de 64.3 pulgadas y desviación estándar de 2.6 pulgadas:
+
+(a) ¿Qué proporción de personas tienen estatura entre 60 y 66 pulgadas?
+
+(b) La estatura de Juan es 0.5 desviación estándar mayor a la media. ¿Qué proporción es más alta que Juan?
+
+(c) ¿Cuánto mide una persona cuya estatura se encuentra en el 90 percentil?
+
+(d) Si elige aleatoriamente una persona, ¿cuál es la probabilidad de que mida más de 67 pulgadas?
+
+(e) Si se elige aleatoriamente a cinco personas, ¿cuál es la probabilidad de que sólo una mida más de 67 pulgadas?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema </div> 
+4.31
+La resistencia de una aleación de aluminio se distribuye normalmente con media de 10 GPa y desviación estándar de 1.4 GPa.
+
+(a) ¿Cuál es la probabilidad de que una muestra tenga resistencia mayor a 12 GPa?
+
+(b) Determine el primer cuartil de la resistencia.
+
+(c) Determine el percentil 95 de la resistencia.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.32</div> 
+
+10\. La vida útil de una bombilla de vehículo sigue una distribución lognormal con media $\mu = 1.2$ y varianza $\sigma^2=0.4$:
+
+(a) Determine el tiempo medio de vida.
+
+(b) Determine la probabilidad de que la bombilla dure entre 3 y 6 años.
+
+(c) Determine el valor de la mediana.
+
+(d) Determine el percentil 95 de los tiempos.
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.33</div> 
+
+Un indicador importante de salud es el IMC:
+
+Sea: $\mu = 3.215$ y $\sigma = 0.157$ (hombres).
+
+(a) Si se elige un hombre, ¿cuál es la probabilidad que su riesgo sea Obesidad 1 (30 a 34.9)?
+
+(b) Dieta Bienestar quiere conocer proporciones. ¿Cuál proporción esperaría en cada rango de riesgo?
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.34</div> 
+
+Duración de un ventilador ($\mu = 8000$ horas, $\sigma = 500$ horas): ¿Qué porcentaje de ventiladores fallarán antes de 7000 horas de uso?
+
+</div>
 
 
 
