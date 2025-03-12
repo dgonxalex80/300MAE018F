@@ -1448,9 +1448,8 @@ ggplot(data_fx, aes(x = x, y = fx)) +
 <div class="label">
 Problema 3.10
 </div>
-<p><strong>10.</strong> Suponga que <span
-class="math inline">\(f(x)=exp\{-x\}\)</span>, para <span
-class="math inline">\(0 \leq x \leq 1\)</span>, <span
+<p>Suponga que <span class="math inline">\(f(x)=exp\{-x\}\)</span>, para
+<span class="math inline">\(0 \leq x \leq 1\)</span>, <span
 class="math inline">\(0\)</span> para cualquier otro caso.</p>
 <p>Determine :</p>
 <ul>
@@ -1670,9 +1669,8 @@ no la decisión que tomó el profesor? Justifique su respuesta.</p>
 <div class="label">
 Problema 3.18
 </div>
-<p><strong>18.</strong> Suponga que <span
-class="math inline">\(f(x)=exp\{-x\}\)</span>, para <span
-class="math inline">\(0 \leq x \leq 1\)</span>, <span
+<p>Suponga que <span class="math inline">\(f(x)=exp\{-x\}\)</span>, para
+<span class="math inline">\(0 \leq x \leq 1\)</span>, <span
 class="math inline">\(0\)</span> para cualquier otro caso.</p>
 <p>Determine :</p>
 <ul>
@@ -1812,6 +1810,7 @@ establecer que se trata de una variable con un comportamiento homogéneo.
 ¿Está de acuerdo con la información suministrada en el artículo? .
 Justifique su respuesta.</p>
 </div>
+<!-- ================================================================================ -->
 <p><br/><br/></p>
 </div>
 <div id="problemas-2.4" class="section level1">
@@ -1820,10 +1819,10 @@ Justifique su respuesta.</p>
 <div class="label">
 Problema 4.1
 </div>
-<p>Para una variable aleatoria con distribución binomial <span
-class="math inline">\(X \sim binom(x,n=10,p=0.05)\)</span>. Determine:
-la función de distribución asociada a <span
-class="math inline">\(X\)</span>.</p>
+<p>Para una variable aleatoria con distribución
+<strong>binomial</strong> <span class="math inline">\(X \sim
+binom(x,n=10,p=0.05)\)</span>. Determine: la función de distribución
+asociada a <span class="math inline">\(X\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(P(X = 5)\)</span></p></li>
 <li><p><span class="math inline">\(P(X \leq 2)\)</span></p></li>
@@ -1838,8 +1837,8 @@ class="math inline">\(f_X(x)\)</span></p></li>
 <div class="label">
 Problema 4.2
 </div>
-<p>Sea una variable geométrica <span class="math inline">\(X \sim
-geom(p=0.05)\)</span></p>
+<p>Sea una variable binomial <span class="math inline">\(X \sim
+binom(p=0.75)\)</span></p>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(P(X = 1)\)</span></p></li>
 <li><p><span class="math inline">\(P(X \leq 2)\)</span></p></li>
@@ -1855,17 +1854,33 @@ class="math inline">\(f_X(x)\)</span></p></li>
 Problema 4.3
 </div>
 <p>Suponga que <span class="math inline">\(X\)</span> tiene una
-distribución hipergeométrica con <span
-class="math inline">\(N=100\)</span>, <span
-class="math inline">\(n=4\)</span> y <span
-class="math inline">\(K=20\)</span>.</p>
+distribución <strong>binomial</strong> con <span class="math inline">\(n
+= 5\)</span>, <span class="math inline">\(p=0.75\)</span>.</p>
 <p>(<span class="math inline">\(X \sim
 hyper(x,N=100,n=4,K=20)\)</span>). Determine:</p>
 <ol style="list-style-type: lower-alpha">
 <li><p><span class="math inline">\(P(X=1)\)</span></p></li>
 <li><p><span class="math inline">\(P(X=6)\)</span></p></li>
 <li><p><span class="math inline">\(P(X\geq1)\)</span></p></li>
-<li><p><span class="math inline">\(P(X=4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 4)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(F_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.4
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>binomial</strong> con <span class="math inline">\(n
+= 10\)</span>, <span class="math inline">\(p=0.4\)</span>.</p>
+<p>Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=7)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 8)\)</span></p></li>
 <li><p>Construya la gráfica de <span
 class="math inline">\(f_X(x)\)</span></p></li>
 </ol>
@@ -1876,7 +1891,61 @@ class="math inline">\(f_X(x)\)</span></p></li>
 Problema 4.5
 </div>
 <p>Suponga que <span class="math inline">\(X\)</span> tiene una
-distribución Poisson con media <span
+distribución <strong>binomial</strong> con <span class="math inline">\(n
+= 8\)</span>, <span class="math inline">\(p=0.25\)</span>.</p>
+<p>Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(F_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.6
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>binomial</strong> con <span class="math inline">\(n
+= 15\)</span>, <span class="math inline">\(p=0.6\)</span>.</p>
+<p>Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=9)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=12)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 8)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 10)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.7
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>binomial</strong> con <span class="math inline">\(n
+= 20\)</span>, <span class="math inline">\(p=0.5\)</span>.</p>
+<p>Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=10)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=15)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 9)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 17)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.8
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>Poisson</strong> con media <span
 class="math inline">\(\lambda=4\)</span>. (<span class="math inline">\(X
 \sim pois(x, \lambda=4)\)</span>). Determine:</p>
 <ol style="list-style-type: lower-alpha">
@@ -1885,32 +1954,342 @@ class="math inline">\(\lambda=4\)</span>. (<span class="math inline">\(X
 <li><p><span class="math inline">\(P(X\geq 2)\)</span></p></li>
 <li><p><span class="math inline">\(P(X\leq2)\)</span></p></li>
 <li><p>Construya la gráfica de <span
+class="math inline">\(F_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.9
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>Poisson</strong> con <span
+class="math inline">\(\lambda = 3\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=0)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 5)\)</span></p></li>
+<li><p>Construya la gráfica de <span
 class="math inline">\(f_X(x)\)</span></p></li>
 </ol>
 </div>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.6
+Problema 4.10
 </div>
-<p>Sea la variable <span class="math inline">\(X\)</span> con
-distribución binomial negativa con <span
-class="math inline">\(N=10\)</span>, <span
-class="math inline">\(n=5\)</span>. (<span class="math inline">\(X \sim
-nbinom(x,n,p,mu)\)</span>)</p>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>Poisson</strong> con <span
+class="math inline">\(\lambda = 5\)</span>. Determine:</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la probabilidad de que ninguno de las llantas tenga
-imperfecciones?</p></li>
-<li><p>¿Cuál es la probabilidad de que sólo una de las llantas tenga
-imperfecciones?</p></li>
-<li><p>¿Cuál es la probabilidad de que una o más llantas tenga
-imperfecciones?</p></li>
+<li><p><span class="math inline">\(P(X=3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=7)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 6)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
 </ol>
 </div>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.7
+Problema 4.11
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>Poisson</strong> con <span
+class="math inline">\(\lambda = 1.5\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=0)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.12
+</div>
+<p>Suponga que <span class="math inline">\(X\)</span> tiene una
+distribución <strong>Poisson</strong> con <span
+class="math inline">\(\lambda = 4.2\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=6)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 5)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(F_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.13
+</div>
+<p>Suponga que el número de autos que pasan por una caseta de peaje en
+10 minutos sigue una distribución <strong>Poisson</strong> con <span
+class="math inline">\(\lambda = 12\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=10)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=15)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 8)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 14)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.14
+</div>
+<p>Una empresa de telefonía afirma que el 80% de sus clientes están
+satisfechos con el servicio recibido. Se realiza una encuesta a 20
+clientes seleccionados al azar. Sea <span
+class="math inline">\(X\)</span> el número de clientes satisfechos,
+donde <span class="math inline">\(X \sim Binomial(n=20, p=0.8)\)</span>.
+Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=16)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=20)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 15)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 18)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.15
+</div>
+<p>En una fábrica de bombillas, el 90% de las unidades producidas son de
+buena calidad. Se toma una muestra aleatoria de 12 bombillas. Si <span
+class="math inline">\(X\)</span> representa el número de bombillas de
+buena calidad, suponga que <span class="math inline">\(X \sim
+Binomial(n=12, p=0.9)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=10)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=12)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 9)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 8)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.16
+</div>
+<p>Un estudio indica que el 60% de los clientes que visitan una tienda
+compran algún producto. Si un día se observan 15 clientes, y <span
+class="math inline">\(X\)</span> es el número de clientes que realizan
+una compra, entonces <span class="math inline">\(X \sim Binomial(n=15,
+p=0.6)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=9)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=12)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 10)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.17
+</div>
+<p>En un examen tipo test de 20 preguntas, cada pregunta tiene una
+probabilidad de 0.25 de ser respondida correctamente al azar. Sea <span
+class="math inline">\(X\)</span> el número de respuestas correctas al
+azar, donde <span class="math inline">\(X \sim Binomial(n=20,
+p=0.25)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=10)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 8)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.18
+</div>
+<p>En una planta de ensamblaje, el 5% de las piezas producidas son
+defectuosas. Si se seleccionan al azar 25 piezas, y <span
+class="math inline">\(X\)</span> es el número de piezas defectuosas,
+entonces <span class="math inline">\(X \sim Binomial(n=25,
+p=0.05)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 4)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.19
+</div>
+<p>Un proyecto de mercadeo muestra que el 70% de las personas a las que
+se ofrece un descuento lo aceptan. Si se ofrecen descuentos a 18
+personas, sea <span class="math inline">\(X\)</span> el número de
+personas que aceptan el descuento, donde <span class="math inline">\(X
+\sim Binomial(n=18, p=0.7)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=14)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=18)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 12)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 15)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.20
+</div>
+<p>Una compañía aérea tiene un 85% de puntualidad en sus vuelos. Si se
+revisan 20 vuelos al azar, sea <span class="math inline">\(X\)</span> el
+número de vuelos que salen a tiempo, donde <span class="math inline">\(X
+\sim Binomial(n=20, p=0.85)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=18)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=20)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 16)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 17)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.21
+</div>
+<p>En una granja avícola, el 40% de los huevos recolectados son de
+tamaño extra grande. Si se seleccionan 30 huevos al azar, sea <span
+class="math inline">\(X\)</span> el número de huevos extra grandes,
+donde <span class="math inline">\(X \sim Binomial(n=30, p=0.4)\)</span>.
+Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=12)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=15)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 10)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 18)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.22
+</div>
+<p>Un entrenador sabe que el 65% de los tiros libres de su equipo son
+encestados. Si el equipo lanza 25 tiros libres en un partido, sea <span
+class="math inline">\(X\)</span> el número de tiros acertados, donde
+<span class="math inline">\(X \sim Binomial(n=25, p=0.65)\)</span>.
+Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=16)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=20)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 14)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 18)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.23
+</div>
+<p>En una central de taxis, el número de llamadas que recibe el operador
+sigue una distribución <strong>Poisson</strong> con un promedio de 10
+llamadas por hora (<span class="math inline">\(\lambda = 10\)</span>).
+Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=8)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=12)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 7)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 15)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.24
+</div>
+<p>En una clínica odontológica se reporta un promedio de 4 urgencias
+diarias. El número de urgencias diarias sigue una distribución
+<strong>Poisson</strong> con <span class="math inline">\(\lambda =
+4\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.24
+</div>
+<p>En una línea de producción de botellas, se detecta un promedio de 2
+defectos por cada 100 botellas. Sea <span
+class="math inline">\(X\)</span> el número de defectos en una muestra de
+100 botellas, donde <span class="math inline">\(X \sim Poisson(\lambda =
+2)\)</span>. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \leq 3)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &gt; 5)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.25
+</div>
+<p>En una tienda en línea, el número de pedidos que llegan en un lapso
+de 30 minutos sigue una distribución <strong>Poisson</strong> con una
+media de 6 pedidos (<span class="math inline">\(\lambda = 6\)</span>).
+Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X=4)\)</span></p></li>
+<li><p><span class="math inline">\(P(X=7)\)</span></p></li>
+<li><p><span class="math inline">\(P(X \geq 5)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 3)\)</span></p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.26
 </div>
 <p>Los clientes llegan al mostrador de una tienda de acuerdo con una
 variable aleatoria Poisson con una frecuencia promedio de ocho clientes
@@ -1930,7 +2309,7 @@ tienda entre las 2:30 y las 4:30 PM.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.8
+Problema 4.27
 </div>
 <p>Se está desarrollando una nueva variedad de maíz con una extensión de
 experimentación agrícola. Se espera que tenga una tasa de germinación
@@ -1942,7 +2321,7 @@ al menos 15 o menos, ¿hay razón para desconfiar?</p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.9
+Problema 4.28
 </div>
 <p>Un examen de estadística consta de 100 preguntas de selección
 múltiple, cada una con cuatro opciones de respuesta. María responde cada
@@ -1960,7 +2339,7 @@ erróneamente hasta responder 5 preguntas correctamente?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.10
+Problema 4.29
 </div>
 <p>Se sospecha que muchas muestras de agua, todas del mismo tamaño y
 tomadas del Hillbank River, han sido contaminadas por operarios
@@ -1978,7 +2357,7 @@ microorganismos contaminantes.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.11
+Problema 4.30
 </div>
 <p>El número de grietas en un pavimento se estima que una determinada
 parte del pavimento tiene una distribución de Poisson con una media de
@@ -1989,7 +2368,7 @@ de 200 metros lineales.</p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.12
+Problema 4.31
 </div>
 <p>Para una variable aleatoria <span class="math inline">\(X \sim
 \text{unif}(x,a,b)\)</span> con <span class="math inline">\(a =
@@ -2007,7 +2386,7 @@ class="math inline">\(V[X]\)</span>.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.13
+Problema 4.32
 </div>
 <p>Para una variable <span class="math inline">\(Z \sim N(0,1)\)</span>,
 determine:</p>
@@ -2027,7 +2406,7 @@ probabilidad.</em></p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.14
+Problema 4.33
 </div>
 <p>Para una variable <span class="math inline">\(Z \sim N(0,1)\)</span>,
 determine:</p>
@@ -2047,7 +2426,7 @@ solicitados.</em></p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.15
+Problema 4.34
 </div>
 <p>Para una variable aleatoria continua <span class="math inline">\(X
 \sim \text{norm}(\mu=150,\sigma^2=1000)\)</span> determine:</p>
@@ -2068,7 +2447,7 @@ cumpla: <span class="math inline">\(P(-k &lt; X &lt; k) =
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.16
+Problema 4.35
 </div>
 <p>Sea <span class="math inline">\(X\)</span> una variable aleatoria con
 distribución exponencial <span class="math inline">\((X \sim
@@ -2084,7 +2463,7 @@ class="math inline">\(f_X(x)\)</span>.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.17
+Problema 4.36
 </div>
 <p>Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en
 Unicentro. Sea <span class="math inline">\(X\)</span> el tiempo que
@@ -2111,7 +2490,7 @@ encuentren?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.18
+Problema 4.37
 </div>
 <p>Para una variable aleatoria <span class="math inline">\(Y\)</span>
 que representa las puntuaciones obtenidas en una prueba cuya
@@ -2129,7 +2508,7 @@ encuentra?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.19
+Problema 4.38
 </div>
 <p>Suponga que la estatura de las personas en una población sigue la
 curva normal con media de 64.3 pulgadas y desviación estándar de 2.6
@@ -2150,7 +2529,7 @@ probabilidad de que sólo una mida más de 67 pulgadas?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.20
+Problema 4.39
 </div>
 <p>La resistencia de una aleación de aluminio se distribuye normalmente
 con media de 10 GPa y desviación estándar de 1.4 GPa.</p>
@@ -2160,9 +2539,11 @@ mayor a 12 GPa?</p></li>
 <li><p>Determine el primer cuartil de la resistencia.</p></li>
 <li><p>Determine el percentil 95 de la resistencia.</p></li>
 </ol>
+</div>
+<p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema
+Problema 4.40
 </div>
 <p>La vida útil de una bombilla de vehículo sigue una distribución
 lognormal con media <span class="math inline">\(\mu = 1.2\)</span> y
@@ -2178,7 +2559,7 @@ años.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.21
+Problema 4.41
 </div>
 <p>Un indicador importante de salud es el IMC:</p>
 <p>Sea: <span class="math inline">\(\mu = 3.215\)</span> y <span
@@ -2193,7 +2574,7 @@ esperaría en cada rango de riesgo?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.22
+Problema 4.42
 </div>
 <p>Duración de un ventilador (<span class="math inline">\(\mu =
 8000\)</span> horas, <span class="math inline">\(\sigma = 500\)</span>
@@ -2203,7 +2584,7 @@ uso?</p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.23
+Problema 4.43
 </div>
 <p>Para una variable aleatoria <span class="math inline">\(X \sim
 \text{unif}(x,a,b)\)</span> con <span class="math inline">\(a =
@@ -2221,7 +2602,7 @@ class="math inline">\(V[X]\)</span>.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.24
+Problema 4.44
 </div>
 <p>Para una variable <span class="math inline">\(Z \sim N(0,1)\)</span>,
 determine:</p>
@@ -2241,7 +2622,7 @@ probabilidad.</em></p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.25
+Problema 4.45
 </div>
 <p>Para una variable <span class="math inline">\(Z \sim N(0,1)\)</span>,
 determine:</p>
@@ -2261,7 +2642,7 @@ solicitados.</em></p>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.26
+Problema 4.46
 </div>
 <p>Para una variable aleatoria continua <span class="math inline">\(X
 \sim \text{norm}(\mu=150,\sigma^2=1000)\)</span> determine:</p>
@@ -2282,7 +2663,7 @@ cumpla: <span class="math inline">\(P(-k &lt; X &lt; k) =
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.27
+Problema 4.47
 </div>
 <p>Sea <span class="math inline">\(X\)</span> una variable aleatoria con
 distribución exponencial <span class="math inline">\((X \sim
@@ -2298,34 +2679,7 @@ class="math inline">\(f_X(x)\)</span>.</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.28
-</div>
-<p>Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en
-Unicentro. Sea <span class="math inline">\(X\)</span> el tiempo que
-transcurre entre las 5:00 pm y el momento en que llega Doris, y <span
-class="math inline">\(Y\)</span> el tiempo entre las 5:00 pm y el
-momento en que llega Mauricio. Suponga que <span
-class="math inline">\(X\)</span> y <span
-class="math inline">\(Y\)</span> son variables independientes
-uniformemente distribuidas en el intervalo [0,60]. Determine:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>¿Cuál es la distribución de probabilidad conjunta de <span
-class="math inline">\(X\)</span> y <span
-class="math inline">\(Y\)</span>?</p></li>
-<li><p>¿Cuál es la probabilidad de que ambos lleguen entre las 5:30 y
-5:40?</p></li>
-<li><p>Sea <span class="math inline">\(T = X - Y\)</span> el tiempo que
-Mauricio espera a Doris. ¿Cuánto debe esperar en promedio Mauricio a
-Doris?</p></li>
-<li><p>Si Doris y Mauricio acuerdan además, que cada uno esperará al
-otro un máximo de 10 minutos, ¿cuál es la probabilidad de que se
-encuentren?</p></li>
-</ol>
-</div>
-<p><br/><br/></p>
-<div class="box1 with-label">
-<div class="label">
-Problema 4.29
+Problema 4.48
 </div>
 <p>Para una variable aleatoria <span class="math inline">\(Y\)</span>
 que representa las puntuaciones obtenidas en una prueba cuya
@@ -2343,7 +2697,7 @@ encuentra?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.30
+Problema 4.49
 </div>
 <p>Suponga que la estatura de las personas en una población sigue la
 curva normal con media de 64.3 pulgadas y desviación estándar de 2.6
@@ -2364,10 +2718,10 @@ probabilidad de que sólo una mida más de 67 pulgadas?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema
+Problema 4.50
 </div>
-<p>4.31 La resistencia de una aleación de aluminio se distribuye
-normalmente con media de 10 GPa y desviación estándar de 1.4 GPa.</p>
+<p>La resistencia de una aleación de aluminio se distribuye normalmente
+con media de 10 GPa y desviación estándar de 1.4 GPa.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>¿Cuál es la probabilidad de que una muestra tenga resistencia
 mayor a 12 GPa?</p></li>
@@ -2378,23 +2732,7 @@ mayor a 12 GPa?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.32
-</div>
-<p>10. La vida útil de una bombilla de vehículo sigue una distribución
-lognormal con media <span class="math inline">\(\mu = 1.2\)</span> y
-varianza <span class="math inline">\(\sigma^2=0.4\)</span>:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Determine el tiempo medio de vida.</p></li>
-<li><p>Determine la probabilidad de que la bombilla dure entre 3 y 6
-años.</p></li>
-<li><p>Determine el valor de la mediana.</p></li>
-<li><p>Determine el percentil 95 de los tiempos.</p></li>
-</ol>
-</div>
-<p><br/><br/></p>
-<div class="box1 with-label">
-<div class="label">
-Problema 4.33
+Problema 4.51
 </div>
 <p>Un indicador importante de salud es el IMC:</p>
 <p>Sea: <span class="math inline">\(\mu = 3.215\)</span> y <span
@@ -2409,14 +2747,209 @@ esperaría en cada rango de riesgo?</p></li>
 <p><br/><br/></p>
 <div class="box1 with-label">
 <div class="label">
-Problema 4.34
+Problema 4.52
 </div>
-<p>Duración de un ventilador (<span class="math inline">\(\mu =
-8000\)</span> horas, <span class="math inline">\(\sigma = 500\)</span>
-horas): ¿Qué porcentaje de ventiladores fallarán antes de 7000 horas de
-uso?</p>
+<p>La vida útil de una bombilla de vehículo sigue una distribución
+lognormal con media <span class="math inline">\(\mu = 1.2\)</span> y
+varianza <span class="math inline">\(\sigma^2=0.4\)</span>:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Determine el tiempo medio de vida.</p></li>
+<li><p>Determine la probabilidad de que la bombilla dure entre 3 y 6
+años.</p></li>
+<li><p>Determine el valor de la mediana.</p></li>
+<li><p>Determine el percentil 95 de los tiempos.</p></li>
+</ol>
 </div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.53
 </div>
+<p>La resistencia a la tracción de un lote de cables de acero sigue una
+distribución <strong>Normal</strong> con media de 5000 N y desviación
+estándar de 200 N. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 5200)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 4800)\)</span></p></li>
+<li><p><span class="math inline">\(P(4900 &lt; X &lt;
+5100)\)</span></p></li>
+<li><p>El valor de <span class="math inline">\(X\)</span> tal que el 95%
+de los cables tienen resistencia menor o igual a este valor.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.53
+</div>
+<p>El diámetro de un eje metálico producido por una máquina tiene
+distribución <strong>Normal</strong> con media de 10 mm y desviación
+estándar de 0.05 mm. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 10.1)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 9.95)\)</span></p></li>
+<li><p><span class="math inline">\(P(9.97 &lt; X &lt;
+10.03)\)</span></p></li>
+<li><p>El porcentaje de ejes que cumplen con una tolerancia de <span
+class="math inline">\(\pm 0.02\)</span> mm.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.54
+</div>
+<p>El tiempo de vida útil de un motor eléctrico es una variable
+aleatoria que sigue una distribución <strong>Normal</strong> con media
+de 4000 horas y desviación estándar de 500 horas. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 4500)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 3500)\)</span></p></li>
+<li><p><span class="math inline">\(P(3800 &lt; X &lt;
+4200)\)</span></p></li>
+<li><p>La vida útil que supera el 90% de los motores.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.55
+</div>
+<p>La presión de prueba de un tanque de almacenamiento es una variable
+<strong>Normal</strong> con media de 150 psi y desviación estándar de 10
+psi. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 160)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 140)\)</span></p></li>
+<li><p><span class="math inline">\(P(145 &lt; X &lt;
+155)\)</span></p></li>
+<li><p>El límite superior tal que el 98% de los tanques no lo
+sobrepasen.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.56
+</div>
+<p>La longitud de corte de barras metálicas sigue una distribución
+<strong>Normal</strong> con media de 2 metros y desviación estándar de
+0.01 metros. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 2.015)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1.985)\)</span></p></li>
+<li><p><span class="math inline">\(P(1.99 &lt; X &lt;
+2.01)\)</span></p></li>
+<li><p>El porcentaje de barras dentro del rango 1.98 m a 2.02
+m.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.57
+</div>
+<p>El peso de un componente electrónico empaquetado sigue una
+distribución <strong>Normal</strong> con media de 150 gramos y
+desviación estándar de 5 gramos. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 160)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 140)\)</span></p></li>
+<li><p><span class="math inline">\(P(145 &lt; X &lt;
+155)\)</span></p></li>
+<li><p>La probabilidad de que un componente pese entre 148 y 152
+gramos.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.58
+</div>
+<p>El tiempo que tarda en ensamblarse una unidad en una línea de
+producción sigue una distribución <strong>Normal</strong> con media de
+30 minutos y desviación estándar de 3 minutos. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 35)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 25)\)</span></p></li>
+<li><p><span class="math inline">\(P(28 &lt; X &lt;
+32)\)</span></p></li>
+<li><p>El tiempo máximo que no se supera en el 85% de las
+unidades.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.59
+</div>
+<p>La temperatura de operación de un horno industrial sigue una
+distribución <strong>Normal</strong> con media de 800°C y desviación
+estándar de 20°C. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 820)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 780)\)</span></p></li>
+<li><p><span class="math inline">\(P(790 &lt; X &lt;
+810)\)</span></p></li>
+<li><p>La temperatura mínima superada por el 10% de las
+mediciones.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.60
+</div>
+<p>La concentración de un químico en una solución sigue una distribución
+<strong>Normal</strong> con media de 5 mg/L y desviación estándar de 0.2
+mg/L. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 5.2)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 4.8)\)</span></p></li>
+<li><p><span class="math inline">\(P(4.9 &lt; X &lt;
+5.1)\)</span></p></li>
+<li><p>El límite superior tal que el 95% de las concentraciones están
+por debajo de este valor.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Problema 4.61
+</div>
+<p>La capacidad de carga de un elevador industrial sigue una
+distribución <strong>Normal</strong> con media de 2000 kg y desviación
+estándar de 100 kg. Determine:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p><span class="math inline">\(P(X &gt; 2100)\)</span></p></li>
+<li><p><span class="math inline">\(P(X &lt; 1900)\)</span></p></li>
+<li><p><span class="math inline">\(P(1950 &lt; X &lt;
+2050)\)</span></p></li>
+<li><p>La capacidad mínima garantizada superada por el 99% de los
+elevadores.</p></li>
+<li><p>Construya la gráfica de <span
+class="math inline">\(f_X(x)\)</span></p></li>
+</ol>
+</div>
+<p><br/><br/></p>
 </div>
 
 

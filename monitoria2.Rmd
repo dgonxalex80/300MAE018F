@@ -734,7 +734,7 @@ Problemas tomado de walpole (2006)
 <div class="box1 with-label">
 <div class="label">Problema 3.10</div>
 
-**10.** Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
+Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
 
 Determine :
 
@@ -945,7 +945,7 @@ Cuando el profesor de Probabilidad y Estadística se preparaba para imprimir el 
 <div class="box1 with-label">
 <div class="label">Problema 3.18</div>
 
-**18.** Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
+Suponga que $f(x)=exp\{-x\}$, para $0 \leq x \leq 1$, $0$ para cualquier otro caso.
 
 Determine :
 
@@ -1065,6 +1065,8 @@ El estudio afirma también que los jóvenes en promedio reciben al rededor de 12
 
 </div>
 
+<!-- ================================================================================ -->
+
 <br/><br/>
 
 # **PROBLEMAS 2.4**
@@ -1073,7 +1075,7 @@ El estudio afirma también que los jóvenes en promedio reciben al rededor de 12
 <div class="box1 with-label">
 <div class="label">Problema 4.1</div> 
 
-Para una variable aleatoria con distribución binomial $X \sim binom(x,n=10,p=0.05)$. Determine: la función de distribución asociada a $X$.
+Para una variable aleatoria con distribución **binomial** $X \sim binom(x,n=10,p=0.05)$. Determine: la función de distribución asociada a $X$.
 
 (a) $P(X = 5)$
 
@@ -1091,7 +1093,7 @@ Para una variable aleatoria con distribución binomial $X \sim binom(x,n=10,p=0.
 <div class="box1 with-label">
 <div class="label">Problema 4.2</div> 
 
-Sea una variable geométrica $X \sim geom(p=0.05)$
+Sea una variable binomial $X \sim binom(p=0.75)$
 
 (a) $P(X = 1)$
 
@@ -1110,7 +1112,7 @@ Sea una variable geométrica $X \sim geom(p=0.05)$
 <div class="box1 with-label">
 <div class="label">Problema 4.3</div> 
 
-Suponga que $X$ tiene una distribución hipergeométrica con $N=100$, $n=4$ y $K=20$.
+Suponga que $X$ tiene una distribución **binomial**   con $n = 5$, $p=0.75$.
 
 ($X \sim hyper(x,N=100,n=4,K=20)$). Determine:
 
@@ -1120,9 +1122,32 @@ Suponga que $X$ tiene una distribución hipergeométrica con $N=100$, $n=4$ y $K
 
 (c) $P(X\geq1)$
 
-(d) $P(X=4)$
+(d) $P(X > 4)$
+
+(e) Construya la gráfica de $F_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.4</div> 
+
+
+Suponga que $X$ tiene una distribución **binomial** con $n = 10$, $p=0.4$.
+
+Determine:
+
+(a) $P(X=3)$
+
+(b) $P(X=7)$
+
+(c) $P(X \leq 5)$
+
+(d) $P(X > 8)$
 
 (e) Construya la gráfica de $f_X(x)$
+
 
 </div>
 
@@ -1131,8 +1156,76 @@ Suponga que $X$ tiene una distribución hipergeométrica con $N=100$, $n=4$ y $K
 <div class="box1 with-label">
 <div class="label">Problema 4.5</div> 
 
+Suponga que $X$ tiene una distribución **binomial** con $n = 8$, $p=0.25$.
 
-Suponga que $X$ tiene una distribución Poisson con media $\lambda=4$. ($X \sim pois(x, \lambda=4)$). Determine:
+Determine:
+
+(a) $P(X=2)$
+
+(b) $P(X=5)$
+
+(c) $P(X \geq 3)$
+
+(d) $P(X < 1)$
+
+(e) Construya la gráfica de $F_X(x)$
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.6</div> 
+
+Suponga que $X$ tiene una distribución **binomial** con $n = 15$, $p=0.6$.
+
+Determine:
+
+(a) $P(X=9)$
+
+(b) $P(X=12)$
+
+(c) $P(X \leq 8)$
+
+(d) $P(X \geq 10)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+
+</div>
+
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.7</div> 
+
+Suponga que $X$ tiene una distribución **binomial** con $n = 20$, $p=0.5$.
+
+Determine:
+
+(a) $P(X=10)$
+
+(b) $P(X=15)$
+
+(c) $P(X \leq 9)$
+
+(d) $P(X > 17)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.8</div> 
+
+
+Suponga que $X$ tiene una distribución **Poisson** con media $\lambda=4$. ($X \sim pois(x, \lambda=4)$). Determine:
 
 (a) $P(X=0)$
 
@@ -1142,6 +1235,121 @@ Suponga que $X$ tiene una distribución Poisson con media $\lambda=4$. ($X \sim 
 
 (d) $P(X\leq2)$
 
+(e) Construya la gráfica de $F_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.9</div> 
+
+Suponga que \( X \) tiene una distribución **Poisson** con \(\lambda = 3\). Determine:
+
+(a) \(P(X=2)\)
+
+(b) \(P(X=0)\)
+
+(c) \(P(X \leq 4)\)
+
+(d) \(P(X \geq 5)\)
+
+(e) Construya la gráfica de \(f_X(x)\)
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.10</div> 
+
+Suponga que \(X\) tiene una distribución **Poisson** con \(\lambda = 5\). Determine:
+
+(a) \(P(X=3)\)
+
+(b) \(P(X=7)\)
+
+(c) \(P(X \leq 4)\)
+
+(d) \(P(X > 6)\)
+
+(e) Construya la gráfica de \(f_X(x)\)
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.11</div> 
+
+Suponga que \(X\) tiene una distribución **Poisson** con \(\lambda = 1.5\). Determine:
+
+(a) \(P(X=0)\)
+
+(b) \(P(X=2)\)
+
+(c) \(P(X \geq 3)\)
+
+(d) \(P(X < 1)\)
+
+(e) Construya la gráfica de \(f_X(x)\)
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.12</div> 
+
+Suponga que \(X\) tiene una distribución **Poisson** con \(\lambda = 4.2\). Determine:
+
+(a) \(P(X=4)\)
+
+(b) \(P(X=6)\)
+
+(c) \(P(X \leq 3)\)
+
+(d) \(P(X > 5)\)
+
+(e) Construya la gráfica de \(F_X(x)\)
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.13</div> 
+
+Suponga que el número de autos que pasan por una caseta de peaje en 10 minutos sigue una distribución **Poisson** con \(\lambda = 12\). Determine:
+
+(a) \(P(X=10)\)
+
+(b) \(P(X=15)\)
+
+(c) \(P(X \leq 8)\)
+
+(d) \(P(X > 14)\)
+
+(e) Construya la gráfica de \(f_X(x)\)
+
+</div>
+
+
+<br/><br/>
+
+<div class="box1 with-label"> 
+<div class="label">Problema 4.14</div>
+
+Una empresa de telefonía afirma que el 80% de sus clientes están satisfechos con el servicio recibido. Se realiza una encuesta a 20 clientes seleccionados al azar. Sea $X$ el número de clientes satisfechos, donde $X \sim Binomial(n=20, p=0.8)$. Determine:
+
+(a) $P(X=16)$
+
+(b) $P(X=20)$
+
+(c) $P(X \leq 15)$
+
+(d) $P(X > 18)$
+
 (e) Construya la gráfica de $f_X(x)$
 
 </div>
@@ -1149,15 +1357,20 @@ Suponga que $X$ tiene una distribución Poisson con media $\lambda=4$. ($X \sim 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.6</div> 
+<div class="label">Problema 4.15</div> 
 
-Sea la variable $X$ con distribución binomial negativa con $N=10$, $n=5$. ($X \sim nbinom(x,n,p,mu)$)
 
-(a) ¿Cuál es la probabilidad de que ninguno de las llantas tenga imperfecciones?
+En una fábrica de bombillas, el 90% de las unidades producidas son de buena calidad. Se toma una muestra aleatoria de 12 bombillas. Si $X$ representa el número de bombillas de buena calidad, suponga que $X \sim Binomial(n=12, p=0.9)$. Determine:
 
-(b) ¿Cuál es la probabilidad de que sólo una de las llantas tenga imperfecciones?
+(a) $P(X=10)$
 
-(c) ¿Cuál es la probabilidad de que una o más llantas tenga imperfecciones?
+(b) $P(X=12)$
+
+(c) $P(X \geq 9)$
+
+(d) $P(X < 8)$
+
+(e) Construya la gráfica de $f_X(x)$
 
 
 </div>
@@ -1165,7 +1378,223 @@ Sea la variable $X$ con distribución binomial negativa con $N=10$, $n=5$. ($X \
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.7</div> 
+<div class="label">Problema 4.16</div> 
+
+Un estudio indica que el 60% de los clientes que visitan una tienda compran algún producto. Si un día se observan 15 clientes, y $X$ es el número de clientes que realizan una compra, entonces $X \sim Binomial(n=15, p=0.6)$. Determine:
+
+(a) $P(X=9)$
+
+(b) $P(X=12)$
+
+(c) $P(X \leq 7)$
+
+(d) $P(X > 10)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.17</div> 
+
+En un examen tipo test de 20 preguntas, cada pregunta tiene una probabilidad de 0.25 de ser respondida correctamente al azar. Sea $X$ el número de respuestas correctas al azar, donde $X \sim Binomial(n=20, p=0.25)$. Determine:
+
+(a) $P(X=5)$
+
+(b) $P(X=10)$
+
+(c) $P(X \leq 4)$
+
+(d) $P(X \geq 8)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.18</div> 
+
+En una planta de ensamblaje, el 5% de las piezas producidas son defectuosas. Si se seleccionan al azar 25 piezas, y $X$ es el número de piezas defectuosas, entonces $X \sim Binomial(n=25, p=0.05)$. Determine:
+
+(a) $P(X=1)$
+
+(b) $P(X=3)$
+
+(c) $P(X \geq 2)$
+
+(d) $P(X < 4)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.19</div> 
+
+Un proyecto de mercadeo muestra que el 70% de las personas a las que se ofrece un descuento lo aceptan. Si se ofrecen descuentos a 18 personas, sea $X$ el número de personas que aceptan el descuento, donde $X \sim Binomial(n=18, p=0.7)$. Determine:
+
+(a) $P(X=14)$
+
+(b) $P(X=18)$
+
+(c) $P(X \leq 12)$
+
+(d) $P(X > 15)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.20</div> 
+
+Una compañía aérea tiene un 85% de puntualidad en sus vuelos. Si se revisan 20 vuelos al azar, sea $X$ el número de vuelos que salen a tiempo, donde $X \sim Binomial(n=20, p=0.85)$. Determine:
+
+(a) $P(X=18)$
+
+(b) $P(X=20)$
+
+(c) $P(X \leq 16)$
+
+(d) $P(X > 17)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.21</div> 
+
+En una granja avícola, el 40% de los huevos recolectados son de tamaño extra grande. Si se seleccionan 30 huevos al azar, sea $X$ el número de huevos extra grandes, donde $X \sim Binomial(n=30, p=0.4)$. Determine:
+
+(a) $P(X=12)$
+
+(b) $P(X=15)$
+
+(c) $P(X \leq 10)$
+
+(d) $P(X > 18)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+
+</div>
+
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.22</div> 
+
+Un entrenador sabe que el 65% de los tiros libres de su equipo son encestados. Si el equipo lanza 25 tiros libres en un partido, sea $X$ el número de tiros acertados, donde $X \sim Binomial(n=25, p=0.65)$. Determine:
+
+(a) $P(X=16)$
+
+(b) $P(X=20)$
+
+(c) $P(X \leq 14)$
+
+(d) $P(X > 18)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.23</div> 
+
+En una central de taxis, el número de llamadas que recibe el operador sigue una distribución **Poisson** con un promedio de 10 llamadas por hora ($\lambda = 10$). Determine:
+
+(a) $P(X=8)$
+
+(b) $P(X=12)$
+
+(c) $P(X \leq 7)$
+
+(d) $P(X > 15)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.24</div> 
+
+En una clínica odontológica se reporta un promedio de 4 urgencias diarias. El número de urgencias diarias sigue una distribución **Poisson** con $\lambda = 4$. Determine:
+
+(a) $P(X=2)$
+
+(b) $P(X=5)$
+
+(c) $P(X \geq 3)$
+
+(d) $P(X < 1)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+
+<div class="box1 with-label">
+<div class="label">Problema 4.24</div> 
+
+En una línea de producción de botellas, se detecta un promedio de 2 defectos por cada 100 botellas. Sea $X$ el número de defectos en una muestra de 100 botellas, donde $X \sim Poisson(\lambda = 2)$. Determine:
+
+(a) $P(X=1)$
+
+(b) $P(X=4)$
+
+(c) $P(X \leq 3)$
+
+(d) $P(X > 5)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.25</div> 
+
+En una tienda en línea, el número de pedidos que llegan en un lapso de 30 minutos sigue una distribución **Poisson** con una media de 6 pedidos ($\lambda = 6$). Determine:
+
+(a) $P(X=4)$
+
+(b) $P(X=7)$
+
+(c) $P(X \geq 5)$
+
+(d) $P(X < 3)$
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.26</div> 
 
 Los clientes llegan al mostrador de una tienda de acuerdo con una variable aleatoria Poisson con una frecuencia promedio de ocho clientes por hora.
 
@@ -1182,7 +1611,7 @@ Los clientes llegan al mostrador de una tienda de acuerdo con una variable aleat
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.8</div> 
+<div class="label">Problema 4.27</div> 
 
 Se está desarrollando una nueva variedad de maíz con una extensión de experimentación agrícola. Se espera que tenga una tasa de germinación del 90%. Para verificar esto, se plantan 20 semillas en suelos de idéntica composición y se les dedican los mismos cuidados. Si la cifra 90% es correcta, ¿cuántas semillas se espera que germinen? Si germinan al menos 15 o menos, ¿hay razón para desconfiar?
 
@@ -1191,7 +1620,7 @@ Se está desarrollando una nueva variedad de maíz con una extensión de experim
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.9</div> 
+<div class="label">Problema 4.28</div> 
 
 Un examen de estadística consta de 100 preguntas de selección múltiple, cada una con cuatro opciones de respuesta. María responde cada pregunta al azar y sus respuestas son independientes.
 
@@ -1206,7 +1635,7 @@ Un examen de estadística consta de 100 preguntas de selección múltiple, cada 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.10</div> 
+<div class="label">Problema 4.29</div> 
 
 Se sospecha que muchas muestras de agua, todas del mismo tamaño y tomadas del Hillbank River, han sido contaminadas por operarios irresponsables de una planta de tratamiento de aguas. Se contó el número de microorganismos conformes en cada muestra. Si determinamos que las muestras siguen una distribución de Poisson, con media $\lambda=2.5$, calcular lo siguiente:
 
@@ -1219,7 +1648,7 @@ Se sospecha que muchas muestras de agua, todas del mismo tamaño y tomadas del H
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.11</div> 
+<div class="label">Problema 4.30</div> 
 
 El número de grietas en un pavimento se estima que una determinada parte del pavimento tiene una distribución de Poisson con una media de 1.2 grietas por cada 100 metros lineales.
 
@@ -1230,7 +1659,7 @@ Calcule la probabilidad de encontrar máximo dos grietas en un tramo de 200 metr
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.12</div> 
+<div class="label">Problema 4.31</div> 
 
 Para una variable aleatoria $X \sim \text{unif}(x,a,b)$ con $a = 10$ y $b = 20$ determine:
 
@@ -1246,7 +1675,7 @@ Para una variable aleatoria $X \sim \text{unif}(x,a,b)$ con $a = 10$ y $b = 20$ 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.13</div> 
+<div class="label">Problema 4.32</div> 
 
 Para una variable $Z \sim N(0,1)$, determine:
 
@@ -1266,7 +1695,7 @@ Para una variable $Z \sim N(0,1)$, determine:
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.14</div> 
+<div class="label">Problema 4.33</div> 
 
 Para una variable $Z \sim N(0,1)$, determine:
 
@@ -1286,7 +1715,7 @@ Para una variable $Z \sim N(0,1)$, determine:
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.15</div> 
+<div class="label">Problema 4.34</div> 
 
 
 Para una variable aleatoria continua $X \sim \text{norm}(\mu=150,\sigma^2=1000)$ determine:
@@ -1304,7 +1733,7 @@ Para una variable aleatoria continua $X \sim \text{norm}(\mu=150,\sigma^2=1000)$
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.16</div> 
+<div class="label">Problema 4.35</div> 
 
 Sea $X$ una variable aleatoria con distribución exponencial $(X \sim \text{exp}(\lambda=2))$ determine:
 
@@ -1322,7 +1751,7 @@ Sea $X$ una variable aleatoria con distribución exponencial $(X \sim \text{exp}
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.17</div> 
+<div class="label">Problema 4.36</div> 
 
 
 Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en Unicentro. Sea $X$ el tiempo que transcurre entre las 5:00 pm y el momento en que llega Doris, y $Y$ el tiempo entre las 5:00 pm y el momento en que llega Mauricio. Suponga que $X$ y $Y$ son variables independientes uniformemente distribuidas en el intervalo [0,60]. Determine:
@@ -1341,7 +1770,7 @@ Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en Unicentro.
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.18</div> 
+<div class="label">Problema 4.37</div> 
 
 Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una prueba cuya distribución es aproximadamente normal con media de 480 puntos y desviación estándar de 90 puntos, determine:
 
@@ -1358,7 +1787,7 @@ Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.19</div> 
+<div class="label">Problema 4.38</div> 
 
 
 Suponga que la estatura de las personas en una población sigue la curva normal con media de 64.3 pulgadas y desviación estándar de 2.6 pulgadas:
@@ -1378,7 +1807,7 @@ Suponga que la estatura de las personas en una población sigue la curva normal 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.20</div> 
+<div class="label">Problema 4.39</div> 
 
 La resistencia de una aleación de aluminio se distribuye normalmente con media de 10 GPa y desviación estándar de 1.4 GPa.
 
@@ -1388,8 +1817,12 @@ La resistencia de una aleación de aluminio se distribuye normalmente con media 
 
 (c) Determine el percentil 95 de la resistencia.
 
+</div>
+
+<br/><br/>
+
 <div class="box1 with-label">
-<div class="label">Problema </div> 
+<div class="label">Problema 4.40</div> 
 
 La vida útil de una bombilla de vehículo sigue una distribución lognormal con media $\mu = 1.2$ y varianza $\sigma^2=0.4$:
 
@@ -1407,7 +1840,7 @@ La vida útil de una bombilla de vehículo sigue una distribución lognormal con
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.21</div> 
+<div class="label">Problema 4.41</div> 
 
 Un indicador importante de salud es el IMC:
 
@@ -1422,7 +1855,7 @@ Sea: $\mu = 3.215$ y $\sigma = 0.157$ (hombres).
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.22</div> 
+<div class="label">Problema 4.42</div> 
 
 Duración de un ventilador ($\mu = 8000$ horas, $\sigma = 500$ horas): ¿Qué porcentaje de ventiladores fallarán antes de 7000 horas de uso?
 
@@ -1432,7 +1865,7 @@ Duración de un ventilador ($\mu = 8000$ horas, $\sigma = 500$ horas): ¿Qué po
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.23</div> 
+<div class="label">Problema 4.43</div> 
 
 Para una variable aleatoria $X \sim \text{unif}(x,a,b)$ con $a = 10$ y $b = 20$ determine:
 
@@ -1447,7 +1880,7 @@ Para una variable aleatoria $X \sim \text{unif}(x,a,b)$ con $a = 10$ y $b = 20$ 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.24</div> 
+<div class="label">Problema 4.44</div> 
 
 Para una variable $Z \sim N(0,1)$, determine:
 
@@ -1467,7 +1900,7 @@ Para una variable $Z \sim N(0,1)$, determine:
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.25</div> 
+<div class="label">Problema 4.45</div> 
 
 Para una variable $Z \sim N(0,1)$, determine:
 
@@ -1486,7 +1919,7 @@ Para una variable $Z \sim N(0,1)$, determine:
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.26</div> 
+<div class="label">Problema 4.46</div> 
 
 Para una variable aleatoria continua $X \sim \text{norm}(\mu=150,\sigma^2=1000)$ determine:
 
@@ -1503,7 +1936,7 @@ Para una variable aleatoria continua $X \sim \text{norm}(\mu=150,\sigma^2=1000)$
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.27</div> 
+<div class="label">Problema 4.47</div> 
 
 Sea $X$ una variable aleatoria con distribución exponencial $(X \sim \text{exp}(\lambda=2))$ determine:
 
@@ -1521,24 +1954,7 @@ Sea $X$ una variable aleatoria con distribución exponencial $(X \sim \text{exp}
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.28</div> 
-
-Doris y Mauricio quedan en encontrarse entre las 5:00 pm y 6:00 pm en Unicentro. Sea $X$ el tiempo que transcurre entre las 5:00 pm y el momento en que llega Doris, y $Y$ el tiempo entre las 5:00 pm y el momento en que llega Mauricio. Suponga que $X$ y $Y$ son variables independientes uniformemente distribuidas en el intervalo [0,60]. Determine:
-
-(a) ¿Cuál es la distribución de probabilidad conjunta de $X$ y $Y$?
-
-(b) ¿Cuál es la probabilidad de que ambos lleguen entre las 5:30 y 5:40?
-
-(c) Sea $T = X - Y$ el tiempo que Mauricio espera a Doris. ¿Cuánto debe esperar en promedio Mauricio a Doris?
-
-(d) Si Doris y Mauricio acuerdan además, que cada uno esperará al otro un máximo de 10 minutos, ¿cuál es la probabilidad de que se encuentren?
-
-</div>
-
-<br/><br/>
-
-<div class="box1 with-label">
-<div class="label">Problema 4.29</div> 
+<div class="label">Problema 4.48</div> 
 
 Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una prueba cuya distribución es aproximadamente normal con media de 480 puntos y desviación estándar de 90 puntos, determine:
 
@@ -1555,7 +1971,7 @@ Para una variable aleatoria $Y$ que representa las puntuaciones obtenidas en una
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.30</div> 
+<div class="label">Problema 4.49</div> 
 
 Suponga que la estatura de las personas en una población sigue la curva normal con media de 64.3 pulgadas y desviación estándar de 2.6 pulgadas:
 
@@ -1574,8 +1990,8 @@ Suponga que la estatura de las personas en una población sigue la curva normal 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema </div> 
-4.31
+<div class="label">Problema 4.50</div> 
+
 La resistencia de una aleación de aluminio se distribuye normalmente con media de 10 GPa y desviación estándar de 1.4 GPa.
 
 (a) ¿Cuál es la probabilidad de que una muestra tenga resistencia mayor a 12 GPa?
@@ -1589,24 +2005,7 @@ La resistencia de una aleación de aluminio se distribuye normalmente con media 
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.32</div> 
-
-10\. La vida útil de una bombilla de vehículo sigue una distribución lognormal con media $\mu = 1.2$ y varianza $\sigma^2=0.4$:
-
-(a) Determine el tiempo medio de vida.
-
-(b) Determine la probabilidad de que la bombilla dure entre 3 y 6 años.
-
-(c) Determine el valor de la mediana.
-
-(d) Determine el percentil 95 de los tiempos.
-
-</div>
-
-<br/><br/>
-
-<div class="box1 with-label">
-<div class="label">Problema 4.33</div> 
+<div class="label">Problema 4.51</div> 
 
 Un indicador importante de salud es el IMC:
 
@@ -1621,14 +2020,211 @@ Sea: $\mu = 3.215$ y $\sigma = 0.157$ (hombres).
 <br/><br/>
 
 <div class="box1 with-label">
-<div class="label">Problema 4.34</div> 
+<div class="label">Problema 4.52</div> 
 
-Duración de un ventilador ($\mu = 8000$ horas, $\sigma = 500$ horas): ¿Qué porcentaje de ventiladores fallarán antes de 7000 horas de uso?
+La vida útil de una bombilla de vehículo sigue una distribución lognormal con media $\mu = 1.2$ y varianza $\sigma^2=0.4$:
+
+(a) Determine el tiempo medio de vida.
+
+(b) Determine la probabilidad de que la bombilla dure entre 3 y 6 años.
+
+(c) Determine el valor de la mediana.
+
+(d) Determine el percentil 95 de los tiempos.
 
 </div>
 
 
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.53</div> 
+
+La resistencia a la tracción de un lote de cables de acero sigue una distribución **Normal** con media de 5000 N y desviación estándar de 200 N. Determine:
+
+(a) $P(X > 5200)$
+
+(b) $P(X < 4800)$
+
+(c) $P(4900 < X < 5100)$
+
+(d) El valor de $X$ tal que el 95% de los cables tienen resistencia menor o igual a este valor.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.53</div> 
+
+El diámetro de un eje metálico producido por una máquina tiene distribución **Normal** con media de 10 mm y desviación estándar de 0.05 mm. Determine:
+
+(a) $P(X > 10.1)$
+
+(b) $P(X < 9.95)$
+
+(c) $P(9.97 < X < 10.03)$
+
+(d) El porcentaje de ejes que cumplen con una tolerancia de $\pm 0.02$ mm.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.54</div> 
+
+El tiempo de vida útil de un motor eléctrico es una variable aleatoria que sigue una distribución **Normal** con media de 4000 horas y desviación estándar de 500 horas. Determine:
+
+(a) $P(X > 4500)$
+
+(b) $P(X < 3500)$
+
+(c) $P(3800 < X < 4200)$
+
+(d) La vida útil que supera el 90% de los motores.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.55</div> 
+
+La presión de prueba de un tanque de almacenamiento es una variable **Normal** con media de 150 psi y desviación estándar de 10 psi. Determine:
+
+(a) $P(X > 160)$
+
+(b) $P(X < 140)$
+
+(c) $P(145 < X < 155)$
+
+(d) El límite superior tal que el 98% de los tanques no lo sobrepasen.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.56</div> 
+
+La longitud de corte de barras metálicas sigue una distribución **Normal** con media de 2 metros y desviación estándar de 0.01 metros. Determine:
+
+(a) $P(X > 2.015)$
+
+(b) $P(X < 1.985)$
+
+(c) $P(1.99 < X < 2.01)$
+
+(d) El porcentaje de barras dentro del rango 1.98 m a 2.02 m.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.57</div> 
+
+El peso de un componente electrónico empaquetado sigue una distribución **Normal** con media de 150 gramos y desviación estándar de 5 gramos. Determine:
+
+(a) $P(X > 160)$
+
+(b) $P(X < 140)$
+
+(c) $P(145 < X < 155)$
+
+(d) La probabilidad de que un componente pese entre 148 y 152 gramos.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.58</div> 
+
+El tiempo que tarda en ensamblarse una unidad en una línea de producción sigue una distribución **Normal** con media de 30 minutos y desviación estándar de 3 minutos. Determine:
+
+(a) $P(X > 35)$
+
+(b) $P(X < 25)$
+
+(c) $P(28 < X < 32)$
+
+(d) El tiempo máximo que no se supera en el 85% de las unidades.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.59</div> 
+
+La temperatura de operación de un horno industrial sigue una distribución **Normal** con media de 800°C y desviación estándar de 20°C. Determine:
+
+(a) $P(X > 820)$
+
+(b) $P(X < 780)$
+
+(c) $P(790 < X < 810)$
+
+(d) La temperatura mínima superada por el 10% de las mediciones.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.60</div> 
+
+La concentración de un químico en una solución sigue una distribución **Normal** con media de 5 mg/L y desviación estándar de 0.2 mg/L. Determine:
+
+(a) $P(X > 5.2)$
+
+(b) $P(X < 4.8)$
+
+(c) $P(4.9 < X < 5.1)$
+
+(d) El límite superior tal que el 95% de las concentraciones están por debajo de este valor.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
+
+<br/><br/>
+
+<div class="box1 with-label">
+<div class="label">Problema 4.61</div> 
+
+La capacidad de carga de un elevador industrial sigue una distribución **Normal** con media de 2000 kg y desviación estándar de 100 kg. Determine:
+
+(a) $P(X > 2100)$
+
+(b) $P(X < 1900)$
+
+(c) $P(1950 < X < 2050)$
+
+(d) La capacidad mínima garantizada superada por el 99% de los elevadores.
+
+(e) Construya la gráfica de $f_X(x)$
+
+</div>
 
 
-
+<br/><br/>
 
