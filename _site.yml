@@ -105,7 +105,8 @@ navbar:
           href: codigo24.html
         - text: "Actividad 241"  
           href: actividad241.html            
-          
+        - text: "Problemas 2.4"  
+          href: problemas331.html           
         - text: "--------"      
         - text: "Monitoria 2"
           href: monitoria2.html            

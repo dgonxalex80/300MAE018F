@@ -30,6 +30,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui/jquery-ui.min.js"></script>
+<link href="site_libs/tocify/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify/jquery.tocify.js"></script>
 <script src="site_libs/navigation/tabsets.js"></script>
 <script src="site_libs/navigation/codefolding.js"></script>
 <link href="site_libs/highlightjs/default.css" rel="stylesheet" />
@@ -227,6 +230,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -234,6 +300,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -492,155 +568,95 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><span style="color:#235784"> </span></h1>
-<h3 class="subtitle"><span style="color:#235784">** </span></h3>
+<h1 class="title toc-ignore"><span style="color:#2C5697"> </span></h1>
+<h3 class="subtitle"><span style="color:#2C5697"><strong>Módulo 2-
+Unidad 2.4</strong></span></h3>
 <h4 class="author">dgonzalez</h4>
 
 </div>
 
 
-<p><img src="img/banner000.png" /></p>
-<p><br/><br/></p>
-<div id="conjuntos" class="section level1">
-<h1><strong>CONJUNTOS</strong></h1>
-<p><br/><br/></p>
+<p><img src="img/banner002.png" width="100%" style="display: block; margin: auto;" /></p>
+<p></br></br></p>
+<div id="problema-1" class="section level2">
+<h2><strong>Problema 1</strong></h2>
+<p>Café Premium Ltda. es una empresa dedicada a la producción y venta de
+café empacado para supermercados. Actualmente, el gerente de producción,
+Andrés, se enfrenta a desafíos relacionados con la calidad y el control
+del peso de los paquetes que comercializan.</p>
+<p>La empresa comercializa paquetes que, según la etiqueta, contienen
+500 gramos de café. Sin embargo, recientemente algunos clientes se han
+quejado indicando que varios paquetes contienen menos café del
+anunciado. Andrés quiere asegurarse de que el proceso de producción esté
+cumpliendo adecuadamente con los estándares de peso anunciados.</p>
+<p>Para analizar este problema, Andrés recolectó una muestra de 50
+paquetes de café del proceso de empaque. Con base en información
+histórica, sabe que el peso del café sigue una distribución normal con
+media (μ) desconocida y desviación estándar (σ) conocida de 5
+gramos.</p>
+<p>De la muestra tomada, Andrés obtuvo una media muestral de 498 gramos.
+Él desea saber si, con esta muestra, existe evidencia suficiente para
+afirmar que la máquina está en promedio empacando menos de los 500
+gramos prometidos, utilizando un nivel de significancia del 5%.</p>
+<p>Además, Andrés está preocupado por un problema adicional: el área de
+empaque tiene una máquina etiquetadora automatizada que, en condiciones
+ideales, falla aproximadamente el 2% de las veces, colocando mal la
+etiqueta o dañando el paquete. Andrés quiere evaluar el desempeño de
+esta máquina.</p>
+<p>En una muestra aleatoria tomada de 100 etiquetas, se encontraron 5
+errores. Andrés quiere determinar la probabilidad de que, si realmente
+la tasa de error es del 2%, se obtengan 5 o más etiquetas mal colocadas
+en una muestra de 100.</p>
+<p>¿Existe evidencia estadística suficiente para afirmar que la máquina
+está empacando menos de los 500 gramos anunciados? Realice una prueba de
+hipótesis usando la distribución normal y comente los resultados.</p>
+<p>Determine la probabilidad de obtener al menos 5 etiquetas mal
+colocadas en una muestra de 100 paquetes, si realmente la probabilidad
+de falla es del 2%. ¿Debería Andrés preocuparse y revisar la máquina
+etiquetadora? Justifique su prespuesta.</p>
+<p></br></br></br></p>
 </div>
-<div id="introducción" class="section level1">
-<h1><strong>Introducción</strong></h1>
-<p>A continuación se relacionan las principales características de los
-conjuntos y sus principales relaciones. Estos conceptos serán importante
-en el momento de abordar los conceptos básicos de probabilidad que serán
-expuestos en el Modulo 2.</p>
-<p>En pesaremos con su definición</p>
-<p><br/><br/></p>
-<div class="box1 with-label">
-<div class="label">
-Definición:
-</div>
-<div id="conjunto" class="section level1">
-<h1><strong>Conjunto</strong></h1>
-<p>Un conjunto es una colección de objetos que se denota con una letra
-mayúscula (comúnmente las primeras letras del alfabeto A,B,C..) .</p>
-</div>
-</div>
-<p><br/><br/><br/></p>
-<p>Se pueden escribir por:</p>
-<ul>
-<li><p><strong>por extensión</strong> : <span
-class="math inline">\(A=\{0,1,2,3,4,5,6,7,8,9\}\)</span>, escribiendo
-todos los elementos que lo conforman.</p></li>
-<li><p><strong>por su nombre</strong> : los dígitos</p></li>
-<li><p><strong>por compresión</strong> : <span
-class="math inline">\(A=\{ x\in\mathbb{Z},  0\le x  \le
-9    \}\)</span>, utilizando nomenclatura matemática.</p></li>
-</ul>
-<p>Al comparar o combinar conjuntos debemos hacer uso de sus propiedades
-y operaciones, dentro de las cuales se encuentran <span
-class="math inline">\(A \cup B\)</span>, <span class="math inline">\(A
-\cap B\)</span>,</p>
-<p><br/><br/><br/></p>
-</div>
-<div id="unión-del-conjunto" class="section level1">
-<h1><strong>Unión del conjunto</strong></h1>
-<p>Unión del <span class="math inline">\(A\)</span> con el conjunto
-<span class="math inline">\(B\)</span>. <span class="math inline">\(A
-\cup B\)</span>, <span class="math inline">\(\overline{A}\)</span>
-,<span class="math inline">\(A - B\)</span>, entre otras. La zona
-sombreada en la siguiente figura representa estas operación</p>
-<p><img src="img/union.png" style="width:50.0%" /></p>
-<div class="box1 with-label">
-<div class="label">
-Ejemplo 1
-</div>
-<p>Supongamos los siguientes conjuntos</p>
-<ul>
-<li><span class="math inline">\(A = \{a,e,i,o,u \}\)</span> y<br />
-</li>
-<li><span class="math inline">\(B =
-\{1,2,3,4,5,6,7,8,9,0\}\)</span></li>
-</ul>
-<p><span class="math display">\[A \cup B = \{a,e,i,o,u,
-1,2,3,4,5,6,7,8,9,0 \}\]</span></p>
-</div>
-<p><br/><br/><br/></p>
-</div>
-<div id="intersección" class="section level1">
-<h1><strong>Intersección</strong></h1>
-<p>La intersección entre el conjunto <span
-class="math inline">\(A\)</span> y el <span
-class="math inline">\(B\)</span> se denota por : <span
-class="math inline">\(A \cap B\)</span> y se representa por la siguiente
-zona sombreada</p>
-<centar> <img src="img/interseccion.png" style="width:50.0%" />
-</center>
-<p><br/><br/></p>
-<div class="box1 with-label">
-<div class="label">
-Ejemplo 2
-</div>
-<p>Supongamos los siguientes conjuntos:</p>
-<ul>
-<li><span class="math inline">\(A = \{1,2,3,4,5,6 \}\)</span> y<br />
-</li>
-<li><span class="math inline">\(B = \{2,4,6,8,10,12,14,16,18,20
-\}\)</span></li>
-</ul>
-<p><span class="math display">\[A \cap B = \{ 2,4,6 \}\]</span></p>
-</div>
-<p><br/><br/><br/></p>
-</div>
-<div id="complemento" class="section level1">
-<h1><strong>Complemento</strong></h1>
-<p>El complemento del conjunto <span class="math inline">\(A\)</span> se
-escribe como: <span class="math inline">\(\overline{A}\)</span> y se
-representa por la siguiente zona sombreada</p>
-<center>
-<img src="img/complemento.png" style="width:50.0%" />
-</center>
-<p><br/><br/></p>
-<div class="box1 with-label">
-<div class="label">
-Ejemplo 3
-</div>
-<p>Supongamos los siguientes conjuntos:</p>
-<ul>
-<li><span class="math inline">\(U = \{0, 1,2,3,4,5,6. 7, 8, 9\}\)</span>
-y</li>
-<li><span class="math inline">\(A = \{1,2,3,4,5,6 \}\)</span> y</li>
-</ul>
-<p><span class="math display">\[\overline{A}  = \{0, 7, 8, 9
-\}\]</span></p>
-</div>
-<p><br/><br/><br/></p>
-</div>
-<div id="resta" class="section level1">
-<h1><strong>Resta</strong></h1>
-<p>La resta del conjunto <span class="math inline">\(B\)</span> menos el
-conjunto <span class="math inline">\(A\)</span> : <span
-class="math inline">\(B-A\)</span> , está representada por la zona
-sombreada en la siguiente figura</p>
-<center>
-<img src="img/resta.png" style="width:50.0%" />
-</center>
-<p><br/><br/></p>
-<div class="box1 with-label">
-<div class="label">
-Ejemplo 4
-</div>
-<p>Supongamos los siguientes conjuntos</p>
-<ul>
-<li><span class="math inline">\(A = \{1,2,3,4,5,6 \}\)</span> y</li>
-<li><span class="math inline">\(B = \{2,4,6,8,10,12,14,16,18,20
-\}\)</span></li>
-</ul>
-<p><span class="math display">\[B-A =\{ 8,10,12,14,16,18,20
-\}\]</span></p>
-</div>
-<p><br/><br/></p>
+<div id="problema-2" class="section level2">
+<h2><strong>Problema 2</strong></h2>
+<p>En la empresa “TechSupport S.A.”, especializada en brindar soporte
+técnico empresarial, el gerente operativo, Laura, está preocupada por
+dos situaciones críticas relacionadas con el rendimiento del servicio
+ofrecido a sus clientes.</p>
+<p>El primer problema se refiere al tiempo promedio que tardan sus
+técnicos en resolver los reportes de fallas técnicas que reciben. Según
+los estándares internos, cada reporte debería solucionarse en promedio
+en máximo 60 minutos. Sin embargo, Laura sospecha que el tiempo real
+promedio de atención podría estar superando este límite.</p>
+<p>Para verificar esto, Laura recoge una muestra de 40 reportes
+recientes atendidos por su equipo y calcula que el tiempo promedio fue
+de 64 minutos, con una desviación estándar poblacional conocida de 10
+minutos. Ella sabe que los tiempos de atención se distribuyen
+normalmente. Ahora, con un nivel de significancia del 5%, quiere evaluar
+si estos datos proporcionan evidencia suficiente para afirmar que
+efectivamente el tiempo promedio para solucionar los reportes supera los
+60 minutos establecidos como estándar.</p>
+<p>El segundo problema tiene relación con la frecuencia de llamadas que
+ingresan al centro de atención de la empresa. En condiciones normales,
+la empresa espera recibir en promedio 3 llamadas por hora solicitando
+asistencia técnica, y se sabe que las llamadas ocurren de manera
+independiente. Sin embargo, recientemente se ha observado un aumento en
+la carga de trabajo. Laura quiere conocer cuál es la probabilidad de que
+en cualquier hora dada se reciban 6 o más llamadas, para determinar si
+debería reforzar la plantilla de operadores telefónicos.</p>
+<p>¿Existe evidencia estadística suficiente para afirmar que el tiempo
+promedio de resolución de los reportes supera los 60 minutos? Realice la
+prueba estadística correspondiente usando la distribución normal.</p>
+<p>Determine la probabilidad de recibir 6 o más llamadas en una hora
+cualquiera, considerando que en promedio se reciben 3 llamadas por hora,
+usando la distribución de Poisson. Con base en este resultado, ¿debería
+Laura considerar reforzar el personal operativo? Justifique su
+respuesta.</p>
 </div>
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -678,6 +694,35 @@ $(document).ready(function () {
 });
 </script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

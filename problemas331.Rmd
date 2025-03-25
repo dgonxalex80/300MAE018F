@@ -1,0 +1,81 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 2- Unidad 2.4**</span> 
+output:
+  html_document:
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, comment = NA)
+library(psych)
+library(summarytools)
+
+# install.packages("devtools")
+#devtools::install_github("dgonxalex80/paquete018")
+#library(paquete018)
+
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+
+```
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/banner002.png")
+```
+
+</br></br>
+
+## **Problema 1**
+
+Café Premium Ltda. es una empresa dedicada a la producción y venta de café empacado para supermercados. Actualmente, el gerente de producción, Andrés, se enfrenta a desafíos relacionados con la calidad y el control del peso de los paquetes que comercializan.
+
+La empresa comercializa paquetes que, según la etiqueta, contienen 500 gramos de café. Sin embargo, recientemente algunos clientes se han quejado indicando que varios paquetes contienen menos café del anunciado. Andrés quiere asegurarse de que el proceso de producción esté cumpliendo adecuadamente con los estándares de peso anunciados.
+
+Para analizar este problema, Andrés recolectó una muestra de 50 paquetes de café del proceso de empaque. Con base en información histórica, sabe que el peso del café sigue una distribución normal con media (μ) desconocida y desviación estándar (σ) conocida de 5 gramos.
+
+De la muestra tomada, Andrés obtuvo una media muestral de 498 gramos. Él desea saber si, con esta muestra, existe evidencia suficiente para afirmar que la máquina está en promedio empacando menos de los 500 gramos prometidos, utilizando un nivel de significancia del 5%.
+
+Además, Andrés está preocupado por un problema adicional: el área de empaque tiene una máquina etiquetadora automatizada que, en condiciones ideales, falla aproximadamente el 2% de las veces, colocando mal la etiqueta o dañando el paquete. Andrés quiere evaluar el desempeño de esta máquina.
+
+En una muestra aleatoria tomada de 100 etiquetas, se encontraron 5 errores. Andrés quiere determinar la probabilidad de que, si realmente la tasa de error es del 2%, se obtengan 5 o más etiquetas mal colocadas en una muestra de 100.
+
+¿Existe evidencia estadística suficiente para afirmar que la máquina está empacando menos de los 500 gramos anunciados? Realice una prueba de hipótesis usando la distribución normal y comente los resultados.
+
+Determine la probabilidad de obtener al menos 5 etiquetas mal colocadas en una muestra de 100 paquetes, si realmente la probabilidad de falla es del 2%. ¿Debería Andrés preocuparse y revisar la máquina etiquetadora? Justifique su prespuesta.
+
+
+</br></br></br>
+
+## **Problema 2**
+
+En la empresa "TechSupport S.A.", especializada en brindar soporte técnico empresarial, el gerente operativo, Laura, está preocupada por dos situaciones críticas relacionadas con el rendimiento del servicio ofrecido a sus clientes.
+
+El primer problema se refiere al tiempo promedio que tardan sus técnicos en resolver los reportes de fallas técnicas que reciben. Según los estándares internos, cada reporte debería solucionarse en promedio en máximo 60 minutos. Sin embargo, Laura sospecha que el tiempo real promedio de atención podría estar superando este límite.
+
+Para verificar esto, Laura recoge una muestra de 40 reportes recientes atendidos por su equipo y calcula que el tiempo promedio fue de 64 minutos, con una desviación estándar poblacional conocida de 10 minutos. Ella sabe que los tiempos de atención se distribuyen normalmente. Ahora, con un nivel de significancia del 5%, quiere evaluar si estos datos proporcionan evidencia suficiente para afirmar que efectivamente el tiempo promedio para solucionar los reportes supera los 60 minutos establecidos como estándar.
+
+El segundo problema tiene relación con la frecuencia de llamadas que ingresan al centro de atención de la empresa. En condiciones normales, la empresa espera recibir en promedio 3 llamadas por hora solicitando asistencia técnica, y se sabe que las llamadas ocurren de manera independiente. Sin embargo, recientemente se ha observado un aumento en la carga de trabajo. Laura quiere conocer cuál es la probabilidad de que en cualquier hora dada se reciban 6 o más llamadas, para determinar si debería reforzar la plantilla de operadores telefónicos.
+
+¿Existe evidencia estadística suficiente para afirmar que el tiempo promedio de resolución de los reportes supera los 60 minutos? Realice la prueba estadística correspondiente usando la distribución normal.
+
+Determine la probabilidad de recibir 6 o más llamadas en una hora cualquiera, considerando que en promedio se reciben 3 llamadas por hora, usando la distribución de Poisson. Con base en este resultado, ¿debería Laura considerar reforzar el personal operativo? Justifique su respuesta.
+
+
+
