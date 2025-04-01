@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui/jquery-ui.min.js"></script>
+<link href="site_libs/tocify/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify/jquery.tocify.js"></script>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia22.html">Guía 2.2</a>
+    </li>
+    <li>
+      <a href="recurso22.html">recursos 2.2</a>
+    </li>
+    <li>
+      <a href="actividad221.html">Actividad 221</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia23.html">Guía 2.3</a>
+    </li>
+    <li>
+      <a href="recurso23.html">recursos23</a>
+    </li>
+    <li>
+      <a href="codigo23.html">Código 23</a>
+    </li>
+    <li>
+      <a href="actividad231.html">Actividad 231</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia24.html">Guía 2.4</a>
+    </li>
+    <li>
+      <a href="recurso24.html">recursos24</a>
+    </li>
+    <li>
+      <a href="codigo24.html">Código 24</a>
+    </li>
+    <li>
+      <a href="actividad241.html">Actividad 241</a>
+    </li>
+    <li>
+      <a href="problemas331.html">Problemas 2.4</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria2.html">Monitoria 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia31.html">Guía 3.1</a>
+    </li>
+    <li>
+      <a href="recurso31.html">recursos 3.1</a>
+    </li>
+    <li>
+      <a href="codigo31.html">Código 3.1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+    <li>
+      <a href="parcial1.html">Primer parcial</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#2C5697"> </span></h1>
+<h3 class="subtitle"><span style="color:#2C5697"><strong>Estadística
+para la toma de decisiones</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><img src="img/recursos3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<div id="introducción" class="section level2">
+<h2>Introducción</h2>
+<p><img src="img/valiente3.gif" /></p>
+<p>Tomado de : Valiente Disney Channel</p>
+<p><br/><br/></p>
+<p>La inferencia estadística permite generalizar lo hallado en una
+muestra a toda la población. Para realizar este proceso contamos con dos
+opciones: Estimación y las Pruebas de hipótesis. El fundamento de estos
+procesos está relacioando con varios conceptos como:</p>
+<p><br/><br/></p>
+<pre class="r"><code># Instalar y cargar los paquetes necesarios
+if (!require(&quot;wordcloud&quot;)) install.packages(&quot;wordcloud&quot;)
+if (!require(&quot;RColorBrewer&quot;)) install.packages(&quot;RColorBrewer&quot;)
+library(wordcloud)
+library(RColorBrewer)
+
+# Vector de palabras
+palabras &lt;- c(&quot;población&quot;, &quot;parámetro&quot;, &quot;censo&quot;, &quot;muestra&quot;, &quot;muestreo&quot;,
+              &quot;muestreo probabilistico&quot;, &quot;muestreo no probabilistico&quot;,
+              &quot;muestreo aleatorio simple&quot;, &quot;muestreo aleatorio estratificado&quot;,
+              &quot;muestreo por conglomerados&quot;, &quot;muestreo por juicio&quot;,
+              &quot;muestreo por conveniencia&quot;, &quot;muestreo bola de nieve&quot;,
+              &quot;estimador puntual&quot;, &quot;estimador insesgado&quot;,
+              &quot;estimador consistente&quot;, &quot;estimador eficiente&quot;,
+              &quot;estimación por intervalos de confianza&quot;, &quot;pruebas de hipótesis&quot;, &quot;distribución normal&quot;, &quot;distribución t-Student&quot;, &quot;ditribución chi-cuadrado&quot;, &quot;distribución F&quot;, &quot;tamaño de muestra&quot;, &quot;media muesrtal&quot;, &quot;varianza muestral&quot;, &quot;proporción muestral&quot;, &quot;inferencia&quot;, &quot;confianza&quot;, &quot;nivel de significancia&quot;, &quot;error tipo I&quot;, &quot;error tipo II&quot;, &quot;potencia de una prueba&quot;)
+
+
+# Todas las palabras con frecuencia 1
+frecuencias &lt;- rep(1, length(palabras))
+
+# Generar la nube en un dispositivo PNG grande (opcional, pero ayuda a que quepan más palabras)
+png(&quot;nube_palabras.png&quot;, width = 1200, height = 800, res = 120)
+
+wordcloud(
+  words       = palabras,
+  freq        = frecuencias,
+  min.freq    = 1,
+  max.words   = Inf,             # Mostrar todas las palabras
+  scale       = c(3, 0.5),       # Ajusta la escala (prueba c(2, 0.2), etc.)
+  random.order= FALSE,
+  rot.per     = 0,               # Sin rotaciones para que quepan mejor
+  random.color= TRUE,
+  colors      = brewer.pal(8, &quot;Dark2&quot;),
+  fixed.asp   = FALSE            # No fijar la relación de aspecto
+)
+
+dev.off()</code></pre>
+<div class="box3 with-label">
+<p><img src="img/nube_palabras.png" /></p>
+<!-- |               |                 |                    |                    |                      | -->
+<!-- |:--------------|:----------------|:-------------------|:-------------------|:---------------------|  -->
+<!-- |población              |parámetro                   |censo                     |muestra                         |muestreo                  |  -->
+<!-- |muestreo probabilistico| muestreo no probabilistico |muestreo aleatorio simple |muestreo aleatorio estratificado|muestreo por conglomerados| -->
+<!-- |muestreo por juicio    | muestreo por conveniciencia|muestreo bola de nieve    |estimador puntual               |estimador insesgado       |  -->
+<!-- |estimador consistente  | estimador eficiente        |estimación por intervalos de confianza|pruebas de hipótesis |  | -->
+<p><a href="https://padlet.com/dgonzalez80/lijxz9p7nvz5mm2q">Tablero
+300MAE005 A 2020-2</a> <br/> <a
+href="https://padlet.com/dgonzalez80/ivy0h9vyhtiq9l1d">Tablero 300MAE005
+B 2020-2</a> <br/> <a
+href="https://padlet.com/dgonzalez80/ivy0h9vyhtiq9l1d">Tablero 300MAE005
+F 2020-2</a> <br/></p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Población
+</div>
+<p>En Estadística, se identifica el término población con el dominio de
+la variable aleatoria X, asociada a los objetos o individuos sobre los
+cuales se desarrolla un experimento y cuyo valor ocurre al azar. El
+estudio del conjunto de todas las mediciones de interés para un
+investigador se llama CENSO (Mendenhall (2008)). Como ejemplo podemos
+mencionar la población de habitantes de Colombia que se estudia a través
+del Censo de población que se debe realizar cada diez años.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Muestra
+</div>
+<p>Un subconjunto extraido de los elementos que conforman la población
+se denomina MUESTRA. Una definición técnica de muestra está dada por:
+repetición <span class="math inline">\(n\)</span> veces, en idénticas
+condiciones de la experiencia aleatoria, se puede obtener <span
+class="math inline">\(n\)</span> valores independientes de una variable
+aleatoria <span class="math inline">\(X_{1}, X_{2},...,X_{n}\)</span> a
+la que se le denomina muestra de la variable <span
+class="math inline">\(X\)</span>.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Parámetro
+</div>
+<p>Es una caracterización numérica de la distribución de probabilidad de
+una variable aleatoria. Como ejemplo de parámetros tenemos a <span
+class="math inline">\(\mu\)</span>, <span
+class="math inline">\(\sigma^{2}\)</span> que determinan la función de
+probabilidad de una variable con distribución normal:</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{2 \sigma^{2} \pi}}
+\exp{\Bigg(- \frac{1}{2
+\sigma^{2}}\big(x-\mu\big)^{2}\Bigg)}\]</span></p>
+<p>Y suponemos que los valores correspondientes a estos parámetros son
+<span class="math inline">\(\mu=100\)</span> y <span
+class="math inline">\(\sigma^{2}=25\)</span> (<span
+class="math inline">\(\sigma=5\)</span>) respectivamente, entonces la
+función de distribución de probabilidad quedará determinada por :</p>
+<p><span class="math display">\[f(x)=\frac{1}{\sqrt{50 \pi}}
+\exp{\Bigg(- \frac{1}{50}\big(x-100\big)^{2}\Bigg)}\]</span></p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Estimador
+</div>
+<p>Es una función de los valores obtenidos en una muestra aleatoria que
+da como resultado un valor que corresponde a una aproximación del
+parámetro objeto de estudio. Generalmente se representa como <span
+class="math inline">\(\widehat{\theta}\)</span>. Como algunos ejemplos
+podemos citar:</p>
+<p><span
+class="math display">\[\widehat{\mu}=\frac{1}{n}\sum_{i=1}^{n}x_{i}=\bar{x}
+\]</span> <span
+class="math display">\[\widehat{\sigma^{2}}=\frac{1}{n-1}\sum_{i=1}^{n}\big(x_{i}-\bar{x}\big)^{2}
+= s^{2}\]</span></p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Estimación
+</div>
+<p>Es la evaluación o generación del estimador para una muestra
+determinada.</p>
+<p>Como ejemplo podemos utilizar uno de los estimadores que estudiaremos
+: <span class="math inline">\(\widehat{\mu}= \bar{x}\)</span>, para una
+muestra dada</p>
+<p><br/></p>
+<p><span class="math display">\[ 630, 650, 710, 750, 790, 820, 860
+\text{ y } 910\]</span></p>
+<p><br/></p>
+<p><span class="math display">\[\widehat{\mu}=\frac{1}{n}\sum_{i=1}^{n}
+x_{i} =\frac{1}{8}(630+650+...+910)=765\]</span> El valor del estimador
+de <span class="math inline">\(\mu\)</span> para esta muestra es <span
+class="math display">\[\widehat{\mu}=\bar{x}= 765\]</span>.</p>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="muestreo" class="section level2">
+<h2>Muestreo</h2>
+<p><br/></p>
+<div id="importancia-del-muestreo" class="section level3">
+<h3><strong>Importancia del Muestreo</strong></h3>
+<p><br/></p>
+<p>El papel principal de la estadística está relacionado con el análisis
+de información que permita tomar decisiones con respecto a una
+población. Es posible que se pueda estudiar la totalidad de elementos
+que determinan la población, en este caso estaremos realizando un censo.
+Sin embargo no siempre podemos estudiar la totalidad de la población por
+lo cual debemos seleccionar una pequeña parte de ella. A este
+subconjunto lo podemos llamar muestra.</p>
+<p><br/></p>
+<table>
+<colgroup>
+<col width="50%" />
+<col width="22%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left"><strong>Muestra</strong></th>
+<th align="left"><strong>Censo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Presupuesto</td>
+<td align="left">pequeño</td>
+<td align="left">grande</td>
+</tr>
+<tr class="even">
+<td align="left">Tiempo disponible</td>
+<td align="left">poco</td>
+<td align="left">mucho</td>
+</tr>
+<tr class="odd">
+<td align="left">Tamaño de la población</td>
+<td align="left">grande</td>
+<td align="left">pequeña</td>
+</tr>
+<tr class="even">
+<td align="left">Varianza de la característica</td>
+<td align="left">grande</td>
+<td align="left">pequeña</td>
+</tr>
+<tr class="odd">
+<td align="left">Costos de los errores de muestreo</td>
+<td align="left">bajos</td>
+<td align="left">altos</td>
+</tr>
+<tr class="even">
+<td align="left">Costos de los errores que no son de muestreo</td>
+<td align="left">alto</td>
+<td align="left">bajo</td>
+</tr>
+<tr class="odd">
+<td align="left">Naturaleza de la prueba</td>
+<td align="left">desctructiva</td>
+<td align="left">no destructiva</td>
+</tr>
+<tr class="even">
+<td align="left">Atención a casos individuales</td>
+<td align="left">si</td>
+<td align="left">no</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p><font size="-1">Tomado de Malhotra(2004)</font></p>
+<p><br/></p>
+<p>Un diseño de muestreo es una estrategia para obtener una muestra,
+genera algunas preguntas asociadas al proceso de muestreo: ¿cómo
+seleccionar de una manera óptima la muestra?, ¿Qué característica medir
+en las unidades observadas? y ¿cómo estimar las características
+poblacionales a partir de la información muestral?. El proceso de
+obtención de las muestras por su parte, requiere la definición de
+algunos aspectos como, ¿cuál es el tamaño óptimo para el cumplimiento de
+los objetivos?, o ¿mediante qué procedimiento de aleatorización realizar
+el proceso de selección?, ¿qué tipo de método observacional utilizar y
+qué medidas tomar?. En el muestreo, uno tiene la oportunidad de
+seleccionar deliberadamente la muestra, para evitar inducir por ejemplo,
+a seleccionar por conveniencia algún individuo en particular, situación
+que pudiera conducir a sesgos en los resultados finales de la
+investigación.</p>
+<p><br/></p>
+<p>En resumen, podemos decir que el muestreo consiste en la selección,
+mediante procedimientos preestablecidos que nos aseguren aleatoriedad y
+representatividad, de una parte de una colección finita de unidades,
+seguida de algunas conclusiones respecto de la población, basándonos en
+la parte de ella que hemos observado. Este proceso se basa en principios
+relacionados con la inferencia estadística, lo que implica fuentes de
+incertidumbre (producto de la aleatoriedad), como por ejemplo</p>
+<p>a.El método de selección de las unidades. b.El método de medición de
+las unidades. c.El conocimiento de los procesos que generan los
+verdaderos valores de las unidades medidas.</p>
+<p><br/><br/></p>
+</div>
+<div id="diseños-muestrales" class="section level3">
+<h3><strong>Diseños Muestrales</strong></h3>
+<p><br/></p>
+<p>Un diseño muestral es una estrategia de selección de unidades
+muestrales, mediante un proceso de aleatorización definido previamente
+(plan de muestreo). De acuerdo con esta definición, son tres los
+elementos esenciales de un diseño muestral:</p>
+<p><br/><br/></p>
+</div>
+<div id="unidad-muestral" class="section level3">
+<h3><strong>Unidad muestral</strong></h3>
+<p><br/></p>
+<p>Constituye la unidad básica a partir de la cual se obtiene la
+información, pudiendo por tanto, ser éstas personas, o individuos de
+cualquier tipo si , por ejemplo nuestro interés es estimar la talla
+promedio; casas, número promedio de habitaciones, o el consumo de
+energía; comunidades, si los que nos interesa es el número promedio de
+especies por comunidad, áreas o cuadrículas si deseamos estimar
+densidades medias o biomasa total, etc.</p>
+<p><br/><br/></p>
+</div>
+<div id="proceso-de-aleatorización" class="section level3">
+<h3><strong>Proceso de aleatorización</strong></h3>
+<p><br/></p>
+<p>Aun cuando la unidad muestral esté claramente definida, existen
+algunos elementos que pueden afectar el proceso de muestreo, alterando
+la calidad de la información. En este caso no es la definición, sino la
+selección de la unidad muestral, la que puede estar sesgada por la
+naturaleza de la medición, así por ejemplo, si deseamos encuestar a
+personas para averiguar su tendencia política o su nivel socio
+económico, pudiéramos sentirnos tentados a seleccionar sus nombres desde
+una guía telefónica, lo que dejaría fuera de la encuesta a todas
+aquellas personas que no tienen teléfono, constituyéndose ello en una
+fuente de sesgo. En otros casos, la naturaleza del muestreo tiene que
+ver con el entrenamiento de los muestreadores, es el caso, por ejemplo,
+de las muestras para identificar fallas en un equipo, en que la
+experiencia del muestreador juega un papel importante en la
+identificación de los mismos.</p>
+<p>Lo anterior significa que, en términos prácticos, la aleatoriedad
+debe garantizar que cada individuo de la población debe tener las misma
+posibilidad de ser seleccionado como representante de la población
+(aleatoriedad). Adicionalmente, exigimos que la elección de un
+individuo, no esté condicionada a la selección de otro (independencia).
+Estas dos condiciones, en apariencia sencillas, pueden provocar algunas
+dificultades.</p>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="tamaño" class="section level2">
+<h2>Tamaño</h2>
+<p><br/></p>
+<p>Una vez que las unidades muestrales han sido definidas y se ha
+acordado un proceso de aleatorización, debemos preguntarnos, cuántas
+unidades debemos seleccionar para tener una buena representación en la
+muestra.</p>
+<p>Dado que cualquiera sea el proceso de selección de una muestra existe
+un costo asociado, el que en la mayoría de los casos constituye una
+exigencia ineludible, nuestro objetivo principal, será obtener el máximo
+de información con el menor tamaño de muestra que nos sea posible.</p>
+<p>El tamaño de la muestra <span class="math inline">\(n\)</span> es
+función de tres elementos que son: la varianza, la confiabilidad y el
+error de muestreo. Los dos últimos a criterio del investigador.</p>
+<p><span class="math display">\[n=\dfrac{z^{2}_{_{\alpha/2}}
+\sigma^{2}}{e^{2}}\]</span></p>
+<p>Donde:</p>
+<p><strong>Varianza</strong> (<span
+class="math inline">\(\sigma^{2}\)</span>): Caracteriza la variable a
+estimar. Entre mayor sea su valor, mayor deberá ser el tamaño de la
+muestra. En ocasiones es necesario realizar una prueba piloto que nos
+permita tener un valor para calcular <span
+class="math inline">\(n\)</span>. Otra alternativa puede ser el
+conocimiento empírico de expertos sobre el rango de la variable. Con
+este valor podemos estimar una aproximación de la desviación estándar
+como: <span class="math inline">\(\sigma =\)</span> rango/4.</p>
+<p><br/></p>
+<p><strong>Confiabilidad</strong> (<span
+class="math inline">\(z_{\alpha/2}\)</span> o percentil de la
+distribución normal estandar)b: Este concepto está relacionado con el
+grado de veracidad que tienen los resultados obtenidos. Si el estudio es
+repetido muchas veces, ¿ cuántas de estas coinciden con los resultados
+obtenidos?. Su valor está relacionado con el percentil de las
+distribución normal estándar, por ejemplo: una confiabilidad del 95%
+está relacionada con un valor de <span
+class="math inline">\(z=1.96\)</span>.</p>
+<p><br/></p>
+<p><strong>Error de muestreo</strong> (<span
+class="math inline">\(e\)</span>) : corresponde a la diferencia entre el
+valor de la característica en la población (parámetro) y el valor
+obtenido con la información de la muestra (estimador).Equivale al error
+que estamos en capacidad de tolerar en las unidades de la variable.</p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<div id="cálculo-de-tamaño-de-la-muestra--caso-de-una-media"
+class="section level3">
+<h3><strong>Cálculo de tamaño de la muestra- Caso de una
+media</strong></h3>
+<p><br/></p>
+<p>Suponga que deseamos determinar el tamaño de la muestra para estimar
+la media de la nota del curso de estadística, con una confianza del 95%
+y un error de muestreo de 0.2 puntos. Un estudio realizado el semestre
+pasado arrojó una varianza de 1.6.</p>
+<p>La información necesaria para el calculo del tamaño de muestra
+requerido es:</p>
+<ul>
+<li><p>percentil 97.5 de la distribución normal <span
+class="math inline">\(z=1.96\)</span> (Entre -1.96 y 1.96 se encuentra
+el 95% de los datos)</p></li>
+<li><p>varianza <span
+class="math inline">\(\sigma^{2}=0.4\)</span></p></li>
+<li><p>error de muestreo 0.2</p></li>
+</ul>
+<p><span class="math display">\[n=\dfrac{1.96^{2} \times
+1.6}{0.2^{2}}=153.6 \approxeq 154\]</span></p>
+<p>En caso de que <span class="math inline">\(n/N &gt;0.05\)</span>
+debemos realizar un ajuste por corrección por población finita:</p>
+<p><span class="math display">\[n=\dfrac{n_{0} \times
+N}{n_{0}+N-1}\]</span> Supongamos que N=200 estudiantes y por tanto
+<span class="math inline">\(154/200 &gt; 0.05\)</span> El tamaño
+corregido ser{a:</p>
+<p><span class="math display">\[n= \dfrac{154 \times 200}{154 + 200 -1}
+=87.2 \approxeq 88 \]</span></p>
+</div>
+</div>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<div id="cálculo-de-tamaño-de-la-muestra--caso-de-una-proporción"
+class="section level3">
+<h3><strong>Cálculo de tamaño de la muestra- Caso de una
+proporción</strong>:</h3>
+<p>Supongamos ahora que se desea calcular el tamaño de la muestra para
+realizar una estimación de la proporción de estudiantes que reprueban el
+curso de matemáticas fundamentales y que deseamos una confianza del 98%
+y un error de muetreo de 0.1. En este caso la varianza corresponde a
+<span class="math inline">\(pq\)</span> donde <span
+class="math inline">\(q=1-p\)</span> y por tanto tendrá su valor máximo
+cuando <span class="math inline">\(p=0.50\)</span>, es decir que si
+utilizamos como varianza <span class="math inline">\(0.5 \times
+(1-0.5)=0.25\)</span> obtendremos el valor más grande de tamaño de
+muestra posible.</p>
+<p><span class="math display">\[ n=\dfrac{2.33^2 \times
+0.25}{0.1^{2}}=135.7 \approxeq 136\]</span></p>
+<p>En caso de poder realizar una prueba piloto (observación de una
+muestra, digamos 30 unidades) y estimar en este caso su varianza, el
+resultado del tamaño de muestra será inferior al anteriormente
+calculado.</p>
+</div>
+</div>
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="tipos" class="section level2">
+<h2>Tipos</h2>
+<div id="tipos-de-muestreo" class="section level3">
+<h3><strong>TIPOS DE MUESTREO</strong></h3>
+<div class="box1 with-label">
+<p><img src="img/muestreo.png" /></p>
+</div>
+<p><br/></p>
+<p>En general pueden dividirse en dos grandes grupos: métodos de
+muestreo probabilísticos y métodos de muestreo no probabilísticos.</p>
+<p>Los <strong>métodos de muestreo probabilísticos</strong> son aquellos
+que se basan en el principio de equiprobabilidad. Es decir, aquellos en
+los que todos los individuos tienen la misma probabilidad de ser
+elegidos para formar parte de una muestra y, consiguientemente, todas
+las posibles muestras de tamaño n tienen la misma probabilidad de ser
+elegidas.</p>
+<p>Sólo estos métodos de muestreo probabilísticos nos aseguran la
+representatividad de la muestra extraída y son, por tanto, los más
+recomendables. Dentro de los métodos de muestreo probabilísticos
+encontramos los siguientes tipos: De acuerdo con las consideraciones
+anteriores, algunas de las estrategias de muestreo más conocidas
+son:</p>
+<ul>
+<li>muestreo aleatorio simple</li>
+<li>muestreo aleatorio sistemático</li>
+<li>muestreo aleatorio estratificado</li>
+<li>muestreo aleatorio por conglomerados</li>
+</ul>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="muestreos" class="section level2">
+<h2>Muestreos</h2>
+<div id="muestreos-probabilisticos" class="section level3">
+<h3><strong>MUESTREOS PROBABILISTICOS</strong></h3>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-aleatorio-simple-m.a.s" class="section level3">
+<h3><strong>Muestreo Aleatorio simple (m.a.s)</strong></h3>
+<p><br/></p>
+<p>Una muestra aleatoria simple tomada de una población finita, da a
+cada subconjunto de la población (muestra) de tamaño específico la misma
+probabilidad de ser seleccionada.</p>
+<p>El muestreo aleatorio simple es un procedimiento de selección de un
+conjunto de individuos de modo que toda posible muestra de <span
+class="math inline">\(n\)</span> unidades tiene la misma probabilidad de
+ser seleccionada de los <span class="math inline">\(N\)</span>
+individuos asociados a la población. La muestra se selecciona en <span
+class="math inline">\(n\)</span> etapas, en cada una de las cuales, cada
+elemento que no ha sido aún seleccionado, tiene la misma probabilidad de
+ser seleccionado. Si el número de individuos de donde seleccionamos los
+<span class="math inline">\(n\)</span> individuos para determinar la
+muestra tiene un tamaño conocido, podemos asignar un número a cada una
+de las <span class="math inline">\(N\)</span> unidades y luego mediante
+la generación de <span class="math inline">\(n\)</span> números
+aleatorios entre <span class="math inline">\(1\)</span> y <span
+class="math inline">\(N\)</span>, seleccionamos los individuos que
+determinarán la muestra de tamaño <span class="math inline">\(n\)</span>
+correspondiente.</p>
+<p>El muestreo puede realizarse sin reemplazo o con reemplazo, o dicho
+de otro modo, la muestra puede elegirse de dos maneras: sin reposición
+de la unidad extraída o con reposición de ella. El muestreo con
+reemplazo es usado cuando es aceptable tener la misma unidad dos veces
+en la muestra.</p>
+<!-- <br/><br/> -->
+<!-- ### **Ejemplo**  De la base del caso 1 con 200 observaciones deseamos seleccionar una muestra aleatorio de tamaño n=50. La siguiente es la instrucción en R que selecciona las observaciones : -->
+<pre class="r"><code># Importa los datos en formato csv
+# Base1=read.csv(&quot;~/Talleres/Base1.csv&quot;)
+# visualiza los datos
+# viewData(Base1)
+# extre la muestra
+# muestra1=Base1[sample(1:nrow(Base1),50,replace=F),] </code></pre>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-estratificado" class="section level3">
+<h3><strong>Muestreo Estratificado</strong></h3>
+<p><br/></p>
+<p>Una muestra estratificada se obtiene formando estratos, de acuerdo a
+alguna característica de interés en la población (sexo, edad, ingresos
+etc.), y de cada estrato se selecciona una muestra aleatoria simple.</p>
+<p>Supongamos, que la población finita se subdivide en <span
+class="math inline">\(L\)</span> subpoblaciones o estratos, de modo que
+la muestra esté constituída por elementos de cada uno de ellos. El
+muestreo estratificado considera la selección, desde cada uno de los
+estratos, una muestra aleatoria simple.</p>
+<p>La subdivisión de la población en estratos tiene como objetivo
+reducir la variabilidad total asociada al proceso de muestreo. Por lo
+tanto es necesario incluir en cada estrato, individuos o unidades
+muestrales cuya medida de interés tengan variabilidad pequeña respecto a
+la media. El objetivo general es entonces lograr varianza mínima dentro
+del estrato y varianza máxima entre estratos. En caso de no lograr esta
+estratificación, en función de las varianzas, lo más probable es que el
+proceso de muestreo sea equivalente al que se pudiera haber realizado
+por muestreo aleatorio simple.</p>
+<p>La ventaja principal que puede conseguirse estratificando, es
+aumentar la precisión de las estimaciones al agrupar elementos con
+características comunes y con ello disminuir los tamaños muestrales
+totales y la amplitud de los intervalos de confianza. Por este tipo de
+muestreo, la amplitud del intervalo que estima al parámetro es menor que
+el dado por el m.a.s. para un mismo tamaño de muestra.</p>
+<p>Por otra parte, la estratificación procura muestras más
+representativas. Exagerando, si se pudiera conseguir que cada uno de los
+<span class="math inline">\(L\)</span> estratos estuviese constituído
+por elementos idénticos, bastaría tomar <span
+class="math inline">\(L\)</span> elementos, uno por estrato, y la
+representatividad sería perfecta. Además, puede lograrse un mejor
+aprovechamiento de la organización administrativa destinada a la
+selección de las muestras, al centrar la actividad de muestreo en áreas
+homogéneas.</p>
+<p>El número de estratos depende del criterio de clasificación, es un
+problema intrínsecamente ligado a la investigación, por ejemplo, si se
+está trabajando con características de individuos, los estratos pueden
+elegirse en la siguiente forma:</p>
+<p>Estrato 1 <span class="math inline">\(\cdots\)</span> niños (menores
+de 14 años) Estrato 2 <span class="math inline">\(\cdots\)</span>
+jóvenes (15 - 25 años) Estrato 3 <span
+class="math inline">\(\cdots\)</span> adultos (26 años o mas)</p>
+<p>Otros criterios de clasificación pueden obedecer también, por
+ejemplo, a posiciones geográficas, en otros casos, cada estrato puede
+ser un sector de la ciudad de la provincia o de la región.</p>
+<p>Otro elemento interesante de considerar, en los estudios por muestreo
+estratificado, es que las conclusiones pueden darse no sólo a nivel
+poblacional, sino que independientemente a nivel de cada estrato.</p>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-sistemático" class="section level3">
+<h3><strong>Muestreo Sistemático</strong></h3>
+<p><br/></p>
+<p>Se forma una muestra sistemática seleccionando al azar una unidad y
+luego se seleccionan adicionalmente las unidades a intervalos igualmente
+espaciados (cada <span class="math inline">\(k\)</span> unidades de la
+población, <span class="math inline">\(k&gt;1\)</span>) hasta formar la
+muestra total.</p>
+<p>Supongamos que estamos interesados en una población cuyos individuos
+han sido numerados desde 1 a <span class="math inline">\(N\)</span>, y
+elegimos una muestra de tamaño <span class="math inline">\(n\)</span>
+como sigue: entre las <span class="math inline">\(k\)</span> primeras
+unidades, donde <span class="math inline">\(k =N/n\)</span> elegimos, en
+forma aleatoria, el elemento <span
+class="math inline">\(i-ésimo\)</span>,entre los <span
+class="math inline">\(k\)</span> primeros elementos o unidades
+muestrales. A continuación, sistemáticamente se eligen los elementos
+<span class="math inline">\(i+k\)</span> que están <span
+class="math inline">\(k\)</span> lugares después del <span
+class="math inline">\(i-ésimo\)</span>, y así sucesivamente hasta agotar
+los elementos disponibles de la lista, lo que ocurrirá al llegar al
+elemento que ocupa el lugar <span
+class="math inline">\(i+(n-1)k\)</span>.</p>
+<p>Si existen <span class="math inline">\(k\)</span> muestras posibles
+de <span class="math inline">\(n\)</span> elementos cada una. Por
+ejemplo, de una población determinada por <span class="math inline">\(N
+= 1000\)</span> elementos deseamos elegir sistemáticamente <span
+class="math inline">\(25\)</span> elementos, habrá <span
+class="math inline">\(k = 1000/25 = 40\)</span> elecciones diferentes
+posibles. Elegimos aleatoriamente un número comprendido entre 1 y 40 y a
+partir de éste, elegimos los 24 restantes de 40 en 40. Supongamos que
+fue sorteado el 15, entonces la observación que ocupa el <span
+class="math inline">\(15^{\circ}\)</span> lugar será el primer elemento
+de la muestra, el segundo será el <span
+class="math inline">\(55^{\circ}(15+40)\)</span>, el tercero será el
+<span class="math inline">\(95^{\circ}(15+80)\)</span> y así
+sucesivamente hasta que el último elemento seleccionado será la
+observación que ocupe el lugar 975. La muestra estará conformado por los
+elementos : <span class="math inline">\(15^{\circ},55^{\circ},
+95^{\circ},\cdots,975^{\circ}\)</span></p>
+<p>Es más fácil de ejecutar este tipo de muestreo. Es también más
+preciso que el m.a.s. pues equivale a estratificar la población en <span
+class="math inline">\(n\)</span> estratos de cada uno de los cuales se
+extrae una observación. En general, si se desea una muestra de tamaño
+<span class="math inline">\(n\)</span> basta sortear una de las <span
+class="math inline">\(k\)</span> columnas. Este tipo de muestreo es
+particularmente útil en muestreos exploratorios, en los que no se conoce
+exactamente la distribución de la población.</p>
+<p>Este tipo de muestreo no es recomendable cuando el preceso generador
+de los datos tiene un comportamiento cíclico o estacional, el cuál puede
+hacer que las unidades seleccionadas coincidan con todos los máximos o
+todos los mínimos.</p>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-por-conglomerados" class="section level3">
+<h3><strong>Muestreo por Conglomerados</strong></h3>
+<p><br/></p>
+<p>Una muestra por conglomerados se obtiene identificando un conjunto de
+conglomerados que componen la población, aleatoriamente se selecciona un
+subconjunto de estos conglomerados y se hace un censo en cada uno de los
+seleccionados.</p>
+<p>A veces, para estudios exploratorios, el muestreo probabilístico
+resulta excesivamente costoso y se acude a métodos no probabilísticos,
+aún siendo conscientes de que no sirven para realizar generalizaciones,
+púes no se tiene certeza de que la muestra extraída sea representativa,
+ya que no todos los sujetos de la población tienen la misma probabilidad
+de se elegidos. En general se selecciona a los sujetos siguiendo
+determinados criterios procurando que la muestra sea representativa.</p>
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="muestreos-probabilisticos-1" class="section level3">
+<h3><strong>MUESTREOS PROBABILISTICOS</strong></h3>
+<p><br/></p>
+<p>En el caso de no contar con los supuestos que puedan garantizar la
+selección de la muestra de una manera aleatoria (no contar con un
+listado de la población o el no poder identificar con anticipación los
+elementos que conforman la población) y requerir de información para
+realizar analisis exploratorios, podemos utilizar otro tipo de muestreos
+llamados no probabílisticos. A continuación se describen algunos de
+ellos:</p>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-por-cuotas" class="section level3">
+<h3><strong>Muestreo por Cuotas</strong></h3>
+<p><br/></p>
+<p>También denominado en ocasiones <strong>accidental</strong>. Se
+asienta generalmente sobre la base de un buen conocimiento de los
+estratos de la población y/o de los individuos más
+<strong>representativos</strong> o <strong>adecuados</strong> para los
+fines de la investigación. Mantiene, por tanto, semejanzas con el
+muestreo aleatorio estratificado, pero no tiene el carácter de
+aleatoriedad de aquel. En este tipo de muestreo se fijan unas “cuotas”
+que consisten en un número de individuos que reúnen unas determinadas
+condiciones, por ejemplo: 20 individuos de 25 a 40 años, de sexo
+femenino y residentes en una determinada región. Una vez determinada la
+cuota se eligen los primeros que se encuentren que cumplan esas
+características. Este método se utiliza mucho en las encuestas de
+opinión.</p>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-intencional" class="section level3">
+<h3><strong>Muestreo Intencional</strong></h3>
+<p><br/></p>
+<p>Este tipo de muestreo se caracteriza por un esfuerzo deliberado de
+obtener muestras “representativas mediante la inclusión en la muestra de
+grupos supuestamente típicos. Es muy frecuente su utilización en sondeos
+preelectorales de zonas que en anteriores votaciones han marcado
+tendencias de voto.</p>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-casual-o-incidental" class="section level3">
+<h3><strong>Muestreo Casual o Incidental</strong></h3>
+<p><br/></p>
+<p>Se trata de un proceso en el que el investigador selecciona directa e
+intencionadamente los individuos de la población. El caso más frecuente
+de este procedimiento es utilizar como muestra los individuos a los que
+se tiene fácil acceso (los profesores de universidad emplean con mucha
+frecuencia a sus propios alumnos). Un caso particular es el de los
+voluntarios.</p>
+<p><br/><br/></p>
+</div>
+<div id="bola-de-nieve" class="section level3">
+<h3><strong>Bola de Nieve</strong></h3>
+<p><br/></p>
+<p>Se localiza a algunos individuos, los cuales conducen a otros, y
+estos a otros, y así hasta conseguir una muestra suficiente. Este tipo
+se emplea muy frecuentemente cuando se hacen estudios con poblaciones
+“marginales”, delincuentes, sectas, determinados tipos de enfermos,
+etc.</p>
+<p><br/><br/><br/><br/></p>
+</div>
+</div>
+<div id="estimadores" class="section level2">
+<h2>Estimadores</h2>
+<p><br/></p>
+<div id="propiedades" class="section level3">
+<h3><strong>Propiedades</strong></h3>
+<p><br/></p>
+<p>Dentro de las principales propiedeades de los estimadores están:</p>
+<p><br/><br/></p>
+</div>
+<div id="insesgadez" class="section level3">
+<h3><strong>Insesgadez</strong></h3>
+<p><br/></p>
+<p>Un estimador <span class="math inline">\(\widehat{\theta}\)</span> se
+considera insesgado si <span class="math inline">\(E[\widehat{\theta}] =
+\theta\)</span></p>
+<p><br/><br/></p>
+</div>
+<div id="eficiente" class="section level3">
+<h3><strong>Eficiente</strong></h3>
+<p><br/></p>
+<p>Un estimador <span
+class="math inline">\(\widehat{\theta_{1}}\)</span> se considera más
+eficiente que <span class="math inline">\(\widehat{\theta_{2}}\)</span>
+cuando:</p>
+<p><span class="math display">\[V[\widehat{\theta_{1}}] &lt;
+V[\widehat{\theta_{2}}]\]</span></p>
+<p><br/><br/></p>
+</div>
+<div id="consistente" class="section level3">
+<h3><strong>Consistente</strong></h3>
+<p><br/></p>
+<p>Cuando un estimador siendo sesgado, se convierte en un estimador
+sesgado cuando se aumenta el tamaño de la muestra se dice que este
+estimador es consistente</p>
+<p><br/><br/></p>
+<p>Con la siguiente figura se representa de manera figurativa lo que
+pueden ser las diferentes propiedades de los estimadores. En ella las
+figuras 3 y 4 representan estimadores insesgados , mientras que los
+gráficos 1 y 2 representan estimadores sesgados, pues se encuentran
+lejos del verdadero objetivo que es pegarle al centro de la diana, en
+este caso que representa al valor del parámetro.</p>
+<p>Por otro lado la gráfica 3 representa el estimador con las mejores
+condiciones, sesgado y de menor varianza, lo cual representa un
+estimador insesgado y eficiente.</p>
+<div class="box1 with-label">
+<center>
+<img src="img/estimador.png" style="width:50.0%" />
+</center>
+</div>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<p><br/></p>
+<p>Para una muestra obtenida de una población exponencial con parámetro
+<span class="math inline">\(\beta\)</span> ( <span
+class="math inline">\(E[X]=\beta\)</span>, <span
+class="math inline">\(V[X]=\beta^{2}\)</span>). Examinar los siguientes
+estimadores para una muestra de <span class="math inline">\(n=4\)</span>
+(<span class="math inline">\(X_{1}\)</span>, <span
+class="math inline">\(X_{2}\)</span>, <span
+class="math inline">\(X_{3}\)</span>, <span
+class="math inline">\(X_{4}\)</span>)</p>
+<ul>
+<li><span class="math inline">\(\widehat{\theta}_{1} =
+\dfrac{1}{6}(X_{1}+X_{2}) + \dfrac{1}{3}(X_{3}+X_{4})\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(\widehat{\theta}_{2} =
+\dfrac{1}{10}(X_{1}+2X_{2} + 3X_{3} + 4X_{4})\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(\widehat{\theta}_{3} =
+\dfrac{1}{4}(X_{1} + X_{2} + X_{3} + X_{4})\)</span></li>
+</ul>
+<p>Como se puede verificar <span
+class="math inline">\(\widehat{\theta}_{3}\)</span> es el mejor
+estimador de los tres, siendo insesgado y eficiente</p>
+<pre class="r"><code># Se simulan 4 variables de la misma población
+n=1000
+x1234 = data.frame(x1= rexp(n,1/5),
+                   x2= rexp(n,1/5),
+                   x3= rexp(n,1/5),
+                   x4= rexp(n,1/5))
+# Se estiman los tres estimadores
+f1 = function(x){1/6*(x[1]+x[2])+ 1/3*(x[3]+x[4])} 
+f2 = function(x){1/10*(x[1]+2*x[2]+3*x[3]+4*x[4])} 
+f3 = function(x){1/4*(x[1]+x[2]+ x[3]+x[4])} 
+
+T1 = apply(x1234, 1, f1)
+T2 = apply(x1234, 1, f2)
+T3 = apply(x1234, 1, f3)
+
+# Se visualiza el resultado obtenido
+
+T123 =data.frame(T1,T2,T3)
+boxplot(T123, las=1)
+abline(h=5, col = &quot;red&quot;)</code></pre>
+<p><img src="recurso31_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Se calulan las medias
+apply(T123,2, mean)</code></pre>
+<pre><code>      T1       T2       T3 
+5.027857 5.041784 5.022974 </code></pre>
+<pre class="r"><code># Se calculan las varianzas
+apply(T123,2, var)</code></pre>
+<pre><code>      T1       T2       T3 
+7.003665 7.669991 6.522182 </code></pre>
+</div>
+<p><br/></p>
+<p>El mojor estimador de acuerdo a los resultados es <span
+class="math inline">\(T_3\)</span>, que tiene un promedio más cercano a
+5 y posee la menor varianza</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="distribuciones" class="section level2">
+<h2>Distribuciones</h2>
+<div id="distribuciones-muestrales" class="section level3">
+<h3><strong>DISTRIBUCIONES MUESTRALES</strong></h3>
+<p><br/></p>
+</div>
+<div id="principales-distribuciones-muestrales" class="section level3">
+<h3><strong>Principales distribuciones muestrales</strong>:</h3>
+<ul>
+<li><strong>normal</strong></li>
+<li><strong>Chi-cuadrado</strong>,</li>
+<li><strong>t-student</strong>,</li>
+<li><strong>F-Fisher</strong></li>
+</ul>
+<p>Se denomina distribución muestral a la distribución que sigue los
+principales estimadores puntuales o funciones de ellos como son:</p>
+<p><span class="math display">\[\bar{X},\hspace{.2cm} \widehat{p},
+\hspace{.2cm}\frac{(n-1)S^ {2}}{\sigma^{2}}, \hspace{.2cm}
+Z=\frac{\bar{X}-\mu}{S/\sqrt{n}}, \hspace{.2cm} F=\frac{\chi^
+{2}_{1}/v_{1}}{\chi^{2}_{2}/v_{2}}\]</span></p>
+<p>Existe una relación importante entre ellas con la Distribución
+normal, las cuales se representan en el siguiente diagrama:</p>
+<p><br/></p>
+<div class="box1 with-label">
+<center>
+<img src="img/distribucionesm.png" style="width:100.0%" />
+</center>
+</div>
+<p>Si una variable <strong>X</strong> se distribuye
+<strong>normal</strong> con parámetros <span
+class="math inline">\(\mu\)</span> y <span
+class="math inline">\(\sigma^{2}\)</span>, entonces a partir de su
+transformación se puede obtener una variable <strong>Z</strong> que
+tenga distribución <strong>normal estándar</strong> <span
+class="math inline">\(N(0,1)\)</span>, que tiene media cero y varianza
+uno. Varias normales estándar al cuadrado conforman una variable con
+distribución <strong>chi-cuadrado</strong> y a su vez esta variable
+tiene la propiedad tal que la suma de <span
+class="math inline">\(n\)</span> variables aleatorias <span
+class="math inline">\(\chi^{2}\)</span> con <span
+class="math inline">\(n-1\)</span> grados de libertad. La razón de una
+variable con distribución normal estándar y la raiz cuadrada de una
+variable chi-cuadrado, dividida por sus grados de libertad originan una
+variable con distribución <strong>t-student</strong>. Por último la
+razón de dos variables con distribución chi-cuadrado, divididas cada una
+por sus respectivos grados de libertad, generan una variable con
+distribución <strong>F-Fisher</strong>.</p>
+<p>En sintesis, la distribuciones de muestreo básicas, tienen de base la
+distribución normal.</p>
+<p><br/><br/></p>
+</div>
+<div id="distribución-chi-cuadrado" class="section level3">
+<h3><strong>Distribución chi-cuadrado</strong></h3>
+<p><br/></p>
+<p>Si <span class="math inline">\(S^{2}\)</span> es la varianza de la
+muestra aleatoria de tamaño <span class="math inline">\(n\)</span> que
+se toma de una población normal que tiene varianza <span
+class="math inline">\(\sigma^{2}\)</span>, entonces el estadístico:
+<span
+class="math display">\[\chi^{2}=\frac{(n-1)S^{2}}{\sigma^{2}}=\sum_{i=1}^{n}\frac{\big(x_{i}-\bar{x}\big)^{2}}{\sigma^{2}}=\sum_{i=1}^{n}
+\Big(\frac{x_{i}-\bar{x}}{\sigma}\Big)^{2} \]</span> tiene una
+distribución chi-cuadrado con <span class="math inline">\(v=n-1\)</span>
+grados de libertad.</p>
+<p>Nota: Esta función fue creada por Karl Pearson cientifico inglés
+(1857-1936) y su función de distribución y su represntación gráfica
+estan dadas por:</p>
+<p><span
+class="math display">\[f(x)=\frac{1}{2^{(v/2)}\Gamma(v/2)}x^{(v/2)-1}\exp\{-x/2\}
+,\hspace{.3cm} x&gt;0\]</span> <br/><br/></p>
+<pre class="r"><code> curve(dchisq(x, df=7), lwd=3, las=1,xlim = c(0,30), ylim=c(0,.13), ylab=&#39;Densidad&#39;, col=&quot;red&quot;,axes = FALSE)
+curve(dchisq(x, df=9), lwd=3, las=1,xlim = c(0,30), ylab=&#39;Densidad&#39;,add = TRUE, col=&quot;blue&quot;)
+curve(dchisq(x, df=11), lwd=3, las=1,xlim = c(0,30), ylab=&#39;Densidad&#39;,add = TRUE, col=&quot;green&quot;)
+abline(h=0)
+grid()</code></pre>
+<p><img src="recurso31_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Esta distribución es un caso especial de la distribución Gamma con
+parámetros <span class="math inline">\(\alpha=\frac{v}{2}\)</span> y
+<span class="math inline">\(\beta=2\)</span></p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<p>Para una distribución chi-cuadrado calcule :</p>
+<ul>
+<li><span class="math inline">\(\chi^{2}_{0.025}\)</span>, cuando <span
+class="math inline">\(v = 15\)</span></li>
+</ul>
+<pre class="r"><code>qchisq(0.025,15)</code></pre>
+<pre><code>[1] 6.262138</code></pre>
+<ul>
+<li><span class="math inline">\(\chi^{2}_{0.01}\)</span>, cuando <span
+class="math inline">\(v = 7\)</span></li>
+</ul>
+<pre class="r"><code>qchisq(0.01,7)</code></pre>
+<pre><code>[1] 1.239042</code></pre>
+<ul>
+<li><span class="math inline">\(\chi^{2}_{0.05}\)</span>, cuando <span
+class="math inline">\(v = 24\)</span></li>
+</ul>
+<pre class="r"><code>qchisq(0.05,24)</code></pre>
+<pre><code>[1] 13.84843</code></pre>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="distrución-t-student" class="section level3">
+<h3><strong>Distrución t-Student</strong></h3>
+<p><br/></p>
+<p>Esta función nace de la relación entre una variable con distrución
+normal estandar y la raiz cuadrada de una variable con distribución
+chi-cuadrado Sea Z una variable con distribución normal estandar y V una
+variable con distribución chi-cudadrado con v grados de libertad,
+entonces la variable aleatoria T se distribuye t-student con v grados de
+libertad</p>
+<p><span class="math display">\[T=\frac{Z}{\sqrt{V/v}} \sim
+t_{v}\]</span></p>
+<p>Nota: Esta función de distribución fue propuesta por William Sealy
+Gosset en 1908. Gosset trabajaba en una fábrica de cerveza de prppiedad
+de Guiness, quien prohibia a sus empleados la publicación de artículos
+cientificos debido a la difución previa de secretos industriales. Debido
+a esta prohibición Gosset publicaba sus artículos con el seudonimo de
+Student.(Wikipedia.org)</p>
+<p>La función de probabilidad de distribución t-student y su
+represntación gráfica están dadas por:</p>
+<p><span
+class="math display">\[f(x)=\frac{\Gamma[(v+1)/2]}{\Gamma[v/2]\sqrt{\pi
+v}}\Bigg(1+\frac{x^{2}}{v} \Bigg)^{-(v+1)/2}, \hspace{.3cm} -\infty&lt;
+x&lt;\infty \]</span></p>
+<pre class="r"><code> curve(dt(x, df=1), lwd=3, las=1,xlim = c(-4,4), ylim=c(0,0.4), ylab=&#39;Densidad&#39;, col=&quot;red&quot;,axes = FALSE)
+curve(dt(x, df=5), lwd=3, las=1,xlim = c(-4,4), ylab=&#39;Densidad&#39;,add = TRUE, col=&quot;blue&quot;)
+curve(dt(x, df=20), lwd=3, las=1,xlim = c(-4,4), ylab=&#39;Densidad&#39;,add = TRUE, col=&quot;green&quot;)
+abline(h=0)
+grid()</code></pre>
+<p><img src="recurso31_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>La gráfica de la distribución t-student es similar a la de la
+distribución normal, salvo que sus colas son más pesadas.</p>
+<p>Si <span class="math inline">\(X_{1},X_{2},...,X_{n}\)</span> es una
+muestra aleatoria de <span class="math inline">\(n\)</span> variables
+independientemente e idénticamente distribuidas <span
+class="math inline">\(N(\mu,\sigma^{2})\)</span> y</p>
+<p><span class="math display">\[\bar{X}=\frac{1}{n}\sum_{i=1}^{n}X_{i}
+\]</span></p>
+<p><span
+class="math display">\[S^{2}=\frac{1}{n-1}\sum_{i=1}^{n}\Big(X_{i}-\bar{X}\Big)^{2}
+\]</span></p>
+<p>Entonces la variable aleatoria:</p>
+<p><span class="math display">\[T=\frac{\bar{X}-\mu}{S/\sqrt{n}}
+\]</span></p>
+<p>tiene una distribución t-student con <span
+class="math inline">\(v=n-1\)</span> grados de libertad</p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<ul>
+<li>Calule <span class="math inline">\(t_{0.025}\)</span>, cuando <span
+class="math inline">\(v = 14\)</span></li>
+</ul>
+<pre class="r"><code>qt(0.025,10)</code></pre>
+<pre><code>[1] -2.228139</code></pre>
+<ul>
+<li>Calule <span class="math inline">\(t_{0.975}\)</span>, cuando <span
+class="math inline">\(v = 10\)</span></li>
+</ul>
+<pre class="r"><code>qt(0.975, 10)</code></pre>
+<pre><code>[1] 2.228139</code></pre>
+<ul>
+<li>Calcule <span class="math inline">\(t_{0.10}\)</span>, cuando <span
+class="math inline">\(v = 7\)</span></li>
+</ul>
+<pre class="r"><code>qt(0.10, 7)</code></pre>
+<pre><code>[1] -1.414924</code></pre>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="distribución-f-fisher" class="section level3">
+<h3><strong>Distribución F-Fisher</strong></h3>
+<p><br/></p>
+<p>Si <span class="math inline">\(S_{1}^{2}\)</span> y <span
+class="math inline">\(S_{2}^{2}\)</span> son las dos varianzas de
+muestras aleatorias independientes de tanaños <span
+class="math inline">\(n_{1}\)</span> y <span
+class="math inline">\(n_{2}\)</span> tomadas de poblaciones normales con
+varianzas <span class="math inline">\(\sigma_{1}^{2}\)</span> y <span
+class="math inline">\(\sigma_{2}^{2}\)</span> respectivamente,
+entonces:</p>
+<p><span
+class="math display">\[F=\frac{S_{1}^{2}/\sigma_{1}^{2}}{S_{2}^{2}/\sigma_{1}^{2}}=\frac{\sigma_{2}^{2}}{\sigma_{1}^{2}}
+\frac{S_{1}^{2}}{\sigma_{2}^{2}} \]</span></p>
+<p>tiene una distribución F con grados de libertad <span
+class="math inline">\(v_{1}=n_{1}-1\)</span> y <span
+class="math inline">\(v_{2}=n_{2}-1\)</span>\</p>
+<p>Nota: Ronald Aylmer Fisher (1890-1962) cientifico, matemático,
+estadístico, biólogo evolutivo y genet?sta inglés fue el creador de la
+distribución F. Su función de distribución y su representación gráfica
+estan dadas por:</p>
+<p><span class="math display">\[f(x)=\displaystyle\frac{\Gamma
+\Bigg[\displaystyle\frac{v_{1}+v_{2}}{2}\Bigg]\Bigg(\displaystyle\frac{v_{1}}{v_{2}}\Bigg)^{v_{1}/2}
+x^{(v_{1}/2)-1}}{\Gamma \Bigg[\displaystyle\frac{v_{1}}{2}\Bigg] \Gamma
+\Bigg[\displaystyle\frac{v_{2}}{2}\Bigg]
+\Bigg[\Bigg(\displaystyle\frac{v_{1}}{v_{2}}\Bigg)x+1\Bigg]^{\big(v_{1}+v_{2}\big)/2}},
+\hspace{.3cm} x&gt;0 \]</span></p>
+<pre class="r"><code> curve(df(x, df1=5, df2=10), lwd=3, las=1,xlim = c(0,5), ylim=c(0,1), ylab=&#39;Densidad&#39;, col=&quot;red&quot;,axes = FALSE)
+curve(df(x, df1=10, df2=25), lwd=3, las=1,xlim = c(0,5), ylab=&#39;Densidad&#39;,add = TRUE, col=&quot;blue&quot;)
+curve(df(x, df=20, df2=20), lwd=3, las=1,xlim = c(0,5), ylab=&#39;Densidad&#39;,add = TRUE, col=&quot;green&quot;)
+abline(h=0)
+grid()</code></pre>
+<p><img src="recurso31_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<ul>
+<li>Calcule <span class="math inline">\(f_{0.025}\)</span>, con <span
+class="math inline">\(v_{1} = 7\)</span> y <span
+class="math inline">\(v_{2} = 15\)</span></li>
+</ul>
+<pre class="r"><code>qf(0.025, 7,15)</code></pre>
+<pre><code>[1] 0.2189244</code></pre>
+<ul>
+<li>Calcule <span class="math inline">\(f_{0.975}\)</span>, con <span
+class="math inline">\(v_{1} = 7\)</span> y <span
+class="math inline">\(v_{2} = 15\)</span></li>
+</ul>
+<pre class="r"><code>qf(0.975, 7, 15)</code></pre>
+<pre><code>[1] 3.29336</code></pre>
+<pre class="r"><code>1/qf(0.025, 15,7)</code></pre>
+<pre><code>[1] 3.29336</code></pre>
+</div>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="media" class="section level2">
+<h2>Media</h2>
+<p><br/></p>
+<div id="media-muestral" class="section level3">
+<h3><strong>MEDIA MUESTRAL</strong></h3>
+<p><span class="math display">\[ \bar{X}=\frac{1}{n}\sum_{i=1}^{n}
+X_{i}\]</span></p>
+<p>Al hablar de distribución de probabilidad de la media muestral,
+implicitamente estamos afirmando que <span
+class="math inline">\(\bar{X}\)</span>, es una variable aleatoria. De
+esta variable a continuación estudiaremos sus principales
+caracteristicas.</p>
+<p>Para verificar las propiedades de este estimador podemos hacer uso de
+las propiedades del valor esperado de la siguiente manera:</p>
+<p><span class="math display">\[\begin{eqnarray*}
+E[\bar{X}] &amp;=&amp; E\Bigg[ \frac{1}{n} = \frac{1}{n}
+E\Big[X_{1}+X_{2}+\cdots + X_{n}\Big]\\
+&amp;=&amp;\frac{1}{n} [\mu + \mu \cdots + \mu ] = \frac{1}{n} n\mu =
+\mu\\
+\end{eqnarray*}\]</span></p>
+<p>por tanto:</p>
+<p><span class="math display">\[\mu = \mu_{\bar{X}}\]</span></p>
+<p>Como conclusión obtenemos que la media de la media muestral es igual
+a la media de la variable.</p>
+<p>Con la varianza ocurre algo similar al utilizar las propiedades de la
+varianza:</p>
+<p><span class="math display">\[\begin{eqnarray*}
+V[\bar{X}]&amp;=&amp;V\Bigg[\frac{1}{n} \sum_{i=1}^{n} x_{i}\Bigg] \\
+&amp;=&amp;\dfrac{1}{n^{2}} V\big[X_{1}+X_{2}+\cdots + X_{n}\big] \\
+&amp;=&amp; \dfrac{1}{n^{2}} V[X_{1}]+V[X_{2}]+\cdots +V[X_{n}]\\
+&amp;=&amp; \dfrac{1}{n^{2}} n\sigma^{2}\\
+&amp;=&amp; \dfrac{\sigma^{2}}{n}
+\end{eqnarray*}\]</span></p>
+<p>Se concluye que:</p>
+<p><span class="math display">\[V[\bar{X}] =
+\dfrac{\sigma^{2}}{n}\]</span></p>
+<p>Obtenemos así que la varianza de la media muestral es igual a la
+varianza de la variable. \</p>
+<p>Para verificar estas caracteristicas, vamos a suponer que tenemos una
+población de N=5, conformada por los elementos: <span
+class="math inline">\(10,20,30,40,50\)</span>. Para esta población
+podemos calcular sus parametros <span class="math inline">\(\mu\)</span>
+y <span class="math inline">\(\sigma^{2}\)</span>.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+\mu_{_{X}}&amp;=&amp;\dfrac{1}{5}\sum_{i=1}^{5}x_{i}
+=\dfrac{(10+20+30+40+50)}{5}=30 \\
+\sigma^{2}_{_{X}}&amp;=&amp;\sum_{i=1}^{5}\dfrac{1}{5}\big(x_{i}-30
+\big)^{2} =\dfrac{1}{5}\Big[ \big(10-30\big)^{2} + ...\\
+&amp; &amp;\big(20-30 \big)^{2}+ ....\big(50-30 \big)^{2}
+\Big]=\dfrac{1000}{5}=200
+\end{eqnarray*}\]</span></p>
+<p>Ahora estudiaremos la población de muestras que se pueden obtener de
+esta población de tamaño <span class="math inline">\(n=2\)</span>
+tomadas con reemplazo (probabilidad constante)</p>
+<p>En la practica el muestreo se realiza sin remplazo y debido a que el
+tamaño de la población es grande o es considerado como infinito, hace
+que la probabilidad de seleccionar un objeto de la población se pueda
+considerar como constante .</p>
+<p><br/><br/></p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="9%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">(10,10)</td>
+<td align="center">10</td>
+<td align="center">(20,10)</td>
+<td align="center">15</td>
+<td align="center">(30,10)</td>
+<td align="center">20</td>
+<td align="center">(40,10)</td>
+<td align="center">25</td>
+<td align="center">(50,10)</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="center">(10,20)</td>
+<td align="center">15</td>
+<td align="center">(20,20)</td>
+<td align="center">20</td>
+<td align="center">(30,20)</td>
+<td align="center">25</td>
+<td align="center">(40,20)</td>
+<td align="center">30</td>
+<td align="center">(50,20)</td>
+<td align="center">35</td>
+</tr>
+<tr class="odd">
+<td align="center">(10,30)</td>
+<td align="center">20</td>
+<td align="center">(20,30)</td>
+<td align="center">25</td>
+<td align="center">(30,30)</td>
+<td align="center">30</td>
+<td align="center">(40,30)</td>
+<td align="center">35</td>
+<td align="center">(50,30)</td>
+<td align="center">40</td>
+</tr>
+<tr class="even">
+<td align="center">(10,40)</td>
+<td align="center">25</td>
+<td align="center">(20,40)</td>
+<td align="center">30</td>
+<td align="center">(30,40)</td>
+<td align="center">35</td>
+<td align="center">(40,40)</td>
+<td align="center">40</td>
+<td align="center">(50,40)</td>
+<td align="center">45</td>
+</tr>
+<tr class="odd">
+<td align="center">(10,50)</td>
+<td align="center">30</td>
+<td align="center">(20,50)</td>
+<td align="center">35</td>
+<td align="center">(30,50)</td>
+<td align="center">40</td>
+<td align="center">(40,50)</td>
+<td align="center">45</td>
+<td align="center">(50,50)</td>
+<td align="center">50</td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<p>Estos valores conforman la población de muestras de tamaño n=2 que se
+pueden obtener sin reemplazo de la población inicial, En este caso
+podemos calcular la media y la varianza poblacional de <span
+class="math inline">\(\bar{X}\)</span></p>
+<p><span class="math display">\[\begin{eqnarray*}
+\mu_{_{\bar{X}}}&amp;=&amp; \dfrac{1}{25}(10+15+20+...50) = 30 \\
+\sigma^{2}_{_{\bar{X}}}&amp;=&amp; \dfrac{1}{25}
+\Big[\big(10-30\big)^{2} +...+\big(50-30\big)^{2} \Big]=100
+\end{eqnarray*}\]</span></p>
+<p>De estos resultados podemos concluir que:</p>
+<ul>
+<li>La media poblacional de la variable aleatoria <span
+class="math inline">\(X\)</span> es idéntica a la media de la media
+poblacional de la media <span
+class="math inline">\(\bar{X}\)</span></li>
+</ul>
+<p><span class="math display">\[\mu_{_{X}} =
+\mu_{_{\bar{X}}}\]</span></p>
+<ul>
+<li>La varianza poblacional de <span
+class="math inline">\(\bar{X}\)</span> es igual la varianza de <span
+class="math inline">\(X\)</span> dividido por el tamaño de la
+muestra</li>
+</ul>
+<p><span class="math display">\[\sigma^{2}_{_{\bar{X}}} =
+\dfrac{\sigma^{2}_{_{X}}}{n}\]</span></p>
+<p>Si el muestreo se realiza sin reemplazo la población de muestras de
+tamaño n=2, estaria conformado por:</p>
+<p><br/><br/></p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="9%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="9%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\bar{x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">(10,20)</td>
+<td align="center">15</td>
+<td align="center">(10,40)</td>
+<td align="center">25</td>
+<td align="center">(20,30)</td>
+<td align="center">25</td>
+<td align="center">(20,50)</td>
+<td align="center">35</td>
+<td align="center">(30,50)</td>
+<td align="center">40</td>
+</tr>
+<tr class="even">
+<td align="center">(10,30)</td>
+<td align="center">20</td>
+<td align="center">(10,50)</td>
+<td align="center">30</td>
+<td align="center">(20,40)</td>
+<td align="center">30</td>
+<td align="center">(30,40)</td>
+<td align="center">35</td>
+<td align="center">(40,50)</td>
+<td align="center">45</td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<p>En este caso la media y la varianza de esta población son: <span
+class="math display">\[\begin{eqnarray*}
+\mu_{_{\bar{X}}}&amp;=&amp; \dfrac{1}{10}(15+20+...45) = 30 \\
+\sigma^{2}_{_{\bar{X}}}&amp;=&amp; \dfrac{1}{10}
+\Big[\big(15-30\big)^{2} +...+\big(45-30\big)^{2} \Big]=75
+\end{eqnarray*}\]</span></p>
+<p>La diferencia presentada en la varianza, se debe a que se trata de
+una muestra grande en relaciona a la población (<span
+class="math inline">\(\frac{n}{N}=\frac{2}{5}=0.20\)</span>). El haber
+realizado el muestreo sin repetición cambia la probabilidad del segundo
+elemento y generando un cambio en la varianza. En este caso se debe
+corregir el valor obtenido para obtener el valor correcto de la varianza
+multiplicando la varianza por <strong>fcpf</strong> factor de corrección
+por población finita</p>
+<p><span class="math display">\[\sigma^{2}_{_{\bar{X}}} \times
+\dfrac{(N-n)}{(N-1)} =100 \times \dfrac{(5-2)}{(5-1)}=75\]</span></p>
+<p><span class="math display">\[\text{fcpf:}
+\dfrac{(N-n)}{(N-1)}\]</span></p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<p><br/></p>
+<p>Cierto tipo de batería para automóviles dura un promedio de 1110 días
+con una desviación estandar de 80 días. Si se eligen n=400 de estas
+baterías de manera aleatoria, encuentre la probabilidad de que el
+promedio sea mayor a 1120 días y halle el percentil 80 para esta
+distribución. Como <span class="math inline">\(X \sim N(\mu=1110,
+\sigma^{2}=80^{2})\)</span>, utilizando las propiedades verificadas
+anteriormente podemos afirmar que: <span class="math inline">\(\bar{X}
+\sim N(\mu=1110, \sigma_{\bar{X}}=80/\sqrt{400})\)</span></p>
+<p><span class="math display">\[\begin{eqnarray*}
+P(\bar{x} &gt; 1120) &amp;=&amp;
+P\Bigg(\dfrac{\bar{x}-\mu}{\sigma/\sqrt{n}} &gt;
+\dfrac{1120-1110}{80/\sqrt{400}}\Bigg)\\
+&amp;=&amp; P(Z &gt; 2.5)\\
+&amp;=&amp; 1-P(Z &lt; 2.5)\\
+&amp;=&amp; 1-0.9938 \\
+&amp;=&amp; 0.0068
+\end{eqnarray*}\]</span></p>
+</div>
+<p><br/><br/><br/><br/></p>
+</div>
+</div>
+<div id="proporción" class="section level2">
+<h2>Proporción</h2>
+<p><br/></p>
+<div id="proporción-muestral" class="section level3">
+<h3><strong>PROPORCIÓN MUESTRAL</strong></h3>
+<p>Al igual que en la media podemos realizar la verificación con la
+proporción, mediante la utilización de la siguiente población.
+Supongamos que en una población compuesta por 5 personas (<span
+class="math inline">\(N=5\)</span>) tres de ellas son profesonales y
+queremos estudiar <span class="math inline">\(p\)</span> la proporción
+de profesionales en la muestra. En términos de variable seria: <span
+class="math inline">\(S_{1}, N_{2}, N_{3}, S_{4}, S_{5}\)</span>, con el
+fin de distinguir las personas colocaremos un subindice. Con esta
+información podemos calcular los valores poblacionales:</p>
+<p><span class="math display">\[p=\dfrac{3}{5}=0.6\]</span></p>
+<p><span class="math display">\[pq=p(1-p)=0.6 \times 0.4 =
+0.24\]</span></p>
+<p>Podemos obtener la población de proporciones muestrales (<span
+class="math inline">\(\widehat{p}\)</span>) de tamaño <span
+class="math inline">\(n=2\)</span></p>
+<p><br/><br/></p>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="6%" />
+<col width="14%" />
+<col width="5%" />
+<col width="14%" />
+<col width="5%" />
+<col width="14%" />
+<col width="5%" />
+<col width="14%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\widehat{p}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\widehat{p}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\widehat{p}\)</span></th>
+<th align="center">muestra</th>
+<th align="center"><span class="math inline">\(\widehat{p}\)</span></th>
+<th align="center">muestra</th>
+<th align="right"><span class="math inline">\(\widehat{p}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\((S_{1},S_{1})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{3},S_{4})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{1},N_{2})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{3},S_{5})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{1},N_{3})\)</span></td>
+<td align="right"><span class="math inline">\(0.5\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span
+class="math inline">\((S_{4},S_{1})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{1},S_{4})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{4},N_{2})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{1},S_{5})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{4},N_{3})\)</span></td>
+<td align="right"><span class="math inline">\(0.5\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\((N_{2},S_{1})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{4},S_{4})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{2},N_{2})\)</span></td>
+<td align="center"><span class="math inline">\(0.0\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{4},S_{5})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{2},N_{3})\)</span></td>
+<td align="right"><span class="math inline">\(0.0\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span
+class="math inline">\((S_{5},S_{1})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{2},S_{4})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{5},N_{2})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{2},S_{5})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{5},N_{3})\)</span></td>
+<td align="right"><span class="math inline">\(0.5\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\((N_{3},S_{1})\)</span></td>
+<td align="center"><span class="math inline">\(0.5\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{5},S_{4})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{3},N_{2})\)</span></td>
+<td align="center"><span class="math inline">\(0.0\)</span></td>
+<td align="center"><span
+class="math inline">\((S_{5},S_{5})\)</span></td>
+<td align="center"><span class="math inline">\(1.0\)</span></td>
+<td align="center"><span
+class="math inline">\((N_{3},N_{3})\)</span></td>
+<td align="right"><span class="math inline">\(0.0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<p>De esta población tenemos que:</p>
+<p><span
+class="math display">\[\mu_{\widehat{p}}=\dfrac{15}{25}=0.6\]</span></p>
+<p><span
+class="math display">\[V[\hspace{.1cm}\widehat{p}\hspace{.1cm}]=\frac{3}{25}=0.12\]</span></p>
+<p>Con este resultado estamo verificando que se cumple que:</p>
+<p><span
+class="math display">\[E[\hspace{.1cm}\widehat{p}\hspace{.1cm}]=
+p\]</span></p>
+<p><span class="math display">\[V[\hspace{.1cm}\widehat{p}\hspace{.1cm}]
+=\dfrac{p(1-p)}{n}\]</span></p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<p><br/></p>
+<p>La proporción de individuos con tipo de sangre Rh positivo es de 85%.
+Si se tiene una muestra de <span class="math inline">\(n=500\)</span>
+individuos, Encuentre la probabilidad de que la proporción muestral
+<span class="math inline">\(\widehat{p}\)</span> pase de 82%. Cuando el
+tamaño de muestra es grande, la distribución de la proporción se
+aproxima a una distribución normal con media <span
+class="math inline">\(p\)</span> y varianza <span
+class="math inline">\(p(1-p)/n\)</span>. De esta manera podemos hallar
+la probabilidad solicitada:</p>
+<p><span class="math display">\[\begin{eqnarray*}
+P(\widehat{p}&gt;0.82) &amp;=&amp;
+P\Bigg(\dfrac{\widehat{p}-p}{(p(1-p)/\sqrt{n}} &gt; \dfrac{0.82 -
+0.84}{\sqrt{(0.85 \times 0.15)/500}}\Bigg) \\
+&amp;=&amp; P\big(Z &gt; -1.878 \big) \\
+&amp;=&amp; 1 - P(Z &lt; -1.88)\\
+&amp;=&amp; 1-0.0301
+\end{eqnarray*}\]</span></p>
+</div>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="varianza" class="section level2">
+<h2>Varianza</h2>
+<p><br/></p>
+<div id="varianza-muestral" class="section level3">
+<h3><strong>VARIANZA MUESTRAL</strong></h3>
+<p><br/></p>
+<p>Ahora tenemos interes en estudiar el comportamiento de <span
+class="math inline">\(S^{2}\)</span> llamada cuasivarianza por algunos y
+definida por: <span
+class="math display">\[\widehat{\sigma^{2}}=S^{2}=\dfrac{1}{(n-1)}\sum_{i=1}^{n}\big(x_{i}-\bar{x}\big)^{2}\]</span></p>
+<p>Se puede demostrar que:</p>
+<p><span class="math display">\[E[S^{2}] = \sigma^{2}\]</span></p>
+<p><span class="math display">\[V[S^{2}] =
+\dfrac{2\sigma^{4}}{(n-1)}\]</span></p>
+<p>Pero también que:</p>
+<p><span class="math display">\[\dfrac{(n-1) S^{2}}{\sigma^{2}} \sim
+\chi^{2}_{(v=n-1)} \]</span></p>
+<p>Revisar : Canavos(1988) pp.231</p>
+<p><br/><br/></p>
+<!-- [**Practica 005**](https://javerianacaliedu-my.sharepoint.com/:x:/g/personal/dgonzalez_javerianacali_edu_co/EeC4j33wrR9LsMF3CDlgsVwBqFaMB2mJJHKNpyW3JcNowQ?e=lAfCEI) -->
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="estimadores-mas-empleados" class="section level3">
+<h3><strong>ESTIMADORES MAS EMPLEADOS</strong></h3>
+<p><br/></p>
+<table>
+<colgroup>
+<col width="13%" />
+<col width="25%" />
+<col width="21%" />
+<col width="39%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Parámetro</th>
+<th align="center">Estimador</th>
+<th align="center">Valor esperado</th>
+<th align="center">Varianza</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\theta\)</span></td>
+<td align="center"><span
+class="math inline">\(\widehat{\theta}\)</span></td>
+<td align="center"><span
+class="math inline">\(E[\widehat{\theta}]\)</span></td>
+<td align="center"><span
+class="math inline">\(V[\widehat{\theta}]\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\bar{x}\)</span></td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span
+class="math inline">\(\displaystyle\frac{\sigma^{2}}{n}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span
+class="math inline">\(\widehat{p}=\frac{X}{n}\)</span></td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span
+class="math inline">\(\displaystyle\frac{pq}{n}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\sigma^{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(S^{2}=\displaystyle\frac{\displaystyle\sum_{i=1}^{n}(x-\bar{x})^{2}}{n-1}\)</span></td>
+<td align="center"><span class="math inline">\(\sigma^{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(\dfrac{2\sigma^{4}}{(n-1)}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\(\mu_{1}-\mu_{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(\bar{x}_{1}-\bar{x}_{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(\mu_{1}-\mu_{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(\dfrac{\sigma^{2}_{1}}{n_{1}}+\dfrac{\sigma^{2}_{2}}{n_{2}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(p_{1}-p_{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(\widehat{p_{1}}-\widehat{p_{2}}\)</span></td>
+<td align="center"><span class="math inline">\(p_{1}-p_{2}\)</span></td>
+<td align="center"><span
+class="math inline">\(\dfrac{p_{1}q_{1}}{n_{1}}+\dfrac{p_{2}q_{2}}{n_{2}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/><br/></p>
+<!-- ## **Ejercicio M&M** -->
+<!-- [Base M&M](https://javerianacaliedu-my.sharepoint.com/:x:/g/personal/dgonzalez_javerianacali_edu_co/ESEEyzhH7E1Ilm0D5tr3X1ABcah7El3-qIVuwW0lvWpAuA?e=FHfrbF) -->
+<!-- <br/><br/><br/> -->
+</div>
+</div>
+<div id="tlc" class="section level2">
+<h2>TLC</h2>
+<p><br/></p>
+<div id="teorema-del-limite-central" class="section level3">
+<h3><strong>TEOREMA DEL LIMITE CENTRAL</strong>:</h3>
+<p><br/></p>
+<p>Si <span class="math inline">\(\bar{X}\)</span> es la media de una
+muestra de tamaño <span class="math inline">\(n\)</span> tomada una
+población con media <span class="math inline">\(\mu\)</span> y varianza
+<span class="math inline">\(\sigma^{2}\)</span>, entonces la forma
+límite de la distribución de : <span
+class="math display">\[Z=\dfrac{\bar{X}-\mu}{\Big(\sigma/\sqrt{n}\Big)}
+\sim N(0,1) \]</span></p>
+<p>conforme <span class="math inline">\(n\rightarrow \infty\)</span>,
+esta aproximación es cada vez más próxima a la normal. Este teorema es
+aplicable tambien a la variable total de sumatoria de los valores de la
+muestra <span
+class="math inline">\(T_{n}=X_{1}+X_{2}+...+X_{n}\)</span></p>
+<!-- ![](img/tlc.png) -->
+<p>El potencial de este teorema esta en que no importa la distribución
+de la variable X, la distribución de la media provemiente de la muestra
+tomada de esta población se distribuye aproximadamente normal. Al final
+de la guía se encuentra practica computacional que nos ayuda a
+comprender el alcance de este teorema.</p>
+<p><br/><br/></p>
+</div>
+<div id="verificación-del-teorema-central-del-límite"
+class="section level3">
+<h3><strong>Verificación del Teorema central del límite </strong></h3>
+<p><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<div id="distribución-uniforme1050" class="section level3">
+<h3><strong>Distribución uniforme(10,50)</strong></h3>
+<pre class="r"><code># Librerías necesarias
+# install.packages(&quot;magick&quot;)
+library(magick)
+
+# Definir parámetros y datos
+n = 1000
+m = 1000
+
+par(mfrow = c(1, 1))
+# Generar datos
+x = runif(n * m, 10, 50)
+m = matrix(x, nrow = m)
+
+# Calcular las matrices y promedios
+M1 = m[, 1]
+M5 = m[, 1:5]
+
+M10 = m[, 1:10]
+M20 = m[, 1:20]
+M30 = m[, 1:30]
+
+M50 = m[, 1:50]
+M100 = m[, 1:100]
+M500 = m[, 1:500]
+M1000 = m[, 1:1000]
+
+
+MX5 = apply(M5, 1, mean)
+
+MX10 = apply(M10, 1, mean)
+MX20 = apply(M20, 1, mean)
+MX30 = apply(M30, 1, mean)
+
+MX50 = apply(M50, 1, mean)
+MX100 = apply(M100, 1, mean)
+MX500 = apply(M500, 1, mean)
+MX1000 = apply(M1000, 1, mean)
+
+# Listar las variables que vamos a graficar
+matrices = list(M1, MX5, MX10, MX20, MX30, MX50, MX100, MX200, MX500, MX1000)
+labels = c(&quot;n=1&quot;, &quot;n=5&quot;, &quot;n=10&quot;, &quot;n=20&quot;, &quot;n =30&quot;, &quot;n=50&quot;, &quot;n=100&quot;, &quot;n=500&quot;, &quot;n=1000&quot;)
+
+# Ajustar parámetros gráficos para reducir los márgenes
+# Define una matriz de gráficos de 2x3 con márgenes ajustados
+
+# Crear histogramas con ajustes específicos para eliminar etiquetas del eje x
+hist(M1, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=1&quot;, xlab = &quot; &quot;, ylab = &quot;frecuencia&quot;, ylim = c(0, 150))
+hist(MX5, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=5&quot;, xlab = &quot; &quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+
+hist(MX10, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=10&quot;, xlab = &quot; &quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+hist(MX20, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=20&quot;, xlab = &quot; &quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+hist(MX30, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=30&quot;, xlab = &quot; &quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+
+hist(MX50, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=50&quot;, xlab = &quot;&quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+hist(MX100, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=100&quot;, xlab = &quot; &quot;,ylab = &quot;frecuencia&quot;, ylim = c(0, 150))
+
+hist(MX500, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=500&quot;, xlab = &quot; &quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+hist(MX1000, col = &quot;skyblue&quot;, border = &quot;white&quot;, main = &quot;Histograma de medias con n=1000&quot;, xlab = &quot; &quot;,ylab = &quot; &quot;, ylim = c(0, 150))
+
+
+# Generar gráficos individuales y guardarlos como imágenes
+for (i in 1:length(matrices)) {
+  # Crear el histograma
+  hist(matrices[[i]], main = paste(&quot;U(10,50) - medias con&quot;, labels[i]), xlab = &quot; &quot;, ylab=&quot;frecuencia&quot;, col = &quot;skyblue&quot;, border = &quot;white&quot;)
+  
+  # Guardar cada gráfico como una imagen PNG
+  filename &lt;- paste0(&quot;hist_&quot;, labels[i], &quot;.png&quot;)
+  dev.copy(png, filename = filename)
+  dev.off()
+}
+
+# Leer las imágenes generadas
+image_list &lt;- list()
+for (i in labels) {
+  image_list[[i]] &lt;- image_read(paste0(&quot;hist_&quot;, i, &quot;.png&quot;))
+}
+
+# Crear el GIF combinando las imágenes
+animation &lt;- image_animate(image_join(image_list), fps = 1)  # fps = cuadros por segundo
+image_write(animation, &quot;/home/deg/Documentos/JAVERIANA/300MAE005D/repository/300MAE005D/img/animation_hist.gif&quot;)
+
+# El GIF se guarda en el directorio de trabajo
+animation</code></pre>
+<pre class="r"><code># Librerías necesarias
+# install.packages(&quot;magick&quot;)
+library(magick)
+
+# Definir parámetros y datos
+n = 1000
+m = 1000
+
+# Generar datos
+x = runif(n * m, 10, 50)
+m = matrix(x, nrow = m)
+
+# Calcular las matrices y promedios para los tamaños de muestra requeridos
+M1 = m[, 1]
+M5 = m[, 1:5]
+M10 = m[, 1:10]
+M20 = m[, 1:20]
+M30 = m[, 1:30]
+M50 = m[, 1:50]
+M100 = m[, 1:100]
+M200 = m[, 1:200]
+M500 = m[, 1:500]
+M1000 = m[, 1:1000]
+
+# Calcular las medias de cada fila de la matriz para los tamaños especificados
+MX1 = M1  # No es promedio
+MX5 = apply(M5, 1, mean)
+MX10 = apply(M10, 1, mean)
+MX20 = apply(M20, 1, mean)
+MX30 = apply(M30, 1, mean)
+MX50 = apply(M50, 1, mean)
+MX100 = apply(M100, 1, mean)
+MX200 = apply(M200, 1, mean)
+MX500 = apply(M500, 1, mean)
+MX1000 = apply(M1000, 1, mean)
+
+# Listar las variables que vamos a graficar
+matrices = list(MX1, MX5, MX10, MX20, MX30, MX50, MX100, MX200, MX500, MX1000)
+labels = c(&quot;n=1&quot;, &quot;n=5&quot;, &quot;n=10&quot;, &quot;n=20&quot;, &quot;n=30&quot;, &quot;n=50&quot;, &quot;n=100&quot;, &quot;n=200&quot;, &quot;n=500&quot;, &quot;n=1000&quot;)
+
+# Generar gráficos Q-Q y guardarlos como imágenes
+for (i in 1:length(matrices)) {
+  # Crear el gráfico Q-Q
+  png(filename = paste0(&quot;qqplot_&quot;, labels[i], &quot;.png&quot;))  # Guardar el gráfico como PNG
+  qqnorm(matrices[[i]], main = paste(&quot;Q-Q Plot para tamaño de muestra =&quot;, labels[i]), col = &quot;blue&quot;, pch = 16)
+  qqline(matrices[[i]], col = &quot;red&quot;, lwd = 2)  # Agregar línea de referencia
+  dev.off()
+}
+
+# Leer las imágenes generadas
+image_list &lt;- list()
+for (i in labels) {
+  image_list[[i]] &lt;- image_read(paste0(&quot;qqplot_&quot;, i, &quot;.png&quot;))
+}
+
+# Crear el GIF combinando las imágenes
+animation &lt;- image_animate(image_join(image_list), fps = 1)  # fps = cuadros por segundo
+image_write(animation, &quot;/home/deg/Documentos/JAVERIANA/300MAE005D/repository/300MAE005D/img/animation_qqnorm.gif&quot;)
+
+# Mostrar la ubicación del GIF generado
+cat(&quot;El GIF se ha guardado como &#39;animation_qqplot.gif&#39;\n&quot;)
+
+# Mostrar la animación en la consola de R
+animation</code></pre>
+<table>
+<colgroup>
+<col width="48%" />
+<col width="51%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="img/animation_hist.gif"
+style="width:100.0%" /></td>
+<td align="center"><img src="img/animation_qqnorm.gif"
+style="width:100.0%" /></td>
+</tr>
+</tbody>
+</table>
+<p>Se puede notar la transformación de la distribución de la media a una
+distribución normal a medida que el tamaño de muestra aumenta</p>
+</div>
+</div>
+<p><br/><br/><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Ejemplo
+</div>
+<div id="distribución-exponencial120" class="section level3">
+<h3><strong>Distribución exponencial(1/20)</strong></h3>
+<table>
+<colgroup>
+<col width="48%" />
+<col width="51%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="img/animation2_hist.gif"
+style="width:100.0%" /></td>
+<td align="center"><img src="img/animation2_qqnorm.gif"
+style="width:100.0%" /></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="video" class="section level2">
+<h2>Video</h2>
+<p><br/></p>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/jbrnCa3jq0Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</center>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

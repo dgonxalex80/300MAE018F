@@ -1,0 +1,187 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 4- Unidad 4.2**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia4.png")
+```
+<br/><br/>
+
+
+# **Guía de aprendizaje**
+
+<br/><br/>
+
+## **Introducción**
+
+La inferencia estadística constituye una de las principales componentes de la metodologia estadistica, encaminados a generar procedimiento para el avance de la ciencia. Con ella se pueden generalizar los
+resultados obtenidos en una muestra a toda la población, previo cumplimiento de supuestos establecidos por la estadística (llamada paramétrica) .
+
+Antes de empezar es necesario entender los conceptos básicos como: población, censo, parámetro, muestra, muestreo, estimador, estimación, métodos de estimación, propiedades de los estimadores como la insesgadez, la eficiencia, la consistencia .Las distribuciones muestrales : normal, t-student, chi-cuadrado y f de Fisher. Todos trabajados y tratados en la unidad 4.1.
+
+El siguiente documento te  oriente sobre los pasos a seguir para alcanzar el objetivo planteado
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la unidad el estudiante estará en capacidad de IDENTIFICAR, CALCULAR, INTERPRETAR e INFERIR sobre un intervalo de confianza para estimadores de una y dos poblaciones,
+que le permita seleccionar la mejor alternativa para la estimación de un parámetro poblacional, orientados a la toma de decisiones  informadas.
+
+<br/><br/>
+
+
+
+## **Duración**
+
+La presente  unidad será desarrollada del 15 al 22  octubre de 2024 . Ademas del material suministrado  contaran con el acompañamiento del profesor durante las sesiones de clase  y de la monitora en las actividades académicas. Los entegables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  22 de octubre de 2024 
+
+Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
+
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+
+|Actividad      | Descripción                    | https://github.com/dgonxalex80
+|:--------------|:-----------------------------  |
+|**Actividad 421**    |Resuelva las preguntas y problemas planteadas en  el  **taller 421** y entregue su solución  en formato  pdf en el enlace correspondiente de  Brightspace|
+|Trabajo individual |  |
+|Fecha          | 22 de octubre de 2024 |
+|Hora           | 23:59 hora local       |
+
+
+
+
+## **Criterios de evaluación**
+
+
+<br/><br/>
+
+## **Entregables** 
+
+| Actividad421.pdf | Solucionario **taller 421** de problemas sobre intervalos de confianza| 
+|:--------------|:-----------------------------|
+|Fecha          | 22 de octubre de 2024 |
+|Hora           | 23:59 hora local       |
+
+
+
+
+<br/><br/>
+
+## **Instrucciones para su desarrollo**
+
+La unidad 3.2 contará con los siguientes recursos para su desarrollo:
+
+* Taller 321.  En parejas deberán desarrollar el taller 321 que contiene problemas relacionados con la estimación de intervalos de confianza para la media, varianza, proporción, diferencia de medias,diferencia de proporciones y razón de varianzas
+
+
+* Para el desarrollo de este taller se recomienda: 
+
+  * Ver los videos contenidos `recursos 3.2`
+  * Realizar los **tutoriales** con tenidos en el paquete `paqueteDEG`- revisar indicaciones en `recursos 3.2` -
+    
+
+Los tutoriales conforma una herramienta de apoyo al aprendizaje, mediante el desarrollo de problemas utilizando para ello código R para luego realizar la interpretacón de los resulados.
+
+Para trabajar los tutoriales se deben seguir los siguientes pasos:
+
+1. Instala el paquete `learnr`
+
+<pre>
+        install.packages("learnr") # solo una vez
+</pre>
+
+2. Instala el paquete `remotes``
+
+<pre>
+        install.packages('remotes')  # solo una vez
+</pre>
+
+3. Activa el paquiete `remotes`
+
+<pre>
+        library(remotes) # solo una vez
+</pre>
+
+4. Instala el paquete `paqueteDEG`
+
+<pre>
+        install_github("dgonxalex80/paqueteDEG", force = TRUE) # solo una vez
+</pre>
+
+5. Activa el tutorial `Taller-Intervalos1`
+
+<pre>
+         learnr::run_tutorial("Taller-Intervalos1", "paqueteDEG")
+</pre>
+
+
+
+<div class="box3 with-label">
+<div class="label">Resumen de código</div>
+
+<pre>
+install.packages("learnr") # solo una vez
+install.packages('remotes')  # solo una vez
+library(remotes) # solo una vez
+install_github("dgonxalex80/paqueteDEG", force = TRUE) # solo una vez
+
+learnr::run_tutorial("Taller-Intervalos1", "paqueteDEG") # para correr el tutorial1
+
+learnr::run_tutorial("Taller-Intervalos2", "paqueteDEG") # para correr el tutorial2
+</pre>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

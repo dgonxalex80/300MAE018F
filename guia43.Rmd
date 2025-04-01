@@ -1,0 +1,116 @@
+---
+title: <span style="color:#2C5697"> </span>  
+author: "dgonzalez "
+subtitle: <span style="color:#2C5697">**Módulo 4- Unidad 4.3**</span> 
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,comment = NA)
+library(ggplot2)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+```
+
+<br/><br/>
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/guia4.png")
+```
+<br/><br/>
+
+
+## **Introducción**
+
+El origen de los estudios, relacionados con las pruebas de hipótesis estadísticas, se sitúa alrededor de 1738, cuando en un ensayo escrito por Daniel Bernoulli aparece el cálculo una estadística de prueba para ensayar su hipótesis en el campo de la astronomía. Entre 1915 y 1933 se desarrolla esta formulación gracias a los estudios realizados por tres grandes autores: Ronald Fisher, Jerzy Neyman y Egon Pearson. Hoy en día predomina la teoría de Neyman-Pearson (lema de Neyman-Pearson). 
+
+Una hipótesis estadística es una afirmación o conjetura acerca de los parámetros de la distribución de probabilidades de una población. Si la hipótesis estadística especifica completamente la distribución, entonces ella se llama Hipótesis Simple, de otra manera se llama Hipótesis Compuesta.
+
+Las pruebas de hipótesis constituyen una de las principales herramientas que  proporciona la estadística a un profesional de cualquier disciplina para darle un carácter científico a sus afirmaciones y decisiones.
+
+En esta unidad se plantea el siguiente objetivo, el cual podrá lograrse con el desarrollo de los trabajos planteados y documentación proporcionada.
+
+
+<br/><br/>
+
+## **Objetivos de la unidad**
+
+Al finalizar la unidad el estudiante estará en capacidad de IDENTIFICAR, CALCULAR, CONTRASTAR y CONCLUIR sobre una hipótesis estadística que le permita la elección de la prueba más potente para la verificación de una prueba de hipótesis, permitiéndole tomar decisiones informadas.
+
+<br/><br/>
+
+## **Duración**
+
+La presente  unidad será desarrollada durante la comprendida entre 22 y 31 de octubre de 2024.   
+Ademas del material suministrado  contaran con el acompañamiento del profesor y de manera asincrónica con  foro de actividades académicas. Los entegables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  31 de octubre
+
+Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
+
+
+<br/><br/>
+
+## **Cronograma de trabajo**
+
+<br/><br/>
+
+
+|Actividad         | Descripción                    | 
+|:-----------------|:-----------------------------  |
+|**Actividad 431** | Resuelva las preguntas y problemas planteadas en el **Taller 431** y entregue su solución  en formato  pdf en el enlace correspondiente de  Brightspace   |
+|Trabajo individual|                                |
+|Fecha             | octubre 31  de 2024            |
+|Hora              | 23:59 hora local               |
+
+<br/><br/>
+
+## **Criterios de evaluación**
+
+
++ Reconoce los diferentes conceptos asociados con las pruebas de hipótesis 
++ Comunica de manera adecuada los resultados obtenidos del procesamiento 
++ Genera recomendaciones y decisiones a partir de los resultados obtenidos
+
+<br/><br/>
+
+## **Entregables** 
+
+|Actividad         | Descripción                    | 
+|:--------------|:-----------------------------|
+| Actividad 431 | Solucionario taller 431 de problemas sobre pruebas de hipótesis| 
+| Fecha         | 31 de octubre de 2024 |
+| Hora          | 23:59 hora local       |
+
+<br/><br/>
+
+
+<!-- <br/><br/> -->
+
+<!-- ## **Recursos**:  -->
+
+<!-- [Presentación Pruebas de hipótesis paramétricas](https://drive.google.com/open?id=17JkIdxED-k6f0V5RTFgba8KzEyIbcrs2) -->
+
+<!-- Además de ellos  podrá complementar el tema con los capítulos 6 del libro de Navidi y del capitulo 10 del libro de Walpole  y videos relacionados con el tema : -->
+
+<!-- + [Capitulo 6 Navidi](https://drive.google.com/open?id=1IbIGZBDT1zx8ErJodoLiEcdS7IRsj3r9) </br> -->
+<!-- + [Capitulo 10 Walpole](https://drive.google.com/open?id=1QcYO59i9GpIV2Q4hlU02OCavdfKUYsNa)</br> -->
+<!-- + [Video Pruebas de hipótesis paramétricas](https://www.youtube.com/watch?v=XoXwb6qYl58)</br> -->
+<!-- + [Video Pruebas de hipótesis no paramétricas](https://www.youtube.com/watch?v=m3YIdS2TVHk)</br> -->
+

@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia22.html">Guía 2.2</a>
+    </li>
+    <li>
+      <a href="recurso22.html">recursos 2.2</a>
+    </li>
+    <li>
+      <a href="actividad221.html">Actividad 221</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia23.html">Guía 2.3</a>
+    </li>
+    <li>
+      <a href="recurso23.html">recursos23</a>
+    </li>
+    <li>
+      <a href="codigo23.html">Código 23</a>
+    </li>
+    <li>
+      <a href="actividad231.html">Actividad 231</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia24.html">Guía 2.4</a>
+    </li>
+    <li>
+      <a href="recurso24.html">recursos24</a>
+    </li>
+    <li>
+      <a href="codigo24.html">Código 24</a>
+    </li>
+    <li>
+      <a href="actividad241.html">Actividad 241</a>
+    </li>
+    <li>
+      <a href="problemas331.html">Problemas 2.4</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria2.html">Monitoria 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia31.html">Guía 3.1</a>
+    </li>
+    <li>
+      <a href="recurso31.html">recursos 3.1</a>
+    </li>
+    <li>
+      <a href="codigo31.html">Código 3.1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+    <li>
+      <a href="parcial1.html">Primer parcial</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#235784"> </span></h1>
+<h3 class="subtitle"><span style="color:#235784"><strong>Unidad
+3.1</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><img src="img/codigo3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/><br/></p>
+<div id="propiedad-de-los-estimadores" class="section level1">
+<h1><strong>Propiedad de los estimadores</strong></h1>
+<p><br/><br/></p>
+<p>Para una variable con distribución uniforme <span
+class="math inline">\(unif(a=0, b=20)\)</span> se desea determinar las
+propiedades de los siguientes estimadores del parámetro <span
+class="math inline">\(b\)</span></p>
+<ul>
+<li><p><span class="math inline">\(\widehat{\theta_{1}} = 2
+\bar{x}\)</span></p></li>
+<li><p><span class="math inline">\(\widehat{\theta_{2}} =
+\max\{x\}\)</span></p></li>
+<li><p><span class="math inline">\(\widehat{\theta_{3}} =
+\dfrac{(n+1)}{n} \max\{x\}\)</span></p></li>
+</ul>
+<p><br/><br/></p>
+<pre class="r"><code># uniforme
+library(ggplot2)
+x= c(0,20) 
+fx=c(1/20, 1/20) 
+dat=data.frame(x,fx)
+ggplot(data=dat,aes(x=x, y=fx))+ 
+  scale_y_continuous(limits=c(0,.05))+
+  geom_line(size = 1,colour = &#39;red&#39;) </code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p>Para ello se realiza una simulación, para posteriormente evaluar los
+estimadores propuestos y determinar sus propiedades.</p>
+<p><br/><br/></p>
+<pre class="r"><code>library(ggplot2)
+n=10
+m=1000*n
+Y=matrix(runif(m, min=0, max=20), ncol=n) # matriz de datos m x n
+Mx=apply(Y,1,mean)
+Max=apply(Y,1,max)
+T1=2*Mx
+T2=Max
+T3=((n+1)/n)*T2
+T123=data.frame(T1,T2,T3)
+
+boxplot(T123, las=1, main=&quot;Comparación estimadores con n=10&quot;)
+abline(h=20,  col=&quot;red&quot;)</code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<pre class="r"><code>apply(T123,2,mean)</code></pre>
+<pre><code>      T1       T2       T3 
+20.08648 18.19407 20.01348 </code></pre>
+<p>Para un tamaño de muestra n=10 se observa que los mejores resultados
+se obtienen con T3. Este estimador se puede clasificar como INSESGADO y
+EFICIENTE, pues ademas que su promedio está muy cerca de 20, tiene la
+menor varianza</p>
+<pre class="r"><code>n=100
+m=1000*n
+Y=matrix(runif(m, min=0, max=20), ncol=n) # matriz de datos m x n
+Mx=apply(Y,1,mean)
+Max=apply(Y,1,max)
+T1=2*Mx
+T2=Max
+T3=((n+1)/n)*T2
+T123=data.frame(T1,T2,T3)
+
+boxplot(T123, las=1, main=&quot;Comparación estimadores con n=100&quot;)
+abline(h=20,  col=&quot;red&quot;)</code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>apply(T123,2,mean)</code></pre>
+<pre><code>      T1       T2       T3 
+19.96749 19.80160 19.99962 </code></pre>
+<p>Los resutados indican que el mejor estimador de b corresponde a T3.
+Sin embargo el estimador T2 que era insesgado al aumentar el tamaño de
+la muestra pasando de n=10 a n=100 se observa que su promedio se acerca
+mas a 20 que corresponde al valor del parametro</p>
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="teorema-central-del-límite" class="section level1">
+<h1><strong>Teorema Central del Límite</strong></h1>
+<p>Verificación del Teorema Central del Límite para una población
+exponencial con <span class="math inline">\(\lambda=1\)</span></p>
+<p>Con este fin se siguen los siguientes pasos:</p>
+<ol style="list-style-type: decimal">
+<li>Se construye una matriz de dimensión 1000 x 1000 con números
+procedentes del modelo determinado</li>
+<li>Se separan matrices de dimensión 1000 x n , para n=1,2,20,30,50, 100
+y 1000 .</li>
+<li>A cada matriz construida en el paso anterior se le calcula la media
+por filas, como resultado se obtiene un vector de 1000 medias</li>
+<li>Cada uno de los vectores resultantes se visualiza a través de un
+histograma, gráfico de densidad y se construye también un gráfico de
+normalidad con el fin de validar el resultado</li>
+</ol>
+<p><br/><br/></p>
+<pre class="r"><code>par(cex=0.5, cex.axis=.5, cex.lab=.5, cex.main=.5, cex.sub=.5,  mfrow=c(3,2), mai = c(.5, .5, .5, .5))
+# Teorema Central del Límite-----------------------------
+# Paso 1
+n=1000   #  numero de columnas (tamaño máximo de muestra)
+m=1000*n
+# Caso --------------------------------------------------
+# distribución exponencial-------------------------------
+X=matrix(rexp(m,1),ncol=n)
+# Paso 2
+# generación de muestras-------------
+X1=X[ ,1]            # n=1
+X2=X[ ,1:2]          # n=2
+X20=X[ ,1:20]        # n=20
+X30=X[ ,1:30]        # n=30
+X50=X[ ,1:50]        # n=50
+X100=X[ ,1:100]      # n=100
+X1000=X[ ,1:1000]    # n=1000
+# Paso 3
+# generacion de medias---------------
+Mx2=apply(X2,1,mean)        # medias de muestras de tamaño n=2
+Mx20=apply(X20,1,mean)      # medias de muestras de tamaño n=20
+Mx30=apply(X30,1,mean)      # medias de muestras de tamaño n=30
+Mx50=apply(X50,1,mean)      # medias de muestras de tamaño n=50
+Mx100=apply(X100,1,mean)    # medias de muestras de tamaño n=100
+Mx1000=apply(X1000,1,mean)  # medias de muestras de tamaño n=1000
+# Paso 4 
+# generación de densidad empírica --
+d=density(X1)
+d2=density(Mx2)
+#d20=density(Mx20)
+d30=density(Mx30)
+d50=density(Mx50)
+d100=density(Mx100)
+d1000=density(Mx1000)
+# Gráficos de densidad -------------------------------
+# configuración de las gráficas
+par(cex=0.5, cex.axis=.5, cex.lab=.5, cex.main=.5, cex.sub=.5,  mfrow=c(2,2), mai = c(.5, .5, .5, .5))
+# histogramas  de comparacion-------------------------
+plot(d, main=&quot; &quot;, xlab = &quot;n=1&quot;)
+plot(d2,main=&quot; &quot;, xlab = &quot;n=2&quot;)
+#plot(d20, main=&quot;&quot;, xlab = &quot;n=20&quot;)
+plot(d30, main=&quot; &quot;, xlab = &quot;n=30&quot;)
+plot(d50, main=&quot; &quot;, xlab = &quot;n=50&quot;)</code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>plot(d100, main=&quot; &quot;, xlab = &quot;n=100&quot;)
+plot(d1000,main=&quot; &quot;, xlab=&quot;n=1000&quot;)
+# histogramas  de comparacion--------------------------
+hist(X1,  main = &quot;n=1&quot;, freq=FALSE)
+hist(Mx2, main =&quot;n=2&quot;, freq=FALSE) </code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code># hist(Mx20, main = &quot;n=20&quot;,freq=FALSE)
+hist(Mx30, main = &quot;n=30&quot;,freq=FALSE) 
+hist(Mx50, main = &quot;n=50&quot;,freq=FALSE) 
+hist(Mx100, main = &quot;n=100&quot;, freq=FALSE) 
+hist(Mx1000, main = &quot;n=1000&quot;, freq = FALSE) </code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-5-3.png" width="672" /></p>
+<pre class="r"><code># histogramas  de comparacion--------------------------
+qqnorm(X1) ; qqline(X1, col=&quot;red&quot;)
+qqnorm(Mx2) ; qqline(Mx2, col=&quot;red&quot;)
+# qqnorm(Mx20) ; qqline(Mx20, col=&quot;red&quot;)
+qqnorm(Mx30) ; qqline(Mx30, col=&quot;red&quot;)
+qqnorm(Mx50) ; qqline(Mx50, col=&quot;red&quot;)</code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-5-4.png" width="672" /></p>
+<pre class="r"><code>qqnorm(Mx100) ; qqline(Mx100, col=&quot;red&quot;)
+qqnorm(Mx1000) ; qqline(Mx1000, col=&quot;red&quot;)</code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-5-5.png" width="672" /></p>
+<p>Se puede observar la convergencia de la distribución de la media
+muestral a una distribución normal al aumentarse el tamaño de la
+muestra</p>
+<p><br/><br/><br/></p>
+</div>
+<div id="distribuciones-muestrales" class="section level1">
+<h1><strong>Distribuciones muestrales</strong></h1>
+<p>A continuación se presentan las principales características de la
+media muestral <span class="math inline">\(\bar{x}\)</span> y de la
+proporción muetral <span class="math inline">\(\widehat{p}\)</span>. En
+cada uno de los casos vamos a suponer el conocimiento de de una
+población pequeña.</p>
+<p><br/><br/><br/></p>
+<div id="media-muestral" class="section level2">
+<h2><strong>Media muestral</strong></h2>
+<p><br/><br/></p>
+<div id="propiedades-de-la-media-muestral" class="section level3">
+<h3><strong>Propiedades de la media muestral</strong></h3>
+<div id="paso-1" class="section level4">
+<h4>Paso 1</h4>
+<p>Definir la población</p>
+<p>Supongamos que una población esta conformada por los valores : <span
+class="math inline">\(\{1,2,3,4,5 \}\)</span>, donde <span
+class="math inline">\(N=5\)</span></p>
+<p>Ahora que se desea calcular todas las medias que se puedan obtener de
+esta población para un tamaño de muestra <span
+class="math inline">\(n=2\)</span>. En otras palabras la población de
+medias para <span class="math inline">\(n=2\)</span>.</p>
+<p>Inicialmente definimos dos funciones para calcular los parámetros
+poblacionales media y varianza:</p>
+<p><span class="math display">\[\mu =\dfrac{1}{N} \sum_{i=1}^{N}
+x_{i}\]</span></p>
+<p><span class="math display">\[\sigma^{2}= \dfrac{1}{N} \sum_{i=1}^{N}
+(x_{i}-\mu)^{2}\]</span></p>
+<pre class="r"><code>media=function(x){sum(x)/length(x)}
+varianza=function(x){sum((x-media(x))^2)/(length(x))}</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="paso-2" class="section level4">
+<h4>Paso 2</h4>
+<p>Determinar la media y la varianza poblacional . La media y varianza
+poblacional de esta población estará dada por:</p>
+<pre class="r"><code>poblacion_x=c(1,2,3,4,5)
+cat(&quot;media poblacional    :&quot;,media(poblacion_x),&quot;\n&quot;)</code></pre>
+<pre><code>media poblacional    : 3 </code></pre>
+<pre class="r"><code>cat(&quot;varianza poblacional :&quot;,varianza(poblacion_x),&quot;\n&quot;)</code></pre>
+<pre><code>varianza poblacional : 2 </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="paso-3" class="section level4">
+<h4>Paso 3</h4>
+<p>Se determinan todas las muestras que se pueden construir de la
+poblacion</p>
+<p>Para determinar la media y la varianza de todas las medias muestrales
+para <span class="math inline">\(n=2\)</span> que se pueden obtener de
+la población, suponemos que las muestras se escogen con repetición:</p>
+<p><span class="math inline">\((1,1),
+(1,2),(1,3),(1,4),(1,5),(2,1),(2,2),(2,3),.....,(5,5)\)</span>.</p>
+<pre class="r"><code>poblacion_n2=permutations(5,2,1:5, repeats=TRUE)
+mx=apply(poblacion_n2, 1,mean)
+data.frame(poblacion_n2,mx)</code></pre>
+<pre><code>   X1 X2  mx
+1   1  1 1.0
+2   1  2 1.5
+3   1  3 2.0
+4   1  4 2.5
+5   1  5 3.0
+6   2  1 1.5
+7   2  2 2.0
+8   2  3 2.5
+9   2  4 3.0
+10  2  5 3.5
+11  3  1 2.0
+12  3  2 2.5
+13  3  3 3.0
+14  3  4 3.5
+15  3  5 4.0
+16  4  1 2.5
+17  4  2 3.0
+18  4  3 3.5
+19  4  4 4.0
+20  4  5 4.5
+21  5  1 3.0
+22  5  2 3.5
+23  5  3 4.0
+24  5  4 4.5
+25  5  5 5.0</code></pre>
+<pre class="r"><code> cat(&quot;media poblacional de la media muestral     :&quot;, media(mx),&quot;\n&quot;)</code></pre>
+<pre><code>media poblacional de la media muestral     : 3 </code></pre>
+<pre class="r"><code> cat(&quot;varianza poblacional de la media muestral :&quot;,varianza(mx),&quot;\n&quot;)</code></pre>
+<pre><code>varianza poblacional de la media muestral : 1 </code></pre>
+<pre class="r"><code> cat(&quot;\n&quot;)</code></pre>
+<pre class="r"><code> cat(&quot;Compara los resultados obtenidos con los respectivos valores de la población &quot;)</code></pre>
+<pre><code>Compara los resultados obtenidos con los respectivos valores de la población </code></pre>
+<pre class="r"><code> plot(poblacion_n2, pch=19)
+ grid()</code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><br/><br/></p>
+</div>
+<div id="paso-4" class="section level4">
+<h4>Paso 4</h4>
+<p>Determinar la población de medias de tamaño <span
+class="math inline">\(n=2\)</span>, cuando el proceso se realiza sin
+repetición</p>
+<p>En este caso desaparen las muestras <span
+class="math inline">\((1,1),(2,2),(3,3),(4,4),(5,5)\)</span> ademas de
+<span class="math inline">\((2,1)\)</span>, pues ya esta contenida en la
+muestra <span class="math inline">\((1,2\)</span>. En total quedaran 10
+posibles muestras</p>
+<pre><code>   X1 X2  mx
+1   1  2 1.5
+2   1  3 2.0
+3   1  4 2.5
+4   1  5 3.0
+5   2  3 2.5
+6   2  4 3.0
+7   2  5 3.5
+8   3  4 3.5
+9   3  5 4.0
+10  4  5 4.5</code></pre>
+<pre><code>media poblacionalde la media muestral     : 3 </code></pre>
+<pre><code>varianza poblacional de la media muestral : 0.75</code></pre>
+<pre><code>Compara los resultados obtenidos con los respectivos valores de la población </code></pre>
+<p><img src="codigo31_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="conclusiones" class="section level3">
+<h3><strong>Conclusiones</strong></h3>
+<ul>
+<li><p><span class="math inline">\(E[\bar{X}] = E[X] =
+\mu\)</span></p></li>
+<li><p><span class="math inline">\(V[\bar{X}] =
+\dfrac{V[X]}{n}\)</span></p></li>
+<li><p>Cuando <span class="math inline">\(\dfrac{n}{N}&gt;0.05\)</span>,
+como el muestreo se realiza sin repeticion ( un cliente solo parece una
+vez en la muestra) , la probabilidad de seleecion en cada momento cambia
+a medida que se elige la muestra. Estos cambios hacen necesario realizar
+un ajuste en la varianza:</p></li>
+</ul>
+<p><span class="math display">\[V[\bar{X}] = \dfrac{V[X]}{n}
+\dfrac{(N-n)}{(N-1)}\]</span></p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="proporción-muestral" class="section level2">
+<h2><strong>Proporción muestral</strong></h2>
+<p>Otro parametro de intres es la proporcion muestral para lo cual
+tambien se define una población pequeña que facilite la compresión de
+sus propiedades.</p>
+<p><br/><br/><br/></p>
+<div id="propiedades-de-la-proporción-muesrtal" class="section level3">
+<h3><strong>Propiedades de la proporción muesrtal</strong></h3>
+<div id="paso-1-1" class="section level4">
+<h4>Paso 1</h4>
+<p>Definir la población</p>
+<p>Supongamos que una población esta conformada por <span
+class="math inline">\(\{\)</span>si, no,si, no, no <span
+class="math inline">\(\}\)</span></p>
+<p>Ahora que se desea calcular todas las medias que se puedan obtener de
+esta población para un tamaño de muestra <span
+class="math inline">\(n=2\)</span>.</p>
+<p>En otras palabras la población de medias para <span
+class="math inline">\(n=2\)</span>.</p>
+<pre class="r"><code>library(gtools)
+media=function(x){sum(x)/length(x)}
+varianza=function(x){sum((x-media(x))^2)/(length(x))}</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="paso-2-1" class="section level4">
+<h4>Paso 2</h4>
+<p>Determinar la media y la varianza poblacioneales</p>
+<p>La media y varianza poblacional de esta población estará dada
+por:</p>
+<pre class="r"><code>poblacion_x=c(1,0,1,0,0)
+cat(&quot;media poblacional    :&quot;,media(poblacion_x),&quot;\n&quot;)</code></pre>
+<pre><code>media poblacional    : 0.4 </code></pre>
+<pre class="r"><code>cat(&quot;varianza poblacional :&quot;,varianza(poblacion_x),&quot;\n&quot;)</code></pre>
+<pre><code>varianza poblacional : 0.24 </code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
+</div>
+<div id="paso-3-1" class="section level4">
+<h4>Paso 3</h4>
+<p>Se determinan todas las muestras que se pueden construir de la
+población</p>
+<p>Para determinar la media y la varianza de todas las medias muestral s
+para <span class="math inline">\(n=2\)</span> que se pueden obtener de
+la población, suponemos que las muestras se escogen con repetición:</p>
+<p><span class="math inline">\((si,si)\)</span>, <span
+class="math inline">\((si,no)\)</span>……<span
+class="math inline">\((no,no)\)</span></p>
+<pre class="r"><code>x &lt;- c(&quot;1-si&quot;, &quot;2-no&quot;, &quot;3-si&quot;,&quot;4-no&quot;,&quot;5-no&quot;)
+muestra=permutations(n=5,r=2,v=x,repeats.allowed=T)
+p=c(1,0.5,1,0.5,0.5,0.5,0,0.5,0,0,1,0.5,1,0.5,0.5,0.5,0,0.5,0,0,0.5,0,0.5,0,0)
+data.frame(muestra,p)</code></pre>
+<pre><code>     X1   X2   p
+1  1-si 1-si 1.0
+2  1-si 2-no 0.5
+3  1-si 3-si 1.0
+4  1-si 4-no 0.5
+5  1-si 5-no 0.5
+6  2-no 1-si 0.5
+7  2-no 2-no 0.0
+8  2-no 3-si 0.5
+9  2-no 4-no 0.0
+10 2-no 5-no 0.0
+11 3-si 1-si 1.0
+12 3-si 2-no 0.5
+13 3-si 3-si 1.0
+14 3-si 4-no 0.5
+15 3-si 5-no 0.5
+16 4-no 1-si 0.5
+17 4-no 2-no 0.0
+18 4-no 3-si 0.5
+19 4-no 4-no 0.0
+20 4-no 5-no 0.0
+21 5-no 1-si 0.5
+22 5-no 2-no 0.0
+23 5-no 3-si 0.5
+24 5-no 4-no 0.0
+25 5-no 5-no 0.0</code></pre>
+<pre class="r"><code>cat(&quot;media de la proporcion muestral    : &quot;,media(p), &quot;\n&quot;)</code></pre>
+<pre><code>media de la proporcion muestral    :  0.4 </code></pre>
+<pre class="r"><code>cat(&quot;varianza de la proporcion muestral : &quot;, varianza(p))</code></pre>
+<pre><code>varianza de la proporcion muestral :  0.12</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="paso-4-1" class="section level4">
+<h4>Paso 4</h4>
+<p>Determinar la población de medias de tamaño <span
+class="math inline">\(n=2\)</span>, cuando el proceso se realiza sin
+repetición</p>
+<p>En este caso desaparen las muestras <span
+class="math inline">\((1,1),(2,2),(3,3),(4,4),(5,5)\)</span> ademas de
+<span class="math inline">\((2,1)\)</span>, pues ya esta contenida en la
+muestra <span class="math inline">\((1,2\)</span>. En total quedaran 10
+posibles muestras</p>
+<pre><code>     X1   X2  mp
+1  1-si 2-no 0.5
+2  1-si 3-si 1.0
+3  1-si 4-no 0.5
+4  1-si 5-no 0.5
+5  2-no 3-si 0.5
+6  2-no 4-no 0.0
+7  2-no 5-no 0.0
+8  3-si 4-no 0.5
+9  3-si 5-no 0.5
+10 4-no 5-no 0.0</code></pre>
+<pre><code>media poblacional de la media muestral     : 0.4 </code></pre>
+<pre><code>varianza poblacional de la media muestral : 0.09 </code></pre>
+<pre><code>Compara los resultados obtenidos con los respectivos valores de la poblacion </code></pre>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="conclusiones-1" class="section level3">
+<h3><strong>Conclusiones</strong></h3>
+<ul>
+<li><p><span class="math inline">\(E[\widehat{p}] = p\)</span></p></li>
+<li><p><span class="math inline">\(V[\widehat{p}] =
+\dfrac{pq}{n}\)</span></p></li>
+<li><p>Si <span class="math inline">\(\dfrac{n}{N}&gt;0.05\)</span>, se
+hacen necesario realizar un ajuste en la varianza:</p></li>
+</ul>
+<p><span class="math display">\[V[\widehat{p}] = \dfrac{pq}{n}
+\dfrac{(N-n)}{(N-1)}\]</span></p>
+<p><br/><br/><br/><br/></p>
+</div>
+</div>
+</div>
+<div id="muestreo" class="section level1">
+<h1><strong>Muestreo</strong></h1>
+<p><br/><br/></p>
+<div id="muestreo-aleatorio-simple" class="section level3">
+<h3><strong>Muestreo aleatorio simple</strong></h3>
+<p>Para seleccionar una muestra de una variables, supongamos que se
+distinguen por un Id del 1 al 1000, utilizamos la funcion
+<strong>sample</strong> para seleccionar la muestra:</p>
+<pre class="r"><code>x&lt;-seq(1,1000,1)
+sample(x, 20)</code></pre>
+<pre><code> [1] 406 320 127 453 169 182 362 860 878 583 679 907 245  48 667 499 216 149 286
+[20] 922</code></pre>
+<p>En este caso se ha seleccionado una muestra de tamaño <span
+class="math inline">\(n=10\)</span> de una población de <span
+class="math inline">\(N=1000\)</span> unidades. Dato que la población es
+muy grande es poco probable que un valor salga repetido, por lo que se
+conoce como muestreo sin repetición.</p>
+<p>Es posible realizar un muestreo con repetición en el caso de que la
+población sea demasiado pequeña (este tipo de muestreos se llaman
+bootstrap o remuestreo) :</p>
+<pre class="r"><code>x&lt;-1:10
+sample(x, 20, replace = TRUE)</code></pre>
+<pre><code> [1]  9  4  9  8  7  6  3 10  2  9  9  8  6  4  1  6  2  5  4  2</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="muestreo-sistemático" class="section level3">
+<h3><strong>Muestreo sistemático</strong></h3>
+<pre class="r"><code>N=2000
+a=100
+ids=S.SY(N, a)
+ids</code></pre>
+<pre><code>      [,1]
+ [1,]   70
+ [2,]  170
+ [3,]  270
+ [4,]  370
+ [5,]  470
+ [6,]  570
+ [7,]  670
+ [8,]  770
+ [9,]  870
+[10,]  970
+[11,] 1070
+[12,] 1170
+[13,] 1270
+[14,] 1370
+[15,] 1470
+[16,] 1570
+[17,] 1670
+[18,] 1770
+[19,] 1870
+[20,] 1970</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="ejemplo-muestreo-aleatorio-simple" class="section level3">
+<h3><strong>Ejemplo muestreo aleatorio simple</strong></h3>
+<pre class="r"><code># se importa base de datos
+library(readr)
+base_muestreo &lt;- read_delim(&quot;data/base_muestreo.csv&quot;, 
+    delim = &quot;;&quot;, escape_double = FALSE, col_types = cols(ID = col_integer()), 
+    trim_ws = TRUE)
+head(base_muestreo) # primeras 6 filas de la base</code></pre>
+<pre><code># A tibble: 6 × 1
+  `ID,CAR,NF`
+  &lt;chr&gt;      
+1 1,CIV,3    
+2 2,BIO,2.7  
+3 3,ELE,3.5  
+4 4,ELE,4.3  
+5 5,ELE,4.2  
+6 6,ELE,4    </code></pre>
+<pre class="r"><code>dim(base_muestreo) # dimension de la base</code></pre>
+<pre><code>[1] 180   1</code></pre>
+<p><br/><br/></p>
+<p>Para seleccionar una muestra aleatoria mediante el <strong>muestreo
+aleatorio simple</strong> de la base utilizamos la función
+<strong>sample</strong></p>
+<pre class="r"><code># se extre la muestra
+ muestra1=base_muestreo[sample(1:nrow(base_muestreo),50,replace=F),] </code></pre>
+<p><br/><br/></p>
+</div>
+<div id="ejemplo-muestreo-aleatorio-sistemático" class="section level3">
+<h3><strong>Ejemplo muestreo aleatorio sistemático</strong></h3>
+<p>Ahora si se requiere un muestreo sistemático</p>
+<pre class="r"><code>N=180
+n=10
+a=N/n
+ids=S.SY(N, a)
+ids</code></pre>
+<pre><code>      [,1]
+ [1,]    1
+ [2,]   19
+ [3,]   37
+ [4,]   55
+ [5,]   73
+ [6,]   91
+ [7,]  109
+ [8,]  127
+ [9,]  145
+[10,]  163</code></pre>
+<pre class="r"><code>base2=base_muestreo[ids,]
+base2</code></pre>
+<pre><code># A tibble: 10 × 1
+   `ID,CAR,NF`
+   &lt;chr&gt;      
+ 1 1,CIV,3    
+ 2 19,IND,2.4 
+ 3 37,MAT,3.9 
+ 4 55,CIV,3.7 
+ 5 73,MAT,4.8 
+ 6 91,IND,4.5 
+ 7 109,IND,4.1
+ 8 127,CIV,2.5
+ 9 145,CIV,3.1
+10 163,MAT,3.8</code></pre>
+<p><br/><br/></p>
+<p>Para los casos de los muestreos estratificado y muestreo por
+conglomerados se utiliza el muestreo aleatorio simple como base.</p>
+<p><br/><br/><br/><br/></p>
+</div>
+</div>
+<div id="paquetedeg" class="section level1">
+<h1><strong>PaqueteDEG</strong></h1>
+<p><br/><br/></p>
+<ol style="list-style-type: decimal">
+<li>Instalación del paquete.</li>
+</ol>
+<p>El paquete paqueteDEG en construcción permitirá realizar algunos
+cálculos del tamaño de la muestra y tutoriales. Para su instalación
+corremos el siguiente código</p>
+<pre class="r"><code># install.packages(&quot;devtools&quot;)  # solo si no  esta instalado
+devtools::install_github(&quot;dgonxalex80/paqueteDEG&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Calculo del tamaño de la muestra para la estimación de una media
+poblacional</li>
+</ol>
+<p>Ejemplo:</p>
+<p>Determinar el tamaño de la muestra para estimar la media de una
+variable, en una población de tamaño <span class="math inline">\(N =
+2000\)</span> con varianza conocida igual a <span
+class="math inline">\(\sigma^{2}=3025\)</span>, con una confianza del
+95% y un error de muestreo de 5 unidades</p>
+<p>Solución:</p>
+<p>Información del problema :</p>
+<ul>
+<li><span class="math inline">\(\sigma^{2}=3025\)</span> –&gt; <span
+class="math inline">\(\sigma = 55\)</span></li>
+<li><span class="math inline">\(N = 2000\)</span></li>
+<li>Confianza del 95% : Percentil 97.5 = <span
+class="math inline">\(z_{_{\alpha/2}} = 1.96\)</span></li>
+<li>Error de muestreo : <span class="math inline">\(e = 5\)</span></li>
+</ul>
+<p><span class="math display">\[n = \dfrac{ z_{_{\alpha/2}} \times
+\sigma^{2} }{e^{2}} =\dfrac{1.96^{2} \times 3025 }{5^{2}} =464.83 \sim
+465\]</span></p>
+<p><br/><br/><br/></p>
+<p>Ahora con una base de datos que contiene la carrera y la nota final
+del curso de matemáticas fundamental.</p>
+<pre class="r"><code>head(base_muestreo)</code></pre>
+<pre><code># A tibble: 6 × 1
+  `ID,CAR,NF`
+  &lt;chr&gt;      
+1 1,CIV,3    
+2 2,BIO,2.7  
+3 3,ELE,3.5  
+4 4,ELE,4.3  
+5 5,ELE,4.2  
+6 6,ELE,4    </code></pre>
+<pre class="r"><code>cat(&quot;dimensión de la base  : &quot;, dim(base_muestreo), &quot;\n&quot;)</code></pre>
+<pre><code>dimensión de la base  :  180 1 </code></pre>
+<pre class="r"><code>cat(&quot;media poblacional &quot;, mean(base_muestreo$NF), &quot;\n&quot;)</code></pre>
+<pre><code>media poblacional  NA </code></pre>
+<pre class="r"><code>t=table(base_muestreo$CAR)
+cat(&quot;proporción poblacional : &quot;, t[2]/sum(t))</code></pre>
+<pre><code>proporción poblacional :  NA</code></pre>
+<p>Con 180 mregistros y tres columnas o variables :</p>
+<ul>
+<li>ID : identificación del estudiante</li>
+<li>CAR : programa en el que se encuentra matriculado</li>
+<li>NF : nota final de matemáticas fundamentales</li>
+</ul>
+<p>Como seleccionar una muestra aleatoria de 20 estudiantes:</p>
+<pre class="r"><code>idm=sample(1:80, 30)
+muestra =base_muestreo[idm,]
+muestra</code></pre>
+<pre><code># A tibble: 30 × 1
+   `ID,CAR,NF`
+   &lt;chr&gt;      
+ 1 76,BIO,3.4 
+ 2 4,ELE,4.3  
+ 3 14,SIS,3.4 
+ 4 38,CIV,4.7 
+ 5 41,CIV,3.1 
+ 6 13,SIS,2.3 
+ 7 63,IND,3.4 
+ 8 30,MAT,3.8 
+ 9 61,MAT,4.4 
+10 22,SIS,4.5 
+# ℹ 20 more rows</code></pre>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

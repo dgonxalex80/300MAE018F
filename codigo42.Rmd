@@ -1,0 +1,214 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 4.2**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---     
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, comment = NA)
+library(psych)
+library(summarytools)
+library(tidyverse)
+# install.packages("devtools")
+#devtools::install_github("dgonxalex80/paqueteDEG")
+# library(paqueteDEG)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+# install.packages('gtools')
+# install.packages("TeachingSampling")
+
+#load library
+library(gtools)
+library(TeachingSampling)
+library(readr)
+base_muestreo <- read_delim("data/base_muestreo.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(ID = col_integer()), 
+    trim_ws = TRUE)
+# library(paqueteDEG)
+
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/codigo4.png")
+```
+
+<br/><br/><br/>
+
+
+
+
+# **Simulación**
+
+<br/><br/>
+
+Con el fin de entender el concepto de confianza se propone la simulacion como estrategia. Inicialmente se genera de manera simulada un conjunto de 100 muestras (m=100) cada una de tamaño n=200, de una población con distribución normal con $\mu=30$ y varianza $\sigma^2=10$ y un valor de confianza del 95% ($\alpha=0.05$)
+
+La gráfica dibuja los 100 intervalos de confianza en el cual se pueden observar algunos unos pocos que no contienen el parametro ($\mu=30$)
+<br/><br/>
+
+## **Confianza**
+
+```{r, fig.height=8, fig.width=4}
+m= 100 ## número de experimentos
+n=300 ## tamaño de muestra
+mux=30 # media poblacion 
+sdx=sqrt(50)  # desviacion poblacion
+a=0.05
+x=rnorm(n*m, mux, sdx)
+muestras=matrix(x, nrow = m)
+
+icm=function(xx){
+  mxx=mean(xx)
+  sdxx=sd(xx)
+  p=1-a/2
+  lsxx=mxx+pnorm(p)*sdxx/sqrt(n)
+  lixx=mxx-pnorm(p)*sdxx/sqrt(n)
+  return(c(lixx,lsxx))
+}
+
+ICa=apply(muestras, 1,icm)
+
+plot(1:100, type = "n",
+     xlim = range(ICa),
+     ylab = "Muestreos", 
+     las=1, 
+     xlab=" ")
+abline(v = mux, lty = 2) ## la media poblacional.
+for(i in 1:100) {
+  segments(ICa[1,i], i, ICa[2,i], i)
+}
+
+```
+
+<br/><br/><br/>
+
+# **Estimaciones**
+
+<br/><br/>
+
+## **IC para una media**
+
+Intervalo de confianza para una media 
+
+Como ejemplo se estima un IC para la la nota final de los estudiantes que cursaron la asignatura de Matemáticas Fundamentales, para una muestra de n=180
+
+```{r, eval=FALSE}
+t.test(muestra1$NF,conf.level = 0.95)$conf.int
+```
+<br/><br/>
+
+## **IC para una proporción**
+
+Intervalo de confianza para una proporción 
+
+Como ejemplo se estima un intervalo de confianza para una muestra de tamaño 1000 para la proporción de fallecidos por covid en el Valle
+
+```{r, eval=FALSE}
+ingciv=as.numeric(muestra1$CAR=="CIV")
+t1=table(ingciv)
+prop.test(t1[1],180, conf.level = 0.95)$conf.int
+
+```
+<br/><br/>
+
+## **IC para una varianza**
+
+Para calcular el intervalo de confianza para una varianza, he creado la siguiente función, dado que no está disponible en R
+
+```{r, eval=FALSE}
+# parametros de entrada : x variable 
+#                         a alpha (confianza del 95% : a=0.05) 
+
+ic.var=function(x,a){
+  n=length(x)
+    per.chi2=qchisq(c(1-a/2, a/2), n-1)   # percentiles chi-cuadrado para 95% de confianza
+  icvar=(n-1)*var(x)/per.chi2
+  return(icvar)
+}
+x1=rnorm(100)
+ic.var(x1, 0.05)
+```
+
+
+<br/><br/>
+
+## **IC comparación varianzas**
+
+Intervalo de confianza para la comparación de varianzas
+
+Como ejemplo se toman dos muestras de las edades para las personas contagiadas por covid en el Valle
+
+```{r}
+nota.civ=c(3,1.5,1,4.7,1.7,3.1,3,2.6,3.4,3.3,4.7,2.3,3.7,1.1,2.4,3.6,3.1,0.9,1.2,0.8,3.1,2.5,2.2,3.2,2,2.2,2,3.6,2.5,2.3,3.1,2.2,4,3,3.6,2.4,4.1,3.7,3,2.4,3,3.8,2.1,3,3.9,2,4.1,1.7,3,4.1,1.4,3.2,4.4,3.2,3.8,2.2,2.3,4.5,4.5,2.5,3.6,4.4,1.7,1.7)
+nota.ind=c(3.5,3.3,2.4,4.6,3.8,2.5,3.1,3.5,4.7,1.2,3.2,0.7,0.8,3.4,4.1,1.5,3.2,4.2,3.7,1.3,3.2,4.7,3,4.6,2.4,4.5,4.4,4.3,3.9,4.3,3.1,1.8,3.1,4.3,3.1,2.6,3.1,4.1,4.3,3.5,3.3,3.7,3.6,2.4,3.5,4.3,3.3,2.2,3.5,4.5,4.1,0.9,3,2,3.8,2.1,2)
+
+var.test(nota.civ, nota.ind)$conf.int 
+```
+<br/><br/>
+
+## **IC medias grupos independientes**
+
+Intervalo de confianza para la comparación de medias grupos independientes, suponiendo **varianzas iguales**
+
+Como ejemplo se toman dos muestras para comparar la edad de las personas contagiadas por covid en dos grupos independientes
+
+
+```{r, eval=FALSE}
+t.test(nota.civ, nota.ind,
+       mu = 0, 
+       paired = FALSE, 
+       var.equal = TRUE,
+       conf.level = 0.95 )$conf.int 
+```
+<br/><br/>
+
+Intervalo de confianza para la comparación de medias grupos independientes, con **varianza diferentes**
+
+En este caso se toman dos muestras de grupos independientes, solo se realiza el procedimiento para mostrar la sintaxis en el caso de que las varianza sean diferentes 
+
+```{r, eval=FALSE}
+ t.test(nota.civ, nota.ind,
+       mu = 0, 
+       paired = FALSE, 
+       var.equal = FALSE,
+       conf.level = 0.95 )$conf.int
+```
+
+<br/><br/><br/>
+
+## **IC comparación proporciones**
+
+Comparación de proporciones
+
+Para el ejemplo se toma una muestra de tamaño 1000 y se compara las proporciones de personas contagiadas y con estado grave y con estado moderado
+
+```{r, eval=FALSE}
+nciv=65
+nind=58
+prop.test(c(nciv,nind),c(180,180), conf.level = 0.95)$conf.int
+```
+
+
+
+
+
+
+
+

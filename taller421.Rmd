@@ -1,0 +1,227 @@
+---
+title: <span style="color:#235784">**Taller 421** </span>  
+subtitle: <span style="color:#235784">**Unidad 4.2**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c0,c1,c2,c3)
+
+
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+library(summarytools)
+
+#library(dviz.supp)
+```
+
+
+
+</br></br></br>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "left"}
+knitr::include_graphics("img/banner004.png")
+```
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 1</div>
+
+Un ingeniero está analizando la resistencia a la compresión de piezas que son utilizadas en la fabricación de motores para vehículos. La resistencia a la compresión se distribuye normalmente con $\sigma^2 = 1000 \, (psi)^2$. Una muestra aleatoria de 12 piezas presenta una media en la resistencia de compresión $\bar{x} = 3250 \, psi$.
+
+a. Construir un intervalo de confianza del 95% de la media de la resistencia a la compresión.
+b. Construir intervalos de confianza del 90% y del 99% para la media resistencia a la compresión. Comparar los anchos de estos intervalos.
+c. Si se desea estimar la resistencia a la compresión con un error de muestreo menor a 15 psi y una confianza del 99%, ¿qué tamaño de muestra se requiere?
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 2</div>
+
+Una marca de margarina dietética fue analizada para determinar el nivel de ácido graso poliinsaturado en porcentaje. En una muestra de seis paquetes se obtuvieron los siguientes datos: 16.8, 17.2, 17.4, 16.9, 16.5, 17.1.
+
+```{r}
+x <- c(16.8, 17.2, 17.4, 16.9, 16.5, 17.1)
+```
+
+
+a. ¿Existe evidencia que apoye la hipótesis de que el nivel de ácido graso poliinsaturado se distribuye normalmente?
+b. Calcular un intervalo de confianza del 99% sobre la media $\mu$ e interpretar el resultado.
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 3</div>
+
+El porcentaje de titanio contenido en una aleación utilizada en artículos para escalar fue medido en 51 partes seleccionadas aleatoriamente. La desviación estándar muestral es $s = 0.37$.
+
+a.  Construir un intervalo de confianza del 95% para $\sigma$. 
+b. Analizar qué ocurre con el intervalo si se aumenta el tamaño de la muestra manteniendo el resto de la información constante.
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 4</div>
+
+De 1000 casos de cáncer de pulmón seleccionados al azar, 823 resultaron en muerte dentro de los 10 años posteriores a su detección.
+
+a. Construir un intervalo de confianza del 95% para la tasa de mortalidad. 
+b. Interpretar los resultados obtenidos.
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 5</div>
+
+Se tomaron 30 unidades de tabaco habano para medir su contenido de alquitrán. Los datos son los siguientes:
+
+```{r}
+x <- c(1.542, 1.622, 1.440, 1.459, 1.598, 1.585, 1.466, 1.608, 1.533, 1.498, 1.532, 1.546, 1.520, 1.532, 1.600, 1.466, 1.494, 78, 1.523, 1.504, 1.499, 1.548, 1.542, 1.397, 1.545, 1.611, 1.626, 1.511, 1.487, 1.558)
+```
+
+
+<pre>
+1.542  1.622  1.440  1.459  1.598  1.585  1.466  1.608  1.533  1.498
+1.532  1.546  1.520  1.532  1.600  1.466  1.494 78.000  1.523  1.504
+1.499  1.548  1.542  1.397  1.545  1.611  1.626  1.511  1.487  1.558
+</pre>
+
+
+a. ¿Existe evidencia que apoye la hipótesis de que el contenido de alquitrán se distribuye normalmente?
+b. Calcular un intervalo de confianza del 99% para la media del contenido de alquitrán.
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 6</div>
+
+Los siguientes datos corresponden al tiempo de secado (en horas) de una nueva pintura:
+
+```{r}
+x <- c(3,4, 2,5, 4,8, 2,9, 3,6, 2,8, 3,3, 5,6, 3,7, 2,8, 4,4, 4,0, 5,2, 3,0, 4,8)
+```
+
+<pre>
+3, 4, 2, 5, 4, 8, 2, 9, 3, 6, 2, 8, 3, 3, 5, 6, 3, 7, 2, 8, 4, 4, 4, 0,
+5, 2, 3, 0, 4, 8
+</pre>
+
+a. Calcular un intervalo de confianza del 95% para la media del tiempo de secado.
+b. Calcular un intervalo de confianza del 98% para su varianza. Interpretar los resultados.
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 7</div>
+
+El director de una fábrica desea estimar el tiempo promedio que toma perforar tres agujeros en una placa metálica utilizada para mesas. ¿Cuál debe ser el tamaño de la muestra para que el intervalo de confianza del 95% esté dentro de 15 segundos de la media real, sabiendo que $\sigma = 40$?
+
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 8</div>
+En un proceso de fabricación se compara la tensión de ruptura de dos métodos: estándar y con aleación. Las tensiones son las siguientes:
+
+```{r}
+# Proceso estándar: 
+proc_est <- c(428, 419, 458, 439, 441, 456, 463, 429, 438, 445, 441, 463)  
+#Proceso nuevo: 
+proc_nue <- c(462, 448, 435, 465, 429, 472, 453, 459, 427, 468, 452, 447)  
+```
+
+
+<pre>
+proceso estandar
+428, 419, 458, 439, 441, 456, 463, 429, 438, 445, 441, 463  
+
+Proceso nuevo: 
+462, 448, 435, 465, 429, 472, 453, 459, 427, 468, 452, 447  
+
+</pre>
+
+a. Obtener un intervalo de confianza del 95% para la diferencia de medias.
+b. Determinar si existe una diferencia real entre los dos procesos. ¿Cuál es más conveniente?
+
+
+</div>
+
+
+</br></br>
+
+<div class="box2 with-label">
+<div class="label">Problema 9</div>
+
+De una muestra aleatoria de 87 estaciones de gasolina, 13 tenían al menos un tanque subterráneo con fuga.
+
+a. Determinar un intervalo de confianza del 95% para la proporción de estaciones con fugas.
+b. Calcular el tamaño de muestra necesario para que un intervalo del 95% especifique la proporción dentro de mas o menos $0.03$. En caso de no tener información previa, discutir cómo calcular el tamaño muestral y si es necesario hacer ajustes por población finita.
+
+</div>
+
+
+</br></br>
+
+
+Resuelve los ejercicios utilizando software estadístico **R** y verifica tus resultados con las fórmulas vistas.
+
