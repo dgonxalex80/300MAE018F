@@ -123,6 +123,20 @@ navbar:
           href: recurso31.html
         - text: "Código 3.1"  
           href: codigo31.html         
+        - text: "---------" 
+        - text: "Guía 3.2"
+          href: guia42.html  
+        - text: "recursos 3.2"
+          href: recurso42.html
+        - text: "Código 3.2"  
+          href: codigo42.html
+        - text: "Taller 321"  
+          href: codigo42.html         
+        - text: "--------"      
+        - text: "Monitoria 3"
+          href: monitoria3.html            
+               
+
 
     - text: "Módulo 4"
       menu:

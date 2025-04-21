@@ -1,6 +1,6 @@
 ---
-title: <span style="color:#235784">**Taller 421** </span>  
-subtitle: <span style="color:#235784">**Unidad 4.2**</span> 
+title: <span style="color:#235784">**Taller 321** </span>  
+subtitle: <span style="color:#235784">**Unidad 3.2**</span> 
 author: "dgonzalez "
 output:
   html_document:
@@ -22,7 +22,8 @@ knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE, 
   warning = FALSE,
-  hiline = TRUE
+  hiline = TRUE,
+  comment = NA
 )
 # colores
 c0= "#FFCC00"
@@ -53,7 +54,7 @@ library(summarytools)
 </br></br></br>
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "left"}
-knitr::include_graphics("img/banner004.png")
+knitr::include_graphics("img/banner003.png")
 ```
 
 </br></br>
@@ -222,6 +223,35 @@ b. Calcular el tamaño de muestra necesario para que un intervalo del 95% especi
 
 </br></br>
 
+
+<div class="box2 with-label">
+<div class="label">Problema 10</div>
+
+El artículo de In-use Emissions from Heavy Duty Dissel Vehicles (J.Yanowitz, 2001) presenta las mediciones de eficiencia de combustible en millas/galón de una muestra de siete camiones. Los datos obtenidos son los siguientes: 
+
+```{r}
+x =c(7.69, 4.97, 4.56, 6.49, 4.34, 6.24 , 4.45)
+x
+```
+
+
+
+Se supone que es una muestra aleatoria de camiones y que se desea construir un intervalo de confianza del 95 % para la media  de la eficiencia de combustible de esta población. No se tiene información de la distribución de los datos. El método bootstrap permite construir intervalos de confianza del 95 % - Para ilustrar el método suponga que coloca los valores de la muestra en una caja y extrae uno al azar. Este correspondería al primer valor de la muestra bootstrap $X^{∗}_{1}$. Después de anotado el valor se regresa $X^{∗}_{1}$  a la caja y se extrae el valor $X^{∗}_{2}$ , regresandolo nuevamente. Este procedimiento se repite hasta completar una muestra de tamaño $n$, $X^{∗}_{1}$,$X^{∗}_{2}$,$X^{∗}_{2}$,\cdot $X^{∗}_{n}$, conformando la muestra bootstrap.
+
+Es necesario extraer un gran número de muestras (suponga k = 1000). Para cada una de las muestra bootstrap obtenidas se calcula la media $\bar{X^{∗}_{i}}$, obteniéndose un valor para cada muestra. El intervalo de confianza queda conformado por los percentiles $P_{2.5}$ y $P_{97.5}$. Existen dos métodos para estimarlo:
+
+<br/><br/>
+
+|        |                                              |
+|:-------|:--------------------------------------------:|
+|Método 1| $(P_{2.5}; \hspace{.5cm} P_{97.5})$                        |
+|Método 2| $(2\bar{X} − P_{97.5}; \hspace{.5cm} 2\bar{X} − P_{2.5})$  |
+
+Construya el intervalo de confianza por los dos métodos y compare los resultados obtenidos.
+Tomado de Navidi(2006)
+
+
+</div>
 
 Resuelve los ejercicios utilizando software estadístico **R** y verifica tus resultados con las fórmulas vistas.
 

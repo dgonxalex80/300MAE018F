@@ -12,7 +12,7 @@
 <meta name="author" content="dgonzalez" />
 
 
-<title>Taller 421 </title>
+<title>Taller 321 </title>
 
 <script src="site_libs/header-attrs/header-attrs.js"></script>
 <script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
@@ -436,6 +436,23 @@ $(document).ready(function () {
     <li>
       <a href="codigo31.html">Código 3.1</a>
     </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia42.html">Guía 3.2</a>
+    </li>
+    <li>
+      <a href="recurso42.html">recursos 3.2</a>
+    </li>
+    <li>
+      <a href="codigo42.html">Código 3.2</a>
+    </li>
+    <li>
+      <a href="codigo42.html">Taller 321</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria3.html">Monitoria 3</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -499,16 +516,16 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore"><span style="color:#235784"><strong>Taller
-421</strong> </span></h1>
+321</strong> </span></h1>
 <h3 class="subtitle"><span style="color:#235784"><strong>Unidad
-4.2</strong></span></h3>
+3.2</strong></span></h3>
 <h4 class="author">dgonzalez</h4>
 
 </div>
 
 
 <p></br></br></br></p>
-<p><img src="img/banner004.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><img src="img/banner003.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p></br></br></p>
 <div class="box2 with-label">
 <div class="label">
@@ -673,6 +690,59 @@ hacer ajustes por población finita.</li>
 </ol>
 </div>
 <p></br></br></p>
+<div class="box2 with-label">
+<div class="label">
+Problema 10
+</div>
+<p>El artículo de In-use Emissions from Heavy Duty Dissel Vehicles
+(J.Yanowitz, 2001) presenta las mediciones de eficiencia de combustible
+en millas/galón de una muestra de siete camiones. Los datos obtenidos
+son los siguientes:</p>
+<pre class="r"><code>x =c(7.69, 4.97, 4.56, 6.49, 4.34, 6.24 , 4.45)
+x</code></pre>
+<pre><code>[1] 7.69 4.97 4.56 6.49 4.34 6.24 4.45</code></pre>
+<p>Se supone que es una muestra aleatoria de camiones y que se desea
+construir un intervalo de confianza del 95 % para la media de la
+eficiencia de combustible de esta población. No se tiene información de
+la distribución de los datos. El método bootstrap permite construir
+intervalos de confianza del 95 % - Para ilustrar el método suponga que
+coloca los valores de la muestra en una caja y extrae uno al azar. Este
+correspondería al primer valor de la muestra bootstrap <span
+class="math inline">\(X^{∗}_{1}\)</span>. Después de anotado el valor se
+regresa <span class="math inline">\(X^{∗}_{1}\)</span> a la caja y se
+extrae el valor <span class="math inline">\(X^{∗}_{2}\)</span> ,
+regresandolo nuevamente. Este procedimiento se repite hasta completar
+una muestra de tamaño <span class="math inline">\(n\)</span>, <span
+class="math inline">\(X^{∗}_{1}\)</span>,<span
+class="math inline">\(X^{∗}_{2}\)</span>,<span
+class="math inline">\(X^{∗}_{2}\)</span>,<span
+class="math inline">\(X^{∗}_{n}\)</span>, conformando la muestra
+bootstrap.</p>
+<p>Es necesario extraer un gran número de muestras (suponga k = 1000).
+Para cada una de las muestra bootstrap obtenidas se calcula la media
+<span class="math inline">\(\bar{X^{∗}_{i}}\)</span>, obteniéndose un
+valor para cada muestra. El intervalo de confianza queda conformado por
+los percentiles <span class="math inline">\(P_{2.5}\)</span> y <span
+class="math inline">\(P_{97.5}\)</span>. Existen dos métodos para
+estimarlo:</p>
+<p><br/><br/></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Método 1</td>
+<td align="center"><span class="math inline">\((P_{2.5}; \hspace{.5cm}
+P_{97.5})\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Método 2</td>
+<td align="center"><span class="math inline">\((2\bar{X} − P_{97.5};
+\hspace{.5cm} 2\bar{X} − P_{2.5})\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Construya el intervalo de confianza por los dos métodos y compare los
+resultados obtenidos. Tomado de Navidi(2006)</p>
+</div>
 <p>Resuelve los ejercicios utilizando software estadístico
 <strong>R</strong> y verifica tus resultados con las fórmulas
 vistas.</p>

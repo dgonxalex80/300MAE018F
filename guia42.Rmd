@@ -1,7 +1,7 @@
 ---
 title: <span style="color:#2C5697"> </span>  
 author: "dgonzalez "
-subtitle: <span style="color:#2C5697">**Módulo 4- Unidad 4.2**</span> 
+subtitle: <span style="color:#2C5697">**Módulo 3- Unidad 3.2**</span> 
 output:
   html_document:
     toc: no
@@ -33,7 +33,7 @@ c7= "#F7F7F7" # FONDO GRIS CLARO WEB
 
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "center"}
-knitr::include_graphics("img/guia4.png")
+knitr::include_graphics("img/guia3.png")
 ```
 <br/><br/>
 
@@ -64,7 +64,7 @@ que le permita seleccionar la mejor alternativa para la estimación de un parám
 
 ## **Duración**
 
-La presente  unidad será desarrollada del 15 al 22  octubre de 2024 . Ademas del material suministrado  contaran con el acompañamiento del profesor durante las sesiones de clase  y de la monitora en las actividades académicas. Los entegables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  22 de octubre de 2024 
+La presente  unidad será desarrollada del 22 al 28  abril de 2025 . Ademas del material suministrado  contaran con el acompañamiento del profesor durante las sesiones de clase  y de la monitora en las actividades académicas. Los entegables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  28 de abril de 2025 
 
 Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
 
@@ -75,9 +75,9 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 
 |Actividad      | Descripción                    | https://github.com/dgonxalex80
 |:--------------|:-----------------------------  |
-|**Actividad 421**    |Resuelva las preguntas y problemas planteadas en  el  **taller 421** y entregue su solución  en formato  pdf en el enlace correspondiente de  Brightspace|
+|**Actividad 321**    |Resuelva las preguntas y problemas planteadas en  el  **taller 321** y entregue su solución  en formato  pdf en el enlace correspondiente de  Brightspace|
 |Trabajo individual |  |
-|Fecha          | 22 de octubre de 2024 |
+|Fecha          | 28 de abril de 2025 |
 |Hora           | 23:59 hora local       |
 
 
@@ -90,9 +90,9 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 
 ## **Entregables** 
 
-| Actividad421.pdf | Solucionario **taller 421** de problemas sobre intervalos de confianza| 
+| Actividad421.pdf | Solucionario **taller 321** de problemas sobre intervalos de confianza| 
 |:--------------|:-----------------------------|
-|Fecha          | 22 de octubre de 2024 |
+|Fecha          | 28 de abril de 2025 |
 |Hora           | 23:59 hora local       |
 
 
@@ -104,7 +104,7 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 
 La unidad 3.2 contará con los siguientes recursos para su desarrollo:
 
-* Taller 321.  En parejas deberán desarrollar el taller 321 que contiene problemas relacionados con la estimación de intervalos de confianza para la media, varianza, proporción, diferencia de medias,diferencia de proporciones y razón de varianzas
+* Taller 321.  En parejas deberán desarrollar el taller 321 que contiene problemas relacionados con la estimación de **intervalos de confianza** para la media, varianza, proporción, diferencia de medias,diferencia de proporciones y razón de varianzas
 
 
 * Para el desarrollo de este taller se recomienda: 

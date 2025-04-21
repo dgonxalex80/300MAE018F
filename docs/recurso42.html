@@ -1,0 +1,1968 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia22.html">Guía 2.2</a>
+    </li>
+    <li>
+      <a href="recurso22.html">recursos 2.2</a>
+    </li>
+    <li>
+      <a href="actividad221.html">Actividad 221</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia23.html">Guía 2.3</a>
+    </li>
+    <li>
+      <a href="recurso23.html">recursos23</a>
+    </li>
+    <li>
+      <a href="codigo23.html">Código 23</a>
+    </li>
+    <li>
+      <a href="actividad231.html">Actividad 231</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia24.html">Guía 2.4</a>
+    </li>
+    <li>
+      <a href="recurso24.html">recursos24</a>
+    </li>
+    <li>
+      <a href="codigo24.html">Código 24</a>
+    </li>
+    <li>
+      <a href="actividad241.html">Actividad 241</a>
+    </li>
+    <li>
+      <a href="problemas331.html">Problemas 2.4</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria2.html">Monitoria 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia31.html">Guía 3.1</a>
+    </li>
+    <li>
+      <a href="recurso31.html">recursos 3.1</a>
+    </li>
+    <li>
+      <a href="codigo31.html">Código 3.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia42.html">Guía 3.2</a>
+    </li>
+    <li>
+      <a href="recurso42.html">recursos 3.2</a>
+    </li>
+    <li>
+      <a href="codigo42.html">Código 3.2</a>
+    </li>
+    <li>
+      <a href="codigo42.html">Taller 321</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria3.html">Monitoria 3</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="recurso000.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+    <li>
+      <a href="parcial1.html">Primer parcial</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#2C5697"> </span></h1>
+<h3 class="subtitle"><span style="color:#2C5697"><strong>Estadística
+para la toma de decisiones</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><br/><br/></p>
+<p><img src="img/recursos3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<div id="estimación-por-ic" class="section level1">
+<h1><strong>Estimación por IC</strong></h1>
+<p><img src="img/gic.png" width="40%" style="display: block; margin: auto;" /></p>
+<p>Un estimador por intervalo de confianza (IC) es una regla que
+especifica como usar las mediciones obtenidas en una muestra para
+calcular dos números que forman los extremos del intervalo que confiamos
+contenga al parámetro de interés <span
+class="math inline">\(\theta\)</span>. Dependiendo del parámetro se
+utiliza en la construcción del IC las distribuciones muestrales: <span
+class="math inline">\(normal\)</span> <span
+class="math inline">\(estándar\)</span> (<span
+class="math inline">\(Z\)</span>), <span
+class="math inline">\(t-Student\)</span>, <span
+class="math inline">\(\chi^{2}\)</span> o <span
+class="math inline">\(F-Fisher\)</span></p>
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="una-población" class="section level1">
+<h1><strong>Una población</strong></h1>
+<p><br/><br/><br/></p>
+<div id="intervalos-de-confianza-para-la-media-con-varianza-conocida"
+class="section level2">
+<h2><strong>Intervalos de confianza para la media, con varianza
+conocida</strong></h2>
+<p>Partimos de dos valores que contiene el parámetro <span
+class="math inline">\(\theta\)</span></p>
+<p><span class="math display">\[L_{I} \leq \theta \leq L_{S}
+\]</span></p>
+<p>bajo el supuesto de que</p>
+<p><span class="math display">\[Z=\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+\sim N(0,1)\]</span></p>
+<p>podemos construir el siguiente intervalo</p>
+<p><span class="math display">\[P(L_{IC} \leq Z \leq L_{SC})=1-\alpha
+\]</span></p>
+<p>donde <span class="math inline">\((1-\alpha)\)</span> conforma el
+concepto de confianza, el cual difiere del concepto de probabilidad, en
+cuanto la confianza representa la proporción de intervalos que contienen
+el parámetro. Lo que significa que de 100 intervalos construidos a
+partir muestras aleatorias, <span
+class="math inline">\((1-\alpha)\)</span>% o más contendrán el
+parámetro.</p>
+<p><span class="math display">\[\begin{eqnarray*}
+        P(-z_{\alpha/2} \leq Z \leq z_{\alpha/2})&amp;=&amp;1-\alpha \\
+        P\Bigg(-z_{\alpha/2} \leq \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+\leq z_{\alpha/2}\Bigg)&amp;=&amp;1-\alpha\\
+        P\Bigg(\bar{X}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}} \leq \mu \leq
+\bar{X}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\Bigg)&amp;=&amp;1-\alpha \\
+    \end{eqnarray*}\]</span></p>
+<p>el intervalo de confianza para la media poblacional queda determinado
+por:</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para una media, varianza conocida
+</div>
+<p><span class="math display">\[IC_{\mu}: \bar{x} \pm z_{\alpha/2}
+\hspace{.1cm}\dfrac{\sigma}{\sqrt{n}} \]</span></p>
+<p>Supuestos:</p>
+<ul>
+<li><span class="math inline">\(X\sim N(\mu,\sigma^{2})\)</span></li>
+<li>varianza conocida</li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="intervalo-de-confianza-para-la-media-con-varianza-desconocida"
+class="section level2">
+<h2><strong>Intervalo de confianza para la media, con varianza
+desconocida</strong></h2>
+<p><span class="math display">\[T=\dfrac{\bar{X}-\mu}{s/
+\sqrt{n}}\]</span></p>
+<p>se distribuye t student con <span class="math inline">\(n-1\)</span>
+grados de libertad y el intervalo se construye \</p>
+<p><span class="math display">\[\begin{eqnarray*}
+        P\Big(-t_{\alpha/2} \leq T \leq t_{\alpha/2}
+\Big)&amp;=&amp;1-\alpha \\
+        P\Big(-t_{\alpha/2} \leq \frac{\bar{X}-\mu}{s/\sqrt{n}} \leq
+t_{\alpha/2} \Big)&amp;=&amp;1-\alpha \\
+        P\Bigg(\bar{X}-t_{\alpha/2} \dfrac{s}{\sqrt{n}} \leq \mu \leq
+\bar{X}+t_{\alpha/2}\dfrac{s}{\sqrt{n}}\Bigg)&amp;=&amp;1-\alpha \\
+    \end{eqnarray*}\]</span></p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para una media
+</div>
+<p><span class="math display">\[IC_{\mu}: \bar{x} \pm t_{\alpha/2}
+\hspace{.1cm}\frac{s}{\sqrt{n}} \]</span></p>
+<p>Supuestos: * <span class="math inline">\(X\sim
+N(\mu,\sigma^{2})\)</span> * varianza desconocida</p>
+</div>
+<p><br/><br/></p>
+<p>Cuando el tamaño de la muestra se considera grande (usualmente <span
+class="math inline">\(n&gt;30\)</span>) el estadístico T se aproxima a
+la distribución normal estandar, en este caso el intervalo de confianza
+se puede construir a a partir de:</p>
+<p><br/>&gt;<br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para una media, con tamaños de muestra grandes
+</div>
+<p><span class="math display">\[IC_{\mu}: \bar{x} \pm z_{\alpha/2}
+\hspace{.1cm}\dfrac{s}{\sqrt{n}} \]</span></p>
+<p>Supuestos:</p>
+<ul>
+<li><span class="math inline">\(X\sim N(\mu,\sigma^{2})\)</span></li>
+<li>varianza desconocida</li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 1
+</div>
+<p>Se registró el tiempo transcurrido entre la facturación y la
+recepción del pago, para una muestra de 100 clientes en una empresa. La
+media y la desviación estándar son respectivamente: 39.1 días y 17.3
+días.</p>
+<p>Con el fin de establecer una medición de la calidad en el servicio,
+se requiere determinar una estimación por intervalos con una confianza
+del 95% para la media.</p>
+</div>
+<p><br/><br/></p>
+<p>Este caso tambien se utiliza cuando se desconoce la distribución de
+la variable X. En este caso se utiliza el teorema central del límite que
+aproxima la distribución de la media muestral a la distribución normal
+<br/><br/></p>
+<p><strong>Solución</strong></p>
+<p>La estimación del tiempo que demora el pago de una factura es un
+valor de importancia tanto para empresarios como para proveedores, pues
+esta información se utiliza para la programación de gastos e ingresos.
+El problema nos suministra la siguiente información:</p>
+<ul>
+<li><span class="math inline">\(\bar{x}=39.1\)</span> días</li>
+<li><span class="math inline">\(s=17.3\)</span> días, lo que significa
+que se desconoce la varianza</li>
+<li><span class="math inline">\(n=100\)</span> que se considera
+grande</li>
+<li>se requiere construir un IC del 95% para <span
+class="math inline">\(\mu\)</span>, que implica un valor del percentil
+<span class="math inline">\(z=\pm 1.96\)</span></li>
+</ul>
+<p><span class="math display">\[\bar{x} \pm z_{\alpha/2}
+\frac{s}{\sqrt{n}} \]</span></p>
+<p><span class="math display">\[39.1 \pm 1.96 \frac{17.3}{\sqrt{100}}
+\]</span></p>
+<p><span class="math display">\[\Bigg(39.1 -1.96
+\frac{17.3}{\sqrt{100}};39.1 + 1.96
+\frac{17.3}{\sqrt{100}}\Bigg)\]</span></p>
+<p><span class="math display">\[(35.71; 42.49 )\]</span></p>
+<p>El tiempo promedio transcurrido entre la facturación y el pago en la
+empresa está entre 35.7 dias y 42.5 dias con una confianza del 95%</p>
+<p><br/><br/><br/></p>
+</div>
+<div id="tamaño-de-la-muestra-para-estimar-una-media"
+class="section level2">
+<h2><strong>Tamaño de la muestra para estimar una media</strong></h2>
+<p><br/></p>
+<p>Uno de los problemas más frecuentes a los que nos enfrentamos es la
+determinación del tamaño de la muestra para realizar una estimación de
+la media que garantice una confianza del <span
+class="math inline">\((1-\alpha)\%\)</span></p>
+<p><span
+class="math display">\[P\Bigg(-z_{\alpha/2}\frac{\sigma}{\sqrt{n}} \leq
+\bar{X}-\mu \leq
+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\Bigg)=1-\alpha\]</span></p>
+<p>Para construirlo partimos del supuesto que podemos tolerar un error
+de muestreo <span class="math display">\[e = \vert\bar{x}-\mu\vert \leq
+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>y que deseamos una con fiabilidad del <span
+class="math inline">\((1-\alpha)\%\)</span>.</p>
+<p>Entonce podemos tener la confianza del <span
+class="math inline">\((1-\alpha)\%\)</span> de que el error no exceda
+<span class="math inline">\(z_{\alpha/2}
+\frac{\sigma}{\sqrt{n}}\)</span> de la siguiente igualdad despejamos
+<span class="math inline">\(n\)</span></p>
+<p><span class="math display">\[e= z_{\alpha/2}
+\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><span class="math display">\[e^{2}= z_{\alpha/2}^{2}
+\frac{\sigma^{2}}{n}\]</span></p>
+<p><span class="math display">\[n =
+\displaystyle\frac{z_{\alpha/2}^{2}\sigma^{2}}{e^{2}}\]</span></p>
+<p><span class="math display">\[n =
+\displaystyle\frac{z_{\alpha/2}^{2}\sigma^{2}}{e^{2}}\]</span></p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Tamaño de muestra para la estimación de una media
+</div>
+<p><span class="math display">\[n =
+\displaystyle\frac{z_{\alpha/2}^{2}\sigma^{2}}{e^{2}}\]</span>
+Donde:</p>
+<ul>
+<li><span class="math inline">\(z_{\alpha/2}^{2}\)</span> : percentil de
+la normal al cuadrado</li>
+<li><span class="math inline">\(sigma^{2}\)</span> : varianza de la
+variable en estudio</li>
+<li><span class="math inline">\(e^{2}\)</span> : error de muestreo</li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 2
+</div>
+<p>Se desea estimar la media del número de personas que han fallecido
+diariamente por Covid19 en Colombia, con una confianza del 98% y un
+error de muestreo de 1 persona . ¿Qué tamaño deberá tener la muestra
+para cumplir con estas condiciones?</p>
+</div>
+<p><br/><br/></p>
+<p><strong>Solución</strong></p>
+<p>Información: Confianza : 98% (<span
+class="math inline">\(z_{\alpha/2}\)</span>) error de muestro : 3 una
+personas (<span class="math inline">\(|\bar{x}-\mu| &lt; e\)</span>)
+varianza : no tenemos la varianza y por tanto tenemos 3 alternativas
+:(1) mediante un estudio previo similar obtener el valor de la varianza,
+(2) realizar una muestra piloto que puede ser de n=40 y con ella estimar
+la varianza <span class="math inline">\(s^{2}\)</span>, (3) preguntando
+a un experto sobre el valor del mínimo y el máximo de la variable se
+puede estimar la desviación estándar <span
+class="math display">\[s=\frac{\max\{x\}-\min\{x\}}{2}\]</span></p>
+<p><span class="math display">\[n = \dfrac{2.3263482^{2} \times
+\hspace{.2cm} 352.2}{1^{2}} = 1906.07 \sim 1906\]</span> Se debe tomar
+una muestra de 1906 dias y recoger en cada uno de ellos el número de
+personas muertas</p>
+<pre class="r"><code># varianza
+# s2.nota=var(sample(Colombia$edad, 100))
+s2.nota =352.2395
+# confianza : 1-a
+a=1-.98
+# error de nuestre
+e=1 # personas 
+
+# tamaño de muestra
+n=paqueteDEG::sizemu(qnorm(1-a/2),s2.nota,e)
+round(n,0)  # redondeo a entero</code></pre>
+<p><br/><br/><br/></p>
+</div>
+<div id="intervalos-de-confianza-para-la-proporción"
+class="section level2">
+<h2><strong>Intervalos de confianza para la proporción</strong></h2>
+<p>La construcción del intervalo de confianza para una proporción es
+similar al proceso realizado en la construcción de la media, bajo el
+supuesto de <span class="math inline">\(np&gt;10\)</span> que permite la
+aproximación a una distribución normal</p>
+<p><span class="math display">\[\widehat{p} \sim N\Bigg(p,
+\frac{p(1-p)}{n}\Bigg)\]</span></p>
+<p>por tanto</p>
+<p><span class="math display">\[\Bigg[ \hspace{.3cm}
+^\widehat{p}-z_{\alpha/2}\sqrt{\frac{\widehat{p}\hspace{.1cm}(1-\widehat{p}}{n}}
+\hspace{.2cm};\hspace{.2cm}
+\widehat{p}+z_{\alpha/2}\sqrt{\frac{\widehat{p}\hspace{.1cm}(1-\widehat{p}}{n}}
+\hspace{.3cm} \Bigg] \]</span> <br/>&gt;<br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para la estimación de una proporción
+</div>
+<p><span class="math display">\[IC_{p}: \widehat{p} \pm z_{\alpha/2}
+\hspace{.1cm}\sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}\]</span></p>
+<p>Supuesto:</p>
+<ul>
+<li><span class="math inline">\(np&gt;5\)</span> o <span
+class="math inline">\(n(1-p)&gt;5\)</span></li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 3
+</div>
+<p>En una encuesta aleatoria realizada a 500 familias de la ciudad que
+poseen televisión por cable, se encuentra que 340 tienen suscripción a
+Plus-Video. Calcule un intervalo de confianza para la proporción de
+familias que tienen suscripción a Plus-Video en la ciudad. Interprete el
+resultado obtenido.</p>
+</div>
+<p><br/><br/></p>
+<p><strong>Solución</strong></p>
+<p><span class="math display">\[\Bigg(\dfrac{340}{500}  -
+1.96  \hspace{.1cm}\sqrt{\frac{ 0.68 (1-0.68)}{500}} \hspace{.3cm};
+\hspace{.3cm} \dfrac{340}{500}  - 1.96  \hspace{.1cm}\sqrt{\frac{ 0.68
+(1-0.68)}{500}}\Bigg)
+\]</span></p>
+<p><span class="math display">\[(0.68 - 1.96 \times
+0.02086145  \hspace{.3cm}; \hspace{.3cm} 0.68 + 1.96
+\times  0.02086145)\]</span></p>
+<p><span class="math display">\[ (0.6391116  \hspace{.3cm};
+\hspace{.3cm} 0.7208884) \]</span></p>
+<pre class="r"><code>prop.test(340,500)$conf.int</code></pre>
+<pre><code>[1] 0.6368473 0.7203411
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<p>De acuerdo con el resultado anterior, se puede afirmar con una
+confianza del 95% que entre el 63.7% y el 72.0% de las familias tienen
+una suscripción a Plus-Video. Esto daría a pensar que una gran mayoria
+de los hogares en la ciudad tienen esta afiliación</p>
+<p><br/><br/><br/></p>
+</div>
+<div id="tamaño-de-muestra-para-la-estimación-de-una-proporción"
+class="section level2">
+<h2><strong>Tamaño de muestra para la estimación de una
+proporción</strong></h2>
+<p><span class="math display">\[n=\dfrac{z_{\alpha/2}^{2}\hspace{.3cm}
+p(1-p)}{e^{2}}\]</span> Donde :</p>
+<ul>
+<li><p><span class="math inline">\(z_{\alpha/2}\)</span> : representa el
+percentil de la distribución normal relacionado con la
+confianza</p></li>
+<li><p><span class="math inline">\(p\)</span> : la proporción y p(1-p)
+la varianza. Para conocerla se puede hacer uso de una estimación a
+través de una prueba piloto, la <strong>varianza máxima</strong> que
+ocurre cuando <span class="math inline">\(p=0.5\)</span> (<span
+class="math inline">\(pq=0.25\)</span>)</p></li>
+<li><p><span class="math inline">\(e\)</span> : el error de muestreo que
+representa la tolerancia al erro que tiene el investigador (<span
+class="math inline">\(|\widehat{p}-p|&lt;e\)</span>).</p></li>
+</ul>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 4
+</div>
+<p>Una empresa requiere realizar un estudio para establecer las
+proporción de fallas diarias que presta la empresa al presentar un
+servicio . El gerente encargado del estudio decide que la tasa de error
+máximo tolerable debe ser del 5% y el nivel de confianza del 99% .</p>
+<p>Con esta información una firma de consultora presenta una propuesta a
+la empresa por valor de $ 110.2 millones para realizar el estudio y
+justifica su costo así: Por costos administrativos y de logística
+corresponde un valor de $ 55.4 millones y cada encuesta realizada tiene
+un valor de $50 mil pesos.</p>
+<p>El Director de la empresa le encarga a usted revisar la información
+darle un concepto sobre la propuesta realizada por la firma de auditores
+a la mayor brevedad</p>
+</div>
+<p><br/><br/></p>
+<p><strong>Solución</strong></p>
+<p>Información de la solicitud:</p>
+<ul>
+<li>Objetivo : Analizar la propuesta realizada por la firma externa
+<ul>
+<li>Valor total : 110.2 millones</li>
+<li>Valor costos administrativos y logísticos : 25.4 millones</li>
+<li>Valor encuestas : 110.2-55.4 = 54.8 millones</li>
+<li>Número de encuestas propuestas a realizar : 1096</li>
+<li>nivel de confianza 99%</li>
+<li>error de muestreo 0.05</li>
+</ul>
+<span class="math display">\[ n = \dfrac{2.575829^{2} \hspace{.3cm} 0.5
+\times 0.5}{0.05^{2}} = \dfrac{1.658724}{0.0025} = 663.4897 \sim
+664\]</span></li>
+</ul>
+<p>El cálculo lo podemos realizar con la función: <code>sizemu</code>
+contenida en el paquete <code>paqueteDEG</code></p>
+<pre class="r"><code>library(paqueteDEG)
+paqueteDEG::sizep(qnorm(0.995),0.5,0.05)</code></pre>
+<p>De acuerdo con la información sumunistrada por la empresa, el tamaño
+de muestra apropiado para la estimación de la proporción, suponiendo
+varianza máxima es de <span class="math inline">\(n=664\)</span>, por
+tal razón la propuesta realiza por la empresa consultora excede en 432
+encuesta que presentan un sobre costo de $21.6 millones</p>
+<p><br/><br/><br/></p>
+</div>
+<div id="intervalos-de-confianza-para-la-varianza"
+class="section level2">
+<h2><strong>Intervalos de confianza para la varianza</strong></h2>
+<p>En el caso del intervalo de confianza para la varianza se parte de la
+premisa de que la variable</p>
+<p><span class="math display">\[\frac{(n-1)S^{2}}{\sigma^{2}} \sim
+\chi^{2}_{v=n-1}\]</span></p>
+<p>a partir de ella se puede construir</p>
+<p><span class="math display">\[P\Bigg(\chi^{2}_{1-\alpha/2} \leq
+\frac{(n-1)S^{2}}{\sigma^{2}} \leq \chi^{2}_{\alpha/2}
+\Bigg)=1-\alpha\]</span></p>
+<p>al invertir esta ecuaciones tenemos <span
+class="math display">\[P\Bigg(\frac{1}{\chi^{2}_{1-\alpha/2}} \geq
+\frac{\sigma^{2}}{(n-1)S^{2}} \geq \frac{1}{\chi^{2}_{\alpha/2}}
+\Bigg)=1-\alpha\]</span></p>
+<p>finalmente tenemos</p>
+<p><span class="math display">\[P\Bigg(
+\frac{(n-1)S^{2}}{\chi^{2}_{\alpha/2}} \leq \sigma^{2} \leq
+\frac{(n-1)S^{2}}{\chi^{2}_{1-\alpha/2}} \Bigg)=1-\alpha\]</span>
+<br/>&gt;<br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para una varianza
+</div>
+<p><span class="math display">\[IC_{\sigma^{2}}: \Bigg(
+\displaystyle\frac{(n-1)S^{2}}{\chi^{2}_{1-\alpha/2 ; v=n-1}}
+;\displaystyle\frac{(n-1)S^{2}}{\chi^{2}_{\alpha/2; v=n-1}}
+\Bigg)\]</span></p>
+<p>Supuestos:</p>
+<ul>
+<li><span class="math inline">\(X\sim N(\mu,\sigma^{2})\)</span></li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 5
+</div>
+<p>Se quiere estimar un intervalo de confianza del 95% para la
+desviación estandar de los precios de un documento financiero. Para ello
+se ha recogido información de los últimos 202 dias (ene.01.2024 a
+oct.10.2024, tomados de :Investing.com)</p>
+</div>
+<p><br/><br/></p>
+<p><strong>Solución</strong></p>
+<pre class="r"><code>ecopetrol=1:5
+  
+#  c(1.845, 1.845, 1.840, 1.825, 1.910, 1.890, 1.905, 1.875, 1.895, 1.880, 1.885, 1.900, 1.840, 1.940, 1.920, 1.890, 1.905, 1.905, 1.955, 1.960, 1.910, 1.930, 1.905, 1.885, 1.915, 1.930, 1.925, 1.920, 1.995, 2.55, 2.55, 2.45, 2.55, 2.60, 2.75, 2.55, 2.35, 2.40, 2.35, 2.85, 2.85, 2.40, 2.110, 2.155, 2.135, 2,85, 2,60, 2,40, 2,60, 2.120, 2.175, 2.130, 2.130, 2.145, 2.140, 2.135, 2.120, 2.165, 2.180, 2.180, 2.185, 2.180, 2.220, 2.190, 2.240, 2.210, 2.240, 2.260, 2.295, 2.280, 2.290, 2.295,2.320,2.325,2.315,2.300, 2.400, 2.295, 2.330, 2.430, 2.445, 2.430, 2.400, 2.405, 2.385, 2.360, 2.360, 2.365, 2.350, 2.370, 2.360, 2.350, 2.375,2.380, 2.300, 2.305, 2.295, 2.270, 2.340, 2.340, 2.320, 2.300, 2.285, 2.320, 2.265, 2.280, 2.280, 2.270, 2.250, 2.260, 2.255, 2.280, 2.310, 2.300, 2.305, 2.300, 2.275, 2.260, 2.240, 2.225,2.230, 2.240, 2.240, 2.240, 2.260, 2.245, 2.280, 2.255, 2.290, 2.320, 2.290, 2.245, 2.190, 2,75, 1.995, 2.115, 2.125, 2.125, 2.120, 2.100, 2.210, 2.120, 2,80, 2,75, 2,60, 2.55, 2,90, 2.85, 2.95, 2.120,2.240, 2.290, 2.300, 2.360, 2.345, 2.330, 2.340, 2.330, 2.280, 2.270, 2.305, 2.295, 2.275, 2.275, 2.310, 2.315, 2.340, 2.365, 2.355, 2.320, 2.320, 2.345, 2.335, 2.390, 2.395, 2.400, 2.355, 2.290, 2.295, 2.265, 2.280, 2.300, 2.315, 2.335, 2.375, 2.375, 2.355, 2.345, 2.395, 2.445, 2.405, 2.420, 2.355) 
+
+cat(&quot;s :&quot;,sum((ecopetrol- mean(ecopetrol))^2 )/ (length(ecopetrol)-1), &quot;\n&quot;)</code></pre>
+<pre><code>s : 2.5 </code></pre>
+<pre class="r"><code>cat(&quot;n :&quot;, length(ecopetrol), &quot;\n&quot;)</code></pre>
+<pre><code>n : 5 </code></pre>
+<pre class="r"><code>cat(&quot;P2.5  : &quot;, qchisq(0.025, 201) , &quot;\n&quot;)</code></pre>
+<pre><code>P2.5  :  163.63 </code></pre>
+<pre class="r"><code>cat(&quot;P97.5 : &quot;, qchisq(0.975, 201), &quot;\n&quot;)</code></pre>
+<pre><code>P97.5 :  242.1559 </code></pre>
+<pre class="r"><code>var(ecopetrol)</code></pre>
+<pre><code>[1] 2.5</code></pre>
+<p><span class="math display">\[IC_{\sigma^{2}}: \Bigg(
+\displaystyle\frac{(202-1) \times 203.0862}{242.1559}
+\hspace{.3cm}; \hspace{.3cm}
+\displaystyle\frac{(202-1) \times 203.0862 }{163.63} \Bigg)\]</span></p>
+<p><span class="math display">\[\dfrac{40820.33}{242.1559}
+\hspace{.3cm}; \hspace{.3cm}
+\dfrac{40820.33}{163.63}\]</span> <span class="math display">\[(168.5705
+\hspace{.3cm}; \hspace{.3cm}
+249.4673)\]</span></p>
+<p><br/><br/></p>
+<p>Se estima con una confianza del 95% que la desviación estándar del
+precio de las acciones de Ecopetrol está entre $ 75.7 y $ 140.0</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="dos-poblaciones" class="section level1">
+<h1><strong>Dos poblaciones</strong></h1>
+<p><br/><br/></p>
+<div
+id="estimación-de-intervalos-de-confianza-para-comparación-de-dos-poblaciones"
+class="section level2">
+<h2><strong>Estimación de intervalos de confianza para comparación de
+dos poblaciones</strong></h2>
+<p>Cuando se compraran dos poblaciones se puede estar interesado en la
+diferencia de medias, diferencia de proporciones o la razón de
+varianzas. Es necesario distinguir cuando se trata de diferencia de
+medias pareadas o diferencia para poblaciones independientes.</p>
+<p><br/><br/><br/></p>
+<div id="diferencia-de-medias---pareadas" class="section level3">
+<h3><strong>Diferencia de medias - pareadas</strong></h3>
+<p>Se consideran muestras pareadas cuando existen una fuerte dependencia
+entre pares de observaciones de dos poblaciones. Es el caso de
+experimentos donde se observan individuos en dos momentos diferentes de
+tiempo, por ejemplo estudiantes a los que se les realiza un examen de
+entrada y un examen de salida. En este caso se compara la evolución de
+cada individuo consigo mismo conformando parejas de mediciones.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para la diferencia de medias pareadas
+</div>
+<p><span class="math display">\[IC_{d=\bar{x}_{1}-\bar{x}_{2}}: \bar{d}
+\pm t_{\alpha/2} \frac{s_{d}}{\sqrt{n}}\]</span></p>
+<p>donde <span class="math inline">\(d_{i}=x_{1i}-x_{2i}\)</span> y
+<span class="math inline">\(s_{d}\)</span> es la desviación estándar de
+las diferencias <span
+class="math inline">\(d_{i}=x_{1i}-x_{2i}\)</span></p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 6
+</div>
+<p>Se afirma que una persona podrá reducir su peso en un periodo de dos
+semanas un promedio de 4.5 kilogramos con una nueva dieta. Los pesos de
+7 mujeres de siguieron esta dieta se registraron antes y después de un
+periodo de dos semanas.</p>
+<pre> 
+peso.ant= c(58.2, 60.3, 61.3, 69.0, 64.0, 62.6, 56.7)
+pes.des = c(60.0, 54.9, 58.1, 62.1, 58.5, 59.9, 54.4)
+
+peso.ant - peso.des = d
+-1.8  5.4  3.2  6.9  5.5  2.7  2.3
+
+mean(d)
+3.457143
+
+sd(d)
+ 2.869876
+</pre>
+<p>Pruebe la afirmación sobre la dieta calculando un intervalo de
+confianza del 95% para la diferencia de medias . Suponga que las
+diferencias de los pesos se distribuyen aproximadamente normal.</p>
+<p><span class="math display">\[\bar{d} - t_{\alpha/2}
+\frac{s_{d}}{\sqrt{n}} ; \bar{d} + t_{\alpha/2} \frac{s_{d}}{\sqrt{n}}
+\]</span></p>
+<p><span class="math display">\[\Bigg(3.457143 - 2.446912  \hspace{.3cm}
+\dfrac{2.869876}{\sqrt{7}}
+\hspace{.3cm}; \hspace{.3cm}
+3.457143 + 2.446912 \hspace{.3cm}
+\dfrac{2.869876}{\sqrt{7}}\Bigg)\]</span></p>
+<p><span class="math display">\[(0.8029502 \hspace{.3cm}; \hspace{.3cm}
+6.111336)\]</span></p>
+<pre class="r"><code>peso.ant=c(58.2, 60.3, 61.3, 69.0, 64.0, 62.6, 56.7)
+peso.des=c(60.0, 54.9, 58.1, 62.1, 58.5, 59.9, 54.4)
+
+t.test(peso.ant,peso.des,             # variables
+       paired = TRUE,                 # pareadas  
+       conf.level = 0.95)$conf.int    # nivel de confianza</code></pre>
+<pre><code>[1] 0.8029499 6.1113358
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+</div>
+<p><br/><br/></p>
+<p>Se puede afirmar que la diferencia entre los promedios de los peso
+antes y después, está entre <span class="math inline">\((0.80
+6.11)\)</span> kilogramos con una confianza del 95%. Por el momento
+diremos que la dieta generó una reducción en el peso dado que los dos
+valores del intervalo son positivos. La veracidad de la afirmación, la
+retomaremos en la unidad 4.3 donde se realiza una prueba de
+hipótesis.</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="diferencia-de-medias-poblaciones-independientes"
+class="section level2">
+<h2><strong>Diferencia de medias poblaciones
+independientes</strong></h2>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para diferencia de medias grupos independientes,
+varianzas iguales
+</div>
+<p><strong>Caso1</strong> :Supone varianzas iguales y desconocidas</p>
+<p><span class="math display">\[(\bar{x}_{1}-\bar{x}_{2})\pm
+t_{\alpha/2} \hspace{.2cm}s_{p}
+\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}\]</span></p>
+<p>donde <span class="math inline">\(s_{p}^{2}\)</span> es la varianza
+común</p>
+<p><span
+class="math display">\[s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2}\]</span></p>
+<p>y <span class="math inline">\(t_{\alpha/2}\)</span> se distribuye
+t-student con <span class="math inline">\(v=n_{1}+n_{2}-2\)</span>
+grados de libertad</p>
+<p>Supuestos: + <span class="math inline">\(X_{1}\)</span> y <span
+class="math inline">\(X_{2}\)</span> son variables aleatorias
+independientes con distribución normal + <span
+class="math inline">\(X_{1}\)</span> y <span
+class="math inline">\(X_{2}\)</span> tienen varianzas iguales pero
+desconocidas</p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 6
+</div>
+<p>A seis ingenieros que trabajan para el estado se les solicito
+realizar un pronostico la tasa de inflación para el año entrante. La
+misma petición se le realizo a ocho especialistas en finanzas que
+trabajan para el sector privado. Los pronósticos entregado fueron:</p>
+<pre>
+ingenieros               :  4.2%, 5.1%, 3.9%, 4.7%, 4.8%, 5.8% 
+especialistas en finanzas:  5.7%, 6.1%, 5.2%, 4.9%, 4.6%, 4.5%, 5.2%, 5.5%  
+</pre>
+<p>¿Están los especialistas (ingenieros y financieros) realizando
+pronósticos similares? . Suponga que los pronósticos realizados tienen
+distribución normal. Construye un intervalo de confianza para la
+diferencia de los promedios realizados por los ingenieros y los
+especializadas en finanzas del 95%. Concluya a partir de los resultados.
+|</p>
+</div>
+<p><br/><br/></p>
+<p><strong>Solución</strong>:</p>
+<p>En este caso se trata de una diferencia de medias para grupos
+independientes, por lo cual es necesario conocer como es la relación
+entre sus varianzas (iguales o diferentes) y de este modo ajustar el
+procedimiento.</p>
+<pre class="r"><code>inf.ing=c(4.2, 5.1, 3.9, 4.7, 4.8, 5.8)
+inf.fin=c(5.7, 6.1, 5.2, 4.9, 4.6, 4.5, 5.2, 5.5)
+par(mfrow = c(1, 2))
+boxplot(inf.ing, las=1, col=c2, ylim=c(3,7))
+boxplot(inf.fin, las=1, col=c4, ylim=c(3,7))</code></pre>
+<p><img src="recurso42_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>var.test(inf.ing, inf.fin)$conf.int         # variables</code></pre>
+<pre><code>[1]  0.2859721 10.3579460
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<pre class="r"><code>t.test(inf.ing, inf.fin,  paired = FALSE,   # grupos independientes 
+       var.equal = TRUE,                    # varianzas iguales
+       conf.level = 0.95)$conf.int </code></pre>
+<pre><code>[1] -1.1704541  0.2454541
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<p>Al realizar la comparación de las varianzas se puede observar que el
+intervalo contiene a 1, por lo cual asumiremos que las varianza son
+iguales (este procedimiento se debe hacer mediante pruebas de hipótesis
+que ser verán en la Unidad 4.3). Utilizaremos la función de R
+<code>var.test(x, ...)</code> para establecer si las varianzas son
+iguales o diferentes y luego la función
+<code>t.test(x,y, ...)$conf.int</code> para calcular el intervalo.</p>
+<p>La diferencia entre la estimación promedio de la inflación
+pronosticada por lo ingenieros y la realizada por los especialistas en
+finanzas, con una confianza del 95%, está entre <span
+class="math inline">\((-1.1704541;  0.2454541 )\)</span>, lo cual nos
+indica que sus estimaciones promedio son similares</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Diferencia de medias, poblaciones independientes, varianzas diferentes
+</div>
+<p><strong>Caso2</strong> : Supone varianzas diferentes, pero
+desconocidas</p>
+<p>En el caso tenemos</p>
+<p><span class="math display">\[(\bar{x}_{1}-\bar{x}_{2})\pm
+t_{\alpha/2}
+\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}\]</span></p>
+<p>donde los grados de libertad de t se aproximan a</p>
+<p><span
+class="math display">\[v=\frac{(s_{1}^{2}/n_{1}+s_{2}^{2}/n_{2})^{2}}{\Big[(s_{1}^{2}/n_{1})^{2}/(n_{1}-1)\Big]+\Big[(s_{2}^{2}/n_{2})^{2}/(n_{2}-1)\Big]}\]</span></p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 7
+</div>
+Supongamos el mismo caso del ejemplo anterior, pero con los siguientes
+datos :
+<pre>
+ingenieros :  2.2%, 1.1%, 3.9%, 5.9%, 4.5%, 5.1%    
+especialistas en finanzas:  3.7%, 2.1%, 2.2%, 3.9%, 3.6%, 3.5%, 3.2%, 3.5% 
+</pre>
+<p><br/><br/></p>
+<pre class="r"><code>inf.ing=c(2.2, 1.1, 3.9, 5.9, 4.5, 5.1)
+inf.fin=c(3.7, 2.1, 2.2, 3.9, 3.6, 3.5, 3.2, 3.5)
+par(mfrow = c(1, 2))
+boxplot(inf.ing, las=1, col=c2, ylim=c(1,6)); grid()
+boxplot(inf.fin, las=1, col=c3, ylim=c(1,6)); grid()</code></pre>
+<p><img src="recurso42_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>var.test(inf.ing, inf.fin)$conf.int</code></pre>
+<pre><code>[1]  1.324813 47.984900
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<pre class="r"><code>t.test(inf.ing, inf.fin,  paired = FALSE,   # grupos independientes 
+       var.equal = FALSE,                    # varianzas diferentes
+       conf.level = 0.95)$conf.int </code></pre>
+<pre><code>[1] -1.329604  2.471270
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<pre class="r"><code># resumen pronóstico ingenieros
+summary(inf.ing)</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.100   2.625   4.200   3.783   4.950   5.900 </code></pre>
+<pre class="r"><code># resumen pronóstico especialistas en finanzas
+summary(inf.fin)</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.100   2.950   3.500   3.212   3.625   3.900 </code></pre>
+<p>En este caso las varianzas son diferentes, por lo que se debe ajustar
+la función a : <code>var.equal = FALSE,</code>. Los resultados indican
+que existen diferencias entre los promedios estimados por los ingenieros
+y los especialistas en finanzas. Siendo <span
+class="math inline">\(\mu_{ing} &lt; \mu_{fin}\)</span></p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Nota:
+</div>
+<p>En cualquiera de los casos los resultados pueden generar que
+intervalo sea de la forma:</p>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="90%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\((-,-)\)</span></td>
+<td align="left">los dos limites que conforman el IC son negativos. De
+este resultado se puede concluir que <span
+class="math inline">\(\mu_{1}&lt;\mu_{2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\((-,+)\)</span></td>
+<td align="left">el limite inferior es negativo y el superior es
+positivo. Este intervalo contiene la posibilidad de <span
+class="math inline">\(\mu_{1}=\mu_{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\((+,+)\)</span></td>
+<td align="left">los dos limites son positivos , entonces podemos decir
+que <span class="math inline">\(\mu_{1}&gt;\mu_{2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="diferencia-de-proporciones" class="section level2">
+<h2><strong>Diferencia de proporciones</strong></h2>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Intervalo de confianza para la diferencia de proporciones
+</div>
+<p><span class="math display">\[(\widehat{p_{1}}-\widehat{p_{2}}) \pm
+z_{\alpha/2}
+\sqrt{\frac{\widehat{p_{1}}(1-\widehat{p_{1}})}{n_{1}}+\frac{\widehat{p_{2}}(1-\widehat{p_{2}})}{n_{2}}}\]</span></p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 9
+</div>
+<p>En una muestra de 200 clientes, el 20% indica preferencia por tamaño
+especial de pizza. Con posterioridad a una campaña publicitaria
+realizada en radio y televisión promoviendo dicho producto, se
+selecciono una muestra de igual tamaño. En esta ultima muestra el 22% de
+los clientes indico preferencia por el producto. De acuerdo con estos
+resultados calcule un intervalo de confianza del 95% para la diferencia
+de proporciones. De acuerdo a los resultados obtenidos, podría afirmarse
+que la campaña publicitaria fue efectiva?</p>
+</div>
+<p><br/><br/></p>
+<p><strong>Solución</strong></p>
+<p>En este caso se trata de la comparación de dos proporciones
+(proporción de clientes que prefieren el tamaño especial dentro de los
+clientes de la pizzería - <span class="math inline">\(p_{2}\)</span>
+comparada con la proporción de los clientes de la misma pizzería pero
+después de realizada la campaña publicitaria - <span
+class="math inline">\(p_{2}\)</span>)</p>
+<p>Información suministrada:</p>
+<ul>
+<li><span class="math inline">\(n_{1}=200\)</span>(numero de clientes
+encuestados sobre sus preferencias antes de realizar la campaña
+publicitaria</li>
+<li><span class="math inline">\(\widehat{p}_{1}=0.20\)</span> proporción
+muestral de clientes que prefieren el tamaño especial de pizza antes de
+la campaña publicitaria</li>
+<li><span class="math inline">\(n_{2}=200\)</span>(numero de clientes
+encuestados sobre sus preferencias después de realizada la campaña
+publicitaria</li>
+<li><span class="math inline">\(\widehat{p}_{2}=0.22\)</span> proporción
+muestral de clientes que prefieren el tamaño especial de pizza después
+de realizadala campaña publicitaria</li>
+</ul>
+<p>En ambos casos los tamaños de muestra se consideran grandes,
+permitiendo transformar la diferencia de proporciones en una variable z
+con distribución normal estándar</p>
+<p><span class="math display">\[(0.20-0.22) \pm 1.96
+\sqrt{\frac{0.20*(1-0.20)}{200}+\frac{0.22*(1-0.22)}{200}}\]</span></p>
+<p><span class="math display">\[(-0.0998 ; -0.0598)\]</span></p>
+<p>El intervalo estimado se lee: La diferencia entre la proporción de
+clientes que prefieren el tamaño especial de pizza antes de la realizar
+la campaña publicitaria y la proporción de clientes que prefieren este
+mismo tamaño, después de realizada la campaña publicitaria esta entre
+-0.0998 y -0.059, con una confianza del 95%. Estos resultados indican
+que <span class="math inline">\(p_{1}-p_{2}&lt;0\)</span> o también que
+<span class="math inline">\(p_{1}&lt;p_{2}\)</span>, lo cual quiere
+decir que la proporción de clientes con esta preferencia aumento después
+de haber realizado la campaña publicitaria.</p>
+<p><br/><br/></p>
+<pre class="r"><code>prop.test(c(40,44),c(200,200))$conf.int</code></pre>
+<pre><code>[1] -0.10480688  0.06480688
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<p>El resultado obtenido por R es levemente diferente, debido a ajuste
+en la formula propuesto por R.G. Newcpmbe (1998), e incorporado en la
+función de R</p>
+<p><br/><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Nota
+</div>
+<p>En cualquiera de los casos los resultados pueden generar que
+intervalo sea de la forma:</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="89%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\((-,-)\)</span></td>
+<td align="left">los dos limites que conforman el IC son negativos. De
+este resultado se puede concluir que <span
+class="math inline">\(p_{1}&lt;p_{2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\((-,+)\)</span></td>
+<td align="left">el limite inferior es negativo y el superior es
+positivo. Este intervalo contiene la posibilidad de <span
+class="math inline">\(p_{1}=p_{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\((+,+)\)</span></td>
+<td align="left">los dos limites son positivos , entonces podemos decir
+que <span class="math inline">\(p_{1}&gt;p_{2}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="comparación-de-varianzas" class="section level2">
+<h2><strong>Comparación de varianzas</strong></h2>
+<p><br/><br/></p>
+<p>La comparación de varianzas se realiza con relación al valor que tome
+la razón de sus valores <span
+class="math inline">\(\sigma^{2}_{1}/\sigma^{2}_{2}\)</span>. Observe
+que si esta relación es uno, indicaría que las varianzas son iguales.
+Por el contrario si esta razón es muy grande indicaría que <span
+class="math inline">\(\sigma^{2}_{1}&gt;\sigma^{2}_{2}\)</span> y si su
+valor es muy cercano a cero indicaría lo contrario.</p>
+<p>El uso de esta comparación esta relacionado con supuestos necesarios
+para la comparación de medias independientes, análisis de varianza y
+diseños experimentales. En este caso se emplea en su construcción la
+distribución F de Fischer</p>
+<p><br/>&gt;<br/></p>
+<div class="box1 with-label">
+<div class="label">
+Comparación de varianzas
+</div>
+<p><span class="math display">\[\Bigg(\dfrac{s^{2}_{1}}{s^{2}_{2}}
+\dfrac{1}{f_{1-\alpha/2}(v_{1}v_{2})}; \dfrac{s^{2}_{1}}{s^{2}_{2}}
+\dfrac{1}{f_{\alpha/2}(v_{1}v_{2})}\Bigg)\]</span></p>
+</div>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="intervalos-no-paramétricos" class="section level1">
+<h1><strong>Intervalos no paramétricos</strong></h1>
+<p>Cuando se extrae una muestra de una población que no es normal y se
+requiere estimar un intervalo de confianza se pueden utilizar los
+métodos de estimación <strong>bootstrap</strong>. Existen varias
+versiones del método. Una presentación básica del método se describe a
+continuación:</p>
+<p>El artículo de In-use Emissions from Heavy Duty Dissel Vehicles
+(J.Yanowitz, 2001) presenta las mediciones de eficiencia de combustible
+en millas/galón de una muestra de siete camiones. Los datos obtenidos
+son los siguientes: 7.69, 4.97, 4.56, 6.49, 4.34, 6.24 y 4.45. Se supone
+que es una muestra aleatoria de camiones y que se desea construir un
+intervalo de confianza del 95 % para la media de la eficiencia de
+combustible de esta población. No se tiene información de la
+distribución de los datos. El método bootstrap permite construir
+intervalos de confianza del 95 % - Para ilustrar el método suponga que
+coloca los valores de la muestra en una caja y extrae uno al azar. Este
+correspondería al primer valor de la muestra bootstrap <span
+class="math inline">\(X^{∗}_{1}\)</span>. Después de anotado el valor se
+regresa <span class="math inline">\(X^{∗}_{1}\)</span> a la caja y se
+extrae el valor <span class="math inline">\(X^{∗}_{2}\)</span> ,
+regresandolo nuevamente. Este procedimiento se repite hasta completar
+una muestra de tamaño <span class="math inline">\(n\)</span>, <span
+class="math inline">\(X^{∗}_{1}\)</span>,<span
+class="math inline">\(X^{∗}_{2}\)</span>,<span
+class="math inline">\(X^{∗}_{2}\)</span>,<span
+class="math inline">\(X^{∗}_{n}\)</span>, conformando la muestra
+bootstrap.</p>
+<p>Es necesario extraer un gran número de muestras (suponga k = 1000).
+Para cada una de las muestra bootstrap obtenidas se calcula la media
+<span class="math inline">\(\bar{X^{∗}_{i}}\)</span>, obteniéndose un
+valor para cada muestra. El intervalo de confianza queda conformado por
+los percentiles <span class="math inline">\(P_{2.5}\)</span> y <span
+class="math inline">\(P_{97.5}\)</span>. Existen dos métodos para
+estimarlo:</p>
+<p><br/><br/></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">Método 1</td>
+<td align="center"><span class="math inline">\((P_{2.5};
+P_{97.5})\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Método 2</td>
+<td align="center"><span class="math inline">\((2\bar{X} − P_{97.5};
+2\bar{X} − P_{2.5})\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Construya el intervalo de confianza por los dos métodos y compare los
+resultados obtenidos. Tomado de Navidi(2006)</p>
+<p><br/><br/></p>
+<pre class="r"><code>x=c( 7.69, 4.97, 4.56, 6.49, 4.34, 6.24, 4.45) # datos muestra
+boot=sample(x,7000,replace=TRUE)   # se extraen n x m muestras
+b=matrix(boot,nrow=1000,ncol=7)    # se construye matriz de n x m 
+mx=apply(b,1,mean)                 # se calculan m medias por fila</code></pre>
+<p><br/><br/></p>
+<pre class="r"><code>ic1=quantile(mx, probs=c(0.025, 0.975)) # se calcula IC método 1
+ic1</code></pre>
+<pre><code>    2.5%    97.5% 
+4.658536 6.386107 </code></pre>
+<p><br/><br/></p>
+<pre class="r"><code>ic2=c(2*mean(mx)-ic1[2], 2*mean(mx)-ic1[1]) # se calcula IC método 2
+ic2</code></pre>
+<pre><code>   97.5%     2.5% 
+4.657396 6.384967 </code></pre>
+<p><br/><br/></p>
+<pre class="r"><code>hist(mx, las=1, main=&quot;Método 1&quot;, ylab = &quot; &quot;, xlab = &quot; &quot;, col=c3, 
+     xlim = c(4.0, 7.0))
+abline(v=ic1, col=c1)</code></pre>
+<p><img src="recurso42_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<pre class="r"><code>hist(mx, las=1, main=&quot;Método 2&quot;, ylab = &quot; &quot;, xlab = &quot; &quot;, col=c3, 
+     xlim = c(4.0, 7.0))
+abline(v=ic2, col=c6)</code></pre>
+<p><img src="recurso42_files/figure-html/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Como se puede observar, el segundo estimador corrige el intervalo</p>
+<p><br/><br/><br/><br/></p>
+<div id="algunos-conceptos-importantes" class="section level2">
+<h2><strong>Algunos conceptos importantes</strong></h2>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Confianza
+</div>
+<p>Para explicar el concepto de confianza se simula 100 intervalos para
+la estimación de una media con valor de <span
+class="math inline">\(\mu=30\)</span>, como se ve en la gráfica no todos
+los intervalos (representados por una línea) contienen el valor del
+parámetro, solo de color negro lo contiene.</p>
+<p>Al contarlos se encuentra que 4 no lo contienen (de color rojo),
+mientras que 96 lo contiene, por tanto este procedimiento tiene una
+confianza del 95% de contener el valor de <span
+class="math inline">\(\mu=30\)</span></p>
+<p><img src="img/confianza95.png" width="60%" style="display: block; margin: auto;" />
+Este valor se integra al concepto de intervalo de confianza mediante el
+término <span class="math inline">\(1-\alpha\)</span>, por defecto los
+programas utilizan un nivel de confianza del 95% ( <span
+class="math inline">\(1-\alpha =0.95\)</span>) y se de nota por : <span
+class="math inline">\(IC_{\mu; 1-\alpha=0.95}\)</span></p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Grados de libertad
+</div>
+<p>Una definicion de grados de libertad encontrada: <a
+href="https://psicologiaexperimental.files.wordpress.com/2010/04/grados-de-libertad.pdf">¿Qué
+son los llamados “grados de libertad”?</a> escrito por : Roberto Behar y
+Pere Grima, los define como el número de dimensiones en los que se puede
+mover un valor por asignar. En el caso de una variable X, solo tenemos
+un grado de libertad para asignar este valor. En el caso de tener una
+variable bidimensional (X,Y), al momento de asignar valores a esta
+variable tenemos dos dimensiones = dos grados de libertad. Sin embargo
+que colocamos la restricción de que X+Y=10, perdemos un grado de
+libertad, dado que al colocar el primero, el segundo queda asignado por
+la restricción.</p>
+<p>En el caso de una muestra de tamaño <span
+class="math inline">\(n\)</span> que se puede representar como (<span
+class="math inline">\(X_{1}\)</span>,<span
+class="math inline">\(X_{2}\)</span>,<span
+class="math inline">\(X_{3}\)</span>,<span
+class="math inline">\(X_{4}\)</span>,<span
+class="math inline">\(X_{5}\)</span> , <span
+class="math inline">\(X_{n}\)</span>), lo cual está asociado con un
+espacio de <span class="math inline">\(n\)</span> dimensiones. En el
+caso de conocer el valor de <span
+class="math inline">\(\bar{X}\)</span>, los grados de libertad se
+reducen a <span class="math inline">\(n-1\)</span></p>
+<p>Como ejemplo supongamos que tenemos una muestras de datos formado por
+: <span class="math inline">\(X_{1}\)</span>,<span
+class="math inline">\(X_{2}\)</span>,<span
+class="math inline">\(X_{3}\)</span>,<span
+class="math inline">\(X_{4}\)</span>,<span
+class="math inline">\(X_{5}\)</span>. Con media <span
+class="math inline">\(\mu\)</span>. En este caso tendremos <span
+class="math inline">\(n-1\)</span> grados de libertad dado que conocemos
+el valor de la media en este caso. Es decir que tendríamos libertad de
+asignar 4 de los valores de la muestra, dado que el último estaría
+determinado por el valor de la media.</p>
+</div>
+<p><br/><br/><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Formulario : Intervalos de confianza
+</div>
+<table>
+<colgroup>
+<col width="2%" />
+<col width="11%" />
+<col width="66%" />
+<col width="19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center"><strong>parámetro</strong></th>
+<th align="center"><strong>Estimador por IC </strong></th>
+<th align="center"><strong>Supuestos</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">(1)</td>
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="center"><span class="math inline">\(\bar{x} \pm z_{\alpha/2}
+\hspace{.1cm}\dfrac{\sigma}{\sqrt{n}}\)</span></td>
+<td align="center"><span class="math inline">\(X\sim norm(\mu,
+\sigma^{2})\)</span>,<span class="math inline">\(\sigma^{2}\)</span>
+conocida</td>
+</tr>
+<tr class="even">
+<td align="center">(2)</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\bar{x} \pm z_{\alpha/2}
+\hspace{.1cm}\dfrac{s}{\sqrt{n}}\)</span></td>
+<td align="center"><span class="math inline">\(n&gt;&gt;\)</span>,
+TCL</td>
+</tr>
+<tr class="odd">
+<td align="center">(3)</td>
+<td align="center"></td>
+<td align="center"><span class="math inline">\(\bar{x} \pm
+t_{\frac{\alpha}{2};v=n-1}
+\hspace{.1cm}\dfrac{s}{\sqrt{n}}\)</span></td>
+<td align="center"><span class="math inline">\(X\sim norm(\mu,
+\sigma^{2})\)</span>, <span class="math inline">\(\sigma^{2}\)</span>
+desconocida</td>
+</tr>
+<tr class="even">
+<td align="center">(4)</td>
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td align="center"><span class="math inline">\(\widehat{p}\pm
+z_{\frac{\alpha}{2}}
+\sqrt{\frac{\widehat{p}(1-\widehat{p})}{n}}\)</span></td>
+<td align="center"><span class="math inline">\(n&gt;&gt;\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(5)</td>
+<td align="center"><span class="math inline">\(\sigma^{2}\)</span></td>
+<td align="center"><span class="math inline">\(\Bigg(
+\dfrac{(n-1)s^{2}}{\chi^{2}_{1-\alpha/2}}
+;\dfrac{(n-1)s^{2}}{\chi^{2}_{\alpha/2}} \Bigg)\)</span></td>
+<td align="center"><span class="math inline">\(X\sim norm(\mu,
+\sigma^{2})\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(6)</td>
+<td align="center"><span
+class="math inline">\(\mu_{1}-\mu_{2}\)</span></td>
+<td align="center"><span class="math inline">\(\bar{d} \pm
+t_{\alpha/2}\dfrac{s_{d}}{\sqrt{n}}\)</span></td>
+<td align="center">Grupos pareados <span
+class="math inline">\(d={x}_{1}-x_{2}\)</span>,<span
+class="math inline">\(X_{1}\sim norm(\mu_{1},
+\sigma^{2}_{1})\)</span>,<span class="math inline">\(X_{2}\sim
+norm(\mu_{2}, \sigma^{2}_{2})\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(7)</td>
+<td align="center"></td>
+<td align="center"><span
+class="math inline">\((\bar{x_{1}}-\bar{x_{2}})\pm t_{\alpha/2}
+\hspace{.2cm}s_{p} \sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}\)</span></td>
+<td align="center">Grupos independientes,<span
+class="math inline">\(X_{1}\sim norm(\mu_{1},
+\sigma^{2}_{1})\)</span>,<span class="math inline">\(X_{2}\sim
+norm(\mu_{2}, \sigma^{2}_{2})\)</span>, varianzas iguales</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">donde <span
+class="math inline">\(s_{p}^{2}=\dfrac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2}\)</span>
+y <span class="math inline">\(v=n_{1}+n_{2}-2\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">(8)</td>
+<td align="center"></td>
+<td align="center"><span
+class="math inline">\((\bar{x_{1}}-\bar{x_{2}})\pm t_{\alpha/2, v^{*}}
+\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}\)</span></td>
+<td align="center">Grupos independientes,<span
+class="math inline">\(X_{1}\sim norm(\mu_{1}\)</span>, <span
+class="math inline">\(\sigma^{2}_{1})\)</span>, <span
+class="math inline">\(X_{2}\sim norm(\mu_{2}, \sigma_{2}^{2})\)</span>,
+varianzas diferentes</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">donde <span
+class="math inline">\(v^{*}=\frac{(s_{1}^{2}/n_{1}+s_{2}^{2}/n_{2})^{2}}{\Big[(s_{1}^{2}/n_{1})^{2}/(n_{1}-1)\Big]+\Big[(s_{2}^{2}/n_{2})^{2}/(n_{2}-1)\Big]}\)</span></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">(9)</td>
+<td align="center"><span class="math inline">\(p_{1}-p_{2}\)</span></td>
+<td align="center"><span
+class="math inline">\((\widehat{p_{1}}-\widehat{p_{2}})\pm z_{\alpha/2}
+\sqrt{\dfrac{\widehat{p_{1}}(1-\widehat{p_{1}})}{n_{1}}+\dfrac{\widehat{p_{2}}(1-\widehat{p_{2}})}{n_{2}}}\)</span></td>
+<td align="center"><span class="math inline">\(n_{1}&gt;&gt;\)</span>,
+<span class="math inline">\(n_{2}&gt;&gt;\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(10)</td>
+<td align="center"><span
+class="math inline">\(\dfrac{\sigma^{2}_{1}}{\sigma^{2}_{2}}\)</span></td>
+<td align="center"><span
+class="math inline">\(\Bigg(\dfrac{s^{2}_{1}}{s^{2}_{2}}
+\dfrac{1}{f_{1-\alpha/2}(v_{1}v_{2})}; \dfrac{s^{2}_{1}}{s^{2}_{2}}
+\dfrac{1}{f_{\alpha/2}(v_{1}v_{2})}\Bigg)\)</span></td>
+<td align="center"><span class="math inline">\(X_{1}\sim
+norm(\mu_{1}\)</span>, <span
+class="math inline">\(\sigma^{2}_{1})\)</span>, <span
+class="math inline">\(X_{2}\sim norm(\mu_{2},
+\sigma_{2}^{2})\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Formulario . Tamaño de muestra
+</div>
+<div id="mu" class="section level3">
+<h3><span class="math inline">\(\mu\)</span></h3>
+<p><span class="math display">\[n=\dfrac{z_{\alpha/2}^{2}\hspace{.3cm}
+\sigma^{2}}{e^{2}}\]</span><br />
+Donde:</p>
+<ul>
+<li><p><span class="math inline">\(z_{\alpha/2}\)</span> :
+Percentil(<span class="math inline">\(1-\alpha/2\)</span>)
+normal;</p></li>
+<li><p><span class="math inline">\(\sigma^{2}\)</span>: varianza, que se
+puede obtener mediante prueba piloto, conocer de un estudio anterior, o
+estimar mediante consulta a un experto : <span
+class="math inline">\(\widehat{\sigma}  \cong  (\max\{x\}-\min\{x\})/4\)</span>
+y</p></li>
+<li><p><span class="math inline">\(e\)</span> : error de muestreo <span
+class="math inline">\((|\bar{x}-\mu|&lt; e)\)</span>.</p></li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="p" class="section level3">
+<h3><span class="math inline">\(p\)</span></h3>
+<p><span class="math display">\[n=\dfrac{z_{\alpha/2}^{2}\hspace{.3cm}
+pq }{e^{2}}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(z_{\alpha/2}\)</span> :
+Percentil(<span class="math inline">\(1-\alpha/2\)</span>)
+normal;</p></li>
+<li><p><span class="math inline">\(pq\)</span>: varianza, que se puede
+obtener mediante prueba piloto, conocer de un estudio anterior, o se
+puede asumir como varianza máxima <span
+class="math inline">\(pq=0.5(1-0.5)=0.25\)</span></p></li>
+<li><p><span class="math inline">\(e\)</span> : error de muestreo <span
+class="math inline">\((|\widehat{p}-p|&lt; e)\)</span>.</p></li>
+</ul>
+<p><br/><br/><br/></p>
+<p>En todos los casos si n/N&gt;0.05, debes de corregir por un factor de
+población finita</p>
+<p><span class="math display">\[n = \dfrac{N
+n_{0}}{N+n_{0}-1}\]</span></p>
+</div>
+</div>
+<p><br/><br/><br/><br/></p>
+<div class="box4 with-label">
+<div class="label">
+Código R
+</div>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">parámetro</th>
+<th align="left">código R</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\mu\)</span></td>
+<td align="left"><code>t.test(x, coef.level= 1−a)$conf.int</code></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(p\)</span></td>
+<td
+align="left"><code>prop.test(x,n, conf.level=0.95)$conf.int</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\(\mu_{1}-\mu_{2}\)</span></td>
+<td
+align="left"><code>t.test(datos1,datos2, paired=T)$conf.int</code></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td
+align="left"><code>t.test(datos1 datos2, var.equal=T)$conf.int</code></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td
+align="left"><code>t.test(datos1 datos2, var.equal=F)$conf.int</code></td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(p_{1} −
+p_{2}\)</span></td>
+<td
+align="left"><code>prop.test(c(x1,x2), c(n1,n2))$conf.int</code></td>
+</tr>
+<tr class="odd">
+<td align="center"><span
+class="math inline">\(\dfrac{\sigma^{2_{1}}}{\sigma^{2}_{2}}\)</span></td>
+<td align="left"><code>var.test(datos1 datos2)$conf.int</code></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"><code>install.packages("devtools")</code></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td
+align="left"><code>devtools::install_github("dgonzalez80/paquetepye")</code></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"><code>library(paqueteDEG)</code></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td
+align="left"><code>paqueteDEG::sizemu(1.96,345,2)     # sizemu(z,sigma2,error)</code></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td
+align="left"><code>paqueteDEG::sizep(1.96,0.5,0.05)   # sizep(z,prob,error)</code></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td
+align="left"><code>paqueteDEG::adjusted_size(385,2000) # adjusted_size(n,N)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/><br/><br/></p>
+</div>
+</div>
+<div id="videos" class="section level1">
+<h1><strong>Videos</strong></h1>
+<div id="introducción-a-la-inferencia-estadística"
+class="section level2">
+<h2><strong>Introducción a la inferencia estadística</strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/5WkEIGMPh0Q" frameborder="0" allowfullscreen>
+</iframe>
+<p><br/><br/><br/></p>
+</div>
+<div id="intervalos-de-confianza" class="section level2">
+<h2><strong>Intervalos de confianza</strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/5y7MJiPXIjw" frameborder="0" allowfullscreen>
+</iframe>
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="problema-1" class="section level2">
+<h2><strong>Problema 1 </strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/t02nQxU14qY" frameborder="0" allowfullscreen>
+</iframe>
+<p><br/><br/></p>
+</div>
+<div id="problema-2" class="section level2">
+<h2><strong>Problema 2 </strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/WbdHh7Chk_s" frameborder="0" allowfullscreen>
+</iframe>
+<p><br/><br/></p>
+</div>
+<div id="problema-3" class="section level2">
+<h2><strong>Problema 3 </strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/eDOjNa6HtS0" frameborder="0" allowfullscreen>
+</iframe>
+<p><br/><br/></p>
+</div>
+<div id="problema-4" class="section level2">
+<h2><strong>Problema 4 </strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/Z39sBZgxsTA" frameborder="0" allowfullscreen>
+</iframe>
+<p><br/><br/></p>
+</div>
+<div id="problema-5" class="section level2">
+<h2><strong>Problema 5 </strong></h2>
+<iframe width="800" height="450" src="https://www.youtube.com/embed/eZB9PM3SsZ0" frameborder="0" allowfullscreen>
+</iframe>
+<p>re-in-picture; web-share”
+referrerpolicy=“strict-origin-when-cross-origin”
+allowfullscreen&gt;</iframe></p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="tutoriales" class="section level1">
+<h1><strong>Tutoriales</strong></h1>
+<p>Los tutoriales conforma una herramienta de apoyo al aprendizaje,
+mediante el desarrollo de problemas utilizando para ello código R para
+luego realizar la interpretacón de los resulados.</p>
+<p>Para trabajar los tutoriales se deben seguir los siguientes pasos</p>
+<ol style="list-style-type: decimal">
+<li>Instala el paquete <code>learnr</code></li>
+</ol>
+<pre>
+        install.packages("learnr") # solo una vez
+</pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Instala el paquete `remotes``</li>
+</ol>
+<pre>
+        install.packages('remotes')  # solo una vez
+</pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Activa el paquiete <code>remotes</code></li>
+</ol>
+<pre>
+        library(remotes) # solo una vez
+</pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Instala el paquete <code>paqueteDEG</code></li>
+</ol>
+<pre>
+        install_github("dgonxalex80/paqueteDEG", force = TRUE) # solo una vez
+</pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Activa el tutorial <code>Taller-Intervalos1</code></li>
+</ol>
+<pre>
+         learnr::run_tutorial("Taller-Intervalos1", "paqueteDEG")
+</pre>
+<div class="box3 with-label">
+<div class="label">
+Resumen
+</div>
+<pre>
+install.packages("learnr") # solo una vez
+install.packages('remotes')  # solo una vez
+library(remotes) # solo una vez
+install_github("dgonxalex80/paqueteDEG", force = TRUE) # solo una vez
+
+learnr::run_tutorial("Taller-Intervalos1", "paqueteDEG")
+</pre>
+</div>
+<p><br/><br/></p>
+<p>El siguiente código permite la activación de tutoriales :</p>
+<ul>
+<li><strong>Taller-intervalos1</strong></li>
+<li><strong>Taller-intervalos2</strong></li>
+</ul>
+<p><br/><br/></p>
+<p>Al correr el código debe aparecer :</p>
+<p><img src="img/tutorial421.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<pre class="r"><code>install.packages(&quot;learnr&quot;) # solo una vez
+install.packages(&#39;remotes&#39;)  # solo una vez
+library(remotes) # solo una vez
+install_github(&quot;dgonxalex80/paqueteDEG&quot;, force = TRUE) # solo una vez
+
+learnr::run_tutorial(&quot;Taller-Intervalos2&quot;, &quot;paqueteDEG&quot;)</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="presentación" class="section level1">
+<h1><strong>Presentación</strong></h1>
+<iframe src="pdf/P-IC1.pdf" width="100%" height="500"></iframe>
+<p><br/><br/></p>
+</div>
+<div id="solución-taller-ic" class="section level1">
+<h1><strong>Solución taller IC</strong></h1>
+<iframe src="pdf/STaller_Intervalos_de_confianza.pdf" width="100%" height="844"></iframe>
+<!-- Nota : -->
+<!-- Como se calculan los parametros  -->
+<!-- 1. Calcula la proporción del ancho y alto del PDF en formato carta (relacion entre ancho/alto), que es de 8.5 pulgadas de ancho y 11 pulgadas de alto. La proporción es de 11/8.5 = 1.2941. -->
+<!-- 2. Calcula la altura en píxeles necesaria para mostrar todo el PDF en formato carta en la ventana. Para ello, multiplica el ancho del PDF en pulgadas por la proporción del paso 1 y luego multiplica por 96 píxeles por pulgada, que es la resolución predeterminada de la pantalla. La fórmula es: alto en píxeles = ancho en pulgadas * proporción * 96. -->
+<!-- 3. Utiliza el valor calculado en el paso anterior como valor del parámetro height en la función tags$iframe(). -->
+<!-- Por ejemplo, si tu PDF tiene un ancho de 7 pulgadas, puedes calcular la altura necesaria para mostrarlo completo en formato carta de la siguiente manera: -->
+<!-- alto en píxeles = 7 * 1.2941 * 96 = 844 -->
+<!-- tags$iframe( -->
+<!--   src = "ruta/a/tu/archivo.pdf", -->
+<!--   width = "100%", -->
+<!--   height = "844" -->
+<!-- ) -->
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
