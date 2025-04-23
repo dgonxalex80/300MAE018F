@@ -1,0 +1,343 @@
+---
+title: <span style="color:#235784">**Ejercicios 321** </span>  
+subtitle: <span style="color:#235784">**Unidad 3.2**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE,
+  comment = NA
+)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c0,c1,c2,c3)
+
+
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+library(summarytools)
+
+#library(dviz.supp)
+```
+
+
+
+</br></br></br>
+
+```{r, echo=FALSE, out.width="100%", fig.align = "left"}
+knitr::include_graphics("img/banner003.png")
+```
+
+<div class="box2 with-label">
+### **1. Intervalo para la media (normal con varianza conocida)**
+
+Un banco está evaluando el tiempo promedio (en minutos) que sus clientes tardan en completar una transacción en ventanilla. Estudios previos han determinado que la desviación estándar es de 1.2 minutos. Se toma una muestra aleatoria de 30 clientes, encontrando un tiempo promedio de 75.3 minutos. Estime un intervalo de confianza del 95% para el tiempo medio real que tardan los clientes en ventanilla.
+
+$$IC_{\mu}: \bar{x} \pm z_{\alpha/2} \hspace{.1cm}\dfrac{\sigma}{\sqrt{n}} $$
+
+```{r}
+set.seed(101)
+datos1 <- rnorm(30, mean = 75.3, sd = 1.2)  # μ = 75.3, σ conocida = 1.2
+cat("IdeC para mu (95%) : (", mean(datos1)+ qnorm(c(0.025,0.975)*1.2/sqrt(30)),")")
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **2. Intervalo para la media (normal con varianza desconocida, muestra pequeña)**
+
+Un analista financiero desea estimar el ingreso promedio mensual de un grupo de trabajadores independientes de una ciudad. Para ello, toma una muestra aleatoria de 10 trabajadores y registra sus ingresos mensuales. Estime un intervalo de confianza del 95% para el ingreso promedio de este grupo.
+
+$$IC_{\mu}: \bar{x} \pm t_{\alpha/2} \hspace{.1cm}\frac{s}{\sqrt{n}} $$
+
+```{r}
+set.seed(102)
+datos2 <- rnorm(10, mean = 200, sd = 3)  # Resistencia de material
+
+cat("IdeC para mu (95%) : (", mean(datos1)+ qt(c(0.025,0.975),29)*1.2/sqrt(30),")")
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **3. Intervalo para la media (muestra grande, TLC)**
+
+Una empresa de logística desea conocer el tiempo promedio que tarda en entregarse un pedido dentro de una ciudad capital. Se registran los tiempos de entrega de 100 pedidos. Asumiendo que no se conoce la distribución del tiempo, pero que el tamaño muestral es grande, estime el intervalo de confianza del 95% para el tiempo medio de entrega.
+
+$$IC_{\mu}: \bar{x} \pm z_{\alpha/2} \hspace{.1cm}\dfrac{s}{\sqrt{n}} $$
+
+```{r}
+set.seed(103)
+datos3 <- rnorm(100, mean = 50, sd = 5)  # Tiempos de operación máquina
+
+cat("IdeC para mu (95%) : (", mean(datos1)+ qnorm(c(0.025,0.975)*sd(datos3)/sqrt(length(datos3))),")")
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **4. Intervalo para una proporción (n grande)**
+Una firma de auditoría desea estimar la proporción de errores contables en una muestra de informes financieros de pequeñas empresas. Se revisan 200 informes y se encuentran errores en 18 de ellos. Estime un intervalo de confianza del 95% para la proporción real de informes con errores.
+
+$$\Bigg[ \hspace{.3cm} \widehat{p}-z_{\alpha/2}\sqrt{\frac{\widehat{p}\hspace{.1cm}(1-\widehat{p})}{n}} \hspace{.2cm};\hspace{.2cm} \widehat{p}+z_{\alpha/2}\sqrt{\frac{\widehat{p}\hspace{.1cm}(1-\widehat{p})}{n}} \hspace{.3cm} \Bigg] $$
+
+```{r}
+set.seed(104)
+datos4 <- c(rep(1, 18), rep(0, 182))  # 1 = defectuoso, 0 = no defectuoso
+
+x=18
+n=200
+phat= 18/200
+
+cat("IdeC p (95%) :(", phat + qnorm(c(0.025,0.975))*phat*(1-phat)/200,")")
+
+
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **5. Intervalo para una varianza**
+Un economista desea evaluar la variabilidad en el gasto mensual de los hogares de clase media en una ciudad. Para ello, selecciona 15 hogares y mide sus gastos mensuales. Estime un intervalo de confianza del 95% para la varianza del gasto mensual de esta población.
+
+
+```{r}
+set.seed(105)
+datos5 <- round(rnorm(15, mean = 10, sd = 0.2), 2)  # Longitud de ejes
+
+cat("IdeC para sigma^2 : (", 14*var(datos5)*1/qchisq(c(0.975,0.025), 29), ")")
+
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **6. Intervalo para la diferencia de medias pareadas**
+Una empresa desea evaluar si una campaña de marketing digital tuvo efecto sobre las ventas semanales. Se recogen datos de 5 sucursales antes y después de la campaña. Estime un intervalo de confianza del 95% para la diferencia promedio en ventas, suponiendo que los datos están emparejados por sucursal.
+
+
+$$IC_{d=\bar{x}_{1}-\bar{x}_{2}}: \bar{d} \pm t_{\alpha/2} \frac{s_{d}}{\sqrt{n}}$$
+
+donde $d_{i}=x_{1i}-x_{2i}$ y $s_{d}$ es la desviación estándar de las diferencias 
+$d_{i}=x_{1i}-x_{2i}$ 
+
+```{r}
+set.seed(106)
+antes <- c(21, 22, 20, 23, 21)
+despues <- antes - c(1, 1, 1, 1, 1) + rnorm(5, 0, 0.2)  # Mejora tras calibración
+
+d = antes-despues
+cat("IdeC para mu (95%) : (", mean(d)+ qt(c(0.025,0.975),4)*sd(d)/sqrt(5),")", "¸\n")
+
+t.test(antes, despues, 
+       paired = TRUE, 
+       var.equal = FALSE,
+       conf.level = 0.95)$conf
+```
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **7. Intervalo para la diferencia de medias con muestras independientes (varianzas iguales)**
+Dos grupos de estudiantes de administración realizan un simulacro de evaluación financiera en condiciones similares. Se desea comparar el rendimiento promedio entre ambos grupos. Se toman 5 notas aleatorias de cada grupo. Asumiendo que las varianzas son iguales, estime un intervalo de confianza del 95% para la diferencia de medias.
+
+$$(\bar{x}_{1}-\bar{x}_{2})\pm t_{\alpha/2} \hspace{.2cm}s_{p} \sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}$$
+
+donde $s_{p}^{2}$ es la varianza común
+
+$$s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2}$$
+
+y $t_{\alpha/2}$ se distribuye t-student con $v=n_{1}+n_{2}-2$ grados de libertad
+
+Supuestos: 
++	$X_{1}$ y $X_{2}$ son variables aleatorias independientes con distribución normal
++ $X_{1}$ y $X_{2}$ tienen varianzas iguales pero desconocidas
+
+
+
+```{r}
+set.seed(107)
+grupo1 <- rnorm(5, mean = 90, sd = 2)
+grupo2 <- rnorm(5, mean = 85, sd = 2)
+
+var.test(grupo1, grupo2)$conf
+cat("\n")
+t.test(grupo1, grupo2, 
+       paired = TRUE, 
+       var.equal = FALSE,
+       conf.level = 0.95 )$conf
+
+```
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **8. Intervalo para la diferencia de medias con muestras independientes (varianzas diferentes)**
+Continuando con el caso anterior, pero ahora sin asumir que las varianzas son iguales, estime el intervalo de confianza del 95% para la diferencia de medias usando el método de Welch.
+
+$$(\bar{x}_{1}-\bar{x}_{2})\pm t_{\alpha/2} \sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}$$
+
+donde los grados de libertad de t se aproximan a
+
+$$v=\frac{(s_{1}^{2}/n_{1}+s_{2}^{2}/n_{2})^{2}}{\Big[(s_{1}^{2}/n_{1})^{2}/(n_{1}-1)\Big]+\Big[(s_{2}^{2}/n_{2})^{2}/(n_{2}-1)\Big]}$$
+
+
+```{r}
+set.seed(107)
+grupo1 <- rnorm(5, mean = 90, sd = 2)
+grupo2 <- rnorm(5, mean = 85, sd = 5)
+
+var.test(grupo1, grupo2)$conf
+cat("\n")
+t.test(grupo1, grupo2, 
+       paired = TRUE, 
+       var.equal = FALSE,
+       conf.level = 0.95 )$conf
+
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **9. Intervalo para la razón de varianzas**
+Un asesor financiero compara la volatilidad de los rendimientos mensuales de dos portafolios de inversión. Se toman 5 observaciones de cada portafolio. Estime un intervalo de confianza del 95% para la razón de varianzas de los rendimientos entre ambos portafolios.
+
+$$\Bigg(\dfrac{s^{2}_{1}}{s^{2}_{2}} \dfrac{1}{f_{1-\alpha/2}(v_{1}v_{2})}; \dfrac{s^{2}_{1}}{s^{2}_{2}} \dfrac{1}{f_{\alpha/2}(v_{1}v_{2})}\Bigg)$$
+
+```{r}
+set.seed(107)
+grupo1 <- rnorm(5, mean = 90, sd = 2)
+grupo2 <- rnorm(5, mean = 85, sd = 2)
+
+boxplot(data.frame(grupo1,grupo2))
+
+
+var.test(grupo1, grupo2)$conf
+
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **10. Intervalo para la diferencia de proporciones**
+Una investigación de mercado compara la aceptación de dos productos financieros. Se encuesta a 200 personas sobre el producto A y a 150 sobre el producto B. Se identifican 18 interesados en el producto A y 10 en el producto B. Estime un intervalo de confianza del 95% para la diferencia de proporciones de aceptación entre ambos productos.
+
+$$(\widehat{p_{1}}-\widehat{p_{2}}) \pm z_{\alpha/2} \sqrt{\frac{\widehat{p_{1}}(1-\widehat{p_{1}})}{n_{1}}+\frac{\widehat{p_{2}}(1-\widehat{p_{2}})}{n_{2}}}$$
+
+```{r}
+defectuosos_A <- c(rep(1, 18), rep(0, 182))
+defectuosos_B <- c(rep(1, 10), rep(0, 140))
+
+prop.test(c(18,10), c(200, 150))$conf
+
+```
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+## **11. Cálculo del tamaño de muestra para estimar una media**
+Una firma consultora desea estimar el gasto promedio en transporte mensual de empleados de una empresa. Se sabe que la desviación estándar es aproximadamente 0.5 millones de pesos. Se quiere que el error máximo de estimación sea de 0.1 millones, con un nivel de confianza del 95%.
+¿Cuál es el tamaño mínimo de muestra requerido?
+
+
+$$n = \displaystyle\frac{z_{\alpha/2}^{2}\sigma^{2}}{e^{2}}$$
+
+
+```{r}
+sigma = 0.5
+e =0.1
+z = qnorm(0.975)
+
+cat(" n =", z^2*sigma^2/e^2, "\n")
+paqueteDEG::sizemu(z,sigma^2, e)
+
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **12. Cálculo del tamaño de muestra para estimar una proporción**
+Una empresa quiere estimar la proporción de clientes que están satisfechos con su servicio de atención al cliente. Estudios previos indican que alrededor del 8% no están satisfechos. Se desea estimar esta proporción con un margen de error de ±3% y un nivel de confianza del 95%.
+¿Cuántos clientes deben ser encuestados?
+
+$$n=\dfrac{z_{\alpha/2}^{2}\hspace{.3cm} p(1-p)}{e^{2}}$$
+```{r}
+library(dplyr)
+z = qnorm(0.975)
+pq = 0.08*(1-0.08)
+e = 0.03
+
+cat("n =", z^2*pq/e^2, "\n")
+
+ paqueteDEG::sizep(z,0.08, 0.03) %>% 
+           round(0)
+```
+
+</div>
+
+</br></br>
+
+<div class="box2 with-label">
+### **13. Cálculo del tamaño de muestra para estimar una proporción (varianza máxima)**
+Un banco desea estimar la proporción de sus clientes interesados en adquirir un nuevo producto financiero. Como no se cuenta con información previa, se decide asumir el caso más conservador (proporción 0.5) para garantizar precisión. Se desea una estimación con un margen de error máximo del 4% y un nivel de confianza del 95%.
+¿Cuál es el tamaño mínimo de muestra necesario?
+
+```{r}
+library(dplyr)
+z = qnorm(0.975)
+e = 0.03
+
+cat("n =", z^2*0.25/e^2, "\n")
+ paqueteDEG::sizep(z,0.5, 0.03) %>% 
+           round(0)
+```
+
+</div>

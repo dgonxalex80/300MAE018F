@@ -131,7 +131,10 @@ navbar:
         - text: "Código 3.2"  
           href: codigo42.html
         - text: "Taller 321"  
-          href: taller421.html         
+          href: taller421.html
+        - text: "Ejercicios 321"  
+          href: Ejercicios321.html         
+          
         - text: "--------"      
         - text: "Monitoria 3"
           href: monitoria4.html            

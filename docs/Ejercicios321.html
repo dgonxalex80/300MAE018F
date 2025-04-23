@@ -12,7 +12,7 @@
 <meta name="author" content="dgonzalez" />
 
 
-<title>Taller 331 </title>
+<title>Ejercicios 321 </title>
 
 <script src="site_libs/header-attrs/header-attrs.js"></script>
 <script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
@@ -518,10 +518,10 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore"><span style="color:#235784"><strong>Taller
-331</strong> </span></h1>
+<h1 class="title toc-ignore"><span
+style="color:#235784"><strong>Ejercicios 321</strong> </span></h1>
 <h3 class="subtitle"><span style="color:#235784"><strong>Unidad
-3.3</strong></span></h3>
+3.2</strong></span></h3>
 <h4 class="author">dgonzalez</h4>
 
 </div>
@@ -529,259 +529,313 @@ $(document).ready(function () {
 
 <p></br></br></br></p>
 <p><img src="img/banner003.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 1
-</div>
-<p>Para una variable aleatoria con distribución binomial <span
-class="math inline">\(X  \sim binom(x, n=10, p=0.5)\)</span> .</p>
-<p>Determine:</p>
-<ul>
-<li>la función de distribución asociada a <span
-class="math inline">\(X\)</span>.</li>
-<li><span class="math inline">\(P(X = 5)\)</span></li>
-<li><span class="math inline">\(P(X  \leq 2)\)</span></li>
-<li><span class="math inline">\(P(3 \leq X &lt;5)\)</span></li>
-<li><span class="math inline">\(P(X \geq 8)\)</span></li>
-<li>Construya la gráfica de <span
-class="math inline">\(f_{_{X}}(x)\)</span></li>
-</ul>
+<div id="intervalo-para-la-media-normal-con-varianza-conocida"
+class="section level3 box2 with-label">
+<h3><strong>1. Intervalo para la media (normal con varianza
+conocida)</strong></h3>
+<p>Un banco está evaluando el tiempo promedio (en minutos) que sus
+clientes tardan en completar una transacción en ventanilla. Estudios
+previos han determinado que la desviación estándar es de 1.2 minutos. Se
+toma una muestra aleatoria de 30 clientes, encontrando un tiempo
+promedio de 75.3 minutos. Estime un intervalo de confianza del 95% para
+el tiempo medio real que tardan los clientes en ventanilla.</p>
+<p><span class="math display">\[IC_{\mu}: \bar{x} \pm z_{\alpha/2}
+\hspace{.1cm}\dfrac{\sigma}{\sqrt{n}} \]</span></p>
+<pre class="r"><code>set.seed(101)
+datos1 &lt;- rnorm(30, mean = 75.3, sd = 1.2)  # μ = 75.3, σ conocida = 1.2
+cat(&quot;IdeC para mu (95%) : (&quot;, mean(datos1)+ qnorm(c(0.025,0.975)*1.2/sqrt(30)),&quot;)&quot;)</code></pre>
+<pre><code>IdeC para mu (95%) : ( 72.6564 74.4066 )</code></pre>
 </div>
 <p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 2
-</div>
-<p>Sea una variable geométrica <span class="math inline">\(X \sim
-geomn,(x,p=0.05)\)</span></p>
-<p>Determine :</p>
-<ul>
-<li><span class="math inline">\(P(X = 1)\)</span></li>
-<li><span class="math inline">\(P(X  \leq 2)\)</span></li>
-<li><span class="math inline">\(P(X = 8)\)</span></li>
-<li><span class="math inline">\(P(X \geq 2)\)</span><br />
-</li>
-<li>Construya la gráfica de <span
-class="math inline">\(f_{_{X}}(x)\)</span></li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 3
-</div>
-<p>Suponga que X tiene una distribución hipergeometrica con <span
-class="math inline">\(N=100\)</span>, <span
-class="math inline">\(n=4\)</span> y <span
-class="math inline">\(K=20\)</span>. (<span class="math inline">\(X \sim
-hyper(x,N=100,n=4,k=20)\)</span>)</p>
-<p>Determine:</p>
-<p><span class="math inline">\(P(X = 1)\)</span> * <span
-class="math inline">\(P(X = 6)\)</span> * <span
-class="math inline">\(P(X  \geq 1)\)</span> * <span
-class="math inline">\(P(X = 4)\)</span><br />
-* Construya la gráfica de <span
-class="math inline">\(f_{_{X}}(x)\)</span></p>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 4
-</div>
-<p>Suponga que X tiene una distribución Poisson con media <span
-class="math inline">\(\lambda=4\)</span> (<span
-class="math inline">\(X  \sim pois(x,\lambda=4)\)</span>).</p>
-<p>Determine:</p>
-<ul>
-<li><span class="math inline">\(P(X = 0)\)</span></li>
-<li><span class="math inline">\(P(X = 4)\)</span></li>
-<li><span class="math inline">\(P(X  \geq 2)\)</span></li>
-<li><span class="math inline">\(P(X  \leq 2)\)</span><br />
-</li>
-<li>Construya la gráfica de <span
-class="math inline">\(f_{_{X}}(x)\)</span></li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 5
-</div>
-<p>Sea la variable <span class="math inline">\(X\)</span> con
-distribución binomial negativa con N=100 , K=20, n=5 (<span
-class="math inline">\(X \sim nbinom(x,n,p,mu)\)</span> )</p>
-<p>Determine:</p>
-<ul>
-<li><span class="math inline">\(P(X = 0)\)</span></li>
-<li><span class="math inline">\(P(X = 6)\)</span></li>
-<li><span class="math inline">\(P(X  \geq 10)\)</span></li>
-<li><span class="math inline">\(P(X  \leq 12)\)</span></li>
-<li><span class="math inline">\(E[X]\)</span> y <span
-class="math inline">\(V[X]\)</span><br />
-</li>
-<li>Construya la gráfica de <span
-class="math inline">\(f_{_{X}}(x)\)</span></li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 6
-</div>
-<p>En un cargamento grande de llantas para automóviles, del cual el 5%
-tiene imperfecciones. Se eligen de manera aleatoria 4 llantas para ser
-instalada en un automóvil. (Sea X el número de llantas con
-imperfecciones. <span class="math inline">\(X  \sim binom(n=4,
-p=0.05\)</span> )</p>
-<ul>
-<li>¿ Cuál es la probabilidad de que ninguna de las llantas tenga
-imperfecciones?</li>
-<li>¿ Cuál es la probabilidad de que sólo una de las llantas tenga
-imperfecciones?</li>
-<li>¿ Cuál es la probabilidad de una o más llantas tenga
-imperfecciones?</li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 7
-</div>
-<p>Los clientes llegan al mostrador de una tienda de acuerdo con una
-variable aleatoria Poisson con una frecuencia promedio de ocho clientes
-por hora.</p>
-<ul>
-<li>Calcule la probabilidad de que entre las 8 AM y las 9 AM lleguen
-exactamente cinco clientes.</li>
-<li>Calcule la probabilidad de que entre las 2:30 PM y las 3:30 PM no
-lleguen más de tres clientes.</li>
-<li>Calcule la probabilidad de que lleguen exactamente dos clientes
-dentro de un intervalo de dos horas continuas, por ejemplo entre 10 AM y
-12 M.</li>
-<li>Calcule el valor esperado del número de personas que llegan a la
-tienda entre las 2 PM y las 4:30 PM.</li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 8
-</div>
-<p>Se está desarrollando una nueva variedad de maíz en una extensión de
-experimentación agrícola. Se espera que tenga una tasa de germinación
-del 90%. Para verificar esto, se plantan 20 semillas en suelos de
-idéntica composición y se les dedican los mismos cuidados. Si la cifra
-90% es correcta, ¿cuántas semillas se espera que germinen? Si sólo
-germinan 15 o menos, ¿hay razón para sospechar de la cifra 90%?</p>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 9
-</div>
-<p>Un examen de Probabilidad consta de 100 preguntas de selección
-múltiple, cada una con cuatro opciones de respuesta. Maria responde cada
-pregunta al azar y sus respuestas son independientes</p>
-<ul>
-<li>Si para aprobar el examen Juan debe responder mínimo 60 preguntas
-correctamente, calcule la probabilidad de que Maria apruebe el
-examen.</li>
-<li>Calcule la probabilidad de que Maria deba responder 10 preguntas
-hasta responder la primera pregunta correctamente.</li>
-<li>¿Cuál es el número esperado de preguntas que Maria responderá
-erróneamente hasta responder 5 preguntas correctamente?</li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 10
-</div>
-<p>Se sospecha que muchas muestras de agua, todas del mismo tamaño y
-tomadas del Hillbank River, han sido contaminadas por operarios
-irresponsables de una planta de tratamiento de aguas. Se contó el número
-de microorganismos conformes en cada muestra. El número medio de
-microorganismos por muestra fue de 15. Suponiendo que el número de
-microorganismos se distribuye según una distribución de Poisson,
-calcular la probabilidad de que:</p>
-<ul>
-<li>La siguiente muestra contenga al menos 17 microorganismos.</li>
-<li>La siguiente muestra contenga 18 o menos microorganismos.</li>
-<li>La siguiente muestra contenga exactamente dos microorganismos.</li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 11
-</div>
-<p>Una aéreolinea nacional tiene aviones de 100 asientos para el
-servicio de transporte nacional. Se estima que la probabilidad de que
-una persona llegue al vuelo es de 0.90, debido a lo cual la aereolinea
-vende 105 tiquetes con el fin de minimizar la partida de aviones con
-sillas vacias. ¿cuál es la probabilidad de que todas las personas que
-lleguen para abordar el avión tengan asiento?</p>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 12
-</div>
-<p>El número de grietas en un pavimento se estima en una grieta por cada
-100m en promedio. Se desea estimar la probabilidad de:</p>
-<ul>
-<li>Haya exactamente 8 grietas en una longitud de 500 m</li>
-<li>No se presente ninguna grieta en 100 m</li>
-<li>Se presenten menos de 2 grietas en 500 m</li>
-</ul>
-</div>
-<p></br></br></p>
-<div class="box2 with-label">
-<div class="label">
-Problema 13
-</div>
-<p>Un sistema de seguridad para casas está diseñado para tener una
-confiabilidad del 95% . Suponga que 10 casas equipadas con este
-dispositivo sufrieron tentativa de robo. Se requiere calcular la
-probabilidad de que en siete de las nueve, la alarma se activará.</p>
-</div>
-<p></br></br></br></br></p>
-<div class="box3 with-label">
-<div class="label">
-Código R
-</div>
-<pre>
-# Distribución binomial
-dbinom(x, size, prob)
-pbinom(q, size, prob, lower.tail = TRUE)
-qbinom(p, size, prob, lower.tail = TRUE)
-rbinom(n, size, prob)
+<div
+id="intervalo-para-la-media-normal-con-varianza-desconocida-muestra-pequeña"
+class="section level3 box2 with-label">
+<h3><strong>2. Intervalo para la media (normal con varianza desconocida,
+muestra pequeña)</strong></h3>
+<p>Un analista financiero desea estimar el ingreso promedio mensual de
+un grupo de trabajadores independientes de una ciudad. Para ello, toma
+una muestra aleatoria de 10 trabajadores y registra sus ingresos
+mensuales. Estime un intervalo de confianza del 95% para el ingreso
+promedio de este grupo.</p>
+<p><span class="math display">\[IC_{\mu}: \bar{x} \pm t_{\alpha/2}
+\hspace{.1cm}\frac{s}{\sqrt{n}} \]</span></p>
+<pre class="r"><code>set.seed(102)
+datos2 &lt;- rnorm(10, mean = 200, sd = 3)  # Resistencia de material
 
-# Distribución Poisson
-dpois(x, lambda)
-ppois(q, lambda, lower.tail = TRUE)
-qpois(p, lambda, lower.tail = TRUE)
-rpois(n, lambda)
+cat(&quot;IdeC para mu (95%) : (&quot;, mean(datos1)+ qt(c(0.025,0.975),29)*1.2/sqrt(30),&quot;)&quot;)</code></pre>
+<pre><code>IdeC para mu (95%) : ( 74.75246 75.64863 )</code></pre>
+</div>
+<p></br></br></p>
+<div id="intervalo-para-la-media-muestra-grande-tlc"
+class="section level3 box2 with-label">
+<h3><strong>3. Intervalo para la media (muestra grande,
+TLC)</strong></h3>
+<p>Una empresa de logística desea conocer el tiempo promedio que tarda
+en entregarse un pedido dentro de una ciudad capital. Se registran los
+tiempos de entrega de 100 pedidos. Asumiendo que no se conoce la
+distribución del tiempo, pero que el tamaño muestral es grande, estime
+el intervalo de confianza del 95% para el tiempo medio de entrega.</p>
+<p><span class="math display">\[IC_{\mu}: \bar{x} \pm z_{\alpha/2}
+\hspace{.1cm}\dfrac{s}{\sqrt{n}} \]</span></p>
+<pre class="r"><code>set.seed(103)
+datos3 &lt;- rnorm(100, mean = 50, sd = 5)  # Tiempos de operación máquina
 
-# Distribución geométrica
-dgeom(x, prob)
-pgeom(q, prob, lower.tail = TRUE)
-qgeom(p, prob, lower.tail = TRUE)
-rgeom(n, prob)
+cat(&quot;IdeC para mu (95%) : (&quot;, mean(datos1)+ qnorm(c(0.025,0.975)*sd(datos3)/sqrt(length(datos3))),&quot;)&quot;)</code></pre>
+<pre><code>IdeC para mu (95%) : ( 72.938 75.10375 )</code></pre>
+</div>
+<p></br></br></p>
+<div id="intervalo-para-una-proporción-n-grande"
+class="section level3 box2 with-label">
+<h3><strong>4. Intervalo para una proporción (n grande)</strong></h3>
+<p>Una firma de auditoría desea estimar la proporción de errores
+contables en una muestra de informes financieros de pequeñas empresas.
+Se revisan 200 informes y se encuentran errores en 18 de ellos. Estime
+un intervalo de confianza del 95% para la proporción real de informes
+con errores.</p>
+<p><span class="math display">\[\Bigg[ \hspace{.3cm}
+\widehat{p}-z_{\alpha/2}\sqrt{\frac{\widehat{p}\hspace{.1cm}(1-\widehat{p})}{n}}
+\hspace{.2cm};\hspace{.2cm}
+\widehat{p}+z_{\alpha/2}\sqrt{\frac{\widehat{p}\hspace{.1cm}(1-\widehat{p})}{n}}
+\hspace{.3cm} \Bigg] \]</span></p>
+<pre class="r"><code>set.seed(104)
+datos4 &lt;- c(rep(1, 18), rep(0, 182))  # 1 = defectuoso, 0 = no defectuoso
 
-# Distribución hipergeométrica
-dhyper(x, m, n, k)
-phyper(q, m, n, k, lower.tail = TRUE)
-qhyper(p, m, n, k, lower.tail = TRUE)
-rhyper(nn, m, n, k)
+x=18
+n=200
+phat= 18/200
 
-# Distribución binomial negativa
-dnbinom(x, size, prob, mu)
-pnbinom(q, size, prob, mu, lower.tail = TRUE)
-qnbinom(p, size, prob, mu, lower.tail = TRUE)
-rnbinom(n, size, prob, mu)
-</pre>
+cat(&quot;IdeC p (95%) :(&quot;, phat + qnorm(c(0.025,0.975))*phat*(1-phat)/200,&quot;)&quot;)</code></pre>
+<pre><code>IdeC p (95%) :( 0.08919739 0.09080261 )</code></pre>
+</div>
+<p></br></br></p>
+<div id="intervalo-para-una-varianza"
+class="section level3 box2 with-label">
+<h3><strong>5. Intervalo para una varianza</strong></h3>
+<p>Un economista desea evaluar la variabilidad en el gasto mensual de
+los hogares de clase media en una ciudad. Para ello, selecciona 15
+hogares y mide sus gastos mensuales. Estime un intervalo de confianza
+del 95% para la varianza del gasto mensual de esta población.</p>
+<pre class="r"><code>set.seed(105)
+datos5 &lt;- round(rnorm(15, mean = 10, sd = 0.2), 2)  # Longitud de ejes
+
+cat(&quot;IdeC para sigma^2 : (&quot;, 14*var(datos5)*1/qchisq(c(0.975,0.025), 29), &quot;)&quot;)</code></pre>
+<pre><code>IdeC para sigma^2 : ( 0.005794403 0.01650976 )</code></pre>
+</div>
+<p></br></br></p>
+<div id="intervalo-para-la-diferencia-de-medias-pareadas"
+class="section level3 box2 with-label">
+<h3><strong>6. Intervalo para la diferencia de medias
+pareadas</strong></h3>
+<p>Una empresa desea evaluar si una campaña de marketing digital tuvo
+efecto sobre las ventas semanales. Se recogen datos de 5 sucursales
+antes y después de la campaña. Estime un intervalo de confianza del 95%
+para la diferencia promedio en ventas, suponiendo que los datos están
+emparejados por sucursal.</p>
+<p><span class="math display">\[IC_{d=\bar{x}_{1}-\bar{x}_{2}}: \bar{d}
+\pm t_{\alpha/2} \frac{s_{d}}{\sqrt{n}}\]</span></p>
+<p>donde <span class="math inline">\(d_{i}=x_{1i}-x_{2i}\)</span> y
+<span class="math inline">\(s_{d}\)</span> es la desviación estándar de
+las diferencias <span
+class="math inline">\(d_{i}=x_{1i}-x_{2i}\)</span></p>
+<pre class="r"><code>set.seed(106)
+antes &lt;- c(21, 22, 20, 23, 21)
+despues &lt;- antes - c(1, 1, 1, 1, 1) + rnorm(5, 0, 0.2)  # Mejora tras calibración
+
+d = antes-despues
+cat(&quot;IdeC para mu (95%) : (&quot;, mean(d)+ qt(c(0.025,0.975),4)*sd(d)/sqrt(5),&quot;)&quot;, &quot;¸\n&quot;)</code></pre>
+<pre><code>IdeC para mu (95%) : ( 0.8935108 1.186083 ) ¸</code></pre>
+<pre class="r"><code>t.test(antes, despues, 
+       paired = TRUE, 
+       var.equal = FALSE,
+       conf.level = 0.95)$conf</code></pre>
+<pre><code>[1] 0.8935108 1.1860830
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+</div>
+<p></br></br></p>
+<div
+id="intervalo-para-la-diferencia-de-medias-con-muestras-independientes-varianzas-iguales"
+class="section level3 box2 with-label">
+<h3><strong>7. Intervalo para la diferencia de medias con muestras
+independientes (varianzas iguales)</strong></h3>
+<p>Dos grupos de estudiantes de administración realizan un simulacro de
+evaluación financiera en condiciones similares. Se desea comparar el
+rendimiento promedio entre ambos grupos. Se toman 5 notas aleatorias de
+cada grupo. Asumiendo que las varianzas son iguales, estime un intervalo
+de confianza del 95% para la diferencia de medias.</p>
+<p><span class="math display">\[(\bar{x}_{1}-\bar{x}_{2})\pm
+t_{\alpha/2} \hspace{.2cm}s_{p}
+\sqrt{\frac{1}{n_{1}}+\frac{1}{n_{2}}}\]</span></p>
+<p>donde <span class="math inline">\(s_{p}^{2}\)</span> es la varianza
+común</p>
+<p><span
+class="math display">\[s_{p}^{2}=\frac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s_{2}^{2}}{n_{1}+n_{2}-2}\]</span></p>
+<p>y <span class="math inline">\(t_{\alpha/2}\)</span> se distribuye
+t-student con <span class="math inline">\(v=n_{1}+n_{2}-2\)</span>
+grados de libertad</p>
+<p>Supuestos: + <span class="math inline">\(X_{1}\)</span> y <span
+class="math inline">\(X_{2}\)</span> son variables aleatorias
+independientes con distribución normal + <span
+class="math inline">\(X_{1}\)</span> y <span
+class="math inline">\(X_{2}\)</span> tienen varianzas iguales pero
+desconocidas</p>
+<pre class="r"><code>set.seed(107)
+grupo1 &lt;- rnorm(5, mean = 90, sd = 2)
+grupo2 &lt;- rnorm(5, mean = 85, sd = 2)
+
+var.test(grupo1, grupo2)$conf</code></pre>
+<pre><code>[1] 0.01276461 1.17749704
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
+<pre class="r"><code>t.test(grupo1, grupo2, 
+       paired = TRUE, 
+       var.equal = FALSE,
+       conf.level = 0.95 )$conf</code></pre>
+<pre><code>[1] 0.2792651 7.8718971
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+</div>
+<p></br></br></p>
+<div
+id="intervalo-para-la-diferencia-de-medias-con-muestras-independientes-varianzas-diferentes"
+class="section level3 box2 with-label">
+<h3><strong>8. Intervalo para la diferencia de medias con muestras
+independientes (varianzas diferentes)</strong></h3>
+<p>Continuando con el caso anterior, pero ahora sin asumir que las
+varianzas son iguales, estime el intervalo de confianza del 95% para la
+diferencia de medias usando el método de Welch.</p>
+<p><span class="math display">\[(\bar{x}_{1}-\bar{x}_{2})\pm
+t_{\alpha/2}
+\sqrt{\frac{s_{1}^{2}}{n_{1}}+\frac{s_{2}^{2}}{n_{2}}}\]</span></p>
+<p>donde los grados de libertad de t se aproximan a</p>
+<p><span
+class="math display">\[v=\frac{(s_{1}^{2}/n_{1}+s_{2}^{2}/n_{2})^{2}}{\Big[(s_{1}^{2}/n_{1})^{2}/(n_{1}-1)\Big]+\Big[(s_{2}^{2}/n_{2})^{2}/(n_{2}-1)\Big]}\]</span></p>
+<pre class="r"><code>set.seed(107)
+grupo1 &lt;- rnorm(5, mean = 90, sd = 2)
+grupo2 &lt;- rnorm(5, mean = 85, sd = 5)
+
+var.test(grupo1, grupo2)$conf</code></pre>
+<pre><code>[1] 0.002042338 0.188399527
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
+<pre class="r"><code>t.test(grupo1, grupo2, 
+       paired = TRUE, 
+       var.equal = FALSE,
+       conf.level = 0.95 )$conf</code></pre>
+<pre><code>[1] -4.409626 12.323995
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+</div>
+<p></br></br></p>
+<div id="intervalo-para-la-razón-de-varianzas"
+class="section level3 box2 with-label">
+<h3><strong>9. Intervalo para la razón de varianzas</strong></h3>
+<p>Un asesor financiero compara la volatilidad de los rendimientos
+mensuales de dos portafolios de inversión. Se toman 5 observaciones de
+cada portafolio. Estime un intervalo de confianza del 95% para la razón
+de varianzas de los rendimientos entre ambos portafolios.</p>
+<p><span class="math display">\[\Bigg(\dfrac{s^{2}_{1}}{s^{2}_{2}}
+\dfrac{1}{f_{1-\alpha/2}(v_{1}v_{2})}; \dfrac{s^{2}_{1}}{s^{2}_{2}}
+\dfrac{1}{f_{\alpha/2}(v_{1}v_{2})}\Bigg)\]</span></p>
+<pre class="r"><code>set.seed(107)
+grupo1 &lt;- rnorm(5, mean = 90, sd = 2)
+grupo2 &lt;- rnorm(5, mean = 85, sd = 2)
+
+boxplot(data.frame(grupo1,grupo2))</code></pre>
+<p><img src="Ejercicios321_files/figure-html/unnamed-chunk-10-1.png" width="100%" /></p>
+<pre class="r"><code>var.test(grupo1, grupo2)$conf</code></pre>
+<pre><code>[1] 0.01276461 1.17749704
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+</div>
+<p></br></br></p>
+<div id="intervalo-para-la-diferencia-de-proporciones"
+class="section level3 box2 with-label">
+<h3><strong>10. Intervalo para la diferencia de
+proporciones</strong></h3>
+<p>Una investigación de mercado compara la aceptación de dos productos
+financieros. Se encuesta a 200 personas sobre el producto A y a 150
+sobre el producto B. Se identifican 18 interesados en el producto A y 10
+en el producto B. Estime un intervalo de confianza del 95% para la
+diferencia de proporciones de aceptación entre ambos productos.</p>
+<p><span class="math display">\[(\widehat{p_{1}}-\widehat{p_{2}}) \pm
+z_{\alpha/2}
+\sqrt{\frac{\widehat{p_{1}}(1-\widehat{p_{1}})}{n_{1}}+\frac{\widehat{p_{2}}(1-\widehat{p_{2}})}{n_{2}}}\]</span></p>
+<pre class="r"><code>defectuosos_A &lt;- c(rep(1, 18), rep(0, 182))
+defectuosos_B &lt;- c(rep(1, 10), rep(0, 140))
+
+prop.test(c(18,10), c(200, 150))$conf</code></pre>
+<pre><code>[1] -0.03877230  0.08543896
+attr(,&quot;conf.level&quot;)
+[1] 0.95</code></pre>
+</div>
+<p></br></br></p>
+<div id="cálculo-del-tamaño-de-muestra-para-estimar-una-media"
+class="section level2 box2 with-label">
+<h2><strong>11. Cálculo del tamaño de muestra para estimar una
+media</strong></h2>
+<p>Una firma consultora desea estimar el gasto promedio en transporte
+mensual de empleados de una empresa. Se sabe que la desviación estándar
+es aproximadamente 0.5 millones de pesos. Se quiere que el error máximo
+de estimación sea de 0.1 millones, con un nivel de confianza del 95%.
+¿Cuál es el tamaño mínimo de muestra requerido?</p>
+<p><span class="math display">\[n =
+\displaystyle\frac{z_{\alpha/2}^{2}\sigma^{2}}{e^{2}}\]</span></p>
+<pre class="r"><code>sigma = 0.5
+e =0.1
+z = qnorm(0.975)
+
+cat(&quot; n =&quot;, z^2*sigma^2/e^2, &quot;\n&quot;)</code></pre>
+<pre><code> n = 96.03647 </code></pre>
+<pre class="r"><code>paqueteDEG::sizemu(z,sigma^2, e)</code></pre>
+<pre><code>[1] 96.03647</code></pre>
+</div>
+<p></br></br></p>
+<div id="cálculo-del-tamaño-de-muestra-para-estimar-una-proporción"
+class="section level3 box2 with-label">
+<h3><strong>12. Cálculo del tamaño de muestra para estimar una
+proporción</strong></h3>
+<p>Una empresa quiere estimar la proporción de clientes que están
+satisfechos con su servicio de atención al cliente. Estudios previos
+indican que alrededor del 8% no están satisfechos. Se desea estimar esta
+proporción con un margen de error de ±3% y un nivel de confianza del
+95%. ¿Cuántos clientes deben ser encuestados?</p>
+<p><span class="math display">\[n=\dfrac{z_{\alpha/2}^{2}\hspace{.3cm}
+p(1-p)}{e^{2}}\]</span></p>
+<pre class="r"><code>library(dplyr)
+z = qnorm(0.975)
+pq = 0.08*(1-0.08)
+e = 0.03
+
+cat(&quot;n =&quot;, z^2*pq/e^2, &quot;\n&quot;)</code></pre>
+<pre><code>n = 314.146 </code></pre>
+<pre class="r"><code> paqueteDEG::sizep(z,0.08, 0.03) %&gt;% 
+           round(0)</code></pre>
+<pre><code>[1] 314</code></pre>
+</div>
+<p></br></br></p>
+<div
+id="cálculo-del-tamaño-de-muestra-para-estimar-una-proporción-varianza-máxima"
+class="section level3 box2 with-label">
+<h3><strong>13. Cálculo del tamaño de muestra para estimar una
+proporción (varianza máxima)</strong></h3>
+<p>Un banco desea estimar la proporción de sus clientes interesados en
+adquirir un nuevo producto financiero. Como no se cuenta con información
+previa, se decide asumir el caso más conservador (proporción 0.5) para
+garantizar precisión. Se desea una estimación con un margen de error
+máximo del 4% y un nivel de confianza del 95%. ¿Cuál es el tamaño mínimo
+de muestra necesario?</p>
+<pre class="r"><code>library(dplyr)
+z = qnorm(0.975)
+e = 0.03
+
+cat(&quot;n =&quot;, z^2*0.25/e^2, &quot;\n&quot;)</code></pre>
+<pre><code>n = 1067.072 </code></pre>
+<pre class="r"><code> paqueteDEG::sizep(z,0.5, 0.03) %&gt;% 
+           round(0)</code></pre>
+<pre><code>[1] 1067</code></pre>
 </div>
 
 
