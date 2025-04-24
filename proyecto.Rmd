@@ -1,0 +1,203 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784"> </span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+---    
+
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+paleta4=c(c0,c1,c2,c3)
+
+
+library(forcats)
+library(patchwork)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(cowplot)
+library(summarytools)
+
+#library(dviz.supp)
+```
+
+
+
+```{r, echo=FALSE, out.width="100%", fig.align = "left"}
+knitr::include_graphics("img/banner005.png")
+```
+
+</br></br>
+
+## **Introducción**
+
+Este proyecto tiene como propósito integrar los conocimientos adquiridos en el curso de Estadística para la Toma de Decisiones, mediante su aplicación a un caso práctico que fomente el análisis de datos y la comunicación de resultados.
+
+
+
+<br/><br/>
+
+## **Objetivo**
+
+Este proyecto busca es brindar a los estudiantes la oportunidad de aplicar los conceptos y herramientas estadísticos aprendidos a lo largo del curso en un contexto práctico. A través del desarrollo de un caso real o simulado, se busca fomentar el pensamiento crítico, el trabajo colaborativo y la capacidad de comunicar resultados de manera clara y efectiva.
+  
+<br/><br/>
+
+## **Objetivos específicos** 
+  
+Promover la formación integral y el trabajo en equipo mediante la aplicación de conocimientos estadísticos a un problema concreto.
+
+Identificar situaciones del entorno que permitan aplicar técnicas estadísticas estudiadas en clase.
+
+Desarrollar habilidades en el análisis de datos y en la elaboración de informes estadísticos comprensibles y rigurosos.
+
+<br/><br/>
+  
+## **Temática** 
+  
+l trabajo debe desarrollarse en equipos de hasta tres estudiantes y abordar un problema de interés común que permita implementar herramientas estadísticas abordadas en el curso. El tema propuesto deberá contar con la aprobación del profesor.
+
+El producto final será un póster tamaño **A1** (594 mm x 841 mm), que deberá entregarse impreso y en formato **PDF**. Los estudiantes tendrán un tiempo máximo de 10 minutos para la presentación oral. El expositor será sorteado el día de la entrega.
+
+<br/><br/><br/>
+  
+## **Requisitos** 
+  
+Conformación de equipos de máximo tres integrantes. No se permiten trabajos individuales.
+
+Selección de un tema que permita el uso de las técnicas estadísticas estudiadas.
+
+Elaboración del póster siguiendo la estructura indicada.
+
+Presentación del trabajo por parte de los integrantes del grupo.
+
+
+## **Contenido del poster**
+
++ Titulo
++ Integrantes
++ Introducción
++ Metodología
++ Resultados
++ Conclusiones y recomendaciones
++ Bibliografia
+
+<br/><br/>
+  
+## **Entregas** 
+
+<br/>
+  
+### **Primera Entrega : Informe parcial** (5%)
+
+Documento en formato pdf que contenga la propuesta seleccionada (problema) 
+    
+* Titulo
+* objetivos
+* Metodología
+
+  * Fecha :  mayo 5 de 2025
+  * Hora : <span style="color:#771011">**14:00**</span>
+  
+<br/><br/>  
+
+### **Entrega del informe final y presentación oral por parte del equipo:** (15%)
+
+* **Poster** en formato impreso  
+* Fecha :  mayo 16 de 2025
+* Espacio : última sesión de clases
+* El presentador del poster será sorteado en el momento de la entrega
+
+<br/><br/><br/>
+  
+## **Referencias** 
+  
+  <br/>
+  
++ Metodología de la investigación . Hernandez Sampieri Roberto. Segunda edición. Mc Graw-Hill
++ Investigación de Mercados. Naresh K. Malhotra. Quinta Edición. Pearson.
++ [Poster en overleaf](https://www.overleaf.com/learn/latex/Posters) : plataforma con formatos TeX y posibilidad de trabajo grupal en linea
++ [trello- tablero para la gestión de proyectos](https://trello.com/es/tour) : Metodogía Kamban (tablero Kamban)
+
+<br/><br/>
+
+## **Nota**
+
+El proyecto se puede basar en los datos contenidos en las plataformas de bases de datos abiertos como:
+
+* [**Datos abiertos Colombia**](https://www.datos.gov.co/)
+* [**kaggle**](https://www.kaggle.com/)
+
+
+<br/><br/><br/><br/>
+
+# Conformación de los grupos
+
+<br/><br/>
+
+### Grupo 1    
+
+Tema:  
+
+<br/><br/>
+
+### Grupo 2
+
+Tema:  
+
+<br/><br/>
+
+### Grupo 3
+
+Tema:  
+
+<br/><br/>
+
+### Grupo 4
+
+Tema:
+
+<br/><br/>
+
+### Grupo 5
+
+Tema:  
+
+<br/><br/>
+
+### Grupo 6
+
+Tema:
+
+<br/><br/>
+
+### Grupo 7 
+
+Tema:

@@ -150,7 +150,7 @@ navbar:
     - text: "Proyecto"
       menu:
         - text: "Guía proyecto"
-          href: recurso000.html
+          href: proyecto.html
     - text: "Información"
       menu:
         - text: "300MAE018G"
