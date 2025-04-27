@@ -1,0 +1,2999 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia22.html">Guía 2.2</a>
+    </li>
+    <li>
+      <a href="recurso22.html">recursos 2.2</a>
+    </li>
+    <li>
+      <a href="actividad221.html">Actividad 221</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia23.html">Guía 2.3</a>
+    </li>
+    <li>
+      <a href="recurso23.html">recursos23</a>
+    </li>
+    <li>
+      <a href="codigo23.html">Código 23</a>
+    </li>
+    <li>
+      <a href="actividad231.html">Actividad 231</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia24.html">Guía 2.4</a>
+    </li>
+    <li>
+      <a href="recurso24.html">recursos24</a>
+    </li>
+    <li>
+      <a href="codigo24.html">Código 24</a>
+    </li>
+    <li>
+      <a href="actividad241.html">Actividad 241</a>
+    </li>
+    <li>
+      <a href="problemas331.html">Problemas 2.4</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria2.html">Monitoria 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia31.html">Guía 3.1</a>
+    </li>
+    <li>
+      <a href="recurso31.html">recursos 3.1</a>
+    </li>
+    <li>
+      <a href="codigo31.html">Código 3.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia42.html">Guía 3.2</a>
+    </li>
+    <li>
+      <a href="recurso42.html">recursos 3.2</a>
+    </li>
+    <li>
+      <a href="codigo42.html">Código 3.2</a>
+    </li>
+    <li>
+      <a href="taller421.html">Taller 321</a>
+    </li>
+    <li>
+      <a href="Ejercicios321.html">Ejercicios 321</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia43.html">Guía 3.3</a>
+    </li>
+    <li>
+      <a href="recurso43.html">recursos 3.3</a>
+    </li>
+    <li>
+      <a href="codigo43.html">Código 3.3</a>
+    </li>
+    <li>
+      <a href="taller431.html">Taller 331</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria4.html">Monitoria 3</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 4
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo4.html">Módulo 4</a>
+    </li>
+    <li class="divider"></li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="proyecto.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+    <li>
+      <a href="parcial1.html">Primer parcial</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#2C5697"> </span></h1>
+<h3 class="subtitle"><span style="color:#2C5697"><strong>Estadística
+para la toma de decisiones</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><img src="img/recursos3.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/><br/></p>
+<p><img src="img/decisones.png" width="100%" style="display: block; margin: auto;" /></p>
+<center>
+Tomada de : <a href="https://pixabay.com/es/"
+class="uri">https://pixabay.com/es/</a>
+</center>
+<p><br/><br/></p>
+<div id="introducción" class="section level2">
+<h2><strong>Introducción</strong></h2>
+<p><br/></p>
+<p><img src="img/pruebas1.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<p>El origen de los estudios, relacionados con las pruebas de hipótesis
+estadísticas, se sitúa alrededor de 1738, cuando en un ensayo escrito
+por <strong>Daniel Bernoulli</strong>(1) aparece el cálculo una
+estadística de prueba para ensayar su hipótesis en el campo de la
+astronomía. Entre 1915 y 1933 se desarrolla esta formulación gracias a
+los estudios realizados por tres grandes autores: <strong>Ronald
+Fisher</strong>(2), <strong>Jerzy Neyman</strong>(3) y <strong>Egon
+Pearson</strong>(4). Hoy en día predomina la teoría de Neyman-Pearson
+(lema de Neyman-Pearson).</p>
+<p><br/><br/></p>
+<img src="img/prueba.jpg" width="50%" style="display: block; margin: auto;" />
+<center>
+Tomada de : <a href="https://pixabay.com/es/"
+class="uri">https://pixabay.com/es/</a>
+</center>
+<p><br/><br/></p>
+<p>Una hipótesis estadística es una afirmación o conjetura acerca de los
+parámetros de la distribución de probabilidades de una población. Si la
+hipótesis estadística especifica completamente la distribución, entonces
+ella se llama <strong>Hipótesis Simple</strong>, de otra manera se llama
+Hipótesis Compuesta.</p>
+<p>Desde el punto de vista clásico, todas las pruebas de hipótesis
+trabajan en base a ciertos principios que consideran:</p>
+<ul>
+<li>Hipótesis nula (<strong>Ho</strong>)</li>
+<li>Hipótesis alterna (<strong>Ha</strong>)</li>
+<li>Estadístico de Prueba (<strong>EdeP</strong>)</li>
+<li>Región de Rechazo (<strong>RdeR</strong>)</li>
+<li>Regla de Decisión(<strong>RD</strong>)</li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="conceptos-básicos" class="section level2">
+<h2><strong>Conceptos básicos</strong></h2>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Hipótesis Nula (Ho)
+</div>
+<p>Es la hipótesis a probar, ésta NO se rechaza si de la muestra no se
+obtiene suficiente evidencia para rechazarla.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Hipótesis Alterna (Ha)
+</div>
+<p>La hipótesis <code>Ho</code> se contrasta con la hipótesis Ha, y ésta
+última corresponde a valores alternativos del parámetro planteados en la
+hipótesis nula. La hipótesis <span class="math inline">\(Ha\)</span> se
+considera cierta si existe suficiente evidencia para rechazar la
+hipótesis nula.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Estadístico de Prueba
+</div>
+<p>Es una función de la muestra que contiene información sobre el
+parámetro de interés, la que nos permite decidir sobre el rechazo de la
+hipótesis nula, <code>Ho</code> . Es tambien una variable aleatoria que
+sigue una función de distribución conocida como por ejemplo:</p>
+<p>Para una muestra determinada se obtiene un valor del estadístico de
+prueba, a partir del cálculo y se determina el rechazo o no, de la
+hipótesis nula.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Región de Rechazo (RdeR)
+</div>
+<p>También llamada región crítica (<code>RC</code>), define los valores
+del estadístico de prueba para los cuales la información muestral
+contradice la hipótesis nula. Estos valores nos permitirán adoptar una
+regla de decisión consistente. Una prueba de una hipótesis estadística
+es un procedimiento que permite, mediante el contraste entre la
+información muestral y lo propuesto en una hipótesis, decidir sobre su
+rechazo.</p>
+<p>Una prueba de una hipótesis estadística es un procedimiento que
+permite, mediante el contraste entre la información muestral y lo
+propuesto en una hipótesis, decidir sobre su rechazo.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Regla de Decisión (RD)
+</div>
+<p>De esta manera, como una regla de decisión, si para una muestra
+particular el estadístico de prueba (valor calculado) cae dentro de la
+región crítica, rechazaremos la hipótesis nula <code>Ha</code> en favor
+de la hipótesis alternativa <code>Ha</code>. En cambio, si el valor
+calculado no cae dentro de la RC, no podremos rechazar la hipótesis nula
+y por tanto decimos que la información contenida en la muestra no ofrece
+suficiente evidencia estadística que nos permita
+rechazar<code></code>Ho`, ASUMIMOS que la hipótesis nula es cierta.</p>
+</div>
+<p><br/><br/></p>
+<div id="errores-asociados" class="section level3">
+<h3><strong>Errores asociados</strong></h3>
+<p>Cuando se decide ya sea en favor o en contra de una determinada
+prueba de hipótesis, es posible estar en una de las cuatro situaciones
+descritas en la siguiente tabla:</p>
+<!-- |                   |  **Estado de la naturaleza**    |                                 | -->
+<!-- |:------------------|:--------------------------------|:--------------------------------| -->
+<!-- |                   |  **Ho es verdadera**            | **Ho es falsa**                 | -->
+<!-- | **Decisión sobre la hipótesis**|                    |                                 | -->
+<!-- |                   |                                 |                                 | -->
+<!-- |Rechazar $Ho$      | **Error tipo I**                | **Decisión correcta**           | -->
+<!-- |                   | P(Error tipo I) = $\alpha$      | $1-\beta$ : Potencia            | -->
+<!-- |                   |                                 |                                 | -->
+<!-- |No rechazar $Ho$   | **Decisión correcta**           | **Error tipo II**               | -->
+<!-- |                   |                                 | P(Eror tipo II) =$\beta$        | -->
+<!-- |                   |                                 |                                 | -->
+<p><img src="img/errores.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Existen dos situaciones en las que se comenten errores después de
+tomar una decisión:</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Error tipo I
+</div>
+<p>Cuando se rechazamos una hipótesis nula que en realidad es verdadera.
+Tomando como simil la situación donde un médico desea determinar si un
+paciente está sano o enfermo (<code>Ho</code>: SANO vs <code>Ha</code>:
+ENFERMO), es posible que concluya que el paciente está enfermo (rechace
+<code>Ho</code>) cuando en verdad esta persona esta sana. En términos de
+probabilidad este error se debe de representar como: <span
+class="math display">\[P(\text{Rechazar } Ho | Ho \text{ es verdadera})=
+\alpha\]</span></p>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo
+</div>
+<p><img src="img/donar.jpg" /></p>
+<p>Para ilustrar el error tipo I, podeos acudir aun evento ocurrido a
+una estudiante que después de realizar una donación de sangre fue
+requerida por la clinica benefactora, pues el examen que le habían
+practicado a la sangre donada, presentaba signos de estar infectada por
+hepatitis c. Esto prendió las alarmas en la casa y fue llevada por la
+familia a que se le realizaran otros exámenes para confirmar el
+diagnostico inicial. Las segundas pruebas evidenciaron que se trataba de
+un error. Este caso constituye un caso de falso positivo (Se diagnostica
+como enferan, cuando en verdad esta sana)</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Error Tipo II
+</div>
+<p>Cuando no se rechaza una hipótesis nula que en realidad es falsa.
+Utilizando el ejemplo del médico, diríamos que cuando el medico indica
+que el paciente esta sano, cuando esta realmente enfermo, incurre en un
+error frecuente cuando algunos pacientes son asintomáticos y aunque
+tienen la enfermedad, sus exámenes médicos salen negativos. En este caso
+la probabilidad se representa como:</p>
+<p><span class="math display">\[P(\text{No rechazar} Ho | Ho \text{ es
+falsa}) \]</span></p>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo
+</div>
+<p><img src="img/dopin.jpg" /></p>
+<p>Para ilustrar el caso del error tipo II, recurrimos a lo acontecido
+en el Tour de Francia, donde el ciclista estadunidence Lance Armstrong
+gano esta competencia seis veces de manera consecutiva y aunque fue
+acusado de dopin, no se le pudo comprobar. Fue solo en el 2012 cuando el
+mismo admitió haber usado EPO. Podemos decir que durante su vida
+deportiva los exámenes practivados dieron negativos, estando el dopado.
+Este caso se cataloga como falso negativo.</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Nivel de significancia (<span class="math inline">\(\alpha\)</span>)
+</div>
+<p>No es posible minimizar simultáneamente, las probabilidades de los
+errores tipo I y II, ya que en la medida que uno disminuye el otro
+aumenta, como se muestra en la figura siguiente, en la que claramente se
+ve que la reducción del área <span class="math inline">\(\alpha\)</span>
+(probabilidad de error tipo I), implica el aumento del área <span
+class="math inline">\(\beta\)</span> (probabilidad de error tipo
+II).</p>
+</div>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Pruebas paramétricas
+</div>
+<p>Se llaman pruebas de hipótesis metrificaras debido a que para su
+realización se deben verificar el cumplimiento de supuestos sobre
+parámetros.</p>
+</div>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="puebas-de-hipótesis-sobre-una-población"
+class="section level1">
+<h1><strong>Puebas de hipótesis sobre una población</strong></h1>
+<p>Los parámetros más importante a los que se les realizan pruebas de
+hipótesis son : <span class="math inline">\(\mu\)</span>, <span
+class="math inline">\(p\)</span> y <span
+class="math inline">\(\sigma^{2}\)</span>, en el caso de una población
+:</p>
+<p><br/><br/></p>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="28%" />
+<col width="27%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">parámetro</th>
+<th align="left">prueba de dos colas</th>
+<th align="left">prueba de cola inferior</th>
+<th align="left">prueba de cola superior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\mu\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \mu =
+\mu_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \mu \geq
+\mu_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \mu \leq
+\mu_{o}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Ha: \mu \neq
+\mu_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \mu &lt;
+\mu_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \mu &gt;
+\mu_{o}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(p\)</span></td>
+<td align="left"><span class="math inline">\(Ho: p = p_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: p \geq
+p_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: p \leq
+p_{o}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Ha: p \neq
+p_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: p &lt;
+p_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: p &gt;
+p_{o}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\sigma^{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \sigma^{2} =
+\sigma^{2}_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \sigma^{2} \geq
+\sigma^{2}_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \sigma^{2} \leq
+\sigma^{2}_{o}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Ha: \sigma^{2} \neq
+\sigma^{2}_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \sigma^{2} &lt;
+\sigma^{2}_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \sigma^{2} &gt;
+\sigma^{2}_{o}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+<div id="pruebas-de-hipótesis-sobre-una-media" class="section level3">
+<h3><strong>Pruebas de hipótesis sobre una media</strong></h3>
+<p>Dependiendo de las condiciones podemos optar por tres diferentes EdeP
+para la realización de la prueba para una media, aunque tenemos una
+cuarta posibilidad en el caso de realizarla mediante un método no
+paramétrico:</p>
+<p><br/><br/></p>
+<p><img src="img/EdeP_media.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><br/><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 1
+</div>
+<p>Un informe indica que el precio medio del pasaje de avión entre Cali
+y San Andrés es de $120 mil pesos y su desviación estándar de $40 mil
+pesos. Se toma una muestra que se registra a continuación. ¿Se puede
+aceptar, con un nivel de significación igual a <span
+class="math inline">\(\alpha=0.1\)</span>, las afirmaciones acerca de la
+media? |</p>
+<p>165.1, 91.8, 128.3, 160.3, 103.6, 153.2, 50.7, 150.3, 160.8, 38.1,
+98.8, 88.7, 123.1, 106.5, 79.5, 84.1, 216.1, 139.8, 98.4, 127.1, 103.0,
+83.7, 158.8, 126.1, 113.4, 61.3, 79.8, 121.8, 89.9, 97.4, 134.0, 141.2,
+154.3, 122.4, 107.6, 137.7, 121.0, 187.7, 56.8, 79.5, 183.8, 114.7,
+80.2, 97.3, 113.8, 92.4, 123.5, 138.4, 114.7, 48.8, 178.1, 106.0, 103.1,
+100.8, 180.7, 113.1, 121.4, 163.0, 51.4, 135.5,104.5, 202.1, 171.0,
+100.7, 56.4, 99.7, 93.0, 118.3, 110.4, 136.9, 112.3, 69.8, 138.3, 87.2,
+121.8, 118.6, 174.5, 77.7, 158.5, 85.3, 71.4, 63.0, 140.9, 126.9, 194.2,
+136.7, 98.8, 222.5, 131.3, 175.0, 127.7, 88.5, 104.5, 144.7, 73.0, 97.2,
+131.0, 120.5, 166.6, 96.0 .</p>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="solución" class="section level3">
+<h3><strong>Solución</strong></h3>
+<p>Las pruebas a contrastar son:</p>
+<p><span class="math inline">\(Ho: \mu= 120\)</span> <br/> <span
+class="math inline">\(Ha: \mu \neq 120\)</span></p>
+<p><br/><br/></p>
+<p>Antes de realizar la prueba debemos de determinar si la distribución
+de la población de precios es normal, para lo cual realizaremos la
+prueba de normalidad de Shapiro Wilk</p>
+<p><span class="math inline">\(Ho: X \hspace{0.3cm}\sim norm\)</span>
+<br/> <span class="math inline">\(Ha: X \hspace{.3cm} no \sim
+norm\)</span> <br/></p>
+<pre class="r"><code>precio=c(165.1, 91.8, 128.3, 160.3, 103.6, 153.2, 50.7, 150.3, 160.8, 38.1, 98.8, 88.7, 123.1, 106.5, 79.5, 84.1, 216.1, 139.8, 98.4, 127.1, 103.0, 83.7, 158.8, 126.1, 113.4, 61.3, 79.8, 121.8, 89.9, 97.4, 134.0, 141.2, 154.3, 122.4, 107.6, 137.7, 121.0, 187.7, 56.8, 79.5, 183.8, 114.7, 80.2, 97.3, 113.8, 92.4, 123.5, 138.4, 114.7, 48.8, 178.1, 106.0, 103.1, 100.8,180.7,113.1,121.4,163.0,51.4,135.5,104.5,202.1,171.0,100.7, 56.4, 99.7, 93.0, 118.3, 110.4, 136.9, 112.3, 69.8, 138.3, 87.2, 121.8, 118.6, 174.5, 77.7, 158.5, 85.3, 71.4, 63.0, 140.9, 126.9, 194.2, 136.7, 98.8, 222.5, 131.3, 175.0, 127.7, 88.5, 104.5, 144.7, 73.0, 97.2, 131.0, 120.5, 166.6, 96.0)
+boxplot(precio, horizontal = TRUE, col = c2, xlab=&quot;precio ($000)&quot;)</code></pre>
+<p><img src="recurso43_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p><br/><br/></p>
+<pre class="r"><code>shapiro.test(precio)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  precio
+W = 0.9853, p-value = 0.3337</code></pre>
+<p><br/></p>
+<p>De acuerdo con los resultados obtenidos en la prueba de Shapiro
+podemos suponer y aplicando la regla 3 (que se trata más adelante)
+podemos suponer que los datos siguen una distribucion aproximadamente
+normal. Cumplido este supuesto y al no tener conocimiento del valor de
+la varianza utilizaremos una prueba t para una media</p>
+<pre class="r"><code>t.test(precio,
+       alternative = &quot;two.sided&quot;, # tipo de prueba
+       mu = 120,                  # valor a contrastar
+       conf.level = 0.90)         # nivel de confianza</code></pre>
+<pre><code>
+    One Sample t-test
+
+data:  precio
+t = -0.39343, df = 99, p-value = 0.6949
+alternative hypothesis: true mean is not equal to 120
+90 percent confidence interval:
+ 112.159 124.837
+sample estimates:
+mean of x 
+  118.498 </code></pre>
+<p><br/></p>
+<p>Para tomar una decisión sobre las hipótesis de acuerdo con los
+resultados podemos utilizar tres reglas:</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Regla 1 :
+</div>
+<p>Si el <code>EdeP</code> cae en la <code>RdeR</code>, entonce se
+RECHAZA la <code>Ho</code> y se <strong>acepta</strong> <code>Ha</code>
+como verdadera. Si por el contrario el <code>EdeP</code> NO cae en la
+<code>RdeR</code>, entonces NO SE RECHAZA <code>Ho</code>, no existe
+suficiente evidencia para rechazarla, <strong>asumimos</strong> que
+<code>Ho</code> es verdad.</p>
+</div>
+<p>En este caso es necesario determinar la región de rechazo
+(<code>RdeR</code>) de acuerdo al tipo de hipótesis y a la distribución
+del estadistico de prueba. En esta caso estamos realizando una prueba de
+dos colas, para un estadistico de prueba con distribución t-Student con
+99 grados de libertad.</p>
+<p><br/><br/></p>
+</div>
+<div id="región-de-rechazo" class="section level3">
+<h3><strong>Región de Rechazo</strong></h3>
+<p>Para determinar la <code>RdeR</code>, a a prtir del nivel de
+significancia asumido, se buscan los percentiles <span
+class="math inline">\(t_{0.025; v=59}\)</span> y <span
+class="math inline">\(t_{0.975;v=59}\)</span> para la distribución
+t-Student.</p>
+<pre class="r"><code>qt(c(0.025,0.975),99)</code></pre>
+<pre><code>[1] -1.984217  1.984217</code></pre>
+<p><br/><br/></p>
+<pre class="r"><code>library(ggdistribute)
+p=ggdistribution(dt, seq(-3, +3, 0.1), df = 99, colour = &quot;blue&quot;)
+p=ggdistribution(dt, seq(-3, qt(0.025,99), 0.1), df = 99, colour = &#39;blue&#39;, fill=&quot;red&quot;, p=p)   
+p=ggdistribution(dt, seq(qt(0.975,99),+3, 0.1), df = 99, colour = &#39;blue&#39;, fill=&quot;red&quot;, p=p)+ 
+     ggtitle(&quot;Región de rechazo : (-Inf, -1.984217)  (1.984217, +Inf)&quot;)
+p</code></pre>
+<p><img src="img/RdeR1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+</div>
+<div id="conclusión" class="section level3">
+<h3><strong>Conclusión</strong>:</h3>
+<p>Como el <code>EdeP</code> (<code>t = -0.39343</code>) NO cae en la
+<code>RdeR</code>, entonces NO rechazamos <code>Ho</code>, asuminos
+<code>Ho</code> es verdadera, es decir <span
+class="math inline">\(\mu\)</span> de los precios es igual a 120 mil
+pesos.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Regla 2:
+</div>
+<p>Si <span class="math inline">\(\alpha &gt;\)</span>
+<strong>valor-p</strong> entonces rechazamos <span
+class="math inline">\(H_{0}\)</span>, se <strong>acepta</strong>
+<code>Ha</code> como verdadera. Si por el contrario <span
+class="math inline">\(\alpha &lt;\)</span> <code>valor-p</code>, no
+rechazamos <code>Ho</code>, <strong>asumimos</strong> que
+<code>Ho</code> es verdad.</p>
+</div>
+<p><br/><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Valor-p
+</div>
+<p>El valor-p corresponde al área delimitada por el <code>EdeP</code> en
+el sentido que indica la <code>RdeR</code> de la prueba a contrastar. Es
+decir que corresponde a la probilidad máxima de cometer
+<code>error tipo I</code>.</p>
+<p><a href="https://www.redalyc.org/pdf/806/80634308.pdf">Gil, Jacky F.;
+Castañeda, Javier A (2005)</a> lo definen como :</p>
+<p><em>El resultado de la prueba de hipótesis se basa principalmente en
+el cálculo, en términos de probabilidad, de la fuerza de los hallazgos a
+favor de la hipótesis nula. Esta probabilidad recibe el nombre de
+valor-p, y se define como la probabilidad de cometer un falso positivo
+por efecto del azar, cuando la hipótesis nula es verdadera.</em></p>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="conclusión-1" class="section level3">
+<h3><strong>Conclusión</strong> :</h3>
+<p>Como el valor de <span class="math inline">\(\alpha &gt;\)</span>
+<code>valor-p</code> (0.05 &gt; p-value = 0.6949) entonces No se rechaza
+<code>Ho</code>, se <code>ASUME</code> que <code>Ho</code> es verdad. El
+promedio de los precios es igual a $ 120.</p>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Regla 3 :
+</div>
+<p>El <code>valor-p</code> se interpreta como el error que puedo cometer
+al rechazar <code>Ho</code>, siendo esta verdadera (cometer
+<code>error tipo I</code>). Si este valor es considerado como pequeño,
+rechazo <code>Ho</code>, se <code>ACEPTA</code> <code>Ha</code>. Si por
+el contrario se considera este valor grande, entonce no rechazo
+<code>Ho</code>, asumo que <code>Ho</code> es verdad.</p>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="conclusión-2" class="section level3">
+<h3><strong>Conclusión</strong> :</h3>
+<p>En este caso valoramos si el <code>valor-p</code> (p-value = 0.6949)
+es grande o pequeño. En esta caso se puede considerar que su valor es
+muy grande y por lo tanto no nos atrevemos a rechazar <code>Ho</code>,
+asumimos que <span class="math inline">\(Ho\)</span> es verdadera, es
+decir que la media de los precios es igual a $ 120.</p>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Nota
+</div>
+<p>Al aplicar las últimas dos reglas (2 y 3) no se requiere la
+construcción de una <span class="math inline">\(RdeR\)</span> para tomar
+la decisión. Solo con revisar el valor-p entregado por la prueba y
+aplicar la regla se toma la decisión. En adelante utilizaremos las
+reglas 2 y 3 dado que al ejecutar las funciones en R nos sumunistran
+información sobre valor-p.</p>
+</div>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Reto
+</div>
+<p>Una operación en una línea de producción debe llenar cajas con
+detergente hasta un peso promedio de 32 onzas. Periódicamente se
+selecciona una muestra de cajas llenas, que se pesan para determinar a
+partir del promedio, si están faltas o sobradas de detergente. Si los
+datos de la muestra llevan a la conclusión de que les falta o sobra
+detergente, se debe parar la línea de producción y hacer los ajustes
+necesarios para que el llenado sea correcto. Con el fin de afianzar los
+conceptos expuestos, te invito a responder los siguientes interrogantes
+:|</p>
+<p>(a.) Formule la hipótesis nula y alternativa que lleven a decidir si
+es conveniente parar y ajustar la línea de producción o no.</p>
+<p>(b.) Comente la conclusión a que se llegaría en caso de que no se
+rechazase <span class="math inline">\(Ho\)</span> y cuando si
+ocurriese.</p>
+<p>(c.) Cuándo se comete error tipo I y cuando el tipo II.</p>
+<p>(d.) Bajo condiciones de distribución normal, determine la región de
+rechazo para una <span class="math inline">\(\alpha= 0.05\)</span> y
+para <span class="math inline">\(\alpha= 0.08\)</span></p>
+</div>
+<p><br/><br/><br/></p>
+</div>
+<div id="pruebas-de-hipótesis-sobre-una-proporción"
+class="section level2">
+<h2><strong>Pruebas de hipótesis sobre una proporción</strong></h2>
+<p>En este caso debemos tener en cuenta que la muestra sea mayor a 30
+con el fin de tener estimaciones mas robustas para estimar la proporción
+poblacional.</p>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 2
+</div>
+<p>Una empresa al seleccionar su personal, lo somete a un curso de
+entrenamiento. Por su experiencia se conoce que el 76% de los aspirantes
+aprueban el curso. Durante el último proceso, los encargados efectúan
+cambios al programa de entrenamiento, con el fin de realizar una
+selección más exigente. Para esta versión se inscriben 40 aspirantes de
+los cuales lo aprueban el proceso 24. ¿Podría afirmarse que los cambios
+realizados en el programa de entrenamiento reducen la selección?</p>
+</div>
+<p><br/></p>
+<p>Debemos realizar una prueba de cola inferior debido al sentido que
+tienen la afirmación que queremos verificar <em>los cambios realizados
+en el programa de entrenamiento reducen la selección</em>.</p>
+<p>Ho: <span class="math inline">\(p \geq 0.76\)</span> <br/><br />
+Ha :<span class="math inline">\(p &lt; 0.76\)</span> <br/>
+<br/><br/></p>
+<pre class="r"><code>prop.test(24, 40, p = 0.76,
+          alternative = &quot;less&quot;,
+          conf.level = 0.95)</code></pre>
+<pre><code>
+    1-sample proportions test with continuity correction
+
+data:  24 out of 40, null probability 0.76
+X-squared = 4.7711, df = 1, p-value = 0.01447
+alternative hypothesis: true p is less than 0.76
+95 percent confidence interval:
+ 0.0000000 0.7282033
+sample estimates:
+  p 
+0.6 </code></pre>
+<p><br/><br/></p>
+<div id="conclusión-3" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <code>valor-p</code> (p-value = 0.01447) es menor que el
+nivel de significancia (<span
+class="math inline">\(\alpha=0.05\)</span>), rechazamos la hipótesis
+nula, aceptamos la hipótesis alterna. Podemos afirmar que <span
+class="math inline">\(p&lt;0.76\)</span> . Tienen razón al afirmar que
+los cambios realizados en el proceso de selección provocaron una
+disminución significativa en la proporción de aprobación.</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="pruebas-de-hipótesis-sobre-una-varianza"
+class="section level2">
+<h2><strong>Pruebas de hipótesis sobre una varianza</strong></h2>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 2
+</div>
+<p>Un fabricante de baterías para celulares afirma que el tiempo de
+duración de sus baterías se distribuyen aproximadamente normal con una
+desviación estándar de 9 horas. Un comprador antes de realizar un pedido
+de este producto solicita al fabricante una muestra de 10 baterías para
+verificar la información que le esta dando. Con este propósito son
+enviadas al laboratorio y se obtienen los siguientes datos Es cierta la
+información suministrada por el fabricante?</p>
+<pre>
+11.1, 15.6, 11.1, 7.5, 7.9, 14.7, 6.3, 8.5, 8.0 , 7.6   
+</pre>
+</div>
+<p><br/><br/></p>
+<pre class="r"><code>library(ggdistribute)
+pRdeR=qchisq(c(0.025,0.975),9)
+p=ggdistribution(dchisq, seq(0, 30, 0.1), df = 9, colour = &#39;blue&#39;)
+p=ggdistribution(dchisq, seq(0, pRdeR[1], 0.1), df = 9, colour = &#39;blue&#39;, fill=&quot;blue&quot;, p=p)
+p=ggdistribution(dchisq, seq(pRdeR[2], 30, 0.1), df = 9, colour = &#39;blue&#39;, fill=&quot;blue&quot;, p=p)+
+       ggtitle(&quot;Región de rechazo:  (0; 2.70) (19.0, Inf) &quot;)
+p
+pRdeR</code></pre>
+<p><img src="img/RdeR2.png" width="80%" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>t=c(11.1, 15.6, 11.1, 7.5, 7.9, 14.7, 6.3, 8.5, 8.0 , 7.6)
+varx=var(t)
+EdeP=(length(t)-1)*varx/81
+EdeP</code></pre>
+<pre><code>[1] 1.135074</code></pre>
+<p><br/><br/></p>
+<div id="conclusión-4" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <span class="math inline">\(EdeP\)</span> (1.135074) caen en
+la <span class="math inline">\(RdeR\)</span>, entonces rechazamos la
+hipótesis nula, aceptamos la hipótesis alterna como verdadera.</p>
+<p>Podemos entonce concluir que <span class="math inline">\(\sigma^{2}
+\neq 81\)</span></p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+</div>
+<div id="puebas-de-hipótesis-sobre-dos-poblaciones"
+class="section level1">
+<h1><strong>Puebas de hipótesis sobre dos poblaciones</strong></h1>
+<p><br/><br/></p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="27%" />
+<col width="26%" />
+<col width="26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">parámetro</th>
+<th align="left">prueba de dos colas</th>
+<th align="left">prueba de cola inferior</th>
+<th align="left">prueba de cola superior</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span
+class="math inline">\(\mu_{1}-\mu_{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ho:
+\mu_{1}-\mu_{2}=\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \mu_{1}-\mu_{2}
+\geq=\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho:
+\mu_{1}-\mu_{2}\leq\Delta_{o}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Ha: \mu_{1}-\mu_{2} \neq
+\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \mu_{1}-\mu_{2}
+&lt;\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \mu_{1}-\mu_{2} &gt;
+\Delta_{o}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(p_{1}-p_{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: p_{1}-p_{2} =
+\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: p_{1}-p_{2}
+\geq\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: p_{1}-p_{2} \leq
+\Delta_{o}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Ha: p_{1}-p_{2} \neq
+\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: p_{1}-p_{2} &lt;
+\Delta_{o}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: p_{1}-p_{2} &gt;
+\Delta_{o}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><span
+class="math inline">\(\sigma_{1}^{2}/\sigma_{2}^{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \sigma_{1}^{2} =
+\sigma^{2}_{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \sigma_{1}^{2} \geq
+\sigma_{2}^{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ho: \sigma_{1}^{2} \leq
+\sigma_{2}^{2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Ha: \sigma_{1}^{2} \neq
+\sigma^{2}_{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \sigma_{1}^{2} &lt;
+\sigma_{2}^{2}\)</span></td>
+<td align="left"><span class="math inline">\(Ha: \sigma_{1}^{2} &gt;
+\sigma_{2}^{2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/><br/></p>
+<div id="pruebas-de-hipótesis-para-una-comparación-de-dos-medias"
+class="section level2">
+<h2><strong>Pruebas de hipótesis para una comparación de dos
+medias</strong></h2>
+<p><br/><br/></p>
+<div id="caso-para-grupos-pareados" class="section level3">
+<h3><strong>Caso para grupos pareados</strong></h3>
+<p><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 4
+</div>
+<p>El director de un gimnasio requiere determinar si contrata o no a un
+instructor para su campaña de reducción de peso. Para tomar la decisión
+decide tomar un grupo de 16 personas que acuden normalmente para darle
+una oportunidad a un aspirante al cargo. Los siguientes datos
+corresponden a los resultados obtenidos antes y después de un mes de
+estar en el programa. Utilice un nivel de significancia <span
+class="math inline">\(\alpha= 0.10\)</span>, para determinar si contrata
+o no al aspirante.|</p>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">pant</td>
+<td align="right">104.5</td>
+<td align="right">89</td>
+<td align="right">84.5</td>
+<td align="right">106</td>
+<td align="right">90</td>
+<td align="right">96</td>
+<td align="right">79</td>
+<td align="right">90</td>
+<td align="right">85</td>
+<td align="right">76.5</td>
+<td align="right">91.5</td>
+<td align="right">82.5</td>
+<td align="right">100.5</td>
+<td align="right">89.5</td>
+<td align="right">121.5</td>
+<td align="right">72</td>
+</tr>
+<tr class="even">
+<td align="left">pdes</td>
+<td align="right">98</td>
+<td align="right">85.5</td>
+<td align="right">85</td>
+<td align="right">103.5</td>
+<td align="right">88.5</td>
+<td align="right">95</td>
+<td align="right">79.5</td>
+<td align="right">90</td>
+<td align="right">82</td>
+<td align="right">76</td>
+<td align="right">89.5</td>
+<td align="right">81</td>
+<td align="right">99.5</td>
+<td align="right">86.5</td>
+<td align="right">115.5</td>
+<td align="right">70</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/></p>
+<p>Ho: <span class="math inline">\(\mu_{ant} \geq \mu_{des}\)</span>
+<br/> Ha: <span class="math inline">\(\mu_{ant} &lt; \mu_{des}\)</span>
+<br/></p>
+<pre class="r"><code>pant=c(104.5,89,84.5,106,90,96,79,90,85,76.5,91.5,82.5,100.5,89.5,121.5,72)
+pdes=c(98,85.5,85,103.5,88.5,95,79.5,90,82,76,89.5,81,99.5,86.5,15.5,70)
+
+t.test(pant, pdes,
+       alternative = &quot;less&quot;,
+       mu = 0, 
+       paired = TRUE, 
+       conf.level = 0.95)</code></pre>
+<pre><code>
+    Paired t-test
+
+data:  pant and pdes
+t = 1.2736, df = 15, p-value = 0.8889
+alternative hypothesis: true mean difference is less than 0
+95 percent confidence interval:
+     -Inf 19.75467
+sample estimates:
+mean difference 
+         8.3125 </code></pre>
+<p><br/><br/></p>
+</div>
+<div id="conclusión-5" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <code>valor-p</code> ( 0.8889) es mayor que nuestro nivel de
+significancia (<span class="math inline">\(\alpha= 0.10\)</span>), no se
+rechaza la hipótesis nula, no existe suficiente evidencia en la muestra
+que permita rechazarla. Se asume que Ho es verdad. Es decir que no hay
+evidencia que el programa reduzca el peso.</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div
+id="caso-par-grupos-independientes-variables-normales-varianzas-iguales"
+class="section level2">
+<h2><strong>Caso par grupos independientes, variables normales,
+varianzas iguales</strong></h2>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 4
+</div>
+<p>Una empresa desarrolla un curso de entrenamiento para sus empleados,
+formando dos grupos y aplicando dos metodologías diferentes de
+entrenamiento con el fin de poder evaluar que método produce los mejores
+resultados. El primer grupo (g1) esta conformado por 36 empleados y el
+segundo grupo (g2) por 40 empleados . Se puede afirmar que el método
+aplicado al segundo grupo produce mejores resultados que el aplicado al
+primer grupo ? ¿Que supuestos debe tener en cuenta?</p>
+<pre>
+Grupo 1  6.8, 6.1, 5.8, 5.9, 5.8, 6.4, 5.7, 6.0, 5.9, 6.4, 6.0, 5.7, 
+         6.5, 6.5, 6.0, 5.9, 5.7, 5.8, 5.9, 5.8, 6.0, 6.0, 5.8, 5.7, 
+         6.1, 5.9, 5.2, 6.3, 5.4, 6.5, 5.5, 5.9, 7.0, 6.4, 5.1, 6.3
+         
+Grupo 2  8.8, 8.5, 8.4, 8.5, 7.6, 8.7, 8.0, 7.9, 8.2, 8.0, 7.8, 8.6, 
+         8.5, 7.9, 8.5, 8.3, 8.4, 8.2, 8.3, 7.9, 8.2, 7.7, 7.8, 7.7, 
+         8.1, 8.0, 8.3, 8.2, 8.1, 8.3, 8.1, 8.8, 7.7, 9.1, 7.6, 8.4, 
+         8.2, 8.3, 8.1, 8.7  
+</pre>
+<pre class="r"><code>grupo1=c(6.8, 6.1, 5.8, 5.9, 5.8, 6.4, 5.7, 6.0, 5.9, 6.4, 6.0, 5.7, 
+         6.5, 6.5, 6.0, 5.9, 5.7, 5.8, 5.9, 5.8, 6.0, 6.0, 5.8, 5.7, 
+         6.1, 5.9, 5.2, 6.3, 5.4, 6.5, 5.5, 5.9, 7.0, 6.4, 5.1, 6.3)
+
+grupo2=c(8.8, 8.5, 8.4, 8.5, 7.6, 8.7, 8.0, 7.9, 8.2, 8.0, 7.8, 8.6, 
+         8.5, 7.9, 8.5, 8.3, 8.4, 8.2, 8.3, 7.9, 8.2, 7.7, 7.8, 7.7, 
+         8.1, 8.0, 8.3, 8.2, 8.1, 8.3, 8.1, 8.8, 7.7, 9.1, 7.6, 8.4, 
+         8.2, 8.3, 8.1, 8.7)
+
+par(mfrow = c(1, 2))
+boxplot(grupo1, las=1, col=c2, ylim=c(5,10))
+boxplot(grupo2, las=1, col=c3, ylim=c(5,10))</code></pre>
+<p><img src="recurso43_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+</div>
+<p><br/><br/></p>
+<p>Iniciaremos con una prueba de hipótesis para la comparación de
+varianzas:</p>
+<p>Ho:<span class="math inline">\(\sigma^{2}_{1} =
+\sigma^{2}_{2}\)</span><br/></p>
+<p>Ha:<span class="math inline">\(\sigma^{2}_{1} \neq
+\sigma^{2}_{2}\)</span><br/></p>
+<p><br/><br/></p>
+<pre class="r"><code>var.test(grupo1,grupo2)</code></pre>
+<pre><code>
+    F test to compare two variances
+
+data:  grupo1 and grupo2
+F = 1.2975, num df = 35, denom df = 39, p-value = 0.4282
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+ 0.6776032 2.5137013
+sample estimates:
+ratio of variances 
+          1.297479 </code></pre>
+<p><br/><br/></p>
+<div id="conclusión-6" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <code>valor-p</code> (0.4282) es mayor al nivel de
+significancia (<span class="math inline">\(\alpha=0.05\)</span>), no
+rechazamos la hipótesis nula, no existe suficiente evidencia en la
+muestra que permita rechazarla, asumimos que las varianza son
+iguales.</p>
+<p><br/><br/></p>
+<p>Ho: <span class="math inline">\(\mu_{1} \geq \mu_{2}\)</span> <br/>
+Ha: <span class="math inline">\(\mu_{1} &lt; \mu_{2}\)</span> <br/></p>
+<p><br/></p>
+<pre class="r"><code>t.test(grupo1, grupo2,
+       alternative =&quot;less&quot;,
+       mu = 0, 
+       paired = FALSE, 
+       var.equal = TRUE,
+       conf.level = 0.95)</code></pre>
+<pre><code>
+    Two Sample t-test
+
+data:  grupo1 and grupo2
+t = -25.413, df = 74, p-value &lt; 2.2e-16
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -2.072933
+sample estimates:
+mean of x mean of y 
+ 5.991667  8.210000 </code></pre>
+<p><br/><br/></p>
+</div>
+<div id="conclusión-7" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <code>valor-p</code> (2.2e-16) es menor que el nivel de
+significancia, rechazamos la hipótesis nula, aceptamos como verdadera la
+hipótesis alterna. La media el primer grupo es significativamente menor
+que la media obtenida por el segundo grupo. Esto indica que el método
+aplicado al segundo grupo produce mejores resultados.</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div
+id="caso-para-grupos-independientes-variables-normales-varianzas-diferentes"
+class="section level2">
+<h2><strong>Caso para grupos independientes, variables normales,
+varianzas diferentes</strong></h2>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 6
+</div>
+<p>Supongamos que la empresa del ejemplo 5, desea comparar los
+resultados obtenidos por el grupo 2 con un tercer grupo externo con el
+fin de realizar una valoración adicional que le permita una visión más
+general de los métodos empleados</p>
+<p><br/><br/></p>
+<pre class="r"><code>grupo3=c(8.4, 7.5, 6.9, 6.6, 7.0, 5.5, 5.5, 7.9, 6.9, 7.3, 4.7, 5.5, 6.7, 8.3, 
+         6.0, 6.3, 5.5, 8.4, 7.1, 5.3, 6.9, 5.5, 7.2, 6.5, 6.1, 7.8, 7.4, 6.6, 
+         6.8, 6.0, 6.9, 7.4, 4.9, 6.2, 7.3, 6.2)
+
+grupo2=c(8.8, 8.5, 8.4, 8.5, 7.6, 8.7, 8.0, 7.9, 8.2, 8.0, 7.8, 8.6, 8.5, 7.9, 
+         8.5, 8.3, 8.4, 8.2, 8.3, 7.9, 8.2, 7.7, 7.8, 7.7, 8.1, 8.0, 8.3, 8.2, 
+         8.1, 8.3, 8.1, 8.8, 7.7, 9.1, 7.6, 8.4, 8.2, 8.3, 8.1, 8.7)
+
+par(mfrow = c(1, 2))
+boxplot(grupo3, las=1, col=c2, ylim=c(5,10))
+boxplot(grupo2, las=1, col=c3, ylim=c(5,10))</code></pre>
+<p><img src="recurso43_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<pre class="r"><code>var.test(grupo3,grupo2)</code></pre>
+<pre><code>
+    F test to compare two variances
+
+data:  grupo3 and grupo2
+F = 7.2974, num df = 35, denom df = 39, p-value = 1.334e-08
+alternative hypothesis: true ratio of variances is not equal to 1
+95 percent confidence interval:
+  3.811031 14.137763
+sample estimates:
+ratio of variances 
+          7.297388 </code></pre>
+<pre class="r"><code>t.test(grupo3, grupo2,
+       alternative =&quot;less&quot;,
+       mu = 0, 
+       paired = FALSE, 
+       var.equal = FALSE,
+       conf.level = 0.95)</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  grupo3 and grupo2
+t = -9.2548, df = 43.571, p-value = 3.781e-12
+alternative hypothesis: true difference in means is less than 0
+95 percent confidence interval:
+      -Inf -1.285811
+sample estimates:
+mean of x mean of y 
+ 6.638889  8.210000 </code></pre>
+</div>
+<p><br/></p>
+<p>En este caso tenemos una comparación de medias para grupos
+independientes con varianzas diferentes (como se muestra en el resultado
+de var.test) .</p>
+<p><br/><br/></p>
+<div id="conclusión-8" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Analizando el resultado de la prueba t-Student, el
+<code>valor-p</code> resultante (3.781e-12) indica que se rechaza la
+hipótesis nula, se acepta la hipótesis alterna como verdadera. Podemos
+afirmar que existen diferencias significativas entre las dos medias.</p>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="pruebas-de-hipótesis-para-la-diferencia-de-proporciones"
+class="section level2">
+<h2><strong>Pruebas de hipótesis para la diferencia de
+proporciones</strong></h2>
+<p><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 7
+</div>
+<p>Una encuesta realizada a 100 usuarios de una tarjeta de crédito
+seleccionados aleatoriamente, 57 dijeron que sabían que empleando su
+tarjeta podían ganar millas de viajero. Después de una campaña
+publicitaria para difundir este beneficio, se realizo una encuesta
+independiente entre 150 usuarios de la tarjeta de crédito y 87
+informaron que conocían el beneficio. ¿Se puede concluir que el
+conocimiento de este beneficio aumento después de la campaña
+publicitaria?</p>
+</div>
+<p><br/><br/></p>
+<p>Ho: <span class="math inline">\(p_{1} \geq p_{2}\)</span> <br/> Ha:
+<span class="math inline">\(p_{1} &lt; p_{2}\)</span> <br/></p>
+<p><br/></p>
+<pre class="r"><code>prop.test(c(57,87),c(100,150),
+          p = NULL,
+          alternative = &quot;less&quot;,
+          conf.level = 0.95)</code></pre>
+<pre><code>
+    2-sample test for equality of proportions with continuity correction
+
+data:  c(57, 87) out of c(100, 150)
+X-squared = 0.00068243, df = 1, p-value = 0.4896
+alternative hypothesis: less
+95 percent confidence interval:
+ -1.0000000  0.1033338
+sample estimates:
+prop 1 prop 2 
+  0.57   0.58 </code></pre>
+<p><br/><br/></p>
+<div id="conclusión-9" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <code>valor-p</code> ( 0.4896) es mayor al nivel de
+significancia, no se rechaza la hipótesis nula, no existe suficiente
+evidencia en la muestra que permita rechazarla, asumimos que Ho es
+verdad. Por tal motivo no se perciben mejoras el conocimiento de los
+beneficios que trae el uso de la tarjeta de crédito. Se recomienda
+revisar la forma en que se realiza la campaña publicitaria.</p>
+<p><br/><br/><br/><br/></p>
+</div>
+</div>
+</div>
+<div id="pruebas-no-paramétricas" class="section level1">
+<h1><strong>Pruebas no paramétricas</strong></h1>
+<p><br/><br/></p>
+<p>Hasta el momento nos hemos dedicado a la estadística parametrica, que
+exige la estimación de parámetros y de la comprobación de supuestos
+sobre las distribuciones de las variables, como por ejemplo que se
+distribuyan normal.</p>
+<p>Note que la distribución normal esta relacionada con las
+distribuciones t-student, chi-cuadrado y F entre otras.</p>
+<p><br/><br/></p>
+<div id="cuando-utilizar-pruebas-no-parametricas"
+class="section level3">
+<h3><strong>Cuando utilizar pruebas no parametricas</strong>:</h3>
+<ul>
+<li>Cuando no se cumplen los supuestos como Normalidad
+<ul>
+<li>Tamaños mínimos de muestra</li>
+<li>Número igual de elementos en cada muestra</li>
+<li>Homogeneidad de varianza, etc</li>
+</ul></li>
+<li>Cuando se usan tamaños de muestra pequeños
+<ul>
+<li>Menores a 30 que no permiten comprobar supuestos sobre la
+población.</li>
+</ul></li>
+<li>Cuando se convierten datos cualitativas (escalas nominales u
+ordinales ) a información útil para la toma de decisiones (escala de
+intervalo). Utilizado en estudios mercadeo para medir variables como
+gustos, satisfacción, nivel de necesidad etc.</li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="ventajas-de-utilizar-pruebas-no-paramétricas"
+class="section level3">
+<h3><strong>Ventajas de utilizar pruebas no paramétricas</strong></h3>
+<ul>
+<li>Son fáciles de usar (aunque dada la facilidad de los códigos en R
+ambas se corren con una línea)</li>
+<li>No se requieren comprobar supuestos</li>
+<li>Se pueden usar con muestras pequeñas</li>
+<li>Se pueden usar con variables cualitativas</li>
+</ul>
+<p><br/><br/></p>
+</div>
+<div id="desventajas" class="section level3">
+<h3><strong>Desventajas</strong></h3>
+<ul>
+<li>Ignoran información</li>
+<li>No son tan eficientes como las pruebas parametricas, tienen menor
+potencia.</li>
+<li>Llevan a una mayor probabilidad de cometer error tipo II ( no
+rechazar Ho falsa)</li>
+</ul>
+<p>Entre las principales pruebas no paramétricas estan :</p>
+<ul>
+<li>Prueba Chi-Cuadrado de Independencia</li>
+<li>Prueba Chi-Cuadrado de Bondad de Ajuste</li>
+<li>Prueba de Signos</li>
+<li>Prueba de Rachas</li>
+<li>Prueba Wilcoxon</li>
+<li>Prueba de Mann-Whitney</li>
+<li>Prueba de Kruskal-Wallis</li>
+<li>Correlación de Rangos de Sperarman</li>
+</ul>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Prueba de signos
+</div>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="85%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>No. de grupos de datos</strong></td>
+<td align="left">1 o 2</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Variable dependiente</strong></td>
+<td align="left">En escala al menos ordinal</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Objetivo</strong></td>
+<td align="left">Esta prueba puede ser utilizada para determinar si la
+diferencia entre el numero de veces que los datos caen a un lado de la
+media verdadera es significativamente diferente al número de veces que
+cae en el otro lado . Determinar si la diferencia entre el numero de
+veces en que el valor de una variable es mayor que el de la otra y el
+numero de veces que es menor es estadísticamente significativa. Versión
+no paramétrica de la prueba t para una muestra o de la prueba t para
+muestras pareadas. Esta prueba se realiza sobre la mediana de los datos
+<span class="math inline">\(Me\)</span>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 8
+</div>
+<p>Carlos y Ángela, Administradoras investigadores de una firma de
+artículos deportivos tienen la creencia que el deporte afecta la imagen
+que cada persona tiene de si misma. Para investigar esta posibilidad
+eligieron a 18 personas de manera aleatoria, para participar en un
+programa de ejercicios. Antes de empezar el programa las personas
+respondieron un cuestionario para medir su propia imagen. Un nivel de 15
+puntos en la prueba establece que la persona tiene un concepto
+indiferente frente a la afirmación, valores menores de 15 que la afecta
+en forma negativa y valores por encima de 15 que afectan su imagen en
+forma positiva. Los siguientes son resultados obtenidos : 16, 15, 12,
+17, 18, 14, 16, 14, 16, 17, 19, 16, 14, 21, 20, 16, 16, 16</p>
+<pre class="r"><code>x.img=c(16, 15, 12, 17, 18, 14, 16, 14, 16,  17, 19, 16,  14, 21, 20, 16, 16, 16 )</code></pre>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="solución-1" class="section level3">
+<h3><strong>Solución</strong>:</h3>
+<p>Hipótesis Nula <span class="math inline">\(Ho: Me = 15\)</span></p>
+<p>Hipótesis Alterna <span class="math inline">\(Ha : Me &gt;
+15\)</span></p>
+<p>Estadístico de Prueba : <span class="math inline">\(M +\)</span> :
+Numero de signos positivos</p>
+<table>
+<colgroup>
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+<col width="5%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">12</td>
+<td align="center">14</td>
+<td align="center">14</td>
+<td align="center">14</td>
+<td align="center">15</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">16</td>
+<td align="center">17</td>
+<td align="center">17</td>
+<td align="center">18</td>
+<td align="center">19</td>
+<td align="center">20</td>
+<td align="center">21</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center"></td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+<td align="center">+</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>número de signos positivos : 13</li>
+<li>número de signos negativos : 4</li>
+<li>en el valor 15 se omite el signo</li>
+</ul>
+<p>M+ = 13 Regla de Decisión (Distribución Binomial p=0.5 n= 17) <span
+class="math inline">\(P(X\leq 13) =  1-0.9755 =  0.0245\)</span> (
+valor-p)</p>
+<p><br/><br/></p>
+</div>
+<div id="conclusión-10" class="section level3">
+<h3><strong>Conclusión</strong>:</h3>
+<p>Se rechaza la hipótesis nula, se acepta la hipótesis alterna. Se
+puede afirmar que las personas tienen la creencia que el deporte afecta
+positivamente su imagen.</p>
+<pre class="r"><code>library(BSDA)
+SIGN.test(x.img,md=15,alternative = &quot;greater&quot;)</code></pre>
+<pre><code>
+    One-sample Sign-Test
+
+data:  x.img
+s = 13, p-value = 0.02452
+alternative hypothesis: true median is greater than 15
+95 percent confidence interval:
+  16 Inf
+sample estimates:
+median of x 
+         16 
+
+Achieved and Interpolated Confidence Intervals: 
+
+                  Conf.Level L.E.pt U.E.pt
+Lower Achieved CI     0.8811     16    Inf
+Interpolated CI       0.9500     16    Inf
+Upper Achieved CI     0.9519     16    Inf</code></pre>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Prueba chi-cuadrado de bondad de ajuste
+</div>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="85%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Tipo de variable</strong></td>
+<td align="left">Cualitativa</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Número de categorias</strong></td>
+<td align="left"><span class="math inline">\(k &gt; 2\)</span>
+valores</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Objetivo</strong></td>
+<td align="left">Determinar si la diferencia entre las frecuencias de
+cada uno de los valores de la variable y unas determinadas frecuencias
+teóricas son estadísticamente significativas. Utilizada para comprobar
+el supuesto de normalidad, o de otras distribuciones.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 9
+</div>
+<p>El dueño de una panadería tiene la posibilidad de controlar los
+niveles de inventarios de leche para cuatro marcas diferentes. Con el
+fin de establecer políticas para la realización de nuevos pedidos
+requiere saber si la demanda de estas marcas son iguales (distribución
+uniforme). Con este propósito tomo la información de un día:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">Producto</th>
+<th align="center">Alpina</th>
+<th align="center">Alqueria</th>
+<th align="center">Colanta</th>
+<th align="center">Proleche</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">ventas (obs)</td>
+<td align="center">33</td>
+<td align="center">22</td>
+<td align="center">21</td>
+<td align="center">24</td>
+</tr>
+<tr class="even">
+<td align="right">prob.esperada (esp)</td>
+<td align="center">0.25</td>
+<td align="center">0.25</td>
+<td align="center">0.25</td>
+<td align="center">0.25</td>
+</tr>
+<tr class="odd">
+<td align="right">de acuerdo a Ho</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="solución-2" class="section level3">
+<h3><strong>Solución</strong>:</h3>
+<p>Ho: Las ventas se distribuyen de manera uniforme (cantidad demandada
+es igual para todas las marcas) <br/> Ha: Las ventas no tienen una
+distribución uniforme</p>
+<pre class="r"><code>obs=c(33,22,21,24)
+esp=c(0.25,0.25,0.25,0.25)
+chisq.test(x=obs,p=esp)</code></pre>
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  obs
+X-squared = 3.6, df = 3, p-value = 0.308</code></pre>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 10
+</div>
+<p>Un profesor desea establecer si los resultados obtenidos por sus
+estudiantes tienen una distribución normal con media 3.5 y desviación
+estándar 0.7 puntos. Los datos se resumen en la siguiente tabla: |</p>
+<pre>
+ nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 
+      3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 
+      3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 
+      3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 
+      3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 
+      3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+</pre>
+<pre class="r"><code>nf=c(4.1, 2.7, 3.1, 3.2, 3.0, 3.2, 2.0, 2.4, 1.6, 3.2, 3.1, 2.6, 2.0, 2.4, 2.8, 3.3, 4.0, 3.4, 3.0, 3.1, 2.7, 2.7, 3.0, 3.8, 3.2, 2.2, 3.5, 3.5, 3.8, 3.5, 3.9, 4.2, 4.3, 3.9, 3.2, 3.5, 3.5, 3.7, 4.1, 3.7, 3.5, 3.6, 3.2, 3.1, 3.4, 3.0, 3.0, 3.0, 2.7, 1.7, 3.6, 2.1, 2.4, 3.0, 3.1, 2.5, 2.5, 3.6, 2.2, 2.4, 3.1, 3.3, 2.7, 3.7, 3.0, 2.7, 3.0, 3.2, 3.1, 2.4, 3.0, 2.7, 2.5, 3.0, 3.0, 3.0, 3.2, 3.1, 3.8, 4.1, 3.7, 3.5, 3.0, 3.7, 3.7, 4.1, 3.7, 3.9, 3.7, 2.0)
+
+h=hist(nf, las=1, col=c2, main=&quot; &quot;, xlab=&quot; &quot;, ylab=&quot; &quot;)</code></pre>
+<p><img src="recurso43_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<pre class="r"><code>lim.nf=h$breaks # cortes de los intervalos
+obs.nf=h$counts   # valores observados 
+mx=mean(nf)     # media
+sdx=sd(nf)          # desviación estandar
+Fx.nf=pnorm(lim.nf, mx,sdx)   # probabilidades en caso de que Ho sea verdadera
+prob.nf=Fx.nf[2:7]-Fx.nf[1:6]
+esp.nf=prob.nf+0.002300453     # ajuste para que el sum(esp.nf)=1
+
+chisq.test(x=obs.nf,p=esp.nf)</code></pre>
+<pre><code>Warning in chisq.test(x = obs.nf, p = esp.nf): Chi-squared approximation may be
+incorrect</code></pre>
+<pre><code>
+    Chi-squared test for given probabilities
+
+data:  obs.nf
+X-squared = 2.8988, df = 5, p-value = 0.7156</code></pre>
+</div>
+<p><br/><br/></p>
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Prueba chi-cuadrado de independencia</div> -->
+<!-- FALTA ***************************************************** -->
+<!-- </div> -->
+<!-- <br/><br/> -->
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 11
+</div>
+<p>Un investigador desea establecer la relación que puede existir entre
+la calificación obtenida por un producto por parte de sus consumidores y
+su ubicación de residencia. Con este fin recoge información de 100 de
+sus clientes:</p>
+<p><br/></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Urbano</th>
+<th align="right">Rural</th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Calificación</td>
+<td align="right"></td>
+<td align="right"></td>
+<td align="right"></td>
+</tr>
+<tr class="even">
+<td align="left">Bueno</td>
+<td align="right">20</td>
+<td align="right">11</td>
+<td align="right">31</td>
+</tr>
+<tr class="odd">
+<td align="left">Regular</td>
+<td align="right">40</td>
+<td align="right">8</td>
+<td align="right">18</td>
+</tr>
+<tr class="even">
+<td align="left">Malo</td>
+<td align="right">15</td>
+<td align="right">6</td>
+<td align="right">21</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">75</td>
+<td align="right">25</td>
+<td align="right">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="solución-3" class="section level3">
+<h3><strong>Solución</strong>:</h3>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : Las variables
+lugar de residencia y calificación son independientes</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : Las variables
+lugar de residencia y calificación no son independientes</td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>El siguiente código da solución a la constrastación de las
+hipótesis</p>
+<pre class="r"><code>m=c(20,40,15,11,8,6)
+m=as.table(matrix(m,nrow=3))
+rownames(m)=c(&quot;Bueno&quot;, &quot;Regular&quot;, &quot;Malo&quot;)
+colnames(m)=c(&quot;Urbano&quot;, &quot;Rural&quot;)
+
+m</code></pre>
+<pre><code>        Urbano Rural
+Bueno       20    11
+Regular     40     8
+Malo        15     6</code></pre>
+<pre class="r"><code>chisq.test(m)</code></pre>
+<pre><code>
+    Pearson&#39;s Chi-squared test
+
+data:  m
+X-squared = 3.7378, df = 2, p-value = 0.1543</code></pre>
+<p><br/></p>
+<p>Como <code>p-value</code> = 0.1543 lo podemos considerar grande, no
+se rechaza <span class="math inline">\(Ho\)</span>, asumimos que <span
+class="math inline">\(Ho\)</span> es verdad, es decir que las variables
+lugar de residencia y calificación son independientes. Esto implica que
+la calificación dada por las personas entrevistadas no está relacionada
+con su calificación.</p>
+<p><br/><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Prueba de Wilcoxon
+</div>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="85%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">No. de grupos</td>
+<td align="left">2</td>
+</tr>
+<tr class="even">
+<td align="left">Variable dependiente</td>
+<td align="left">En escala al menos ordinal</td>
+</tr>
+<tr class="odd">
+<td align="left">Objetivo</td>
+<td align="left">Determinar su la diferencia entre la magnitud de las
+diferencias positivas entre los valores de las dos variables y la
+magnitud de las diferencias negativas es estadística mente
+significativas. Versión no parametrica de la prueba t para muestras
+pareadas</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 12
+</div>
+<p>Los siguiente datos se tomaron de un estudio de comparación de
+adolescentes sanos (G1) y de adolescentes con bulimia (G2). El primer
+grupo está conformado por 15 estudiantes y el segundo grupo por 14
+estudiantes y corresponden al consumo diario en calorías. Los datos
+obtenidos son los siguientes:</p>
+<pre>
+g1 = c(68,32,58,16,23,53,55,32,61,29,50,64,67,37)
+g2 = c(39,10,21,29,11,26,7,12,28,32,30,27,50,19,24)
+</pre>
+</div>
+<div class="box3 with-label">
+<div class="label">
+Nota
+</div>
+<p>Antes de realizar la comparación de medias, se debe realizar una
+prueba de bondad de ajuste para establecer si los datos siguen una
+distribución normal o no. En caso de que los datos no tengan
+distribución normal, entonces se debe realizar una prueba no
+paramétrica.</p>
+</div>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : <span
+class="math inline">\(Me_{g1} \leq   Me_{g2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : <span
+class="math inline">\(Me_{g1} &gt;  Me_{g2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>g1=c(68,32,58,16,23,53,55,32,61,29,50,64,67,37)
+g2=c(39,10,21,29,11,26,7,12,28,32,30,27,50,19,24)
+# independent 2-group Mann-Whitney U Test 
+wilcox.test(g1,g2,paired = FALSE,alternative = &quot;greater&quot;)</code></pre>
+<pre><code>Warning in wilcox.test.default(g1, g2, paired = FALSE, alternative =
+&quot;greater&quot;): cannot compute exact p-value with ties</code></pre>
+<pre><code>
+    Wilcoxon rank sum test with continuity correction
+
+data:  g1 and g2
+W = 178, p-value = 0.0007714
+alternative hypothesis: true location shift is greater than 0</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="conclusión-11" class="section level3">
+<h3><strong>Conclusión</strong> :</h3>
+<p>Se rechaza Ho , se acepta Ha. Se puede concluir que las dos
+poblaciones son diferentes. por lo tanto las medias son diferentes.</p>
+<p>Para analizar cual de los grupos presenta un mayor consumo de
+calorías, se observa que el Grupo I tiene suma de rangos de 168 y el
+Grupo II tiene suma de rangos de 273, lo que indica que los datos del
+Grupo I tienen valores menores en que los del Grupo II</p>
+<p>Por lo tanto los estudiantes sanos presentan consumo de calorías
+menores que los estudiantes que padecen de bulimia.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Prueba de Kruskal-Wallis
+</div>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="85%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Numero de grupos</strong></td>
+<td align="left">k</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Variable dependiente</strong></td>
+<td align="left">En escala al menos ordinal</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Objetivo</strong></td>
+<td align="left">Determinar si las diferencias entre las medias de los
+rangos (asignados a las observaciones ordenadas) en los k grupos son
+estadísticamente significativas. Versión no parametrica del ANOVA.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 13
+</div>
+<p>Para verificar si la memoria cambia con la edad, una investigadora
+realiza un estudio en el cual hay tres grupos de personas: G1- 60 años
+de edad, G2: con 50 años de edad, G3: con 40 años de edad. A cada
+persona se le presenta una serie de palabras. La serie es presentada dos
+veces y se cuenta el número de palabras que pueden recordar. |</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Grupo 1</td>
+<td align="center">28</td>
+<td align="center">19</td>
+<td align="center">13</td>
+<td align="center">28</td>
+<td align="center">29</td>
+<td align="center">22</td>
+<td align="center">21</td>
+</tr>
+<tr class="even">
+<td align="center">Grupo 2</td>
+<td align="center">26</td>
+<td align="center">20</td>
+<td align="center">11</td>
+<td align="center">14</td>
+<td align="center">22</td>
+<td align="center">21</td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td align="center">Grupo 3</td>
+<td align="center">37</td>
+<td align="center">28</td>
+<td align="center">26</td>
+<td align="center">35</td>
+<td align="center">31</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : Las
+poblaciones son idénticas</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : Las
+poblaciones no son idénticas</td>
+</tr>
+</tbody>
+</table>
+<p>Las anteriores hipótesis implica que sus distribuciones son las
+mismas (medias y varianzas iguales)</p>
+<pre class="r"><code>g1=c(28,19,13,28,29,21)
+g2=c(26,20,11,14,22,21)
+g3=c(37,28,26,35,31)
+
+kruskal.test(g1,g2,g3)</code></pre>
+<pre><code>
+    Kruskal-Wallis rank sum test
+
+data:  g1 and g2
+Kruskal-Wallis chi-squared = 5, df = 5, p-value = 0.4159</code></pre>
+<p><br/><br/></p>
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Correlación de Spearman</div> -->
+<!-- FALTA *********************************************** -->
+<!-- </div> -->
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 14
+</div>
+<p>Se requiere establecer si existe relación entre el tiempo de estudio
+dedicado a la preparación de una evaluación y la nota obtenida. Como la
+nota obtenida representa una variable cualitativa, se debe utilizar una
+prueba no paramétrica (coeficiente de correlación de Spearman). Los
+datos obtenidos son los siguientes: |</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="10%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Tiempo</td>
+<td align="right">21</td>
+<td align="right">18</td>
+<td align="right">15</td>
+<td align="right">17</td>
+<td align="right">18</td>
+<td align="right">25</td>
+<td align="right">18</td>
+<td align="right">4</td>
+<td align="right">6</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">Nota</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<pre class="r"><code>x=c(21,18,15,17,18,25,18,4,6,5)
+y=c(4,4,4,3,3,5,3,1,1,2)
+plot(x,y, las=1, pch=19, col=c4)</code></pre>
+<p><img src="recurso43_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<pre class="r"><code>cor.test(x,y, method = &quot;spearman&quot;,continuity = FALSE,conf.level = 0.95)</code></pre>
+<pre><code>
+    Spearman&#39;s rank correlation rho
+
+data:  x and y
+S = 30.693, p-value = 0.004157
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.8139814 </code></pre>
+<p>En este caso se utiliza el coeficiente de correlación de Sperman para
+valorar la relación entre las variables debido a que la nota es una
+variable que podríamos llamar cualitativa, operacionalizada cuntitativa
+con una nota.</p>
+<p><br/><br/><br/></p>
+<!-- <div class="box1 with-label"> -->
+<!-- <div class="label">Prueba de Rachas</div> -->
+<!-- FALTA----------------------------------------------------- -->
+<!-- </div> -->
+<!-- <br/><br/> -->
+<div class="box2 with-label">
+<div class="label">
+Ejemplo 15
+</div>
+Para verificar si los números aleatorios generados por Excel son de
+verdad aleatorios se tomó una muestra de ellos mediante la función
+<code>=aleatorio.entre()</code>, obteniendo como resultado los
+siguientes números:
+<pre>
+0.738, 0.202, 0.357, 0.561, 0.509, 0.146, 0.746, 0.666, 0.133, 0.430, 0.972, 
+0.999, 0.499, 0.869, 0.821, 0.732, 0.355, 0.189, 0.478, 0.162 .
+</pre>
+</div>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : La muestra es
+aleatoria</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : La muestra no
+es aleatoria</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>library(&quot;randtests&quot;)
+y=rnorm(100,120,20)
+runs.test(y)</code></pre>
+<pre><code>
+    Runs Test
+
+data:  y
+statistic = 0.40204, runs = 53, n1 = 50, n2 = 50, n = 100, p-value =
+0.6877
+alternative hypothesis: nonrandomness</code></pre>
+</div>
+<div id="conclusión-12" class="section level3">
+<h3><strong>Conclusión</strong></h3>
+<p>Como el <code>valor-p</code> (0.3149) es mayor al nivel de
+significancia, no se rechaza la hipótesis nula, no existe suficiente
+evidencia en la muestra que permita rechazarla, asumimos que los datos
+son aleatorios.</p>
+<p><br/><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Prueba de normalidad
+</div>
+<p>Uno de los procedimientos mas utilizados en estadística es la
+relacionada con la verificación de normalidad de una variable.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span>: X tiene
+distribución Normal</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span>: X no tiene
+distribución Normal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Existen muchas pruebas que nos ayudan en este propósito, a
+continuación relacionamos algunas de ellas</p>
+<pre class="r"><code># se genera una variable aleatoria normal
+x=rnorm(200,1000,50)
+plot(density(x), main=&quot; &quot;, las=1, xlab = &quot; &quot;, ylab=&quot; &quot;, col=c3, lwd=4)</code></pre>
+<p><img src="recurso43_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<pre class="r"><code># se genera una variable aleatoria normal
+x=rnorm(200,1000,50)
+shapiro.test(x)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  x
+W = 0.98645, p-value = 0.05264</code></pre>
+<p>Esta prueba no requiere la instalación de paquetes adicionales, pues
+está disponible en la configuración básica de R</p>
+<p>Como el <code>valor-p</code> es superior al nivel de significancia
+<span class="math inline">\(\alpha\)</span>, no se rechaza <span
+class="math inline">\(Ho\)</span>, se asume que la distribución de la
+variable es normal.</p>
+<p><br/><br/></p>
+</div>
+<div id="otras-pruebas-de-normalidad-utilizadas" class="section level3">
+<h3><strong>Otras pruebas de normalidad utilizadas</strong></h3>
+<pre class="r"><code># se genera una variable aleatoria normal
+x=rnorm(200,1000,50)
+#install.packages(&quot;normtets&quot;)
+ library(normtest)
+
+jb.norm.test(x)  # Test de normalidad de Jarque-Bera
+kurtosis.norm.test(x)
+skewness.norm.test(x)   </code></pre>
+<pre class="r"><code># install.packages(&quot;nortets&quot;)
+library(nortest)
+
+lillie.test(x) # Kolmogorov-Smirnov
+pearson.test(x) # chi-cuadrado de Pearson</code></pre>
+<p>En todos los casos el valor-p es inferior al valor de <span
+class="math inline">\(\alpha = 0.05\)</span>, por tal razón se asume que
+los datos siguen una distribución normal.</p>
+<p><br/><br/></p>
+<p><img src="img/formulario1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Resumen
+</div>
+<p><br/></p>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="20%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="left"></th>
+<th align="left"><strong>Estadístico de prueba</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"></td>
+<td align="left">Una población</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="center">(1)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Z_{o}
+=\dfrac{\bar{X}-\mu_{o}}{\sigma/\sqrt{n}}\sim N(0,1)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(2)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Z_{o}
+=\dfrac{\bar{X}-\mu_{o}}{s/\sqrt{n}} \sim N(0,1)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(3)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(T_{o} =
+\dfrac{\bar{X}-\mu_{o}}{s/\sqrt{n}} \sim t_{v=n-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(4)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(X^{2}_{o} =
+\dfrac{(n-1)S^{2}}{\sigma_{o}^{2}} \sim \chi^{2}_{v=n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(5)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Z_{o} =  \dfrac{X-n
+\hspace{.1cm} p_{o}}{\sqrt{n \hspace{.1cm }p_{o}}} \sim
+N(0,1)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Z_{o} =
+\dfrac{\widehat{p}-p_{0}}{\sqrt{p_{o}(1-p_{o})/n}} \sim
+N(0,1)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left">Dos poblaciones</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="center">(6)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(T_{o}
+=  \dfrac{\bar{d}-\Delta_{o}}{s_{d}^{2}} \sim t_{v=n-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">donde: <span
+class="math inline">\(\bar{d}=\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}d_{i}
+\hspace{.2cm}\text{ y } \hspace{.2cm} d_{i} = x_{1}-x_{2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(7)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Z_{o} =
+\dfrac{(\bar{x}_{1}-\bar{x}_{2})-
+\Delta_{o}}{\sqrt{\dfrac{\sigma_{1}^{2}}{n_{1}}+\dfrac{\sigma_{2}^{2}}{n_{2}}}}
+\sim N(0,1)\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(8)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(T_{o} =
+\dfrac{(\bar{x}_{1}-\bar{x}_{2})-\Delta_{o}}{s_{p}\sqrt{\dfrac{1}{n_{1}}
++ \dfrac{1}{n_{2}}}} \sim t_{v=n_{1}+n_{2}-2}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">donde: <span
+class="math inline">\(s^{2}_{p}=\dfrac{(n_{1}-1)s_{1}^{2}+(n_{2}-1)s^{2}_{2}}{n_{1}+n_{2}-2}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(9)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(T_{o}
+=  \dfrac{(\bar{x}_{1}-\bar{x}_{2}-\Delta_{o}}{\sqrt{\dfrac{s^{2}_{1}}{n_{1}}+\dfrac{s^{2}_{2}}{n_{2}}}}
+\sim t_{v^{*}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">donde: <span class="math inline">\(v^{*}=
+\dfrac{(s^{2}_{1}/n_{1} +
+s^{2}_{2}/n_{2})^{2}}{\dfrac{(s^{2}_{1}/n_{1})^{2}}{n_{1}-1}+\dfrac{(s^{2}_{2}/n_{2})^{2}}{n_{2}-1}}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center">(10)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Z_{o}
+=  \dfrac{(\widehat{p_{1}}-\widehat{p_{2}})-\Delta_{o}}{\sqrt{\widehat{p}\widehat{q}(1/n_{1}+1/n_{2})}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left">donde: <span
+class="math inline">\(\widehat{p}=\dfrac{x_{1}+x_{2}}{n_{1}+n_{2}}\)</span>
+<span class="math inline">\(\widehat{q}=1-\widehat{p}\)</span>,</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left"><span
+class="math inline">\(\widehat{p_{1}}=\dfrac{x_{1}}{n_{1}} \hspace{.1cm}
+\text{ y }
+\hspace{.1cm}\widehat{p_{2}}=\dfrac{x_{2}}{n_{2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="center">(11)</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(F
+=  \dfrac{s_{1}^{2}}{s_{2}^{2}} \sim F_{v_{1}:n_{1}-1; v_{2}:
+n_{2}-1}\)</span></td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box2 with-label">
+<div class="label">
+Reglas de decisión
+</div>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="79%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>Regla1</strong>:</td>
+<td align="left">Si el <span class="math inline">\(EdeP\)</span> cae en
+la <span class="math inline">\(RdeR\)</span>, entonce se rechaza la
+<span class="math inline">\(H_{0}\)</span> y se <strong>acepta</strong>
+<span class="math inline">\(H_{a}\)</span> como verdadera. Si por el
+contrario el <span class="math inline">\(EdeP\)</span> NO cae en la
+<span class="math inline">\(RdeR\)</span>, entonces NO se rechaza <span
+class="math inline">\(H_{0}\)</span>, no existe suficiente evidencia
+para rechazarla, <strong>asumimos</strong> que <span
+class="math inline">\(H_{0}\)</span> es verdad.</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Regla2</strong>:</td>
+<td align="left">Si <span class="math inline">\(\alpha &gt;\)</span>
+<code>valor-p</code> entonces rechazamos <span
+class="math inline">\(H_{0}\)</span>, se <strong>acepta</strong> <span
+class="math inline">\(H_{a}\)</span>. Si por el contrario <span
+class="math inline">\(\alpha&lt;\)</span> <code>valor-p</code>, no
+rechazamos <span class="math inline">\(H_{0}\)</span>,
+<strong>asumimos</strong> que <span class="math inline">\(H_{0}\)</span>
+es verdad.</td>
+</tr>
+<tr class="odd">
+<td align="left"><strong>Regla3</strong>:</td>
+<td align="left">El <code>valor-p</code> se interpreta como el error que
+puedo cometer al rechazar <span class="math inline">\(H_{0}\)</span>,
+siendo esta verdadera (cometer error tipo I). Si este valor es
+considerado como pequeño, rechazo <span
+class="math inline">\(H_{0}\)</span>, se <strong>acepta</strong> <span
+class="math inline">\(H_{a}\)</span>. Si por el contrario se considera
+este valor grande, entonce no rechazo <span
+class="math inline">\(H_{0}\)</span>, asumo que <span
+class="math inline">\(H_{0}\)</span> es verdad.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<p><br/><br/></p>
+<div class="box4 with-label">
+<div class="label">
+Código R
+</div>
+<p><img src="img/logoR.png" width="10%" /></p>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="75%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><strong>Pruebas paramétricas</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Entrada de datos</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>x1=c(7, 13, 6, 5, 5, 10, 8, 6, 7)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>x2=c(3,7,2,3,6,2,1,0,2)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Una población</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td
+align="left"><code>z.test(datos,mu=10,stdev=4, conf.level=0.98)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>t.test(datos, mu=10,conf.level=0.98)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td
+align="left"><code>t.test(datos, mu=10,conf.level=0.98,alternative="greater")</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td
+align="left"><code>t.test(datos, mu=10,conf.level=0.98,alternative="less)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td
+align="left"><code>prop.test(x=22,n=100, p=0.20, conf.level=0.98)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Dos poblaciones</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>t.test(x1,x2,  paired=TRUE)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td
+align="left"><code>t.test(x1,x2,  paired=FALSE, var.equal=TRUE, conf.level=0.95)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td
+align="left"><code>t.test(x1,x2,  paired=FALSE, var.equal=FALSE, conf.level=0.98)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>var.test(x,y)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>prop.test(c(x1,x2), c(n1,n2))</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><strong>Pruebas no paramétricas</strong></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>chisq.test(x=obs,p=esp)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">paquete: MASS</td>
+<td align="left"><code>library(MASS)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>chisq.test(M)</code> # M: matriz</td>
+</tr>
+<tr class="odd">
+<td align="left">paquete: BSDA</td>
+<td align="left"><code>library(BSDA)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td
+align="left"><code>SIGN.test(x,md=15,alternative = "greater")</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td
+align="left"><code>wilcox.test(g1,g2,paired = FALSE,alternative = "less")</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><strong>Pruebas de normalidad</strong></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>shapiro.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left">paquete:normtest</td>
+<td align="left"><code>library(normtest)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>ajb.norm.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>frosini.norm.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>geary.norm.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>hegazy1.norm.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>hegazy2.norm.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>jb.norm.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>kurtosis.norm.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>skewness.norm.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>spiegelhalter.norm.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>wb.norm.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">paquete: nortest</td>
+<td align="left"><code>library(nortest)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>ad.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>cvm.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>lillie.test(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>pearson.test(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"><code>sf.test(x)</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Tipos de hipótesis
+</div>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Tipos de pruebas</th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Dos colas</td>
+<td align="left"><span class="math inline">\(H_{0}: \theta =
+\theta_{o}\)</span> vs <span class="math inline">\(H_{0}: \theta \neq
+\theta_{o}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Cola superior</td>
+<td align="left"><span class="math inline">\(H_{0}: \theta \leq
+\theta_{o}\)</span> vs <span class="math inline">\(H_{0}: \theta &gt;
+\theta_{o}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Cola inferior</td>
+<td align="left"><span class="math inline">\(H_{0}: \theta \geq
+\theta_{o}\)</span> vs <span class="math inline">\(H_{0}: \theta &lt;
+\theta_{o}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/><br/></p>
+</div>
+<div id="videos" class="section level2">
+<h2><strong>Videos</strong></h2>
+<p><br/><br/></p>
+<div id="video-paramétricas" class="section level3">
+<h3><strong>Video paramétricas</strong></h3>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/phUkdjdj95c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</center>
+<p><br/><br/></p>
+</div>
+<div id="video-no-paramétricas" class="section level3">
+<h3><strong>Video no paramétricas</strong></h3>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/m3YIdS2TVHk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</center>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="tutorial" class="section level2">
+<h2><strong>Tutorial</strong></h2>
+<p>Con el siguiente código en R , podrán abrir un tutorial con problemas
+propuestos sobre el tema. Es necesario para ello abrir la consola de R o
+RStudio y correr el código</p>
+<p>Si ya se tienen instalados los paquetes <code>learnr</code> y
+<code>remotes</code>, no es necesario hacerlo nuevamente. El paquete
+<code>paquetepye</code> si debe ser instalado cada vez que sea utilizado
+con el fin de incorporar nuevas actualizaciones</p>
+<p><br/><br/></p>
+<pre class="r"><code>install.packages(&quot;learnr&quot;) # solo una vez
+install.packages(&quot;devtools&quot;) # solo una vez
+devtools::install_github(&quot;dgonxalex80/paqueteDEG&quot;)
+learnr::run_tutorial(&quot;Taller_pruebas1&quot;, &quot;paqueteDEG&quot;)</code></pre>
+<p><br/><br/></p>
+<pre>
+install.packages("learnr") # solo una vez
+install.packages("devtools") # solo una vez
+devtools::install_github("dgonxalex80/paqueteDEG")
+learnr::run_tutorial("Taller_pruebas1", "paqueteDEG")
+</pre>
+<p><img src="img/tutorial401.png" width="100%" /></p>
+<p><br/><br/></p>
+<pre>
+learnr::run_tutorial("Taller_pruebas2", "paqueteDEG")
+</pre>
+<p><img src="img/tutorial402.png" width="100%" /></p>
+<p><br/><br/></p>
+<p>Nota: para la instalacion del paquete <em>distributions</em> se
+requiere la instalcion del paquete <em>ctv</em> : <a
+href="https://cran.r-project.org/web/views/Distributions.html"
+class="uri">https://cran.r-project.org/web/views/Distributions.html</a></p>
+<p><br/><br/></p>
+</div>
+</div>
+<div id="presentaciones" class="section level1">
+<h1><strong>Presentaciones</strong></h1>
+<iframe src="pdf/P-PruebasH.pdf" width="100%" height="500"></iframe>
+<iframe src="pdf/NoParametricas2.pdf" width="100%" height="500"></iframe>
+</div>
+<div id="taller-435" class="section level1">
+<h1><strong>Taller 435</strong></h1>
+<iframe src="pdf/Taller435.pdf" width="100%" height="800"></iframe>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

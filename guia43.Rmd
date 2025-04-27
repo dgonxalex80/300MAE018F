@@ -1,7 +1,7 @@
 ---
 title: <span style="color:#2C5697"> </span>  
 author: "dgonzalez "
-subtitle: <span style="color:#2C5697">**Módulo 4- Unidad 4.3**</span> 
+subtitle: <span style="color:#2C5697">**Módulo 3- Unidad 3.3**</span> 
 output:
   html_document:
     toc: no
@@ -33,7 +33,7 @@ c7= "#F7F7F7" # FONDO GRIS CLARO WEB
 
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "center"}
-knitr::include_graphics("img/guia4.png")
+knitr::include_graphics("img/guia3.png")
 ```
 <br/><br/>
 
@@ -59,7 +59,7 @@ Al finalizar la unidad el estudiante estará en capacidad de IDENTIFICAR, CALCUL
 
 ## **Duración**
 
-La presente  unidad será desarrollada durante la comprendida entre 22 y 31 de octubre de 2024.   
+La presente  unidad será desarrollada durante la comprendida entre 28 de abril y el 8 de mayo de 2025.   
 Ademas del material suministrado  contaran con el acompañamiento del profesor y de manera asincrónica con  foro de actividades académicas. Los entegables para esta unidad podrán enviarse a través de la plataforma Brightspace hasta el  31 de octubre
 
 Para alcanzar los objetivos planteados se propone realizar las siguientes actividades
@@ -76,7 +76,7 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 |:-----------------|:-----------------------------  |
 |**Actividad 431** | Resuelva las preguntas y problemas planteadas en el **Taller 431** y entregue su solución  en formato  pdf en el enlace correspondiente de  Brightspace   |
 |Trabajo individual|                                |
-|Fecha             | octubre 31  de 2024            |
+|Fecha             | 12 de mayo  de 2025            |
 |Hora              | 23:59 hora local               |
 
 <br/><br/>
@@ -95,7 +95,7 @@ Para alcanzar los objetivos planteados se propone realizar las siguientes activi
 |Actividad         | Descripción                    | 
 |:--------------|:-----------------------------|
 | Actividad 431 | Solucionario taller 431 de problemas sobre pruebas de hipótesis| 
-| Fecha         | 31 de octubre de 2024 |
+| Fecha         | 12 de mayo  de 2025 |
 | Hora          | 23:59 hora local       |
 
 <br/><br/>

@@ -133,8 +133,16 @@ navbar:
         - text: "Taller 321"  
           href: taller421.html
         - text: "Ejercicios 321"  
-          href: Ejercicios321.html         
-          
+          href: Ejercicios321.html 
+        - text: "---------" 
+        - text: "Guía 3.3"
+          href: guia43.html  
+        - text: "recursos 3.3"
+          href: recurso43.html
+        - text: "Código 3.3"  
+          href: codigo43.html
+        - text: "Taller 331"  
+          href: taller431.html        
         - text: "--------"      
         - text: "Monitoria 3"
           href: monitoria4.html            

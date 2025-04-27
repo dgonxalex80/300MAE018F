@@ -84,8 +84,9 @@ $$IC_{\mu}: \bar{x} \pm t_{\alpha/2} \hspace{.1cm}\frac{s}{\sqrt{n}} $$
 ```{r}
 set.seed(102)
 datos2 <- rnorm(10, mean = 200, sd = 3)  # Resistencia de material
-
-cat("IdeC para mu (95%) : (", mean(datos1)+ qt(c(0.025,0.975),29)*1.2/sqrt(30),")")
+mean(datos2)
+sd(datos2)
+cat("IdeC para mu (95%) : (", mean(datos2)+ qt(c(0.025,0.975),9)*1.2/sqrt(10),")")
 ```
 
 </div>
@@ -102,8 +103,10 @@ $$IC_{\mu}: \bar{x} \pm z_{\alpha/2} \hspace{.1cm}\dfrac{s}{\sqrt{n}} $$
 ```{r}
 set.seed(103)
 datos3 <- rnorm(100, mean = 50, sd = 5)  # Tiempos de operación máquina
-
-cat("IdeC para mu (95%) : (", mean(datos1)+ qnorm(c(0.025,0.975)*sd(datos3)/sqrt(length(datos3))),")")
+round(datos3,1)
+cat("promedio :",mean(datos3), "\n")
+cat("desviación estandar:",sd(datos3), "\n")
+cat("IdeC para mu (95%) : (", mean(datos3)+ qnorm(c(0.025,0.975)*sd(datos3)/sqrt(length(datos3))),")")
 ```
 
 </div>

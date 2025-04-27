@@ -1,6 +1,6 @@
 ---
-title: <span style="color:#235784">**Taller 431** </span>  
-subtitle: <span style="color:#235784">**Unidad 4.3**</span> 
+title: <span style="color:#235784">**Taller 331** </span>  
+subtitle: <span style="color:#235784">**Unidad 3.3**</span> 
 author: "dgonzalez "
 output:
   html_document:
@@ -53,7 +53,7 @@ library(summarytools)
 </br></br></br>
 
 ```{r, echo=FALSE, out.width="100%", fig.align = "left"}
-knitr::include_graphics("img/banner004.png")
+knitr::include_graphics("img/banner003.png")
 ```
 
 </br></br>
@@ -183,28 +183,6 @@ Se realizan pruebas de un nuevo lector láser manual para uso en inventarios y e
 De acuerdo con la información suministrada, es posible preferir alguno de ellos?. En caso de poderlo realizar con cual se quedaría? Justifique su respuesta. En cada caso determine las pruebas de hipótesis, el estadístico de prueba apropiado, el $valor-p$ obtenido y las conclusiones resultantes.
 	
 	
-<br/><br/>
-	
-### **Ayuda**
-
-<pre>
-n1=61
-n2=61
-mx1=40
-mx2=29
-vx1=24.9
-vx2=22.7
-
-F=vx1/vx2
-qf(c(0.025,0.975),60,60)
-
-sp2=(n1*vx1+n2*vx2)/sqrt(n1+n2-2)
-T=(mx1-mx2)/sqrt(sp2*(1/n1+1/n2)
-qt(c(0.025,0.975), n1+n2-2)
-</pre>
-<br/><br/>
-
-
 </div>
 
 <br/><br/><br/>
@@ -568,6 +546,6 @@ wb.test(x)
 <br/><br/><br/>
 
 Profesor Daniel Enrique González Gómez <br/>
-Curso: Probabilidad y Estadística
+Curso: Estadística para la toma de decisiones
 
 </div>
