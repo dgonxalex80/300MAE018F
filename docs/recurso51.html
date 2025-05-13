@@ -1,0 +1,2293 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="dgonzalez" />
+
+
+<title> </title>
+
+<script src="site_libs/header-attrs/header-attrs.js"></script>
+<script src="site_libs/jquery/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation/tabsets.js"></script>
+<script src="site_libs/navigation/codefolding.js"></script>
+<link href="site_libs/highlightjs/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs/highlight.js"></script>
+<link href="site_libs/font-awesome/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome/css/v4-shims.min.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html"> </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 0
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo0.html">Módulo 0</a>
+    </li>
+    <li>
+      <a href="sumatoria.html">Sumatoria</a>
+    </li>
+    <li>
+      <a href="productoria.html">Productoria</a>
+    </li>
+    <li>
+      <a href="conjuntos.html">Conjuntos</a>
+    </li>
+    <li>
+      <a href="conteo.html">Técnicas de conteo</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Funcición exponencial</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Función logaritmica</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Derivación</a>
+    </li>
+    <li>
+      <a href="recurso000.html">Integración</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 1
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo1.html">Módulo 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia11.html">Guía 1.1</a>
+    </li>
+    <li>
+      <a href="recurso11.html">Metodología Estadística</a>
+    </li>
+    <li>
+      <a href="basesdatos.html">Bases de datos</a>
+    </li>
+    <li>
+      <a href="introduccionR.html">Introducción a R</a>
+    </li>
+    <li>
+      <a href="codigo11.html">Código 1.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia12.html">Guía 1.2</a>
+    </li>
+    <li>
+      <a href="recurso12.html">recursos 1.2</a>
+    </li>
+    <li>
+      <a href="codigo12.html">Código 1.2</a>
+    </li>
+    <li>
+      <a href="caso1.html">Caso 1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia13.html">Guía 1.3</a>
+    </li>
+    <li>
+      <a href="recurso13.html">recursos 1.3</a>
+    </li>
+    <li>
+      <a href="codigo13.html">Código 1.3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria1.html">Monitoria 1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 2
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo2.html">Módulo 2</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia21.html">Guía 2.1</a>
+    </li>
+    <li>
+      <a href="recurso21.html">recursos 2.1</a>
+    </li>
+    <li>
+      <a href="codigo21.html">Código 2.1</a>
+    </li>
+    <li>
+      <a href="actividad211.html">Actividad 211</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia22.html">Guía 2.2</a>
+    </li>
+    <li>
+      <a href="recurso22.html">recursos 2.2</a>
+    </li>
+    <li>
+      <a href="actividad221.html">Actividad 221</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia23.html">Guía 2.3</a>
+    </li>
+    <li>
+      <a href="recurso23.html">recursos23</a>
+    </li>
+    <li>
+      <a href="codigo23.html">Código 23</a>
+    </li>
+    <li>
+      <a href="actividad231.html">Actividad 231</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia24.html">Guía 2.4</a>
+    </li>
+    <li>
+      <a href="recurso24.html">recursos24</a>
+    </li>
+    <li>
+      <a href="codigo24.html">Código 24</a>
+    </li>
+    <li>
+      <a href="actividad241.html">Actividad 241</a>
+    </li>
+    <li>
+      <a href="problemas331.html">Problemas 2.4</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria2.html">Monitoria 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 3
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo3.html">Módulo 3</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia31.html">Guía 3.1</a>
+    </li>
+    <li>
+      <a href="recurso31.html">recursos 3.1</a>
+    </li>
+    <li>
+      <a href="codigo31.html">Código 3.1</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia42.html">Guía 3.2</a>
+    </li>
+    <li>
+      <a href="recurso42.html">recursos 3.2</a>
+    </li>
+    <li>
+      <a href="codigo42.html">Código 3.2</a>
+    </li>
+    <li>
+      <a href="taller421.html">Taller 321</a>
+    </li>
+    <li>
+      <a href="Ejercicios321.html">Ejercicios 321</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="guia43.html">Guía 3.3</a>
+    </li>
+    <li>
+      <a href="recurso43.html">recursos 3.3</a>
+    </li>
+    <li>
+      <a href="codigo43.html">Código 3.3</a>
+    </li>
+    <li>
+      <a href="taller431.html">Taller 331</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="monitoria4.html">Monitoria 3</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Módulo 5
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="modulo5.html">Módulo 5</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="recurso51.html">recursos 5.1</a>
+    </li>
+    <li>
+      <a href="codigo51.html">Código 5.1</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Proyecto
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="proyecto.html">Guía proyecto</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Información
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">300MAE018G</a>
+    </li>
+    <li>
+      <a href="parcial1.html">Primer parcial</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore"><span style="color:#2C5697"> </span></h1>
+<h3 class="subtitle"><span style="color:#2C5697"><strong>Probabilidad y
+Estadística</strong></span></h3>
+<h4 class="author">dgonzalez</h4>
+
+</div>
+
+
+<p><img src="img/recursos5.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><br/><br/><br/></p>
+<div id="modelo-de-regresión-lineal" class="section level1">
+<h1><strong>Modelo de Regresión lineal</strong></h1>
+</div>
+<div id="introducción" class="section level1">
+<h1><strong>Introducción</strong></h1>
+<p>En esta unidad estudiaremos la relación que puede existir entre dos
+variables o una variable y un conjunto de variables, mediante la
+construcción de un modelo lineal que represente dicha relación. Se
+partirá de un modelo general (modelo de Regresión Lineal Múltiple) y se
+tratará como caso particular el modelo de dos variables también llamado
+Modelo de Regresión Lineal Simple MRLS.</p>
+<div class="box1 with-label">
+<table>
+<colgroup>
+<col width="29%" />
+<col width="70%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><img src="img/Galton.jpg" /></td>
+<td align="left"><em>La primera forma de regresión lineal documentada
+fue el método de los mínimos cuadrados que fue publicada por Legendre en
+1805, Gauss publicó un trabajo en donde desarrollaba de manera más
+profunda el método de los mínimos cuadrados y en dónde se incluía una
+versión del teorema de Gauss-Márkov. El término regresión se utilizó por
+primera vez en el estudio de variables antropométricas de Francis
+Galton: al comparar la estatura de padres e hijos, donde resultó que los
+hijos cuyos padres tenían una estatura muy superior al valor medio,
+tendían a igualarse a este, mientras que aquellos cuyos padres eran muy
+bajos tendían a reducir su diferencia respecto a la estatura media; es
+decir, “regresaban” al promedio. La constatación empírica de esta
+propiedad se vio reforzada más tarde con la justificación teórica de ese
+fenómeno.</em></td>
+</tr>
+</tbody>
+</table>
+<p><em>El término lineal se emplea para distinguirlo del resto de
+técnicas de regresión, que emplean modelos basados en cualquier clase de
+función matemática. Los modelos lineales son una explicación
+simplificada de la realidad, mucho más ágiles y con un soporte teórico
+mucho más extenso por parte de la matemática y la estadística.</em>
+|</p>
+<p>Tomado de : <a
+href="https://es.wikipedia.org/wiki/Regresi%C3%B3n_lineal"
+class="uri">https://es.wikipedia.org/wiki/Regresi%C3%B3n_lineal</a></p>
+</div>
+<p><br/><br/></p>
+<p>En unidades anteriores se estudiaron relaciones entre dos variables
+aleatorias, las cuales se puede medir a través del coeficiente de
+correlación (<span class="math inline">\(\rho\)</span>), el cual puede
+presentar valores desde -1 hasta 1 como se representa en las siguientes
+gráficas :</p>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /><img src="recurso51_files/figure-html/unnamed-chunk-2-2.png" width="672" style="display: block; margin: auto;" /><img src="recurso51_files/figure-html/unnamed-chunk-2-3.png" width="672" style="display: block; margin: auto;" /><img src="recurso51_files/figure-html/unnamed-chunk-2-4.png" width="672" style="display: block; margin: auto;" /><img src="recurso51_files/figure-html/unnamed-chunk-2-5.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br/><br/></p>
+<p>La primera gráfica y la última gráfica representan relaciones
+perfectas entre dos variables, que tan solo se presentan cuando la
+relación es constante <span class="math inline">\(Y = a + bX\)</span>
+(ej. en una igualdad matemática como distancia = velocidad x tiempo). No
+es el caso que se presenta al relacionar variables estadisticas. En este
+segundo caso a medida que el coeficiente de correlación aumenta la nube
+de puntos cambia, permitiendo ver una gama de posibilidades que pueden
+ser interpretadas dependiendo el signo como relaciones negativas o
+positivas (que se evidencian en la pendiente <span
+class="math inline">\(\beta_{0}\)</span>) del modelo y por la magnitud
+desde relaciones muy fuertes a relaciones muy débiles (cerca de
+cero)</p>
+<p><br/><br/></p>
+<p>El modelo de regresión poblacional está determinado por:</p>
+<div class="box1 with-label">
+<p><span class="math display">\[\begin{equation*}
+    Y=\beta_{0}+\beta_{1}X_{1}+\beta_{2}X_{2}+ \dots + \beta_{k}X_{k} +u
+    \end{equation*}\]</span></p>
+<p>Donde:</p>
+<ul>
+<li><p><span class="math inline">\(Y\)</span>,representa una la variable
+dependiente, también llamada variable respuesta o variable
+predicha.</p></li>
+<li><p><span class="math inline">\(X_{1},X_{2},\dots, X_{k}\)</span>,
+corresponden a un conjunto de variables independientes o
+predictoras.</p></li>
+<li><p><span class="math inline">\(\beta_{0},\beta_{1},\beta_{2},\dots,
+\beta{k}\)</span> son un conjunto de constantes o parámetros del modelo
+(constantes) que deben ser estimadas a partir del conjunto de valores
+obtenidos en una muestra.</p></li>
+<li><p><span class="math inline">\(u\)</span> corresponde a una variable
+aleatoria no observable que representa todas las variables que no se
+incluyen en el modelo y corresponde a un componente aleatorio producto
+del azar de la naturaleza. Sin la presencia de esta variable en la
+estructura de la relación, el modelo formulado corresponderá a una
+relación matemática.</p></li>
+</ul>
+</div>
+<p><br/><br/></p>
+<p>Un caso particular del modelo, ocurre cuando solo tiene una variable
+independiente, en este caso el modelo toma el nombre de Modelo de
+Regresión Lineal Simple con la siguiente estructura:</p>
+<p><span class="math display">\[Y=\beta_{0} + \beta_{1} X + u\]</span>
+En este caso es posible realzar una representación gráfica del modelo
+mediante una linea recta donde <span
+class="math inline">\(\beta_{0}\)</span> corresponde al intercepto y
+<span class="math inline">\(\beta_{1}\)</span> a la pendiente.</p>
+<p>A partir de la obtención de una muestra de tamaño <span
+class="math inline">\(n\)</span> se puede obtener el modelo estimado,
+cuya ecuación esta dada por: <span
+class="math display">\[\begin{equation*}
+    \widehat{E[y|X]}=b_{0}+b_{1}x_{1}+b_{2}x_{2}+\dots+b_{k}x_{k}
+    \end{equation*}\]</span></p>
+<p>Donde : <span class="math inline">\([b_{0}, b_{1}, \dots,
+b_{k}]\)</span> representa el vector de estimadores de los coeficientes
+del modelo.</p>
+<p>Como cada vez que se toma una muestra, por razones del azar los
+objetos medidos son diferentes, es claro que al realizar un
+procedimiento de estimación los valores de estos son diferentes,
+ratificando esto que <span
+class="math inline">\(\widehat{\beta}_{0},\widehat{\beta}_{1},\widehat{\beta}_{2},\dots,
+\widehat{\beta}_{k}\)</span> son variables aleatorias</p>
+<p><br/><br/><br/><br/></p>
+</div>
+<div id="mrl-enfoque-matricial" class="section level1">
+<h1><strong>MRL-enfoque matricial</strong></h1>
+<p><br/><br/></p>
+<p>Para representar el modelo de manera matricial, se puede partir de la
+siguiente ecuación:</p>
+<div class="box1 with-label">
+<p><span class="math display">\[\begin{equation*}
+    Y_{i}=\beta_{0}+\beta_{1}X_{1i}+\beta_{2}X_{2i}+ \dots +
+\beta_{k}X_{ki} +u_{i} \hspace{.3cm} i=1,2,\dots,n
+    \end{equation*}\]</span></p>
+</div>
+<p><br/><br/></p>
+<p>Los valores <span
+class="math inline">\(\beta_{0},\beta_{1},\dots,\beta_{k}\)</span> deben
+cumplir las siguientes igualdades:</p>
+<p><span class="math display">\[\begin{eqnarray*}
+        y_{1}&amp;=&amp;\beta_{0}+\beta_{1}x_{11}+\beta_{2}x_{21}+\dots+\beta_{k}x_{k1}+u_{1}
+\\
+        y_{2}&amp;=&amp;\beta_{0}+\beta_{1}x_{12}+\beta_{2}x_{22}+\dots+\beta_{k}x_{k2}+u_{2}
+\\
+        y_{3}&amp;=&amp;\beta_{0}+\beta_{1}x_{13}+\beta_{2}x_{23}+\dots+\beta_{k}x_{k3}+u_{3}
+\\
+        \vdots &amp;&amp; \vdots \hspace{1cm} \vdots \hspace{1cm} \vdots
+\\
+        y_{n}&amp;=&amp;\beta_{0}+\beta_{1}x_{1n}+\beta_{2}x_{2n}+\dots+\beta_{k}x_{kn}+u_{n}
+\\
+    \end{eqnarray*}\]</span></p>
+<p>En forma matricial las podemos escribir</p>
+<div class="box1 with-label">
+<p><span class="math display">\[y = X \beta + u\]</span> Donde:</p>
+<p><span class="math display">\[y = [y_{1},y_{2}, \dots,
+y_{n}]^{T}\]</span> <span class="math display">\[\beta
+=[\beta_{0},\beta_{1},\dots, \beta_{k}]^{T}\]</span> <br/><br/></p>
+<p><span class="math display">\[X= \begin{bmatrix}
+    {1}   &amp;{x_{11}}&amp;{x_{21}}&amp; \dots &amp; x_{k1}  \\
+    {1}   &amp;{x_{12}}&amp;{x_{22}}&amp; \dots &amp; x_{k2}  \\
+    {1}   &amp;{x_{13}}&amp;{x_{23}}&amp; \dots &amp; x_{k3}  \\
+    \dots &amp; \dots  &amp;\dots   &amp; \dots &amp; \dots \\
+    {1}   &amp;{x_{1n}}&amp;{x_{2n}}&amp; \dots &amp; x_{kn} \\
+    \end{bmatrix}\]</span></p>
+<p><span class="math display">\[u
+=[u_{1},u_{2},\dots,u_{n}]^{T}\]</span></p>
+</div>
+<p><br/><br/><br/></p>
+<div id="estimación-de-coeficientes" class="section level2">
+<h2><strong>Estimación de coeficientes</strong></h2>
+<p><br/><br/></p>
+<p>El método Mínimos Cuadrados Ordinarios (<strong>MCO</strong>) se basa
+en la minimizar la suma de cuadrados de los errores (<span
+class="math inline">\(u\)</span>), a través de la información contenida
+en una muestra</p>
+<p>De la ecuación del modelo estimado <span
+class="math inline">\(\widehat{y} = X \widehat{\beta} +
+\widehat{u}\)</span> se pueden despejar los residuales . Como los
+errores son variables no observables, el método hace uso de sus
+respectivos estimadores llamados residuales:</p>
+<div class="box1 with-label">
+<p><span class="math display">\[\begin{equation*}
+    \widehat{u} = \widehat{y} - X\widehat{\beta}
+    \end{equation*}\]</span></p>
+</div>
+<p><br/><br/></p>
+<p>Ahora, la suma de cuadrado de los residuales se puede obtener al
+multiplicar el vector <span class="math inline">\(\widehat{u}^{T}
+\widehat{u}\)</span></p>
+<p><span class="math display">\[\begin{equation*}
+    SCRes=\sum_{i=1}^{n} \widehat{u}^{2}_{i} = \widehat{u}^{T}
+\widehat{u}=
+    \begin{bmatrix}{\widehat{u}_{1}}\\
+    {\widehat{u}_{2}}\\
+    {\vdots}\\
+    {\widehat{u}_{n}}\\
+    \end{bmatrix}[\widehat{u}_{1},\widehat{u}_{2},\dots,\widehat{u}_{n}]
+    \end{equation*}\]</span></p>
+<p><br/><br/></p>
+<p><span class="math display">\[\begin{eqnarray*}
+        SCRes&amp;=&amp;[\widehat{y}-Xb]^{T}[\widehat{y}-Xb]\\
+        &amp;=&amp; y^{T}y -y^{T}Xb-b^{T}X^{T}y+b^{T}X^{T}Xb \\
+        &amp;=&amp; y^{T}y -2bX^{T}y+b^{T}X^{T}Xb \\
+    \end{eqnarray*}\]</span></p>
+<p><br/><br/></p>
+<p>Para encontrar los valores óptimos de los coeficientes, se debe
+derivar parcialmente con respecto al vector <span
+class="math inline">\(\beta\)</span> e igualarlo a cero</p>
+<p><span class="math display">\[\begin{equation*}
+    \dfrac{\partial{SCRes}}{\partial{\beta}}= -2X^{T}+ 2X^{T}Xb=0
+    \end{equation*}\]</span></p>
+<p><br/><br/></p>
+<p>De la ecuación anterior se despeja <span
+class="math inline">\(b\)</span> (<span
+class="math inline">\(\widehat{\beta}\)</span>)</p>
+<p><span class="math display">\[\begin{eqnarray*}
+        2X^{T} &amp;=&amp; 2X^{T}Xb\\
+        (X^{T}X)^{-1}X^{T}y &amp;=&amp;(X^{T}X)^{-1}X^{T}X b\\
+        (X^{T}X)^{-1}X^{T}y&amp;=&amp; b
+    \end{eqnarray*}\]</span></p>
+<p><br/><br/></p>
+<p>El estimador MCO de los coeficientes <span
+class="math inline">\(b\)</span> es:</p>
+<div class="box1 with-label">
+<p><span class="math display">\[\widehat{\beta}_{_{MCO}}= b =
+(X^{T}X)^{-1}X^{T}y\]</span></p>
+</div>
+<p><br/><br/></p>
+<p>Es claro que para poder realizar este proceso es condición necesaria
+que la matriz <span class="math inline">\((X^{T}X)\)</span> sea
+invertible. En caso contrario los estimadores MCO no se pueden hallar.
+La versión del método MCO a partir de sumatorias se encuentra
+desarrollada en el texto guía (Walpole-2012 pp.395)</p>
+<p>Para que la estimación por MCO sea valida y utilizada, se deben
+verificar que se cumplan los supuestos sobre los errores <span
+class="math inline">\(u\)</span> y las pruebas de significancia global y
+unitarias</p>
+<p><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Supuestos
+</div>
+<ul>
+<li><span class="math inline">\(S_1\)</span>: El valor esperado de <span
+class="math inline">\(u\)</span> es cero.<span
+class="math inline">\(E[u]=0\)</span> <span
+class="math inline">\(E[u]=0\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_2\)</span>: Los errores tienen
+varianza constante. <span
+class="math inline">\(V[u_{i}]=\sigma^{2}\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_3\)</span>: <span
+class="math inline">\(u\)</span> es una variable con distribución
+normal. <span class="math inline">\(u \sim\)</span> <span
+class="math inline">\(Normal\)</span></li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_4\)</span>: Los errores son
+independientes unos de otros <span
+class="math inline">\(E[u_i,u_j]\)</span> que se entiende como la no
+autocorrelacion de los errores</li>
+</ul>
+<p><br/></p>
+<ul>
+<li><span class="math inline">\(S_5\)</span>: Para el caso de regresión
+lineal múltiple se incluye el supuesto de no multicolinealidad. En caso
+de que se presenta multicolinealidad entre dos variables independientes
+da como resultado la imposibilidad de poder realizar la estimaciones
+mediante MCO</li>
+</ul>
+</div>
+<p><br/><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 1
+</div>
+<p>Se quiere determinar si existe relación entre los ingresos que recibe
+una familia y el valor de su consumo. Con en este propósito se toma
+información de 12 hogares |</p>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">x</td>
+<td align="right">24.3</td>
+<td align="right">12.5</td>
+<td align="right">31.2</td>
+<td align="right">28.0</td>
+<td align="right">35.1</td>
+<td align="right">10.5</td>
+<td align="right">23.2</td>
+<td align="right">10.0</td>
+<td align="right">8.5</td>
+<td align="right">15.9</td>
+<td align="right">14.7</td>
+<td align="right">15.0</td>
+</tr>
+<tr class="even">
+<td align="center">y</td>
+<td align="right">16.2</td>
+<td align="right">8.5</td>
+<td align="right">15.0</td>
+<td align="right">17.0</td>
+<td align="right">24.2</td>
+<td align="right">11.2</td>
+<td align="right">15.0</td>
+<td align="right">7.1</td>
+<td align="right">3.5</td>
+<td align="right">11.5</td>
+<td align="right">10.7</td>
+<td align="right">9.2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>El primer paso corresponde a construir una gráfica de dispersión, con
+el fin de poder visualizar el tipo de relación que se puede percibir
+entre las dos variables</p>
+<pre class="r"><code>x1=c(24.3,12.5,31.2,28,35.1,10.5,23.2,10,8.5,15.9,14.7,15)
+y1=c(16.2,8.5,15,17,24.2,11.2,15,7.1,3.5,11.5,10.7,9.2)
+
+plot(x1,y1, xlab = &quot;Ingresos&quot;, ylab = &quot;Consumo&quot;,
+pch=21, bg=&quot;blue&quot;, xlim=c(0,35), ylim=c(0,25), las=1)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><br/><br/></p>
+<p>En la gráfica se puede observar una nube de puntos que sugieren una
+relación positiva entre las dos variables. El objetivo entonces es
+determinar una ecuación que permita estimar esta relación que en este
+caso se representa por una linea recta (<span
+class="math inline">\(y=a+bx\)</span>).</p>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><br/><br/></p>
+<p>Esta recta representa la relación lineal entre las dos variables, en
+este caso tiene una pendiente positiva que mide la magnitud del cambio
+en la variable dependiente ante un cambio unitario en la variable
+independiente.</p>
+<p>Para encontrar la los valores estimados del intercepto y de la
+pendiente, utilizaremos el método de mínimos cuadrados ordinario
+(MCO)</p>
+<pre class="r"><code>regresion=lm(y1 ~ x1, data = df1)
+summary(regresion)</code></pre>
+<pre><code>
+Call:
+lm(formula = y1 ~ x1, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1928 -0.5426  0.0088  0.8500  3.5613 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.77788    1.58292   1.123    0.288    
+x1           0.55817    0.07567   7.376 2.38e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 2.251 on 10 degrees of freedom
+Multiple R-squared:  0.8447,    Adjusted R-squared:  0.8292 
+F-statistic: 54.41 on 1 and 10 DF,  p-value: 2.38e-05</code></pre>
+<p><br/><br/></p>
+<p>De acuerdo con estos resultados obtenidos en R, muestra que la
+ecuación estimada es :</p>
+<p><span class="math display">\[\widehat{y_{i}} = 1.77788 + 0.55817
+x_{i}\]</span></p>
+<p><br/><br/></p>
+<p>Para validar estos resultados, para poder ser utilizados se debe:</p>
+<ul>
+<li>Validar que se cumplen los supuestos sobre <span
+class="math inline">\(u\)</span></li>
+<li>Verificar en los valores de los coeficientes mediante las pruebas de
+hipótesis individuales</li>
+</ul>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="validación-de-supuestos" class="section level1">
+<h1><strong>Validación de supuestos</strong></h1>
+<p>Los supuestos a validar se deben verificar sobre los residuales <span
+class="math inline">\(\widehat{u_{i}}\)</span> que corresponde a la
+diferencia entre <span class="math inline">\(\widehat{y_{i}}\)</span> y
+<span class="math inline">\(y\)</span> y que son las realizaciones de
+los errores. (<span class="math inline">\(\widehat{u_{i}} =
+\widehat{y_{i}}-y_{i}\)</span>)</p>
+<pre class="r"><code>yhat=predict(regresion)
+u=yhat-df1$y1
+u</code></pre>
+<pre><code>         1          2          3          4          5          6          7 
+-0.8585544  0.2550230  4.1928284  0.4066799 -2.8303031 -3.5613199 -0.2725429 
+         8          9         10         11         12 
+ 0.2595944  3.0223373 -0.8471942 -0.7169999  0.9504515 </code></pre>
+<p><br/><br/></p>
+<div id="supuesto-1" class="section level2">
+<h2><strong>Supuesto 1</strong></h2>
+<p>El valor esperado de los errores es cero <span
+class="math inline">\(E[u]=0\)</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : <span
+class="math inline">\(\mu_{u} =0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : <span
+class="math inline">\(\mu_{u} \neq 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>summary(u)</code></pre>
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+-3.56132 -0.85003 -0.00876  0.00000  0.54262  4.19283 </code></pre>
+<pre class="r"><code>t.test(u, mu=0)</code></pre>
+<pre><code>
+    One Sample t-test
+
+data:  u
+t = -1.0873e-14, df = 11, p-value = 1
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -1.363421  1.363421
+sample estimates:
+    mean of x 
+-6.735394e-15 </code></pre>
+<p><br/><br/></p>
+</div>
+<div id="supuesto-2" class="section level2">
+<h2><strong>Supuesto 2</strong></h2>
+<p>Los errores tienen varianza constante <span
+class="math inline">\(V[u]=\sigma^{2}\)</span>. Homoscedasticidad</p>
+<p>Prueba de Goldfeld-Quandt</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : no existe
+heteroscedasticidad (homoscedasticidad)</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : existe
+heteriscedastucidad</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>lmtest::gqtest(y1~x1,data = df1)</code></pre>
+<pre><code>
+    Goldfeld-Quandt test
+
+data:  y1 ~ x1
+GQ = 0.19285, df1 = 4, df2 = 4, p-value = 0.93
+alternative hypothesis: variance increases from segment 1 to 2</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="supuesto-3" class="section level2">
+<h2><strong>Supuesto 3</strong></h2>
+<p>Los errores se distribuyen normal <span
+class="math inline">\(u\sim\)</span> <span
+class="math inline">\(N(0,\sigma^{2})\)</span>}</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : <span
+class="math inline">\(u \sim norm\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : <span
+class="math inline">\(u no \sim  norm\)</span></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>shapiro.test(u)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  u
+W = 0.94569, p-value = 0.5751</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="supuesto-4" class="section level2">
+<h2><strong>Supuesto 4</strong></h2>
+<p>Los errores son independientes <span
+class="math inline">\(E[u_i,u_j]=0\)</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(Ho\)</span> : <span
+class="math inline">\(E[u_{i}u_{j}] = 0\)</span> : los errores son
+independients</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(Ha\)</span> : <span
+class="math inline">\(E[u_{i}u_{j}] \neq 0\)</span> : los errores no son
+independientes</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>lmtest::dwtest(y1~x1, data = df1)</code></pre>
+<pre><code>
+    Durbin-Watson test
+
+data:  y1 ~ x1
+DW = 1.5517, p-value = 0.1769
+alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="pruebas-de-significancia-individuales" class="section level1">
+<h1><strong>Pruebas de significancia individuales</strong></h1>
+<p>Después de verificar el cumplimiento de los supuestos sobre los
+errores se pasa a analizar los resultados de la estimación.</p>
+<p>Las pruebas a realizar corresponden a la validación si los resultados
+obtenidos sobre el intercepto y la pendiente son significativamente
+diferentes de cero:</p>
+<pre class="r"><code>summary(regresion)</code></pre>
+<pre><code>
+Call:
+lm(formula = y1 ~ x1, data = df1)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1928 -0.5426  0.0088  0.8500  3.5613 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.77788    1.58292   1.123    0.288    
+x1           0.55817    0.07567   7.376 2.38e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 2.251 on 10 degrees of freedom
+Multiple R-squared:  0.8447,    Adjusted R-squared:  0.8292 
+F-statistic: 54.41 on 1 and 10 DF,  p-value: 2.38e-05</code></pre>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="18%" />
+<col width="22%" />
+<col width="18%" />
+<col width="20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">parámetro</th>
+<th align="left"><span class="math inline">\(Ho\)</span></th>
+<th align="left"><span class="math inline">\(Ha\)</span></th>
+<th align="left"><span class="math inline">\(EdeP: T\)</span></th>
+<th align="left">valor-p</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercepto <span
+class="math inline">\(\beta_{0}\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{0} = 0\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{0} \neq
+0\)</span></td>
+<td align="left"><span class="math inline">\(1,123\)</span></td>
+<td align="left"><span class="math inline">\(0.288\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">pendiente <span
+class="math inline">\(\beta_{1}\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{1} = 0\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{1} \neq
+0\)</span></td>
+<td align="left"><span class="math inline">\(7.376\)</span></td>
+<td align="left"><span class="math inline">\(0.00005\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><br/><br/></p>
+</div>
+<div id="anova" class="section level1">
+<h1><strong>ANOVA</strong></h1>
+<p>La ANOVA corresponde a una prueba de hipótesis conjunta sobre todos
+las pendientes del modelo de manera conjunta:</p>
+<p><span class="math inline">\(Ho: \beta_{1} = \beta_{2} = ....=
+\beta_{k} = 0\)</span> <span class="math inline">\(Ha:
+\beta_{j}\)</span> es diferente de cero</p>
+<p>Esta prueba se fundamenta en la comparación de dos varianza : La
+varianza relacionada con el modelo (<span
+class="math inline">\(\sigma^{2}\)</span>) y la varianza relacionada con
+los errores (<span class="math inline">\(\sigma^{2}_{u}\)</span>).</p>
+<pre class="r"><code>anova(regresion)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: y1
+          Df  Sum Sq Mean Sq F value   Pr(&gt;F)    
+x1         1 275.590 275.590  54.408 2.38e-05 ***
+Residuals 10  50.652   5.065                     
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Ahora podemos realizar la interpretación de los resultados</p>
+<p><span class="math display">\[\widehat{y} = 1.77788 + 0.55817
+x\]</span></p>
+<p><span class="math inline">\(\widehat{\beta_{0}} = 1.7788\)</span>, se
+interpreta como la parte del consumo que no depende de los ingresos al
+cual se le llama consumo autónomo.</p>
+<p><span class="math inline">\(\widehat{\beta_{1}} = 0.55817\)</span> .
+Correspondiente a la estimación de la pendiente, indica que por cada
+aumento unitario de los ingresos, el consumo se aumenta en 0.55817
+unidades.</p>
+<p>Otro indicador importante en el análisis corresponde al coeficiente
+de determinación (<span class="math inline">\(R^{2}\)</span>), que en
+este caso tiene un valor de <span class="math inline">\(0.8447\)</span>
+e indica que el modelo explica un <span
+class="math inline">\(84.47\)</span>% de la variación o del
+comportamiento de la variable <span class="math inline">\(Y\)</span></p>
+<p><br/><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 2
+</div>
+<p>Un fabricante de equipos de aire acondicionado tiene problemas en la
+etapa de montaje, debido principalmente a la falta de una biela, pues
+debido a su peso no satisface las especificaciones establecidas para el
+producto por sobrepeso. Para reducir este costo, el fabricante estima
+que estudiando la relación entre el peso de la barra en bruto y su peso
+final, es probable encontrar una relación entre ellas y de esta manera
+reducir el problema mediante la detección de elementos que probablemente
+no cumplan con las condiciones exigidas para el producto.</p>
+<p>En el estudio se midieron un total de 25 (x, y) pares de barras,
+siendo <span class="math inline">\(X\)</span> el peso de la pieza colada
+en espera de ser procesada (materia prima) y <span
+class="math inline">\(Y\)</span> el peso de una biela terminada que
+forma parte del producto final. Se requiere estimar un modelo que
+permita predecir el valores del peso futuro de la biela terminada como
+función del peso bruto del bloque de metal.</p>
+<p>Los datos recogidos se muestran a continuación: Antes de realizar la
+estimación debemos visualizar mediante un diagrama de dispersión la
+relación lineal entre las variables.</p>
+<p><br/><br/></p>
+<table>
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="8%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">1</th>
+<th align="right">2</th>
+<th align="right">3</th>
+<th align="right">4</th>
+<th align="right">5</th>
+<th align="right">6</th>
+<th align="right">7</th>
+<th align="right">8</th>
+<th align="right">9</th>
+<th align="right">10</th>
+<th align="right">11</th>
+<th align="right">12</th>
+<th align="right">13</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>x</strong></td>
+<td align="right">2.745</td>
+<td align="right">2.700</td>
+<td align="right">2.690</td>
+<td align="right">2.680</td>
+<td align="right">2.675</td>
+<td align="right">2.670</td>
+<td align="right">2.665</td>
+<td align="right">2.660</td>
+<td align="right">2.655</td>
+<td align="right">2.655</td>
+<td align="right">2.650</td>
+<td align="right">2.650</td>
+<td align="right">2.645</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>y</strong></td>
+<td align="right">2.080</td>
+<td align="right">2.045</td>
+<td align="right">2.050</td>
+<td align="right">2.005</td>
+<td align="right">2.035</td>
+<td align="right">2.035</td>
+<td align="right">2.020</td>
+<td align="right">2.005</td>
+<td align="right">2.010</td>
+<td align="right">2.000</td>
+<td align="right">2.000</td>
+<td align="right">2.005</td>
+<td align="right">2.015</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<table style="width:100%;">
+<colgroup>
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="9%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">14</th>
+<th align="right">15</th>
+<th align="right">16</th>
+<th align="right">17</th>
+<th align="right">18</th>
+<th align="right">19</th>
+<th align="right">20</th>
+<th align="right">21</th>
+<th align="right">22</th>
+<th align="right">23</th>
+<th align="right">24</th>
+<th align="right">25</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><strong>y</strong></td>
+<td align="right">2.635</td>
+<td align="right">2.630</td>
+<td align="right">2.625</td>
+<td align="right">2.625</td>
+<td align="right">2.620</td>
+<td align="right">2.615</td>
+<td align="right">2.615</td>
+<td align="right">2.615</td>
+<td align="right">2.615</td>
+<td align="right">2.590</td>
+<td align="right">2.590</td>
+<td align="right">2.565</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>x</strong></td>
+<td align="right">1.990</td>
+<td align="right">1.990</td>
+<td align="right">1.995</td>
+<td align="right">1.985</td>
+<td align="right">1.970</td>
+<td align="right">1.985</td>
+<td align="right">1.990</td>
+<td align="right">1.995</td>
+<td align="right">1.990</td>
+<td align="right">1.975</td>
+<td align="right">1.995</td>
+<td align="right">1.955</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p><strong>x</strong> : peso barra en bruto <strong>y</strong> : peso
+producto final</p>
+</div>
+<p><br/></p>
+<pre class="r"><code>    y3=c(2.745, 2.700, 2.690, 2.680, 2.675, 2.670, 2.665, 2.660, 2.655, 2.655, 2.650, 2.650, 2.645, 2.635, 2.630, 2.625, 2.625, 2.620, 2.615, 2.615, 2.615, 2.615, 2.590, 2.590, 2.565)
+    x3=c(2.080, 2.045, 2.050, 2.005, 2.035, 2.035, 2.020, 2.005, 2.010, 2.000, 2.000, 2.005, 2.015, 1.990, 1.990, 1.995, 1.985, 1.970, 1.985, 1.990, 1.995, 1.990, 1.975, 1.995, 1.955)
+
+plot(x3,y3, xlab = &quot;peso inicial&quot;, ylab = &quot;peso final&quot;, pch=21, bg=&quot;blue&quot;, las=1)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><br/><br/></p>
+<p>En la gráfica se puede observar que existe una posible relación
+positiva entre las variables, la cual se puede representar a través de
+una linea recta con pendiente positiva.</p>
+<p>Inicialmente se plantea el modelo formado por una variable respuesta
+(<span class="math inline">\(y\)</span>) y una variable independiente
+(<span class="math inline">\(x\)</span>), una variable aleatoria no
+observable o error (<span class="math inline">\(u\)</span>) y dos
+coeficientes <span class="math inline">\(\beta_{0}\)</span> y <span
+class="math inline">\(\beta_{1}\)</span> y un conjunto de 25
+observaciones.</p>
+<p><span class="math display">\[y_{i}=\beta_{0}+\beta_{1}x_{i}+u_{i}
+\hspace{.7cm}\text{ con }\hspace{.2cm} i=1,2,3,\dots 25\]</span>
+<br/><br/></p>
+<p>Este modelo representa 25 igualdades que originan un sistema
+matricial <span class="math inline">\(y= X \beta + u\)</span>, el cual
+se resuelve mendiante MCO con el siguiente resultado:</p>
+<p><span class="math display">\[\begin{eqnarray*}
+        b&amp;=&amp;(X^{T}X)^{-1}X^{T}y \\
+        &amp;&amp;\\
+        &amp;=&amp;\begin{bmatrix}
+            {n}     &amp;{\displaystyle\sum_{i=1}^{n} x_{i}}\\
+            {\displaystyle\sum_{i=1}^{n}
+x_{i}}&amp;{\displaystyle\sum_{i=1}^{n} x^{2}_{i}}\\
+        \end{bmatrix}^{-1}
+        \begin{bmatrix}
+            {\displaystyle\sum_{i=1}^{n} y_{i}}\\
+            {\displaystyle\sum_{i=1}^{n} y_{i}x_{i}}
+        \end{bmatrix}      \\
+        &amp;&amp;\\
+        &amp;=&amp;
+        \begin{bmatrix}
+            {25.00}  &amp;{50.1200}\\
+            {50.12}  &amp;{100.4986}\\
+        \end{bmatrix} ^{-1}
+        \begin{bmatrix}
+            {66.0800}\\
+            {132.5007}\\
+        \end{bmatrix}\\
+        &amp;&amp;\\
+        &amp;=&amp;
+        \begin{bmatrix}
+            {222.4160} &amp;  {-110.9218}\\
+            {-110.9218}&amp;  { 55.3281}\\
+        \end{bmatrix}
+        \begin{bmatrix}
+            {66.0800}\\
+            {132.5007}\\
+        \end{bmatrix}\\
+                &amp;&amp;\\
+        \begin{bmatrix}
+            {b_{0}}\\
+            {b_{1}}\\
+        \end{bmatrix}&amp;=&amp;
+        \begin{bmatrix}
+            {0.03753679}\\
+            {1.29971229}\\
+        \end{bmatrix}
+    \end{eqnarray*}\]</span></p>
+<p><br/><br/></p>
+<p>Mediante operaciones matriciales podemos obtener los estimadores de
+los coeficientes así:</p>
+<pre class="r"><code>y3=c(2.745, 2.700, 2.690, 2.680, 2.675, 2.670, 2.665, 2.660, 2.655, 2.655, 2.650, 2.650, 2.645, 2.635, 2.630, 2.625, 2.625, 2.620, 2.615, 2.615, 2.615, 2.615, 2.590, 2.590, 2.565)
+x3=c(2.080, 2.045, 2.050, 2.005, 2.035, 2.035, 2.020, 2.005, 2.010, 2.000, 2.000, 2.005, 2.015, 1.990, 1.990, 1.995, 1.985, 1.970, 1.985, 1.990, 1.995, 1.990, 1.975, 1.995, 1.955)
+    
+unos=rep(1,25)       # vector de unos
+X=matrix(c(unos,x3),nrow=25) # matriz X 
+    
+# Estimador MCO - Enfoque matricial
+b=solve(t(X)%*%X)%*%(t(X)%*%y3)
+b    # vector de estimadores </code></pre>
+<pre><code>           [,1]
+[1,] 0.03753679
+[2,] 1.29971229</code></pre>
+<p><br/><br/></p>
+<p>Finalmente el modelo estimado por MCO corresponde a la ecuación:</p>
+<p><span class="math display">\[ \widehat{y}= 0.03753679 + 1.29971229
+\hspace{.2cm}x\]</span></p>
+<p><br/><br/></p>
+<p>El signo esperado para el coeficiente <span
+class="math inline">\(b_{1}\)</span>, está de acuerdo con los resultados
+encontrados. Como se ha mencionado anteriormente <span
+class="math inline">\(b_{1}\)</span> corresponde a la estimación de la
+pendiente de la recta de regresión muestral y su signo positivo indica
+que para un mayor peso de la barra antes de iniciar el proceso, el
+producto final tendrá un mayor peso.</p>
+<pre><code>Para realizar la estimación de los coeficientes en R se debe correr el siguiente codigo:</code></pre>
+<pre class="r"><code>regresion=lm(y3~x3, data = df3)
+summary(regresion)</code></pre>
+<pre><code>
+Call:
+lm(formula = y3 ~ x3, data = df3)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.040463 -0.011457  0.002044  0.007534  0.036540 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.03754    0.23810   0.158    0.876    
+x3           1.29971    0.11875  10.945 1.36e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.01597 on 23 degrees of freedom
+Multiple R-squared:  0.8389,    Adjusted R-squared:  0.8319 
+F-statistic: 119.8 on 1 and 23 DF,  p-value: 1.356e-10</code></pre>
+<p><br/><br/></p>
+<p>En el listado para cada estimación se presenta una prueba-t
+individual sobre la significancia de cada coeficiente asi:</p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="20%" />
+<col width="24%" />
+<col width="20%" />
+<col width="13%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">parámetro</th>
+<th align="left"><span class="math inline">\(Ho\)</span></th>
+<th align="left"><span class="math inline">\(Ha\)</span></th>
+<th align="left"><span class="math inline">\(EdeP: T\)</span></th>
+<th align="left"><code>valor-p</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">intercepto <span
+class="math inline">\(\beta_{0}\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{0} =0\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{0}\neq
+0\)</span></td>
+<td align="left"><span class="math inline">\(0.158\)</span></td>
+<td align="left"><span class="math inline">\(0.876\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">pendiente <span
+class="math inline">\(\beta_{1}\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{1} =0\)</span></td>
+<td align="left"><span class="math inline">\(\beta_{1} \neq
+0\)</span></td>
+<td align="left"><span class="math inline">\(10.945\)</span></td>
+<td align="left"><span class="math inline">\(0.0000\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Indicando que no se rechaza la hipótesis nula y por tanto se asume
+que <span class="math inline">\(Ho\)</span> es verdad , <span
+class="math inline">\(\beta_{0}=0\)</span>. En este caso se recomienda
+que aunque la prueba de hipótesis indique que el intercepto es no
+significativo, se debe dejar en el modelo, pues el no incluirlo puede
+generar que la o las pendientes estimadas presenten un sesgo.</p>
+<p>Para el caso de la pendiente los resultados son los siguientes.</p>
+<p>Lo cual ratifica que el modelo es valido y existe una relación lineal
+entre la variable de la barra inicial y el peso del producto
+terminado</p>
+<p>Además de los coeficientes estimados y de la validación de sus
+respectivas pruebas de hipótesis individuales, existe una medida para
+determinar el grado de explicación de la variable dependiente que es
+estimada por el modelo (<span
+class="math inline">\(R^{2}=83.9\%\)</span>). En este caso el modelo
+explica el 83.9% del comportamiento de <span
+class="math inline">\(y\)</span> o de su variación.</p>
+<p>Finalmente la salida reporta el valor del estadístico F (119.8) y su
+valor-p asociado (0.0000), correspondiente al análisis de varianza o
+ANOVA , útil en análisis de regresión lineal múltiple. Para el caso del
+modelo de regresión lineal simple el análisis de varianza arroja los
+mismos resultados que la hipótesis individual para <span
+class="math inline">\(\beta_{1}\)</span></p>
+<p><br/><br/><br/></p>
+<div id="validación-de-supuestos-1" class="section level2">
+<h2><strong>Validación de supuestos</strong></h2>
+<p>El método de MCO, no requiere ningún supuesto de tipo estadístico,
+pues es un método que se basa en la optimización matemática. Sin embargo
+cuando se requiere realizar inferencia - construcción de intervalos de
+confianza o la realización de pruebas de hipótesis asociadas con los
+resultados obtenidos - es necesario plantear y verificar el cumplimiento
+de supuestos estadístico sobre las variables que intervienen en el
+modelo. Algunos de ellos se realizan sobre las variables independientes
+y otros sobre la variable no observable error (<span
+class="math inline">\(u\)</span>). Haremos énfasis sobre el cumplimiento
+de los siguientes supuestos, pues su violación genera estimaciones
+ineficientes y sesgados.</p>
+<p><br/><br/></p>
+<p><strong>Supuesto 1</strong></p>
+<p><span class="math inline">\(E[u]=0\)</span> . El modelo esta
+completo. Este supuesto garantiza que al hacer estimaciones el
+componente aleatorio desaparezca. Se valida mediante el calculo de la
+media de los residuales.</p>
+<p><br/><br/></p>
+<p><strong>Supuesto 2</strong></p>
+<p><span class="math inline">\(V[u]=\sigma^{2}\)</span>. La varianza de
+los errores es constante. El supuesto de HOMOSCEDASTICIDAD o varianza
+constante hace que los estimadores MCO sean eficientes. Este supuesto se
+pude validar mediante la realización de otra regresión donde se toma
+como regresora una proxis de la varianza (<span
+class="math inline">\(u^{2}\)</span>) y como variables independientes
+las mismas del modelo. Esta prueba se conoce como Test de White. En caso
+de que los coeficientes asociados con las variables independientes sean
+no significativos, este resultado será indicio de que la varianza es
+constante.</p>
+<p><span class="math display">\[\widehat{u}^{2} = \alpha_{0} +
+\alpha_{1} x + \epsilon \]</span> <br/><br/></p>
+<p><strong>Supuesto 3</strong></p>
+<p><span class="math inline">\(Cor[u_{i},u_{i-1}]=0\)</span>. Los
+errores no están auto-correlacionados. El supuesto de no autocorrelación
+de errores se puede verificar mediante el estadístico Durbin-Watson.
+Para determinar si se rechaza o no el cumplimiento de este supuesto se
+debe construir una región de rechaza partir de los datos obtenidos en la
+table de D-W</p>
+<p><br/><br/></p>
+<p><strong>Supuesto 4</strong></p>
+<p><span class="math inline">\(u \sim N(0, \sigma^{2})\)</span> . Para
+verificar este supuesto se puede construir una gráfica de los residuales
+<span class="math inline">\(qqnorm\)</span> y una prueba de hipótesis de
+normalidad</p>
+<p>Es necesario antes de utilizar el modelo, verificar el cumplimiento
+de los anteriores supuestos.</p>
+<p><br/><br/><br/></p>
+<p><strong>Analisis de resultados</strong></p>
+<p>Listado 1. Supuesto de modelo completo</p>
+<pre class="r"><code>residuos=regresion$residuals
+summary(residuos)</code></pre>
+<pre><code>     Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+-0.040463 -0.011457  0.002044  0.000000  0.007534  0.036540 </code></pre>
+<pre class="r"><code>t.test(residuos)</code></pre>
+<pre><code>
+    One Sample t-test
+
+data:  residuos
+t = -7.2514e-17, df = 24, p-value = 1
+alternative hypothesis: true mean is not equal to 0
+95 percent confidence interval:
+ -0.00645138  0.00645138
+sample estimates:
+   mean of x 
+-2.26666e-19 </code></pre>
+<p>Por un lado el promedio de los residuales es cercano a cero y por
+otro lado la prueba de hipótesis Ho: <span
+class="math inline">\(\mu_{u}=0\)</span> vs Ha: <span
+class="math inline">\(\mu_{u} \neq 0\)</span>, no se rechaza, asumimos
+que el valor esperado de los errores es cero.</p>
+<p>Listado 2 Supuesto de no autocorrelación de errores</p>
+<pre class="r"><code># Es necesario cargar el paquete 
+library(lmtest)
+dwtest(y3~x3, data = df3)</code></pre>
+<pre><code>
+    Durbin-Watson test
+
+data:  y3 ~ x3
+DW = 1.518, p-value = 0.07668
+alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<p>Los resultados indican que no se cumple el supuesto de no
+autocorrelacion, los errores estan correlacionados</p>
+<p>Listado 3 Supuesto de normalidad de los errores</p>
+<pre class="r"><code>    shapiro.test(residuos)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  residuos
+W = 0.96464, p-value = 0.5143</code></pre>
+<p>El valor-p correspondiente a la prueba de Shapiro-Wilk indica que los
+errores se pueden asumir como normales</p>
+<p>Listado 4</p>
+<pre class="r"><code># Supuesto de varianza constante de errores o homoscedasticidad
+        summary(lm(residuos^2 ~ df3$x3))</code></pre>
+<pre><code>
+Call:
+lm(formula = residuos^2 ~ df3$x3)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-2.749e-04 -1.913e-04 -1.081e-04 -8.540e-06  1.380e-03 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  0.004942   0.005957    0.83    0.415
+df3$x3      -0.002348   0.002971   -0.79    0.437
+
+Residual standard error: 0.0003994 on 23 degrees of freedom
+Multiple R-squared:  0.02645,   Adjusted R-squared:  -0.01588 
+F-statistic: 0.6248 on 1 and 23 DF,  p-value: 0.4373</code></pre>
+<p>Para la verificación del supuesto de homoscedasticidad indica que la
+variable independiente no esta relacionada con la varianza. Se puede
+suponer la varianza de los errores es constante.</p>
+<p><br/><br/></p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 3
+</div>
+<p>Continuamos con los datos de Ejemplo 1</p>
+<pre class="r"><code>y3=c(2.745, 2.700, 2.690, 2.680, 2.675, 2.670, 2.665, 2.660, 2.655, 2.655, 2.650, 2.650, 2.645, 2.635, 2.630, 2.625, 2.625, 2.620, 2.615, 2.615, 2.615, 2.615, 2.590, 2.590, 2.565)
+x3=c(2.080, 2.045, 2.050, 2.005, 2.035, 2.035, 2.020, 2.005, 2.010, 2.000, 2.000, 2.005, 2.015, 1.990, 1.990, 1.995, 1.985, 1.970, 1.985, 1.990, 1.995, 1.990, 1.975, 1.995, 1.955)</code></pre>
+<pre>
+y=c(2.745, 2.700, 2.690, 2.680, 2.675, 2.670, 2.665, 2.660, 2.655, 2.655, 2.650, 2.650, 2.645, 2.635, 2.630, 2.625, 2.625, 2.620, 2.615, 2.615, 2.615, 2.615, 2.590, 2.590, 2.565)
+        x=c(2.080, 2.045, 2.050, 2.005, 2.035, 2.035, 2.020, 2.005, 2.010, 2.000, 2.000, 2.005, 2.015, 1.990, 1.990, 1.995, 1.985, 1.970, 1.985, 1.990, 1.995, 1.990, 1.975, 1.995, 1.955)
+</pre>
+</div>
+<pre class="r"><code># Descriptivas
+summary(y3)</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  2.565   2.615   2.645   2.643   2.665   2.745 </code></pre>
+<pre class="r"><code>summary(x3)</code></pre>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.955   1.990   2.000   2.005   2.015   2.080 </code></pre>
+<pre class="r"><code># Diagrama de dispersión X vs Y
+        plot(y3,x3, main=&quot;Diagrama de dispersión&quot;,xlab=&quot;X:Peso inicial&quot;, 
+             ylab=&quot;Y:Peso final&quot;, pch=19)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<pre class="r"><code># Estimación por MCO
+        regresion=lm(y3~x3, data = df3)
+        summary(regresion)</code></pre>
+<pre><code>
+Call:
+lm(formula = y3 ~ x3, data = df3)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.040463 -0.011457  0.002044  0.007534  0.036540 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  0.03754    0.23810   0.158    0.876    
+x3           1.29971    0.11875  10.945 1.36e-10 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.01597 on 23 degrees of freedom
+Multiple R-squared:  0.8389,    Adjusted R-squared:  0.8319 
+F-statistic: 119.8 on 1 and 23 DF,  p-value: 1.356e-10</code></pre>
+<pre class="r"><code>        confint(regresion)</code></pre>
+<pre><code>                 2.5 %    97.5 %
+(Intercept) -0.4550101 0.5300837
+x3           1.0540506 1.5453740</code></pre>
+<pre class="r"><code>        plot(y3~x3, xlab = &quot;Peso inicial&quot;, ylab = &quot;Peso final&quot;, pch=19)
+        abline(regresion)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<pre class="r"><code># Analisis de la varianza
+        anova(regresion)</code></pre>
+<pre><code>Analysis of Variance Table
+
+Response: y3
+          Df    Sum Sq   Mean Sq F value    Pr(&gt;F)    
+x3         1 0.0305315 0.0305315  119.78 1.356e-10 ***
+Residuals 23 0.0058625 0.0002549                      
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre class="r"><code># Residuos
+        residuos &lt;- rstandard(regresion)
+        valores.ajustados &lt;- fitted(regresion)
+        plot(valores.ajustados, residuos)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<pre class="r"><code># Diagnostico de normalidad
+        qqnorm(residuos, main=&quot;Normalidad de los Residuales&quot;)
+        qqline(residuos)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<pre class="r"><code>        plot(y3,x3, xlab = &quot;peso-F&quot;, ylab = &quot;peso-b&quot;)
+        abline(y3~x3)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-27-2.png" width="672" /></p>
+<pre class="r"><code># validación de supuestos del modelo
+        residuos=rstandard(regresion)
+        valores.ajustados &lt;- fitted(regresion)
+        plot(valores.ajustados, residuos)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<pre class="r"><code>        lmtest::dwtest(y3~x3, data = df3)</code></pre>
+<pre><code>
+    Durbin-Watson test
+
+data:  y3 ~ x3
+DW = 1.518, p-value = 0.07668
+alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<pre class="r"><code>        lmtest::bgtest(y3~x3, data = df3)</code></pre>
+<pre><code>
+    Breusch-Godfrey test for serial correlation of order up to 1
+
+data:  y3 ~ x3
+LM test = 1.4445, df = 1, p-value = 0.2294</code></pre>
+<pre class="r"><code>        shapiro.test(residuos)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  residuos
+W = 0.9658, p-value = 0.5415</code></pre>
+<p><br/><br/></p>
+<p>Hasta ahora se ha presentado el modelo de regresión lineal mediante
+una función de linea recta <span class="math inline">\(y= \beta_{0} +
+\beta_{1} x + u\)</span>, asumiendo que <span
+class="math inline">\(y\)</span> y <span
+class="math inline">\(x\)</span> son variables que se ajustan a este
+modelo.</p>
+<p>A continuación se presentan situaciones donde la relación no es
+lineal, teniendo que realizarse transformaciones en <span
+class="math inline">\(x\)</span>, en <span
+class="math inline">\(y\)</span> o en ambas con el fin de lograr que el
+modelo resultante se lineal en los parámetros:</p>
+<p><br/><br/></p>
+<p>Es necesario realizar un grafico de puntos que nos perita tener una
+primera impresión de la relación que puede existir entre las variables.
+A continuación se presentan algunas relaciones que pueden ser
+linealizadas, permitiendo realizar una estimación por MCO.</p>
+<p><br/><br/></p>
+<p>A continuación se presentan algunas formas de linealización que
+permiten la estimación de relaciones no lineales:</p>
+<div class="box1 with-label">
+<div class="label">
+Transformaciones
+</div>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="23%" />
+<col width="15%" />
+<col width="15%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Función</th>
+<th align="left">Transformación</th>
+<th align="left"></th>
+<th align="left">Forma lineal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(1) Modelo exponencial</td>
+<td align="left"><span class="math inline">\(Y = \alpha e^{\beta
+X}\)</span></td>
+<td align="left"><span class="math inline">\(Y^{*}=ln(Y)\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(Y^{*} =ln(\alpha) + \beta
+X\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">(2) Modelo potencial</td>
+<td align="left"><span class="math inline">\(Y = \alpha
+X^{\beta}\)</span></td>
+<td align="left"><span class="math inline">\(Y^{*}=log(Y)\)</span></td>
+<td align="left"><span class="math inline">\(X^{*}=log(X)\)</span></td>
+<td align="left"><span class="math inline">\(Y^{*} =log(\alpha) + \beta
+X^{*}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">(3) Modelo reciproco</td>
+<td align="left"><span class="math inline">\(Y = \alpha +
+\dfrac{\beta}{X}\)</span></td>
+<td align="left"></td>
+<td align="left"><span
+class="math inline">\(X^{*}=\dfrac{1}{X}\)</span></td>
+<td align="left"><span class="math inline">\(Y =\alpha + \beta
+X^{*}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">(4) Modelo hiperbólico</td>
+<td align="left"><span class="math inline">\(Y=\dfrac{X}{\alpha X +
+\beta }\)</span></td>
+<td align="left"><span
+class="math inline">\(Y^{*}=\dfrac{1}{Y}\)</span></td>
+<td align="left"><span
+class="math inline">\(X^{*}=\dfrac{1}{X}\)</span></td>
+<td align="left"><span class="math inline">\(Y^{*} =\alpha + \beta
+X^{*}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><br/></p>
+<pre class="r"><code>curve(.2*x^2, from=1, to=20, n=500, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;blue&quot;, lwd=2, main=&quot;(1a)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<pre class="r"><code>curve(.2*x^1, from=1, to=20, n=500, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;red&quot;, lwd=2, main=&quot;(1b)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-29-2.png" width="672" /></p>
+<pre class="r"><code>curve(.2*x^0.1, from=1, to=20, n=500, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;green&quot;, lwd=2, main=&quot;(1c)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-29-3.png" width="672" /></p>
+<pre class="r"><code>curve(exp(-2*x), from=1, to=20, n=500, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;blue&quot;, lwd=2, main=&quot;(1a)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<pre class="r"><code>curve(exp(2*x), from=1, to=20, n=500, xlab=&quot;x&quot;, ylab=&quot;y&quot;,col=&quot;green&quot;, lwd=2, main=&quot;(1c)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-30-2.png" width="672" /></p>
+<pre class="r"><code>curve(2-3*log(x), from=1, to=20, n=500, xlab=&quot;xvalue&quot;, ylab=&quot;yvalue&quot;,col=&quot;blue&quot;, lwd=2, main=&quot;(1a)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<pre class="r"><code>curve(2+log(x), from=1, to=20, n=500, xlab=&quot;xvalue&quot;, ylab=&quot;yvalue&quot;,col=&quot;red&quot;, lwd=2, main=&quot;(1b)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-31-2.png" width="672" /></p>
+<pre class="r"><code>curve(2+3*log(x), from=1, to=20, n=500, xlab=&quot;xvalue&quot;, ylab=&quot;yvalue&quot;,col=&quot;green&quot;, lwd=2, main=&quot;(1c)&quot;)</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-31-3.png" width="672" /></p>
+<p><br/></p>
+<p>El realizar el diagrama de dispersión y visualizar la relación entre
+<span class="math inline">\(x\)</span> y <span
+class="math inline">\(y\)</span>, se puede intuir si existe una relación
+lineal o no entre las variables o si por el contrario se deben realizar
+transformaciones para mejorar la estimación por MCO.</p>
+<p><br/><br/></p>
+<p>Ejemplo 4</p>
+<div class="box1 with-label">
+<div class="label">
+Ejemplo 4
+</div>
+<p>La buena previsión y el control de las actividades de preconstrucción
+conducen al uso más eficiente del tiempo y recursos en proyectos de
+construcción de autopistas. Los datos acerca de los costos de
+construcción (en miles de dólares) y las horas-persona de trabajo
+requeridas para varios proyectos se presentan en la tabla siguiente y
+fueron tomados del artículo “Forecasting Engineering Manpower
+Requirements for Highway Preconstruction Activities” (K. Persad, J.
+O’Connor, y K. Varghese, Journal of Management Engineering, 1995:41-47).
+Cada valor representa un promedio de algunos proyectos, y se han
+eliminado dos datos atípicos.(Problema 5. pp 545 Navidi(2006)) |</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(y\)</span>: costos de
+construcción ( miles de dolares)</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(x\)</span>: horas-persona
+trabajo</td>
+</tr>
+</tbody>
+</table>
+<pre>
+ x=c(939,5796,289,283,138,2698,663,1069,5945,4159,1266,1481,4716)
+y=c(251,4690,124,294,138,1085,345,355,5753,1377,802,945,2327)
+ </pre>
+</div>
+<pre class="r"><code>x4=c(939,5796,289,283,138,2698,663,1069,5945,4159,1266,1481,4716)
+y4=c(251,4690,124,294,138,1085,345,355,5753,1377,802,945,2327)
+plot(x4,y4)
+grid()</code></pre>
+<p><img src="recurso51_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>En la gráfica se visualiza una relación con una leve curvatura que
+puede hacer pensar que la relación entre las variables no es del todo
+lineal.</p>
+<p>Inicialmente se realiza la estimación lineal con el fin de poder
+comparar los otros modelos estimados.</p>
+<p><br/><br/></p>
+</div>
+<div id="modelo-lin-lin" class="section level2">
+<h2>Modelo lin-lin</h2>
+<pre class="r"><code>modelo1=lm(y4~x4)
+summary(modelo1)</code></pre>
+<pre><code>
+Call:
+lm(formula = y4 ~ x4)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1496.6  -155.1   145.4   345.8  1510.8 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) -313.5213   320.1189  -0.979    0.348    
+x4             0.7663     0.1044   7.339 1.47e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 778 on 11 degrees of freedom
+Multiple R-squared:  0.8304,    Adjusted R-squared:  0.815 
+F-statistic: 53.86 on 1 and 11 DF,  p-value: 1.468e-05</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="modelo-log-lin" class="section level2">
+<h2>Modelo log-lin</h2>
+<pre class="r"><code>modelo2=lm(log(y4)~x4)
+summary(modelo2)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(y4) ~ x4)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.65825 -0.30913 -0.03368  0.19121  0.71971 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 5.320e+00  1.752e-01  30.359 5.86e-12 ***
+x4          5.478e-04  5.716e-05   9.583 1.13e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.4259 on 11 degrees of freedom
+Multiple R-squared:  0.893, Adjusted R-squared:  0.8833 
+F-statistic: 91.84 on 1 and 11 DF,  p-value: 1.129e-06</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="modelo-log--log" class="section level2">
+<h2>Modelo log -log</h2>
+<pre class="r"><code>modelo3=lm(log(y4)~log(x4))
+summary(modelo3)</code></pre>
+<pre><code>
+Call:
+lm(formula = log(y4) ~ log(x4))
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.74106 -0.33687 -0.03354  0.46597  0.65358 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  -0.1773     0.7945  -0.223    0.827    
+log(x4)       0.9414     0.1095   8.597 3.27e-06 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.4687 on 11 degrees of freedom
+Multiple R-squared:  0.8704,    Adjusted R-squared:  0.8587 
+F-statistic: 73.91 on 1 and 11 DF,  p-value: 3.274e-06</code></pre>
+<p><br/><br/></p>
+</div>
+<div id="modelo-lin-log" class="section level2">
+<h2>Modelo lin log</h2>
+<pre class="r"><code>modelo4=lm(y4~log(x4))
+summary(modelo4)</code></pre>
+<pre><code>
+Call:
+lm(formula = y4 ~ log(x4))
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1338.5  -827.0  -526.8   535.6  2644.4 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)  -6453.0     2112.2  -3.055  0.01095 * 
+log(x4)       1100.3      291.1   3.779  0.00305 **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 1246 on 11 degrees of freedom
+Multiple R-squared:  0.5649,    Adjusted R-squared:  0.5254 
+F-statistic: 14.28 on 1 and 11 DF,  p-value: 0.003051</code></pre>
+<p><br/><br/><br/></p>
+</div>
+<div id="predicción" class="section level2">
+<h2><strong>Predicción</strong></h2>
+<p>En ocasiones es necesario realizar predicciones de los valores de
+<span class="math inline">\(y\)</span> para un determinado valor de
+<span class="math inline">\(x\)</span>.</p>
+<p>La ecuación de predicción esta data por <span
+class="math inline">\(\widehat{y}= b_{0}+ b_{1} x\)</span>. Esta
+ecuación permite estimar tanto <span
+class="math inline">\(\widehat{E[y|x_{o}]}\)</span>, como <span
+class="math inline">\(\widehat{y_{x_{o}}}\)</span> . La primera
+corresponde al valor promedio para <span
+class="math inline">\(y\)</span> dado un valor promedio de <span
+class="math inline">\(x_{o}\)</span>. La segunda a a un valor al valor
+de <span class="math inline">\(y\)</span> para un valor de <span
+class="math inline">\(x_{o}\)</span>.</p>
+<p><br/><br/><br/></p>
+</div>
+<div id="ic-predicción-y_o" class="section level2">
+<h2><strong>IC predicción <span
+class="math inline">\(y_{o}\)</span></strong></h2>
+<div id="intervalo-de-confianza-para-y_o" class="section level3">
+<h3><strong>Intervalo de confianza para <span
+class="math inline">\(y_{o}\)</span></strong></h3>
+<p><span class="math display">\[\widehat{y_{o}} - t_{\alpha/2} s
+\sqrt{1+\dfrac{1}{n}+ \dfrac{(x_{o}-\bar{x})^{2}}{S_{xx}}}
+\hspace{.5cm}&lt; y_{o} &lt;\hspace{.5cm}
+\widehat{y_{o}} + t_{\alpha/2} s \sqrt{1+\dfrac{1}{n}+
+\dfrac{(x_{o}-\bar{x})^{2}}{S_{xx}}}\]</span> Donde: <span
+class="math inline">\(S_{xx}=\displaystyle\sum_{i=1}^{n}
+(x_{i}-\bar{x})^{2}\)</span></p>
+<p><br/></p>
+<p>Queremos estimar un intervalo de confianza para el consumo de un
+hogar (Y) que tenga unos ingresos (X) de <span
+class="math inline">\(x_{o}=18\)</span></p>
+<p>En el supongamos que deseamos estimar un intervalo de confianza para
+el consumo (<span class="math inline">\(\mu_{Y|x_{o}}\)</span>) para
+hogares con ingresos de <span class="math inline">\(x_{o} =
+18\)</span>.</p>
+<p><br/></p>
+<pre class="r"><code>x5=c(24.3,12.5,31.2,28,35.1,10.5,23.2,10,8.5,15.9,14.7,15)
+y5=c(16.2,8.5,15,17,24.2,11.2,15,7.1,3.5,11.5,10.7,9.2)
+
+
+        
+regresion=lm(y5 ~ x5)
+summary(regresion)</code></pre>
+<pre><code>
+Call:
+lm(formula = y5 ~ x5)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1928 -0.5426  0.0088  0.8500  3.5613 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  1.77788    1.58292   1.123    0.288    
+x5           0.55817    0.07567   7.376 2.38e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 2.251 on 10 degrees of freedom
+Multiple R-squared:  0.8447,    Adjusted R-squared:  0.8292 
+F-statistic: 54.41 on 1 and 10 DF,  p-value: 2.38e-05</code></pre>
+<pre class="r"><code>nuevo &lt;- data.frame(x5=18)
+predict(object=regresion, newdata=nuevo, interval=&quot;predict&quot;, level=0.95)</code></pre>
+<pre><code>       fit     lwr      upr
+1 11.82497 6.60239 17.04754</code></pre>
+<p><br/><br/><br/></p>
+</div>
+</div>
+<div id="ic-predicción-media-mu_yx_o" class="section level2">
+<h2><strong>IC predicción media <span
+class="math inline">\(\mu_{Y|x_{o}}\)</span></strong></h2>
+<p><br/></p>
+<div id="intervalo-de-confianza-para-mu_yx_o" class="section level3">
+<h3><strong>Intervalo de confianza para <span
+class="math inline">\(\mu_{Y|x_{o}}\)</span></strong></h3>
+<p><span class="math display">\[\widehat{y_{o}} - t_{\alpha/2} s
+\sqrt{\dfrac{1}{n}+ \dfrac{(x_{o}-\bar{x})^{2}}{S_{xx}}}
+\hspace{.5cm}&lt; \mu_{Y|x_{o}} &lt; \hspace{.5cm}
+\widehat{y_{0}} + t_{\alpha/2} s \sqrt{\dfrac{1}{n}+
+\dfrac{(x_{o}-\bar{x})^{2}}{S_{xx}}}\]</span> Donde: <span
+class="math inline">\(S_{xx}=\displaystyle\sum_{i=1}^{n}
+(x_{i}-\bar{x})^{2}\)</span></p>
+<pre class="r"><code>predict(object=regresion, newdata=nuevo, interval=&quot;confidence&quot;, level=0.95)</code></pre>
+<pre><code>       fit      lwr      upr
+1 11.82497 10.36605 13.28388</code></pre>
+<p><br/><br/></p>
+<div class="box3 with-label">
+<div class="label">
+Código R
+</div>
+<table>
+<colgroup>
+<col width="35%" />
+<col width="64%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Representación gráfica</td>
+<td align="left"><code>plot(x,y)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Estimación modelo</td>
+<td align="left"><code>modelo=lm(y~x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Visualización de resultados</td>
+<td align="left"><code>summary(modelo)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Visualización de la recta</td>
+<td
+align="left"><code>plot(y~x, xlab="variable x", ylab="variable y", pch=19)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left"><code>abline(modelo)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Guardado de y estimados</td>
+<td align="left"><code>yhat=modelo$fitted.values</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Guardado de los residuos</td>
+<td align="left"><code>uhat=modelo$residuals</code></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">Intervalo de confianza para predicción</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">IC predicción <span
+class="math inline">\(y_{0}\)</span></td>
+<td align="left"><code>nuevo &lt;- data.frame(x=18)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td
+align="left"><code>predict(object=modelo, newdata=nuevo, interval="prediction", level=0.95)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Intervalo de confianza para</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">IC predicción <span
+class="math inline">\(\mu_{Y|x_{0}}\)</span></td>
+<td
+align="left"><code>predict(object=modelo, newdata=nuevo, interval="confidence", level=0.95)</code></td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="23%" />
+<col width="57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="left">Validación de supuestos :</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">S1: normalidad de errores</td>
+<td align="left"><span class="math inline">\(u \sim norm\)</span></td>
+<td align="left"><code>shapiro.test(uhat)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">S2: modelo completo</td>
+<td align="left"><span class="math inline">\(E[u]=0\)</span></td>
+<td align="left"><code>t.test(uhat)</code></td>
+</tr>
+<tr class="even">
+<td align="left">S3: Homoscedasticidad</td>
+<td align="left"><span class="math inline">\(V[u] =
+\sigma^{2}\)</span></td>
+<td align="left"><code>lmtest::bgtest(modelo)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">S4: No autocorrelacón de errores</td>
+<td align="left"><span
+class="math inline">\(Cor(u_{i},u_{j})=0\)</span></td>
+<td align="left"><code>lmtest::dwtest(modelo)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Nota : para verificar los supuestos S3 y S4 se requiere descargar el
+paquete : <code>lmtest</code></p>
+</div>
+<p><br/><br/></p>
+</div>
+</div>
+</div>
+<div id="video" class="section level1 box1 with-label">
+<h1><strong>Video</strong></h1>
+<center>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l2vx7ZPiaFI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</center>
+<p><br/><br/></p>
+</div>
+<div id="tutoriales" class="section level1">
+<h1><strong>Tutoriales</strong></h1>
+<p>Con el siguiente código en R , podrán abrir un tutorial con problemas
+propuestos sobre el tema. Es necesario para ello abrir la consola de R o
+RStudio y correr el código</p>
+<p>Si ya se tienen instalados los paquetes <code>learnr</code> y
+<code>remotes</code>, no es necesario hacerlo nuevamente.</p>
+<p>El paquete <code>paqueteDEG</code> si debe ser instalado cada vez que
+sea utilizado con el fin de incorporar nuevas actualizaciones</p>
+<p><br/><br/></p>
+<div id="taller-regresion1" class="section level2">
+<h2><strong>Taller regresion1</strong></h2>
+<pre class="r"><code># se deben instalar los paquetes en caso de no haberlo hecho antes
+install.packages(&quot;learnr&quot;) # solo una vez
+install.packages(&#39;remotes&#39;)  # solo una vez
+
+# codigo para cargar instructivo Taller_regresion1
+library(remotes) 
+library(devtools)  
+install_github(&quot;dgonxalex80/paqueteDEG&quot;, force = TRUE) # bajar paquete
+learnr::run_tutorial(&quot;Taller_regresion1&quot;, &quot;paqueteDEG&quot;) # correr instructivo 1</code></pre>
+<pre>
+# se deben instalar los paquetes en caso de no haberlo hecho antes
+install.packages("learnr") # solo una vez
+install.packages('remotes')  # solo una vez
+
+# codigo para cargar instructivo Taller_regresion1
+library(remotes) 
+library(devtools)  
+install_github("dgonxalex80/paqueteDEG", force = TRUE) # bajar paquete
+learnr::run_tutorial("Taller_regresion1", "paqueteDEG") # correr instructivo 1
+</pre>
+<p><br/><br/></p>
+</div>
+<div id="taller-regresion2" class="section level2">
+<h2><strong>Taller regresion2</strong></h2>
+<pre class="r"><code># codigo para cargar instructivo Taller_regresion1
+library(remotes) 
+library(devtools)  
+install_github(&quot;dgonxalex80/paquetDEG&quot;, force = TRUE) # bajar paquete
+learnr::run_tutorial(&quot;Taller_regresion2&quot;, &quot;paqueteDEG&quot;) # correr instructivo 2 (se corre uno de los dos !!)</code></pre>
+<pre>
+# codigo para cargar instructivo Taller_regresion1
+library(remotes) 
+library(devtools)  
+install_github("dgonxalex80/paquetDEG", force = TRUE) # bajar paquete
+learnr::run_tutorial("Taller_regresion2", "paqueteDEG") # correr instructivo 2 (se corre uno de los dos !!)
+</pre>
+<p><br/><br/></p>
+<p><strong>Referencias</strong> :</p>
+<ul>
+<li><p><a href="https://fhernanb.github.io/libro_regresion/predict.html"
+class="uri">https://fhernanb.github.io/libro_regresion/predict.html</a></p></li>
+<li><p><a
+href="https://thomasadventure.blog/es/posts/ggplot-recta-de-regresion/"
+class="uri">https://thomasadventure.blog/es/posts/ggplot-recta-de-regresion/</a></p></li>
+</ul>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

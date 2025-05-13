@@ -1,0 +1,194 @@
+---
+title: <span style="color:#235784"> </span>  
+subtitle: <span style="color:#235784">**Unidad 5.1**</span> 
+author: "dgonzalez "
+output:
+  html_document:
+    toc: no
+    toc_depth: 2
+    toc_float: yes
+    code_folding: hide
+    theme: flatly
+    css: style.css
+---     
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE, comment = NA)
+library(psych)
+library(summarytools)
+library(tidyverse)
+# install.packages("devtools")
+#devtools::install_github("dgonxalex80/paqueteDEG")
+#library(paqueteDEG)
+
+# colores
+c0= "#FFCC00"
+c1= "#FFAD42"
+c2= "#FF5A42"
+c3= "#E1286F"
+c4= "#4983F6"
+c5= "#783AC7"
+c6= "#2C5697" # AZZUL INSTITUCIONAL
+c7= "#F7F7F7" # FONDO GRIS CLARO WEB
+
+# install.packages('gtools')
+# install.packages("TeachingSampling")
+
+#load library
+library(gtools)
+library(TeachingSampling)
+library(readr)
+base_muestreo <- read_delim("data/base_muestreo.csv", 
+    delim = ";", escape_double = FALSE, col_types = cols(ID = col_integer()), 
+    trim_ws = TRUE)
+#library(paqueteDEG)
+
+```
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+knitr::include_graphics("img/codigo5.png")
+```
+
+<br/><br/><br/>
+
+
+
+
+
+<br/><br/>
+
+## **Regresión Lineal Simple**
+
+<br/>
+
+Inicialmente los datos son representados en un diagrama de dispersión que ayuda a visualizar el tipo de relación que hay entre ellos
+
+```{r}
+x=c(24.3, 12.5, 31.2, 28.0, 35.1, 10.5, 23.2, 10.0,  8.5,  15.9,  14.7,  15.0)   
+y=c(16.2,  8.5, 15.0, 17.0, 24.2, 11.2, 15.0,  7.1,  3.5,  11.5, 10.7,  9.2) 
+plot(x,y, pch=19, col=c5, las=1)
+```
+
+<br/><br/><br/>
+
+## **Estimación MCO**
+
+Se pretende estimar un modelo que represente los datos mediante una linea recta 
+
+$\widehat{y}= b_{0} + b_{1} x$
+
+Donde 
++ $b_{0}$ : representa el intercepto
++ $b_{1}$ : representa la pendiente
+
+la función utilizada para la estimación de los parámetros por el método de MCO es : lm()
+
+<br/>
+
+```{r}
+regresion=lm(y ~ x)
+plot(x,y, xlab = "Ingresos", ylab = "Consumo estimado", pch=19, col=c3, las=1)
+abline(regresion)
+```
+
+<br/>
+
+```{r}
+uhat=regresion$residuals
+yhat=regresion$fitted.values
+
+data.frame(y,x,yhat, uhat)
+```
+
+<br/><br/><br/>
+
+## **Validación de supuestos**
+
+La verificación de los supuestos constituye un requisito excencial para la realización de inferencia sobre los parámetros estimados
+
+<br/><br/>
+
+### Supuesto 1
+
+Normalidad de los errores
+
+<br/>
+
+```{r, warning=FALSE, message=FALSE}
+library(fBasics)
+# Test de normalidad de los errores
+# Ho: los errores tienen distribución normal
+ks.test(uhat, "pnorm") # test de normalidad
+shapiro.test(uhat) # test de normalidad
+# se debe instalar paquete fBasics
+# install.packages("fBasics")
+jarqueberaTest(uhat) # test de normalidad
+```
+
+<br/><br/>
+
+### Supuesto 2
+
+<br/>
+
+Modelo completo, esto se traduce en que el término error tiene media cero.
+
+```{r}
+# t-test para verificar E[u]=0, modelo completo
+# Ho: miu_u = 0
+t.test(uhat)
+```
+
+
+<br/><br/>
+
+### Supuesto 3
+
+<br/>
+
+Los errores no estan autocorrelacionados, es decir son independientes unos de otros
+
+```{r, message=FALSE, warning=FALSE}
+# Test de Autocorrelacion de errores
+# Cor[ui,uj]=0
+# Ho: no existe autocorrelacion entre los errores
+# se debe instalar paquete lmtest
+# install.packages("lmtest")
+library(lmtest) #dwtest
+dwtest(y ~ x) # test de Durbin-Wapson
+```
+
+
+<br/><br/><br/>
+
+### Supuesto 4
+
+Los errores tienen varianza constante
+
+```{r}
+# Test de Homoscedasticidad
+# Ho: la varianza de los erroes es constante
+# Ho: V(u) = sigma2
+gqtest(y ~ x)
+```
+
+<br/>
+
+```{r}
+
+library(ggplot2)
+x=c(24.3, 12.5, 31.2, 28.0, 35.1, 10.5, 23.2, 10.0,  8.5,  15.9,  14.7,  15.0)   
+y=c(16.2,  8.5, 15.0, 17.0, 24.2, 11.2, 15.0,  7.1,  3.5,  11.5, 10.7,  9.2) 
+datos=data.frame(x,y)
+p <- ggplot(datos, aes(x, y)) +
+  geom_point()
+p + geom_smooth(method = "lm",  level = 0.95)
+```
+
+
+
+
+
+
+
+

@@ -149,12 +149,16 @@ navbar:
                
 
 
-    - text: "Módulo 4"
+    - text: "Módulo 5"
       menu:
-        - text: "Módulo 4"
-          href: modulo4.html
-        - text: "---------"   
- 
+        - text: "Módulo 5"
+          href: modulo5.html
+        - text: "---------" 
+        - text: "recursos 5.1"
+          href: recurso51.html
+        - text: "Código 5.1"  
+          href: codigo51.html        
+  
     - text: "Proyecto"
       menu:
         - text: "Guía proyecto"
