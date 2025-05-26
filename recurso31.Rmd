@@ -1312,6 +1312,49 @@ kable(matrix(c(
 
 
 
+<br/><br/><br/>
+
+## Tablas
+
+<br/><br/>
+
+#### Tabla normal estandar
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+ knitr::include_graphics("tablas/TablaZ.png")
+```
+
+<br/><br/>
+
+#### Tabla t-Student
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+ knitr::include_graphics("tablas/tabla_t.png")
+```
+
+<br/><br/>
+
+#### Tabla chi-cuadrado
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+ knitr::include_graphics("tablas/tabla_x2.png")
+```
+
+<br/><br/>
+
+#### Tabla F $\alpha = 0.025$
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+ knitr::include_graphics("tablas/tabla_F0025.png")
+```
+
+<br/><br/>
+
+#### Tabla F $\alpha = 0.05$
+
+```{r, echo=FALSE, out.width="100%", fig.align = "center"}
+ knitr::include_graphics("tablas/tabla_F005.png")
+```
+
 
 
 
